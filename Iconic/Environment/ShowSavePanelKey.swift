@@ -18,18 +18,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Combine
 import SwiftUI
 
-struct Document {
+private struct ShowSavePanelKey: EnvironmentKey {
 
-    var topColor: Color = Color(NSColor(.black).lighter(by: 25))
-    var bottomColor: Color = .black
+    static let defaultValue: (_ title: String) -> URL? = { title in
+        let savePanel = NSSavePanel()
+        savePanel.allowedContentTypes = [.png]
+        savePanel.canCreateDirectories = true
+        savePanel.isExtensionHidden = false
+        savePanel.allowsOtherFileTypes = false
+        savePanel.title = title
+        let response = savePanel.runModal()
+        return response == .OK ? savePanel.url : nil
+    }
 
-    var systemImage: String = "face.smiling"
-    var symbolColor: Color = .white
-    var iconScale: CGFloat = 0.5
+}
 
-    var shadowOpacity: CGFloat = 0.5
-    var shadowHeight: CGFloat = 0.2
+extension EnvironmentValues {
+
+    var showSavePanel: (_ title: String) -> URL? {
+        get { self[ShowSavePanelKey.self] }
+        set { self[ShowSavePanelKey.self] = newValue }
+    }
 
 }

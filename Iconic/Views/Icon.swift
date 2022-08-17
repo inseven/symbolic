@@ -26,13 +26,12 @@ struct Icon: View {
         static let shadowOffsetScaleFactor = 0.125
     }
 
-    var iconScale: CGFloat
     var document: Document
     var size: CGFloat
 
     var body: some View {
         ZStack {
-            let iconSize = size * iconScale
+            let iconSize = size * document.iconScale
             let x = size / 2
             let y = size / 2
             let shadowRadius = size * document.shadowHeight * Constants.shadowOffsetScaleFactor

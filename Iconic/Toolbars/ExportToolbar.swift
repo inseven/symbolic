@@ -20,16 +20,37 @@
 
 import SwiftUI
 
-extension View {
+struct ExportToolbar: CustomizableToolbarContent {
 
-    @MainActor func snapshot() -> Data? {
-        let renderer = ImageRenderer(content: self)
-        guard let image = renderer.cgImage else {
-            return nil
+    @Environment(\.showSavePanel) var showSavePanel
+
+    var document: Document
+
+    var body: some CustomizableToolbarContent {
+
+        ToolbarItem(id: "export") {
+            Button {
+                // We're dispatching to main here because for some reason the compiler doens't think the button action
+                // is being performed on MainActor and is giving warnings (which is surprising).
+                DispatchQueue.main.async {
+                    let icon = Icon(document: document, size: 1024)
+                    guard let data = icon.snapshot() else {
+                        return
+                    }
+                    guard let url = showSavePanel("Export Icon") else {
+                        return
+                    }
+                    do {
+                        try data.write(to: url)
+                    } catch {
+                        print("Failed to write to file with error \(error)")
+                    }
+                }
+            } label: {
+                Label("Export", systemImage: "square.and.arrow.up")
+            }
         }
-        let imageRep = NSBitmapImageRep(cgImage: image)
-        imageRep.size = CGSize(width: image.width, height: image.height)
-        return imageRep.representation(using: .png, properties: [:])
+
     }
 
 }

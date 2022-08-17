@@ -21,6 +21,8 @@
 		D8CD4A9028AC35C600D57F34 /* IconicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A8F28AC35C600D57F34 /* IconicTests.swift */; };
 		D8CD4A9A28AC35C600D57F34 /* IconicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9928AC35C600D57F34 /* IconicUITests.swift */; };
 		D8CD4A9C28AC35C600D57F34 /* IconicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9B28AC35C600D57F34 /* IconicUITestsLaunchTests.swift */; };
+		D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */; };
+		D8D9731428ACFC1B006CBF15 /* ShowSavePanelKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9731328ACFC1B006CBF15 /* ShowSavePanelKey.swift */; };
 		D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */; };
 		D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,8 @@
 		D8CD4A9528AC35C600D57F34 /* IconicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IconicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A9928AC35C600D57F34 /* IconicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicUITests.swift; sourceTree = "<group>"; };
 		D8CD4A9B28AC35C600D57F34 /* IconicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToolbar.swift; sourceTree = "<group>"; };
+		D8D9731328ACFC1B006CBF15 /* ShowSavePanelKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSavePanelKey.swift; sourceTree = "<group>"; };
 		D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,9 +158,11 @@
 				D8CD4A8628AC35C600D57F34 /* Iconic.entitlements */,
 				D8CD4A7D28AC35C300D57F34 /* IconicApp.swift */,
 				D8CD4A8128AC35C600D57F34 /* Assets.xcassets */,
+				D8D9731228ACFBFA006CBF15 /* Environment */,
 				D821B9DE28ACDB5500504AA4 /* Extensions */,
 				D821B9E528ACDBC300504AA4 /* Models */,
 				D8CD4A8328AC35C600D57F34 /* Preview Content */,
+				D8D9730F28ACF8BA006CBF15 /* Toolbars */,
 				D821B9EF28ACF0A900504AA4 /* Utilities */,
 				D821B9E628ACDBCB00504AA4 /* Views */,
 			);
@@ -186,6 +192,22 @@
 				D8CD4A9B28AC35C600D57F34 /* IconicUITestsLaunchTests.swift */,
 			);
 			path = IconicUITests;
+			sourceTree = "<group>";
+		};
+		D8D9730F28ACF8BA006CBF15 /* Toolbars */ = {
+			isa = PBXGroup;
+			children = (
+				D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */,
+			);
+			path = Toolbars;
+			sourceTree = "<group>";
+		};
+		D8D9731228ACFBFA006CBF15 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				D8D9731328ACFC1B006CBF15 /* ShowSavePanelKey.swift */,
+			);
+			path = Environment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,8 +345,10 @@
 				D821B9EE28ACDC6F00504AA4 /* SymbolPicker.swift in Sources */,
 				D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */,
 				D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */,
+				D8D9731428ACFC1B006CBF15 /* ShowSavePanelKey.swift in Sources */,
 				D821B9EA28ACDBF700504AA4 /* String.swift in Sources */,
 				D821B9E428ACDBA800504AA4 /* Icon.swift in Sources */,
+				D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */,
 				D821B9E028ACDB6000504AA4 /* View.swift in Sources */,
 				D8CD4A7E28AC35C300D57F34 /* IconicApp.swift in Sources */,
 				D821B9E228ACDB8500504AA4 /* NSColor.swift in Sources */,
