@@ -1,5 +1,5 @@
 # Iconic
 
-SF Symbols based icon generator for macOS
+SF Symbols based icon generator
 
 <img src="screenshots/screenshot.png" width="1012" />
