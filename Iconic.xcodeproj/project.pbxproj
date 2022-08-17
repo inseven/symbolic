@@ -100,12 +100,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		D821B9E528ACDBC300504AA4 /* Model */ = {
+		D821B9E528ACDBC300504AA4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				D821B9E728ACDBE000504AA4 /* Document.swift */,
+				D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D821B9E628ACDBCB00504AA4 /* Views */ = {
@@ -117,6 +118,14 @@
 				D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D821B9EF28ACF0A900504AA4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		D8CD4A7128AC35C300D57F34 = {
@@ -144,12 +153,11 @@
 			children = (
 				D8CD4A8628AC35C600D57F34 /* Iconic.entitlements */,
 				D8CD4A7D28AC35C300D57F34 /* IconicApp.swift */,
-				D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */,
-				D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */,
 				D8CD4A8128AC35C600D57F34 /* Assets.xcassets */,
 				D821B9DE28ACDB5500504AA4 /* Extensions */,
-				D821B9E528ACDBC300504AA4 /* Model */,
+				D821B9E528ACDBC300504AA4 /* Models */,
 				D8CD4A8328AC35C600D57F34 /* Preview Content */,
+				D821B9EF28ACF0A900504AA4 /* Utilities */,
 				D821B9E628ACDBCB00504AA4 /* Views */,
 			);
 			path = Iconic;
