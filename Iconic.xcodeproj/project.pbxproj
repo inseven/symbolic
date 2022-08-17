@@ -132,8 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				D8CD4A7C28AC35C300D57F34 /* Iconic */,
-				D8CD4A8E28AC35C600D57F34 /* IconifyTests */,
-				D8CD4A9828AC35C600D57F34 /* IconifyUITests */,
+				D8CD4A8E28AC35C600D57F34 /* IconicTests */,
+				D8CD4A9828AC35C600D57F34 /* IconicUITests */,
 				D8CD4A7B28AC35C300D57F34 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -171,21 +171,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		D8CD4A8E28AC35C600D57F34 /* IconifyTests */ = {
+		D8CD4A8E28AC35C600D57F34 /* IconicTests */ = {
 			isa = PBXGroup;
 			children = (
 				D8CD4A8F28AC35C600D57F34 /* IconicTests.swift */,
 			);
-			path = IconifyTests;
+			path = IconicTests;
 			sourceTree = "<group>";
 		};
-		D8CD4A9828AC35C600D57F34 /* IconifyUITests */ = {
+		D8CD4A9828AC35C600D57F34 /* IconicUITests */ = {
 			isa = PBXGroup;
 			children = (
 				D8CD4A9928AC35C600D57F34 /* IconicUITests.swift */,
 				D8CD4A9B28AC35C600D57F34 /* IconicUITestsLaunchTests.swift */,
 			);
-			path = IconifyUITests;
+			path = IconicUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
