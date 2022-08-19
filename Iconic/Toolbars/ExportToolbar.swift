@@ -26,6 +26,18 @@ struct ExportToolbar: CustomizableToolbarContent {
 
     var document: Document
 
+    @MainActor func saveSnapshot(for document: Document, size: CGFloat, shadow: Bool = true, directoryURL: URL) throws {
+        let icon = Icon(document: document, size: size, renderShadow: shadow, isShadowFlipped: true)
+        guard let data = icon.snapshot() else {
+#warning("TODO: Throw an error here")
+            return
+        }
+        let type = shadow ? "macOS" : "iOS"
+        let sizeString = String(format: "%d", size)
+        let url = directoryURL.appendingPathComponent("\(type)_\(sizeString)x\(sizeString)", conformingTo: .png)
+        try data.write(to: url)
+    }
+
     var body: some CustomizableToolbarContent {
 
         ToolbarItem(id: "export") {
@@ -33,15 +45,13 @@ struct ExportToolbar: CustomizableToolbarContent {
                 // We're dispatching to main here because for some reason the compiler doens't think the button action
                 // is being performed on MainActor and is giving warnings (which is surprising).
                 DispatchQueue.main.async {
-                    let icon = Icon(document: document, size: 1024)
-                    guard let data = icon.snapshot() else {
-                        return
-                    }
                     guard let url = showSavePanel("Export Icon") else {
                         return
                     }
                     do {
-                        try data.write(to: url)
+                        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+                        try saveSnapshot(for: document, size: 1024, directoryURL: url)
+                        try saveSnapshot(for: document, size: 1024, shadow: false, directoryURL: url)
                     } catch {
                         print("Failed to write to file with error \(error)")
                     }

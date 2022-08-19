@@ -25,7 +25,7 @@ private struct ShowSavePanelKey: EnvironmentKey {
 
     static let defaultValue: (_ title: String) -> URL? = { title in
         let savePanel = NSSavePanel()
-        savePanel.allowedContentTypes = [.png]
+        savePanel.allowedContentTypes = [.directory]
         savePanel.canCreateDirectories = true
         savePanel.isExtensionHidden = false
         savePanel.allowsOtherFileTypes = false
