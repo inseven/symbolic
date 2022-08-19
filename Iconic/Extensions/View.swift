@@ -22,14 +22,31 @@ import SwiftUI
 
 extension View {
 
-    @MainActor func snapshot() -> Data? {
-        let renderer = ImageRenderer(content: self)
-        guard let image = renderer.cgImage else {
+#warning("TODO: This currently inverts shadows")
+    func snapshot() -> Data? {
+        let controller = NSHostingController(rootView: self)
+        let targetSize = controller.view.intrinsicContentSize
+        let contentRect = NSRect(origin: .zero, size: targetSize)
+
+        let window = NSWindow(contentRect: contentRect,
+                              styleMask: [.borderless],
+                              backing: .buffered,
+                              defer: false)
+        window.contentView = controller.view
+        guard let bitmapRep = controller.view.bitmapImageRepForCachingDisplay(in: contentRect) else {
             return nil
         }
-        let imageRep = NSBitmapImageRep(cgImage: image)
-        imageRep.size = CGSize(width: image.width, height: image.height)
-        return imageRep.representation(using: .png, properties: [:])
+
+        controller.view.cacheDisplay(in: contentRect, to: bitmapRep)
+        let image = NSImage(size: bitmapRep.size)
+        image.addRepresentation(bitmapRep)
+
+        guard let tiffRepresentation = image.tiffRepresentation else {
+            return nil
+        }
+        let imageRep = NSBitmapImageRep(data: tiffRepresentation)
+        let pngData = imageRep?.representation(using: .png, properties: [:])
+        return pngData
     }
 
 }
