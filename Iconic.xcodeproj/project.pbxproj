@@ -30,6 +30,8 @@
 		D8D9731428ACFC1B006CBF15 /* ShowSavePanelKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9731328ACFC1B006CBF15 /* ShowSavePanelKey.swift */; };
 		D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */; };
 		D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */; };
+		D8F99EC328B13955007C3868 /* diligence-license in Resources */ = {isa = PBXBuildFile; fileRef = D8F99EC228B13955007C3868 /* diligence-license */; };
+		D8F99EC628B13998007C3868 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8F99EC528B13998007C3868 /* Diligence */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		D8D9731328ACFC1B006CBF15 /* ShowSavePanelKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSavePanelKey.swift; sourceTree = "<group>"; };
 		D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerModel.swift; sourceTree = "<group>"; };
+		D8F99EC028B138FE007C3868 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
+		D8F99EC228B13955007C3868 /* diligence-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "diligence-license"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F99EC628B13998007C3868 /* Diligence in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,10 +155,12 @@
 		D8CD4A7128AC35C300D57F34 = {
 			isa = PBXGroup;
 			children = (
+				D8F99EBF28B138FE007C3868 /* Packages */,
 				D8CD4A7C28AC35C300D57F34 /* Iconic */,
 				D8CD4A8E28AC35C600D57F34 /* IconicTests */,
 				D8CD4A9828AC35C600D57F34 /* IconicUITests */,
 				D8CD4A7B28AC35C300D57F34 /* Products */,
+				D8F99EC428B13998007C3868 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,12 +177,13 @@
 		D8CD4A7C28AC35C300D57F34 /* Iconic */ = {
 			isa = PBXGroup;
 			children = (
-				D83970E328B0B61700282EE8 /* Info.plist */,
 				D8CD4A8628AC35C600D57F34 /* Iconic.entitlements */,
+				D83970E328B0B61700282EE8 /* Info.plist */,
 				D8CD4A7D28AC35C300D57F34 /* IconicApp.swift */,
 				D8CD4A8128AC35C600D57F34 /* Assets.xcassets */,
 				D8D9731228ACFBFA006CBF15 /* Environment */,
 				D821B9DE28ACDB5500504AA4 /* Extensions */,
+				D8F99EC128B13946007C3868 /* Licenses */,
 				D821B9E528ACDBC300504AA4 /* Models */,
 				D8CD4A8328AC35C600D57F34 /* Preview Content */,
 				D8D9730F28ACF8BA006CBF15 /* Toolbars */,
@@ -227,6 +235,29 @@
 			path = Environment;
 			sourceTree = "<group>";
 		};
+		D8F99EBF28B138FE007C3868 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				D8F99EC028B138FE007C3868 /* diligence */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		D8F99EC128B13946007C3868 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				D8F99EC228B13955007C3868 /* diligence-license */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		D8F99EC428B13998007C3868 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -243,6 +274,9 @@
 			dependencies = (
 			);
 			name = Iconic;
+			packageProductDependencies = (
+				D8F99EC528B13998007C3868 /* Diligence */,
+			);
 			productName = Iconify;
 			productReference = D8CD4A7A28AC35C300D57F34 /* Iconic.app */;
 			productType = "com.apple.product-type.application";
@@ -332,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8CD4A8528AC35C600D57F34 /* Preview Assets.xcassets in Resources */,
+				D8F99EC328B13955007C3868 /* diligence-license in Resources */,
 				D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -684,6 +719,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D8F99EC528B13998007C3868 /* Diligence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Diligence;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D8CD4A7228AC35C300D57F34 /* Project object */;
 }

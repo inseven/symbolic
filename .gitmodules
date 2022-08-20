@@ -1,0 +1,3 @@
+[submodule "diligence"]
+	path = diligence
+	url = git@github.com:inseven/diligence.git
