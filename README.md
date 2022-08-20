@@ -1,5 +1,5 @@
 # Iconic
 
-SF Symbols based icon generator
+SF Symbols icon generator
 
-<img src="screenshots/screenshot.png" width="1012" />
+<img src="screenshots/main.png" width="1012" />
