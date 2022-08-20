@@ -20,30 +20,10 @@
 
 import SwiftUI
 
-extension View {
+class UnityScaleWindow: NSWindow {
 
-    func snapshot() -> Data? {
-        let controller = NSHostingController(rootView: self)
-        let targetSize = controller.view.intrinsicContentSize
-        let contentRect = NSRect(origin: .zero, size: targetSize)
-        let window = UnityScaleWindow(contentRect: contentRect,
-                                      styleMask: [.borderless],
-                                      backing: .buffered,
-                                      defer: false)
-        window.contentView = controller.view
-        guard let bitmapRep = controller.view.bitmapImageRepForCachingDisplay(in: contentRect) else {
-            return nil
-        }
-        controller.view.cacheDisplay(in: contentRect, to: bitmapRep)
-        let image = NSImage(size: bitmapRep.size)
-        image.addRepresentation(bitmapRep)
-
-        guard let tiffRepresentation = image.tiffRepresentation else {
-            return nil
-        }
-        let imageRep = NSBitmapImageRep(data: tiffRepresentation)
-        let pngData = imageRep?.representation(using: .png, properties: [:])
-        return pngData
+    override var backingScaleFactor: CGFloat {
+        return 1.0
     }
 
 }
