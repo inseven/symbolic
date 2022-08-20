@@ -23,7 +23,26 @@ import SwiftUI
 
 struct ContentView: View {
 
+    enum PreviewType: Equatable, Identifiable, CaseIterable {
+
+        var id: Self { self }
+
+        case macOS
+        case iOS
+
+        var systemImage: String {
+            switch self {
+            case .macOS:
+                return "desktopcomputer"
+            case .iOS:
+                return "iphone"
+            }
+        }
+    }
+
     @EnvironmentObject var document: IconDocument
+
+    @State var previewType: PreviewType = .macOS
 
     var body: some View {
         HStack {
@@ -31,8 +50,14 @@ struct ContentView: View {
                 ColorPicker(selection: $document.icon.topColor) {
                     EmptyView()
                 }
-                IconView(icon: document.icon, size: 512)
-                    .modifier(IconCorners(size: 512))
+                switch previewType {
+                case .macOS:
+                    IconView(icon: document.icon, size: 512)
+                        .modifier(IconCorners(size: 512))
+                case .iOS:
+                    IconView(icon: document.icon, size: 512, renderShadow: false)
+                        .modifier(IconCorners(size: 512))
+                }
                 ColorPicker(selection: $document.icon.bottomColor) {
                     EmptyView()
                 }
@@ -59,6 +84,16 @@ struct ContentView: View {
         }
         .padding()
         .toolbar(id: "main") {
+            ToolbarItem(id: "preview-type") {
+                Picker(selection: $previewType) {
+                    ForEach(PreviewType.allCases) { previewType in
+                        Image(systemName: previewType.systemImage)
+                            .tag(previewType)
+                    }
+                } label: {
+                }
+                .pickerStyle(.inline)
+            }
             ExportToolbar(document: document.icon)
         }
         .onChange(of: document.icon.bottomColor) { newValue in
