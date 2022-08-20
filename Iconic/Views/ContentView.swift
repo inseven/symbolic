@@ -23,35 +23,34 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State var document = Document()
+    @EnvironmentObject var document: IconDocument
 
     var body: some View {
         HStack {
             VStack {
-                ColorPicker(selection: $document.topColor) {
+                ColorPicker(selection: $document.icon.topColor) {
                     EmptyView()
                 }
-                Icon(document: document,
-                     size: 512)
-                .modifier(IconCorners(size: 512))
-                ColorPicker(selection: $document.bottomColor) {
+                IconView(icon: document.icon, size: 512)
+                    .modifier(IconCorners(size: 512))
+                ColorPicker(selection: $document.icon.bottomColor) {
                     EmptyView()
                 }
             }
             .padding()
             Form {
                 Section("Icon") {
-                    SymbolPicker("Image", systemImage: $document.systemImage)
-                    Slider(value: $document.iconScale) {
+                    SymbolPicker("Image", systemImage: $document.icon.systemImage)
+                    Slider(value: $document.icon.iconScale) {
                         Text("Size")
                     }
-                    ColorPicker("Color", selection: $document.symbolColor)
+                    ColorPicker("Color", selection: $document.icon.symbolColor)
                 }
                 Section("Shadow") {
-                    Slider(value: $document.shadowOpacity) {
+                    Slider(value: $document.icon.shadowOpacity) {
                         Text("Opacity")
                     }
-                    Slider(value: $document.shadowHeight) {
+                    Slider(value: $document.icon.shadowHeight) {
                         Text("Height")
                     }
                 }
@@ -60,10 +59,10 @@ struct ContentView: View {
         }
         .padding()
         .toolbar(id: "main") {
-            ExportToolbar(document: document)
+            ExportToolbar(document: document.icon)
         }
-        .onChange(of: document.bottomColor) { newValue in
-            document.topColor = Color(NSColor(newValue).lighter(by: 25))
+        .onChange(of: document.icon.bottomColor) { newValue in
+            document.icon.topColor = Color(NSColor(newValue).lighter(by: 25))
         }
     }
 }

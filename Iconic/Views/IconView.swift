@@ -20,39 +20,38 @@
 
 import SwiftUI
 
-struct Icon: View {
+struct IconView: View {
 
     struct Constants {
         static let shadowOffsetScaleFactor = 0.125
     }
 
-    var document: Document
+    var icon: Icon
     var size: CGFloat
     var renderShadow: Bool = true
     var isShadowFlipped = false
 
     var body: some View {
         ZStack {
-            let iconSize = size * document.iconScale
+            let iconSize = size * icon.iconScale
             let x = size / 2
             let y = size / 2
-            let shadowRadius = size * document.shadowHeight * Constants.shadowOffsetScaleFactor
-//            let shadowOffset = size * document.shadowHeight * Constants.shadowOffsetScaleFactor * 1.25 * (isShadowFlipped ? -1.0 : 1.0)
-            let shadowOffset = size * document.shadowHeight * Constants.shadowOffsetScaleFactor * (isShadowFlipped ? -1.0 : 1.0)
+            let shadowRadius = size * icon.shadowHeight * Constants.shadowOffsetScaleFactor
+            let shadowOffset = size * icon.shadowHeight * Constants.shadowOffsetScaleFactor * (isShadowFlipped ? -1.0 : 1.0)
 
-            LinearGradient(gradient: Gradient(colors: [document.topColor, document.bottomColor]),
+            LinearGradient(gradient: Gradient(colors: [icon.topColor, icon.bottomColor]),
                            startPoint: .top,
                            endPoint: .bottom)
 
-            let image = Image(systemName: document.systemImage)
+            let image = Image(systemName: icon.systemImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(document.symbolColor)
+                .foregroundColor(icon.symbolColor)
 
             VStack {
                 if renderShadow {
                     image
-                        .shadow(color: .black.opacity(document.shadowOpacity),
+                        .shadow(color: .black.opacity(icon.shadowOpacity),
                                 radius: shadowRadius,
                                 x: 0,
                                 y: shadowOffset)
@@ -70,6 +69,6 @@ struct Icon: View {
 
 struct IconView_Previews: PreviewProvider {
     static var previews: some View {
-        Icon(document: Document(), size: 1024)
+        IconView(icon: Icon(), size: 512)
     }
 }

@@ -24,13 +24,12 @@ struct ExportToolbar: CustomizableToolbarContent {
 
     @Environment(\.showSavePanel) var showSavePanel
 
-    var document: Document
+    var document: Icon
 
-    @MainActor func saveSnapshot(for document: Document, size: CGFloat, shadow: Bool = true, directoryURL: URL) throws {
-        let icon = Icon(document: document, size: size, renderShadow: shadow, isShadowFlipped: true)
+    @MainActor func saveSnapshot(for document: Icon, size: CGFloat, shadow: Bool = true, directoryURL: URL) throws {
+        let icon = IconView(icon: document, size: size, renderShadow: shadow, isShadowFlipped: true)
         guard let data = icon.snapshot() else {
-#warning("TODO: Throw an error here")
-            return
+            throw IconicError.exportFailure
         }
         let type = shadow ? "macOS" : "iOS"
         let sizeString = String(format: "%d", size)

@@ -31,9 +31,17 @@ extension NSColor {
     }
 
     func adjust(by percentage: CGFloat = 30.0) -> NSColor {
-        return NSColor(red: min(redComponent + percentage/100, 1.0),
-                       green: min(greenComponent + percentage/100, 1.0),
-                       blue: min(blueComponent + percentage/100, 1.0),
-                       alpha: alphaComponent)
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        guard let genericColor = usingColorSpace(.deviceRGB) else {
+            return self
+        }
+        genericColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+        return NSColor(deviceRed: min(r + percentage/100, 1.0),
+                       green: min(g + percentage/100, 1.0),
+                       blue: min(b + percentage/100, 1.0),
+                       alpha: a)
     }
 }

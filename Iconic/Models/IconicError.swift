@@ -18,15 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-@main
-struct IconicApp: App {
-    var body: some Scene {
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView()
-        }
-    }
+enum IconicError: Error {
+
+    case invalidColorspace
+    case exportFailure
+
 }
