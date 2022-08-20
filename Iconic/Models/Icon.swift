@@ -50,7 +50,9 @@ final class IconDocument: ReferenceFileDocument {
     }
 
     func fileWrapper(snapshot: Icon, configuration: WriteConfiguration) throws -> FileWrapper {
-        let data = try JSONEncoder().encode(snapshot)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try encoder.encode(snapshot)
         let fileWrapper = FileWrapper(regularFileWithContents: data)
         return fileWrapper
     }
