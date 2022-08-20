@@ -23,23 +23,6 @@ import SwiftUI
 
 struct ContentView: View {
 
-    enum PreviewType: Equatable, Identifiable, CaseIterable {
-
-        var id: Self { self }
-
-        case macOS
-        case iOS
-
-        var systemImage: String {
-            switch self {
-            case .macOS:
-                return "desktopcomputer"
-            case .iOS:
-                return "iphone"
-            }
-        }
-    }
-
     @EnvironmentObject var document: IconDocument
 
     @State var previewType: PreviewType = .macOS
@@ -84,16 +67,7 @@ struct ContentView: View {
         }
         .padding()
         .toolbar(id: "main") {
-            ToolbarItem(id: "preview-type") {
-                Picker(selection: $previewType) {
-                    ForEach(PreviewType.allCases) { previewType in
-                        Image(systemName: previewType.systemImage)
-                            .tag(previewType)
-                    }
-                } label: {
-                }
-                .pickerStyle(.inline)
-            }
+            PreviewToolbar(previewType: $previewType)
             ExportToolbar(document: document.icon)
         }
         .onChange(of: document.icon.bottomColor) { newValue in
