@@ -25,6 +25,7 @@ struct ContentView: View {
 
     @EnvironmentObject var document: IconDocument
 
+    @State var showGrid = false
     @State var previewType: PreviewType = .macOS
 
     var body: some View {
@@ -35,8 +36,14 @@ struct ContentView: View {
                 }
                 switch previewType {
                 case .macOS:
-                    IconView(icon: document.icon, size: 512)
-                        .modifier(IconCorners(size: 512))
+                    ZStack {
+                        IconView(icon: document.icon, size: 412)
+                            .modifier(IconCorners(size: 412))
+                        if showGrid {
+                            Image("AppIconGrid")
+                        }
+                    }
+                    .frame(width: 512, height: 512)
                 case .iOS:
                     IconView(icon: document.icon, size: 512, renderShadow: false)
                         .modifier(IconCorners(size: 512))
@@ -67,6 +74,11 @@ struct ContentView: View {
         }
         .padding()
         .toolbar(id: "main") {
+            ToolbarItem(id: "grid") {
+                Toggle(isOn: $showGrid) {
+                    Label("Toggle Grid", systemImage: "grid")
+                }
+            }
             PreviewToolbar(previewType: $previewType)
             ExportToolbar(document: document.icon)
         }
