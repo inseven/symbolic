@@ -31,7 +31,7 @@ struct IconCorners: ViewModifier {
     func body(content: Content) -> some View {
         content.self
             .frame(width: size, height: size)
-            .clipShape(RoundedRectangle(cornerRadius: size * LayoutMetrics.cornerRadiusRatio, style: .continuous))
+            .clipShape(RoundedRectangle(cornerRadius: size * 0.2233009709, style: .continuous))
     }
 
 }

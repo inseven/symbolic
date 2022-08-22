@@ -21,6 +21,23 @@
 import Combine
 import SwiftUI
 
+struct MacIconView: View {
+
+    var icon: Icon
+    var size: CGFloat
+    var isShadowFlipped: Bool
+
+    var body: some View {
+        HStack {
+            IconView(icon: icon, size: size * 0.8046875, isShadowFlipped: isShadowFlipped)
+                .modifier(IconCorners(size: size * 0.8046875))
+                .shadow(color: .black.opacity(0.3), radius: size * 0.0068359375, y: size * 0.009765625 * (isShadowFlipped ? -1.0 : 1.0))
+        }
+        .frame(width: size, height: size)
+    }
+
+}
+
 struct ContentView: View {
 
     @EnvironmentObject var document: IconDocument
@@ -37,8 +54,7 @@ struct ContentView: View {
                 switch previewType {
                 case .macOS:
                     ZStack {
-                        IconView(icon: document.icon, size: 412)
-                            .modifier(IconCorners(size: 412))
+                        MacIconView(icon: document.icon, size: 512, isShadowFlipped: false)
                         if showGrid {
                             Image("AppIconGrid")
                         }
