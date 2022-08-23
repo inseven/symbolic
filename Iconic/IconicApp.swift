@@ -33,7 +33,7 @@ struct IconicApp: App {
             ContentView()
         }
 
-        About(repository: "jbmorley/iconic") {
+        About(repository: "jbmorley/iconic", copyright: "Copyright © 2022 Jason Morley") {
             Action("GitHub", url: URL(string: "https://github.com/jbmorley/iconic")!)
         } acknowledgements: {
             Acknowledgements("Developers") {
