@@ -60,13 +60,6 @@ struct SymbolPicker: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .controlSize(.regular)
-                                    .onHover { inside in
-                                        if inside {
-                                            systemImage.wrappedValue = symbol
-                                        } else {
-                                            systemImage.wrappedValue = initialImage
-                                        }
-                                    }
                                     .onTapGesture {
                                         isPresented = false
                                         systemImage.wrappedValue = symbol
