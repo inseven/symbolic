@@ -43,8 +43,8 @@ jobs:
       run: |
         scripts/build.sh
 
-#     - name: Archive the binary
-#       uses: actions/upload-artifact@v3
-#       with:
-#         path: build/build-*.zip
-#         if-no-files-found: error
+    - name: Archive the binary
+      uses: actions/upload-artifact@v3
+      with:
+        path: build/build-*.zip
+        if-no-files-found: error
