@@ -20,7 +20,7 @@
 
 import Foundation
 
-enum IconicError: Error {
+enum SymbolicError: Error {
 
     case invalidColorspace
     case exportFailure

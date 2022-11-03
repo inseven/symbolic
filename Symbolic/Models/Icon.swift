@@ -22,7 +22,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 extension UTType {
-    static let iconDocument = UTType(exportedAs: "uk.co.inseven.iconic.icon")
+    static let iconDocument = UTType(exportedAs: "uk.co.inseven.symbolic.icon")
 }
 
 final class IconDocument: ReferenceFileDocument {
