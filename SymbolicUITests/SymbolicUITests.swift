@@ -20,7 +20,7 @@
 
 import XCTest
 
-final class IconicUITests: XCTestCase {
+final class SymbolicUITests: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false

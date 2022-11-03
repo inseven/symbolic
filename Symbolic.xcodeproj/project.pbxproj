@@ -19,13 +19,13 @@
 		D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E628B132C700282EE8 /* UnityScaleWindow.swift */; };
 		D83970E928B1340900282EE8 /* PreviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E828B1340900282EE8 /* PreviewType.swift */; };
 		D83970EB28B1343C00282EE8 /* PreviewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970EA28B1343C00282EE8 /* PreviewToolbar.swift */; };
-		D8CD4A7E28AC35C300D57F34 /* IconicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7D28AC35C300D57F34 /* IconicApp.swift */; };
+		D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */; };
 		D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7F28AC35C300D57F34 /* ContentView.swift */; };
 		D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CD4A8128AC35C600D57F34 /* Assets.xcassets */; };
 		D8CD4A8528AC35C600D57F34 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CD4A8428AC35C600D57F34 /* Preview Assets.xcassets */; };
-		D8CD4A9028AC35C600D57F34 /* IconicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A8F28AC35C600D57F34 /* IconicTests.swift */; };
-		D8CD4A9A28AC35C600D57F34 /* IconicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9928AC35C600D57F34 /* IconicUITests.swift */; };
-		D8CD4A9C28AC35C600D57F34 /* IconicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9B28AC35C600D57F34 /* IconicUITestsLaunchTests.swift */; };
+		D8CD4A9028AC35C600D57F34 /* SymbolicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A8F28AC35C600D57F34 /* SymbolicTests.swift */; };
+		D8CD4A9A28AC35C600D57F34 /* SymbolicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9928AC35C600D57F34 /* SymbolicUITests.swift */; };
+		D8CD4A9C28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9B28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift */; };
 		D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */; };
 		D8D9731428ACFC1B006CBF15 /* ShowSavePanelKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9731328ACFC1B006CBF15 /* ShowSavePanelKey.swift */; };
 		D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */; };
@@ -65,17 +65,17 @@
 		D83970E628B132C700282EE8 /* UnityScaleWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityScaleWindow.swift; sourceTree = "<group>"; };
 		D83970E828B1340900282EE8 /* PreviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewType.swift; sourceTree = "<group>"; };
 		D83970EA28B1343C00282EE8 /* PreviewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewToolbar.swift; sourceTree = "<group>"; };
-		D8CD4A7A28AC35C300D57F34 /* Iconic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Iconic.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8CD4A7D28AC35C300D57F34 /* IconicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicApp.swift; sourceTree = "<group>"; };
+		D8CD4A7A28AC35C300D57F34 /* Symbolic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Symbolic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicApp.swift; sourceTree = "<group>"; };
 		D8CD4A7F28AC35C300D57F34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D8CD4A8128AC35C600D57F34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8CD4A8428AC35C600D57F34 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D8CD4A8628AC35C600D57F34 /* Iconic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Iconic.entitlements; sourceTree = "<group>"; };
-		D8CD4A8B28AC35C600D57F34 /* IconicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IconicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8CD4A8F28AC35C600D57F34 /* IconicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicTests.swift; sourceTree = "<group>"; };
-		D8CD4A9528AC35C600D57F34 /* IconicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IconicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8CD4A9928AC35C600D57F34 /* IconicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicUITests.swift; sourceTree = "<group>"; };
-		D8CD4A9B28AC35C600D57F34 /* IconicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconicUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D8CD4A8628AC35C600D57F34 /* Symbolic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Symbolic.entitlements; sourceTree = "<group>"; };
+		D8CD4A8B28AC35C600D57F34 /* SymbolicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8CD4A8F28AC35C600D57F34 /* SymbolicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicTests.swift; sourceTree = "<group>"; };
+		D8CD4A9528AC35C600D57F34 /* SymbolicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8CD4A9928AC35C600D57F34 /* SymbolicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicUITests.swift; sourceTree = "<group>"; };
+		D8CD4A9B28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToolbar.swift; sourceTree = "<group>"; };
 		D8D9731328ACFC1B006CBF15 /* ShowSavePanelKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSavePanelKey.swift; sourceTree = "<group>"; };
 		D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
@@ -156,9 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				D8F99EBF28B138FE007C3868 /* Packages */,
-				D8CD4A7C28AC35C300D57F34 /* Iconic */,
-				D8CD4A8E28AC35C600D57F34 /* IconicTests */,
-				D8CD4A9828AC35C600D57F34 /* IconicUITests */,
+				D8CD4A7C28AC35C300D57F34 /* Symbolic */,
+				D8CD4A8E28AC35C600D57F34 /* SymbolicTests */,
+				D8CD4A9828AC35C600D57F34 /* SymbolicUITests */,
 				D8CD4A7B28AC35C300D57F34 /* Products */,
 				D8F99EC428B13998007C3868 /* Frameworks */,
 			);
@@ -167,19 +167,19 @@
 		D8CD4A7B28AC35C300D57F34 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D8CD4A7A28AC35C300D57F34 /* Iconic.app */,
-				D8CD4A8B28AC35C600D57F34 /* IconicTests.xctest */,
-				D8CD4A9528AC35C600D57F34 /* IconicUITests.xctest */,
+				D8CD4A7A28AC35C300D57F34 /* Symbolic.app */,
+				D8CD4A8B28AC35C600D57F34 /* SymbolicTests.xctest */,
+				D8CD4A9528AC35C600D57F34 /* SymbolicUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D8CD4A7C28AC35C300D57F34 /* Iconic */ = {
+		D8CD4A7C28AC35C300D57F34 /* Symbolic */ = {
 			isa = PBXGroup;
 			children = (
-				D8CD4A8628AC35C600D57F34 /* Iconic.entitlements */,
+				D8CD4A8628AC35C600D57F34 /* Symbolic.entitlements */,
 				D83970E328B0B61700282EE8 /* Info.plist */,
-				D8CD4A7D28AC35C300D57F34 /* IconicApp.swift */,
+				D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */,
 				D8CD4A8128AC35C600D57F34 /* Assets.xcassets */,
 				D8D9731228ACFBFA006CBF15 /* Environment */,
 				D821B9DE28ACDB5500504AA4 /* Extensions */,
@@ -190,7 +190,7 @@
 				D821B9EF28ACF0A900504AA4 /* Utilities */,
 				D821B9E628ACDBCB00504AA4 /* Views */,
 			);
-			path = Iconic;
+			path = Symbolic;
 			sourceTree = "<group>";
 		};
 		D8CD4A8328AC35C600D57F34 /* Preview Content */ = {
@@ -201,21 +201,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		D8CD4A8E28AC35C600D57F34 /* IconicTests */ = {
+		D8CD4A8E28AC35C600D57F34 /* SymbolicTests */ = {
 			isa = PBXGroup;
 			children = (
-				D8CD4A8F28AC35C600D57F34 /* IconicTests.swift */,
+				D8CD4A8F28AC35C600D57F34 /* SymbolicTests.swift */,
 			);
-			path = IconicTests;
+			path = SymbolicTests;
 			sourceTree = "<group>";
 		};
-		D8CD4A9828AC35C600D57F34 /* IconicUITests */ = {
+		D8CD4A9828AC35C600D57F34 /* SymbolicUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D8CD4A9928AC35C600D57F34 /* IconicUITests.swift */,
-				D8CD4A9B28AC35C600D57F34 /* IconicUITestsLaunchTests.swift */,
+				D8CD4A9928AC35C600D57F34 /* SymbolicUITests.swift */,
+				D8CD4A9B28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift */,
 			);
-			path = IconicUITests;
+			path = SymbolicUITests;
 			sourceTree = "<group>";
 		};
 		D8D9730F28ACF8BA006CBF15 /* Toolbars */ = {
@@ -261,9 +261,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D8CD4A7928AC35C300D57F34 /* Iconic */ = {
+		D8CD4A7928AC35C300D57F34 /* Symbolic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8CD4A9F28AC35C600D57F34 /* Build configuration list for PBXNativeTarget "Iconic" */;
+			buildConfigurationList = D8CD4A9F28AC35C600D57F34 /* Build configuration list for PBXNativeTarget "Symbolic" */;
 			buildPhases = (
 				D8CD4A7628AC35C300D57F34 /* Sources */,
 				D8CD4A7728AC35C300D57F34 /* Frameworks */,
@@ -273,17 +273,17 @@
 			);
 			dependencies = (
 			);
-			name = Iconic;
+			name = Symbolic;
 			packageProductDependencies = (
 				D8F99EC528B13998007C3868 /* Diligence */,
 			);
 			productName = Iconify;
-			productReference = D8CD4A7A28AC35C300D57F34 /* Iconic.app */;
+			productReference = D8CD4A7A28AC35C300D57F34 /* Symbolic.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D8CD4A8A28AC35C600D57F34 /* IconicTests */ = {
+		D8CD4A8A28AC35C600D57F34 /* SymbolicTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8CD4AA228AC35C600D57F34 /* Build configuration list for PBXNativeTarget "IconicTests" */;
+			buildConfigurationList = D8CD4AA228AC35C600D57F34 /* Build configuration list for PBXNativeTarget "SymbolicTests" */;
 			buildPhases = (
 				D8CD4A8728AC35C600D57F34 /* Sources */,
 				D8CD4A8828AC35C600D57F34 /* Frameworks */,
@@ -294,14 +294,14 @@
 			dependencies = (
 				D8CD4A8D28AC35C600D57F34 /* PBXTargetDependency */,
 			);
-			name = IconicTests;
+			name = SymbolicTests;
 			productName = IconifyTests;
-			productReference = D8CD4A8B28AC35C600D57F34 /* IconicTests.xctest */;
+			productReference = D8CD4A8B28AC35C600D57F34 /* SymbolicTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D8CD4A9428AC35C600D57F34 /* IconicUITests */ = {
+		D8CD4A9428AC35C600D57F34 /* SymbolicUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8CD4AA528AC35C600D57F34 /* Build configuration list for PBXNativeTarget "IconicUITests" */;
+			buildConfigurationList = D8CD4AA528AC35C600D57F34 /* Build configuration list for PBXNativeTarget "SymbolicUITests" */;
 			buildPhases = (
 				D8CD4A9128AC35C600D57F34 /* Sources */,
 				D8CD4A9228AC35C600D57F34 /* Frameworks */,
@@ -312,9 +312,9 @@
 			dependencies = (
 				D8CD4A9728AC35C600D57F34 /* PBXTargetDependency */,
 			);
-			name = IconicUITests;
+			name = SymbolicUITests;
 			productName = IconifyUITests;
-			productReference = D8CD4A9528AC35C600D57F34 /* IconicUITests.xctest */;
+			productReference = D8CD4A9528AC35C600D57F34 /* SymbolicUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -340,7 +340,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D8CD4A7528AC35C300D57F34 /* Build configuration list for PBXProject "Iconic" */;
+			buildConfigurationList = D8CD4A7528AC35C300D57F34 /* Build configuration list for PBXProject "Symbolic" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -353,9 +353,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D8CD4A7928AC35C300D57F34 /* Iconic */,
-				D8CD4A8A28AC35C600D57F34 /* IconicTests */,
-				D8CD4A9428AC35C600D57F34 /* IconicUITests */,
+				D8CD4A7928AC35C300D57F34 /* Symbolic */,
+				D8CD4A8A28AC35C600D57F34 /* SymbolicTests */,
+				D8CD4A9428AC35C600D57F34 /* SymbolicUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -407,7 +407,7 @@
 				D83970E228B0B45300282EE8 /* Color.swift in Sources */,
 				D821B9E028ACDB6000504AA4 /* View.swift in Sources */,
 				D83970EB28B1343C00282EE8 /* PreviewToolbar.swift in Sources */,
-				D8CD4A7E28AC35C300D57F34 /* IconicApp.swift in Sources */,
+				D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */,
 				D821B9E228ACDB8500504AA4 /* NSColor.swift in Sources */,
 				D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */,
 			);
@@ -417,7 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8CD4A9028AC35C600D57F34 /* IconicTests.swift in Sources */,
+				D8CD4A9028AC35C600D57F34 /* SymbolicTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,8 +425,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8CD4A9C28AC35C600D57F34 /* IconicUITestsLaunchTests.swift in Sources */,
-				D8CD4A9A28AC35C600D57F34 /* IconicUITests.swift in Sources */,
+				D8CD4A9C28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift in Sources */,
+				D8CD4A9A28AC35C600D57F34 /* SymbolicUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,12 +435,12 @@
 /* Begin PBXTargetDependency section */
 		D8CD4A8D28AC35C600D57F34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D8CD4A7928AC35C300D57F34 /* Iconic */;
+			target = D8CD4A7928AC35C300D57F34 /* Symbolic */;
 			targetProxy = D8CD4A8C28AC35C600D57F34 /* PBXContainerItemProxy */;
 		};
 		D8CD4A9728AC35C600D57F34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D8CD4A7928AC35C300D57F34 /* Iconic */;
+			target = D8CD4A7928AC35C300D57F34 /* Symbolic */;
 			targetProxy = D8CD4A9628AC35C600D57F34 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -564,14 +564,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Symbolic/Symbolic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Iconic/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Symbolic/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Iconic/Info.plist;
+				INFOPLIST_FILE = Symbolic/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Symbolic;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -579,7 +580,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.iconic;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.symbolic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -591,17 +592,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Symbolic/Symbolic.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Iconic/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Symbolic/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = S4WXAUZQEV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Iconic/Info.plist;
+				INFOPLIST_FILE = Symbolic/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Symbolic;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -609,10 +611,10 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.iconic;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.symbolic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Iconic Mac App Store Profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Symbolic Mac App Store Profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -628,11 +630,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.IconicTests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.SymbolicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Iconic.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Iconic";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Symbolic.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Symbolic";
 			};
 			name = Debug;
 		};
@@ -646,11 +648,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.IconicTests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.SymbolicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Iconic.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Iconic";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Symbolic.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Symbolic";
 			};
 			name = Release;
 		};
@@ -662,11 +664,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.IconicUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.SymbolicUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Iconic;
+				TEST_TARGET_NAME = Symbolic;
 			};
 			name = Debug;
 		};
@@ -678,18 +680,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.IconicUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.inseven.SymbolicUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Iconic;
+				TEST_TARGET_NAME = Symbolic;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D8CD4A7528AC35C300D57F34 /* Build configuration list for PBXProject "Iconic" */ = {
+		D8CD4A7528AC35C300D57F34 /* Build configuration list for PBXProject "Symbolic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8CD4A9D28AC35C600D57F34 /* Debug */,
@@ -698,7 +700,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D8CD4A9F28AC35C600D57F34 /* Build configuration list for PBXNativeTarget "Iconic" */ = {
+		D8CD4A9F28AC35C600D57F34 /* Build configuration list for PBXNativeTarget "Symbolic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8CD4AA028AC35C600D57F34 /* Debug */,
@@ -707,7 +709,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D8CD4AA228AC35C600D57F34 /* Build configuration list for PBXNativeTarget "IconicTests" */ = {
+		D8CD4AA228AC35C600D57F34 /* Build configuration list for PBXNativeTarget "SymbolicTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8CD4AA328AC35C600D57F34 /* Debug */,
@@ -716,7 +718,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D8CD4AA528AC35C600D57F34 /* Build configuration list for PBXNativeTarget "IconicUITests" */ = {
+		D8CD4AA528AC35C600D57F34 /* Build configuration list for PBXNativeTarget "SymbolicUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8CD4AA628AC35C600D57F34 /* Debug */,

@@ -18,35 +18,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import XCTest
 
-import Diligence
+final class SymbolicUITestsLaunchTests: XCTestCase {
 
-@main
-struct IconicApp: App {
-
-    var body: some Scene {
-
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView()
-        }
-
-        About(repository: "jbmorley/iconic", copyright: "Copyright © 2022 Jason Morley") {
-            Action("GitHub", url: URL(string: "https://github.com/jbmorley/iconic")!)
-        } acknowledgements: {
-            Acknowledgements("Developers") {
-                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
-            }
-            Acknowledgements("Thanks") {
-                Credit("Sarah Barbour")
-                Credit("Michael Dales")
-            }
-        } licenses: {
-            License("Diligence", author: "InSeven Limited", filename: "diligence-license")
-        }
-
+    override class var runsForEachTargetApplicationUIConfiguration: Bool {
+        true
     }
 
+    override func setUpWithError() throws {
+        continueAfterFailure = false
+    }
+
+    func testLaunch() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = "Launch Screen"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
 }
