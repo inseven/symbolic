@@ -33,8 +33,8 @@ struct SymbolicApp: App {
             ContentView()
         }
 
-        About(repository: "jbmorley/symbolic", copyright: "Copyright © 2022 Jason Morley") {
-            Action("GitHub", url: URL(string: "https://github.com/jbmorley/symbolic")!)
+        About(repository: "inseven/symbolic", copyright: "Copyright © 2022 Jason Morley") {
+            Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!)
         } acknowledgements: {
             Acknowledgements("Developers") {
                 Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
