@@ -14,6 +14,7 @@
 		D821B9EA28ACDBF700504AA4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E928ACDBF700504AA4 /* String.swift */; };
 		D821B9EC28ACDC2600504AA4 /* IconCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9EB28ACDC2600504AA4 /* IconCorners.swift */; };
 		D821B9EE28ACDC6F00504AA4 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */; };
+		D82B249B2915D8540093B073 /* symbolic-license in Resources */ = {isa = PBXBuildFile; fileRef = D82B249A2915D8540093B073 /* symbolic-license */; };
 		D83970E228B0B45300282EE8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E128B0B45300282EE8 /* Color.swift */; };
 		D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E428B11F5200282EE8 /* SymbolicError.swift */; };
 		D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E628B132C700282EE8 /* UnityScaleWindow.swift */; };
@@ -59,6 +60,7 @@
 		D821B9E928ACDBF700504AA4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		D821B9EB28ACDC2600504AA4 /* IconCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCorners.swift; sourceTree = "<group>"; };
 		D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
+		D82B249A2915D8540093B073 /* symbolic-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "symbolic-license"; sourceTree = "<group>"; };
 		D83970E128B0B45300282EE8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D83970E328B0B61700282EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D83970E428B11F5200282EE8 /* SymbolicError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicError.swift; sourceTree = "<group>"; };
@@ -152,6 +154,13 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		D82B24992915D8330093B073 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		D8CD4A7128AC35C300D57F34 = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +186,7 @@
 		D8CD4A7C28AC35C300D57F34 /* Symbolic */ = {
 			isa = PBXGroup;
 			children = (
+				D82B24992915D8330093B073 /* New Group */,
 				D8CD4A8628AC35C600D57F34 /* Symbolic.entitlements */,
 				D83970E328B0B61700282EE8 /* Info.plist */,
 				D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */,
@@ -247,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				D8F99EC228B13955007C3868 /* diligence-license */,
+				D82B249A2915D8540093B073 /* symbolic-license */,
 			);
 			path = Licenses;
 			sourceTree = "<group>";
@@ -367,6 +378,7 @@
 			files = (
 				D8CD4A8528AC35C600D57F34 /* Preview Assets.xcassets in Resources */,
 				D8F99EC328B13955007C3868 /* diligence-license in Resources */,
+				D82B249B2915D8540093B073 /* symbolic-license in Resources */,
 				D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

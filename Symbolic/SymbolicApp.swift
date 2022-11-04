@@ -45,6 +45,7 @@ struct SymbolicApp: App {
             }
         } licenses: {
             License("Diligence", author: "InSeven Limited", filename: "diligence-license")
+            License("Symbolic", author: "InSeven Limited", filename: "symbolic-license")
         }
 
     }
