@@ -13,7 +13,7 @@
 			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>uk.co.inseven.iconic.icon</string>
+				<string>uk.co.inseven.symbolic.icon</string>
 			</array>
 		</dict>
 	</array>
@@ -28,16 +28,16 @@
 				<string>public.content</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Iconic Icon</string>
+			<string>Symbolic Icon File</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>uk.co.inseven.iconic.icon</string>
+			<string>uk.co.inseven.symbolic.icon</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>iconic</string>
+					<string>symbolic</string>
 				</array>
 			</dict>
 		</dict>

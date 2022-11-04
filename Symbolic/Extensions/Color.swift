@@ -46,7 +46,7 @@ extension Color: Codable {
 
         let nsColor = NSColor(self)
         guard let deviceColor = nsColor.usingColorSpace(.deviceRGB) else {
-            throw IconicError.invalidColorspace
+            throw SymbolicError.invalidColorspace
         }
         deviceColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 

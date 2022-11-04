@@ -19,9 +19,9 @@
 // SOFTWARE.
 
 import XCTest
-@testable import Iconic
+@testable import Symbolic
 
-final class IconicTests: XCTestCase {
+final class SymbolicTests: XCTestCase {
 
     override func setUpWithError() throws {
     }

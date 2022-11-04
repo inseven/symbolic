@@ -18,11 +18,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Foundation
+import SwiftUI
 
-enum IconicError: Error {
+import Diligence
 
-    case invalidColorspace
-    case exportFailure
+@main
+struct SymbolicApp: App {
+
+    var body: some Scene {
+
+        DocumentGroup {
+            IconDocument()
+        } editor: { configuration in
+            ContentView()
+        }
+
+        About(repository: "jbmorley/symbolic", copyright: "Copyright © 2022 Jason Morley") {
+            Action("GitHub", url: URL(string: "https://github.com/jbmorley/symbolic")!)
+        } acknowledgements: {
+            Acknowledgements("Developers") {
+                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
+            }
+            Acknowledgements("Thanks") {
+                Credit("Sarah Barbour")
+                Credit("Michael Dales")
+            }
+        } licenses: {
+            License("Diligence", author: "InSeven Limited", filename: "diligence-license")
+        }
+
+    }
 
 }

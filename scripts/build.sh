@@ -32,7 +32,7 @@ BUILD_DIRECTORY="${ROOT_DIRECTORY}/build"
 TEMPORARY_DIRECTORY="${ROOT_DIRECTORY}/temp"
 
 KEYCHAIN_PATH="${TEMPORARY_DIRECTORY}/temporary.keychain"
-ARCHIVE_PATH="${BUILD_DIRECTORY}/Iconic.xcarchive"
+ARCHIVE_PATH="${BUILD_DIRECTORY}/Symbolic.xcarchive"
 ENV_PATH="${ROOT_DIRECTORY}/.env"
 
 RELEASE_SCRIPT_PATH="${SCRIPTS_DIRECTORY}/release.sh"
@@ -74,7 +74,7 @@ fi
 
 function xcode_project {
     xcodebuild \
-        -project Iconic.xcodeproj "$@"
+        -project Symbolic.xcodeproj "$@"
 }
 
 function build_scheme {
@@ -129,12 +129,12 @@ echo "$APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD" | build-tools import-base64-cert
 echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_BASE64"
 
 # Install the provisioning profiles.
-build-tools install-provisioning-profile "Iconic_Mac_App_Store_Profile.provisionprofile"
+build-tools install-provisioning-profile "Symbolic_Mac_App_Store_Profile.provisionprofile"
 
 # Build and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
 xcode_project \
-    -scheme "Iconic" \
+    -scheme "Symbolic" \
     -config Release \
     -archivePath "$ARCHIVE_PATH" \
     OTHER_CODE_SIGN_FLAGS="--keychain=\"${KEYCHAIN_PATH}\"" \
@@ -147,9 +147,9 @@ xcodebuild \
     -exportPath "$BUILD_DIRECTORY" \
     -exportOptionsPlist "ExportOptions.plist"
 
-APP_BASENAME="Iconic.app"
+APP_BASENAME="Symbolic.app"
 APP_PATH="$BUILD_DIRECTORY/$APP_BASENAME"
-PKG_PATH="$BUILD_DIRECTORY/Iconic.pkg"
+PKG_PATH="$BUILD_DIRECTORY/Symbolic.pkg"
 #
 # # Validate the macOS build.
 xcrun altool --validate-app \

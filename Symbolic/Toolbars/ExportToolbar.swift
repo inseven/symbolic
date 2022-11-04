@@ -74,13 +74,13 @@ struct ExportToolbar: CustomizableToolbarContent {
         let scaledSize = size * CGFloat(scale)
         let icon = IconView(icon: document, size: scaledSize, renderShadow: shadow, isShadowFlipped: true)
         guard let data = icon.snapshot() else {
-            throw IconicError.exportFailure
+            throw SymbolicError.exportFailure
         }
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
         guard let sizeString = formatter.string(from: NSNumber(value: size)) else {
-            throw IconicError.exportFailure
+            throw SymbolicError.exportFailure
         }
         let scaleString = scale > 1 ? String(format: "@%dx", scale) : ""
         let url = directoryURL.appendingPathComponent("icon_\(sizeString)x\(sizeString)\(scaleString)", conformingTo: .png)
@@ -91,13 +91,13 @@ struct ExportToolbar: CustomizableToolbarContent {
         let scaledSize = size * CGFloat(scale)
         let icon = MacIconView(icon: document, size: scaledSize, isShadowFlipped: true)
         guard let data = icon.snapshot() else {
-            throw IconicError.exportFailure
+            throw SymbolicError.exportFailure
         }
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
         guard let sizeString = formatter.string(from: NSNumber(value: size)) else {
-            throw IconicError.exportFailure
+            throw SymbolicError.exportFailure
         }
         let scaleString = scale > 1 ? String(format: "@%dx", scale) : ""
         let url = directoryURL.appendingPathComponent("icon_\(sizeString)x\(sizeString)\(scaleString)", conformingTo: .png)

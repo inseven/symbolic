@@ -20,7 +20,7 @@
 
 import XCTest
 
-final class IconicUITestsLaunchTests: XCTestCase {
+final class SymbolicUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
