@@ -18,20 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import UniformTypeIdentifiers
 
-struct Icon: Identifiable, Codable {
-
-    var id = UUID()
-
-    var topColor: Color = .pink
-    var bottomColor: Color = .purple
-
-    var systemImage: String = "face.smiling"
-    var symbolColor: Color = .white
-    var iconScale: CGFloat = 0.8
-
-    var shadowOpacity: CGFloat = 0.4
-    var shadowHeight: CGFloat = 0.3
-
+extension UTType {
+    static let iconDocument = UTType(exportedAs: "uk.co.inseven.symbolic.icon")
 }
