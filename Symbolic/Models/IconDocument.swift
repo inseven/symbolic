@@ -19,19 +19,38 @@
 // SOFTWARE.
 
 import SwiftUI
+import UniformTypeIdentifiers
 
-struct Icon: Identifiable, Codable {
+final class IconDocument: ReferenceFileDocument {
 
-    var id = UUID()
+    typealias Snapshot = Icon
 
-    var topColor: Color = .pink
-    var bottomColor: Color = .purple
+    @Published var icon: Icon
 
-    var systemImage: String = "face.smiling"
-    var symbolColor: Color = .white
-    var iconScale: CGFloat = 0.8
+    static var readableContentTypes: [UTType] { [.iconDocument] }
 
-    var shadowOpacity: CGFloat = 0.4
-    var shadowHeight: CGFloat = 0.3
+    func snapshot(contentType: UTType) throws -> Snapshot {
+        return icon
+    }
+
+    init() {
+        icon = Icon()
+    }
+
+    init(configuration: ReadConfiguration) throws {
+        guard let data = configuration.file.regularFileContents
+        else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        self.icon = try JSONDecoder().decode(Icon.self, from: data)
+    }
+
+    func fileWrapper(snapshot: Icon, configuration: WriteConfiguration) throws -> FileWrapper {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try encoder.encode(snapshot)
+        let fileWrapper = FileWrapper(regularFileWithContents: data)
+        return fileWrapper
+    }
 
 }

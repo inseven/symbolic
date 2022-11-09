@@ -20,6 +20,8 @@
 		D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E628B132C700282EE8 /* UnityScaleWindow.swift */; };
 		D83970E928B1340900282EE8 /* PreviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E828B1340900282EE8 /* PreviewType.swift */; };
 		D83970EB28B1343C00282EE8 /* PreviewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970EA28B1343C00282EE8 /* PreviewToolbar.swift */; };
+		D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ECE291BEF7400352367 /* IconDocument.swift */; };
+		D86B0ED1291BEFC100352367 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ED0291BEFC100352367 /* UTType.swift */; };
 		D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */; };
 		D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7F28AC35C300D57F34 /* ContentView.swift */; };
 		D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CD4A8128AC35C600D57F34 /* Assets.xcassets */; };
@@ -67,6 +69,8 @@
 		D83970E628B132C700282EE8 /* UnityScaleWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityScaleWindow.swift; sourceTree = "<group>"; };
 		D83970E828B1340900282EE8 /* PreviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewType.swift; sourceTree = "<group>"; };
 		D83970EA28B1343C00282EE8 /* PreviewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewToolbar.swift; sourceTree = "<group>"; };
+		D86B0ECE291BEF7400352367 /* IconDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDocument.swift; sourceTree = "<group>"; };
+		D86B0ED0291BEFC100352367 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		D8CD4A7A28AC35C300D57F34 /* Symbolic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Symbolic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicApp.swift; sourceTree = "<group>"; };
 		D8CD4A7F28AC35C300D57F34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				D83970E128B0B45300282EE8 /* Color.swift */,
 				D821B9E128ACDB8500504AA4 /* NSColor.swift */,
 				D821B9E928ACDBF700504AA4 /* String.swift */,
+				D86B0ED0291BEFC100352367 /* UTType.swift */,
 				D821B9DF28ACDB6000504AA4 /* View.swift */,
 			);
 			path = Extensions;
@@ -127,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				D821B9E728ACDBE000504AA4 /* Icon.swift */,
+				D86B0ECE291BEF7400352367 /* IconDocument.swift */,
 				D83970E828B1340900282EE8 /* PreviewType.swift */,
 				D83970E428B11F5200282EE8 /* SymbolicError.swift */,
 				D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */,
@@ -410,6 +416,7 @@
 				D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */,
 				D83970E928B1340900282EE8 /* PreviewType.swift in Sources */,
 				D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */,
+				D86B0ED1291BEFC100352367 /* UTType.swift in Sources */,
 				D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */,
 				D8D9731428ACFC1B006CBF15 /* ShowSavePanelKey.swift in Sources */,
 				D821B9EA28ACDBF700504AA4 /* String.swift in Sources */,
@@ -420,6 +427,7 @@
 				D821B9E028ACDB6000504AA4 /* View.swift in Sources */,
 				D83970EB28B1343C00282EE8 /* PreviewToolbar.swift in Sources */,
 				D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */,
+				D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */,
 				D821B9E228ACDB8500504AA4 /* NSColor.swift in Sources */,
 				D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */,
 			);
