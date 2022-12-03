@@ -20,21 +20,22 @@
 
 import SwiftUI
 
-@main
-struct SymbolicApp: App {
+struct AboutCommands: Commands {
 
-    @StateObject var applicationModel = ApplicationModel()
+    let applicationModel: ApplicationModel
 
-    var body: some Scene {
+    init(applicationModel: ApplicationModel) {
+        self.applicationModel = applicationModel
+    }
 
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView()
-                .environmentObject(applicationModel)
-        }
-        .commands {
-            AboutCommands(applicationModel: applicationModel)
+    var body: some Commands {
+
+        CommandGroup(replacing: .appInfo) {
+            Button("About \(Bundle.main.preferredName ?? "")") {
+                DispatchQueue.main.async {
+                    applicationModel.showAbout()
+                }
+            }
         }
 
     }

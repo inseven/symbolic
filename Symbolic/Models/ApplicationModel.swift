@@ -20,23 +20,34 @@
 
 import SwiftUI
 
-@main
-struct SymbolicApp: App {
+import Diligence
 
-    @StateObject var applicationModel = ApplicationModel()
+class ApplicationModel: ObservableObject {
 
-    var body: some Scene {
-
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView()
-                .environmentObject(applicationModel)
+    @MainActor private lazy var aboutWindow: NSWindow = {
+        return NSWindow(repository: "inseven/symbolic", copyright: "Copyright © 2022 Jason Morley") {
+            Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!)
+            Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
+        } acknowledgements: {
+            Acknowledgements("Developers") {
+                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
+            }
+            Acknowledgements("Thanks") {
+                Credit("Sarah Barbour")
+                Credit("Michael Dales")
+            }
+        } licenses: {
+            License("Symbolic", author: "InSeven Limited", filename: "symbolic-license")
         }
-        .commands {
-            AboutCommands(applicationModel: applicationModel)
-        }
+    }()
 
+    @MainActor func showAbout() {
+        dispatchPrecondition(condition: .onQueue(.main))
+        NSApplication.shared.activate(ignoringOtherApps: true)
+        if !aboutWindow.isVisible {
+            aboutWindow.center()
+        }
+        aboutWindow.makeKeyAndOrderFront(nil)
     }
 
 }
