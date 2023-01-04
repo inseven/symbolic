@@ -33,8 +33,10 @@ struct PreviewToolbar: CustomizableToolbarContent {
                         .tag(previewType)
                 }
             } label: {
+                Text("Preview")
             }
             .pickerStyle(.inline)
+            .help("Change icon the preview type")
         }
 
     }

@@ -77,6 +77,7 @@ struct ContentView: View {
                 Toggle(isOn: $showGrid) {
                     Label("Toggle Grid", systemImage: "grid")
                 }
+                .help("Hide/show the icon grid")
             }
             PreviewToolbar(previewType: $previewType)
             ExportToolbar(document: document.icon)

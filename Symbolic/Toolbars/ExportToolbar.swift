@@ -176,6 +176,7 @@ struct ExportToolbar: CustomizableToolbarContent {
             } label: {
                 Label("Export", systemImage: "square.and.arrow.up")
             }
+            .help("Export icons")
         }
 
     }
