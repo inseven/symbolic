@@ -22,6 +22,8 @@ import SwiftUI
 
 struct ExportToolbar: CustomizableToolbarContent {
 
+    // https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/
+
     let macOS_icons: [(CGFloat, Int)] = [
 
         (16, 1),
@@ -64,6 +66,31 @@ struct ExportToolbar: CustomizableToolbarContent {
         (83.5, 2),
 
         (1024, 1),
+    ]
+
+    let watchOS_icons: [(CGFloat, Int)] = [
+
+        // Home Screen
+        (80, 2),
+        (88, 2),
+        (92, 2),
+        (100, 2),
+        (102, 2),
+        (108, 2),
+
+        // Notification Center
+        (48, 2),
+        (55, 2),
+        (58, 2),
+        (66, 2),
+
+        // Short Look
+        (172, 2),
+        (196, 2),
+        (216, 2),
+        (234, 2),
+        (258, 2),
+
     ]
 
     @Environment(\.showSavePanel) var showSavePanel
@@ -117,10 +144,12 @@ struct ExportToolbar: CustomizableToolbarContent {
                     do {
                         let macOSUrl = url.appendingPathComponent("macOS.iconset", conformingTo: .directory)
                         let iOSUrl = url.appendingPathComponent("iOS", conformingTo: .directory)
+                        let watchOSUrl = url.appendingPathComponent("watchOS", conformingTo: .directory)
 
                         try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
                         try FileManager.default.createDirectory(at: macOSUrl, withIntermediateDirectories: true)
                         try FileManager.default.createDirectory(at: iOSUrl, withIntermediateDirectories: true)
+                        try FileManager.default.createDirectory(at: watchOSUrl, withIntermediateDirectories: true)
 
                         // macOS
                         try saveSnapshot(for: document, size: 1024, directoryURL: url)
@@ -131,6 +160,11 @@ struct ExportToolbar: CustomizableToolbarContent {
                         // iOS
                         for (size, scale) in iOS_icons {
                             try saveSnapshot(for: document, size: size, scale: scale, shadow: false, directoryURL: iOSUrl)
+                        }
+
+                        // watchOS
+                        for (size, scale) in watchOS_icons {
+                            try saveSnapshot(for: document, size: size, scale: scale, shadow: false, directoryURL: watchOSUrl)
                         }
 
                         NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)
