@@ -21,6 +21,7 @@
 import SwiftUI
 
 import Diligence
+import Interact
 
 class ApplicationModel: ObservableObject {
 
@@ -37,6 +38,7 @@ class ApplicationModel: ObservableObject {
                 Credit("Michael Dales")
             }
         } licenses: {
+            License("Interact", author: "InSeven Limited", url: Interact.Package.licenseURL)
             License("Symbolic", author: "InSeven Limited", filename: "symbolic-license")
         }
     }()

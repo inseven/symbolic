@@ -19,6 +19,7 @@
 		D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E628B132C700282EE8 /* UnityScaleWindow.swift */; };
 		D83970E928B1340900282EE8 /* PreviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E828B1340900282EE8 /* PreviewType.swift */; };
 		D83970EB28B1343C00282EE8 /* PreviewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970EA28B1343C00282EE8 /* PreviewToolbar.swift */; };
+		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
 		D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ECE291BEF7400352367 /* IconDocument.swift */; };
 		D86B0ED1291BEFC100352367 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ED0291BEFC100352367 /* UTType.swift */; };
 		D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61307293BB81100F29E0C /* AboutCommands.swift */; };
@@ -69,6 +70,7 @@
 		D83970E628B132C700282EE8 /* UnityScaleWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityScaleWindow.swift; sourceTree = "<group>"; };
 		D83970E828B1340900282EE8 /* PreviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewType.swift; sourceTree = "<group>"; };
 		D83970EA28B1343C00282EE8 /* PreviewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewToolbar.swift; sourceTree = "<group>"; };
+		D864A2382965999C008A4261 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D86B0ECE291BEF7400352367 /* IconDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDocument.swift; sourceTree = "<group>"; };
 		D86B0ED0291BEFC100352367 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		D8B61307293BB81100F29E0C /* AboutCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommands.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D864A23A2965A2D1008A4261 /* Interact in Frameworks */,
 				D8F99EC628B13998007C3868 /* Diligence in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				D8F99EC028B138FE007C3868 /* diligence */,
+				D864A2382965999C008A4261 /* interact */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -304,6 +308,7 @@
 			name = Symbolic;
 			packageProductDependencies = (
 				D8F99EC528B13998007C3868 /* Diligence */,
+				D864A2392965A2D1008A4261 /* Interact */,
 			);
 			productName = Iconify;
 			productReference = D8CD4A7A28AC35C300D57F34 /* Symbolic.app */;
@@ -772,6 +777,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D864A2392965A2D1008A4261 /* Interact */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Interact;
+		};
 		D8F99EC528B13998007C3868 /* Diligence */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Diligence;
