@@ -98,9 +98,6 @@ struct ContentView: View {
             PreviewToolbar(previewType: $previewType)
             ExportToolbar(document: document.icon)
         }
-        .onChange(of: document.icon.bottomColor) { newValue in
-            document.icon.topColor = Color(NSColor(newValue).lighter(by: 25))
-        }
     }
 }
 
