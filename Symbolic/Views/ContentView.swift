@@ -48,6 +48,9 @@ struct ContentView: View {
                 case .iOS:
                     IconView(icon: document.icon, size: 512, renderShadow: false)
                         .modifier(IconCorners(size: 512))
+                case .watchOS:
+                    IconView(icon: document.icon, size: 512, renderShadow: false)
+                        .clipShape(Circle())
                 }
                 ColorPicker(selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext), supportsOpacity: false)
             }
