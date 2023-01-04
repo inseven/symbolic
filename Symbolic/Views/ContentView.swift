@@ -21,34 +21,21 @@
 import Combine
 import SwiftUI
 
-struct MacIconView: View {
-
-    var icon: Icon
-    var size: CGFloat
-    var isShadowFlipped: Bool
-
-    var body: some View {
-        HStack {
-            IconView(icon: icon, size: size * 0.8046875, isShadowFlipped: isShadowFlipped)
-                .modifier(IconCorners(size: size * 0.8046875))
-                .shadow(color: .black.opacity(0.3), radius: size * 0.0068359375, y: size * 0.009765625 * (isShadowFlipped ? -1.0 : 1.0))
-        }
-        .frame(width: size, height: size)
-    }
-
-}
+import Interact
 
 struct ContentView: View {
 
+    @Environment(\.undoManager) var undoManager
     @EnvironmentObject var document: IconDocument
 
     @State var showGrid = false
     @State var previewType: PreviewType = .macOS
+    @State var undoContext = UndoContext()
 
     var body: some View {
         HStack {
             VStack {
-                ColorPicker(selection: $document.icon.topColor, supportsOpacity: false)
+                ColorPicker(selection: $document.icon.topColor.undoable(undoManager, context: undoContext), supportsOpacity: false)
                 switch previewType {
                 case .macOS:
                     ZStack {
@@ -62,22 +49,22 @@ struct ContentView: View {
                     IconView(icon: document.icon, size: 512, renderShadow: false)
                         .modifier(IconCorners(size: 512))
                 }
-                ColorPicker(selection: $document.icon.bottomColor, supportsOpacity: false)
+                ColorPicker(selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext), supportsOpacity: false)
             }
             .padding()
             Form {
                 Section("Icon") {
-                    SymbolPicker("Image", systemImage: $document.icon.systemImage)
-                    Slider(value: $document.icon.iconScale) {
+                    SymbolPicker("Image", systemImage: $document.icon.systemImage.undoable(undoManager, context: undoContext))
+                    Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext)) {
                         Text("Size")
                     }
-                    ColorPicker("Color", selection: $document.icon.symbolColor)
+                    ColorPicker("Color", selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext))
                 }
                 Section("Shadow") {
-                    Slider(value: $document.icon.shadowOpacity) {
+                    Slider(value: $document.icon.shadowOpacity.undoable(undoManager, context: undoContext)) {
                         Text("Opacity")
                     }
-                    Slider(value: $document.icon.shadowHeight) {
+                    Slider(value: $document.icon.shadowHeight.undoable(undoManager, context: undoContext)) {
                         Text("Height")
                     }
                 }
