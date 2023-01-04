@@ -27,6 +27,7 @@ enum PreviewType: Equatable, Identifiable, CaseIterable {
 
     case macOS
     case iOS
+    case watchOS
 
     var systemImage: String {
         switch self {
@@ -34,6 +35,9 @@ enum PreviewType: Equatable, Identifiable, CaseIterable {
             return "desktopcomputer"
         case .iOS:
             return "iphone"
+        case .watchOS:
+            return "applewatch"
         }
     }
+
 }
