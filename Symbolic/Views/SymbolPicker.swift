@@ -74,6 +74,7 @@ struct SymbolPicker: View {
                     TextField(text: $model.filter, prompt: Text("Search")) {
                         EmptyView()
                     }
+                    .multilineTextAlignment(.leading)
                     .textFieldStyle(.roundedBorder)
                     .padding()
                     .background(.regularMaterial)
