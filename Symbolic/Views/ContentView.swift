@@ -41,13 +41,18 @@ struct ContentView: View {
                     ZStack {
                         MacIconView(icon: document.icon, size: 512, isShadowFlipped: false)
                         if showGrid {
-                            Image("AppIconGrid")
+                            Image("Grid_macOS")
                         }
                     }
                     .frame(width: 512, height: 512)
                 case .iOS:
-                    IconView(icon: document.icon, size: 512, renderShadow: false)
-                        .modifier(IconCorners(size: 512))
+                    ZStack {
+                        IconView(icon: document.icon, size: 512, renderShadow: false)
+                            .modifier(IconCorners(size: 512))
+                        if showGrid {
+                            Image("Grid_iOS")
+                        }
+                    }
                 case .watchOS:
                     IconView(icon: document.icon, size: 512, renderShadow: false)
                         .clipShape(Circle())
@@ -78,7 +83,7 @@ struct ContentView: View {
         .toolbar(id: "main") {
             ToolbarItem(id: "grid") {
                 Toggle(isOn: $showGrid) {
-                    Label("Toggle Grid", systemImage: "grid")
+                    Label("Grid", systemImage: "grid")
                 }
                 .help("Hide/show the icon grid")
             }
