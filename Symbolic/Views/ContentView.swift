@@ -48,9 +48,7 @@ struct ContentView: View {
     var body: some View {
         HStack {
             VStack {
-                ColorPicker(selection: $document.icon.topColor) {
-                    EmptyView()
-                }
+                ColorPicker(selection: $document.icon.topColor, supportsOpacity: false)
                 switch previewType {
                 case .macOS:
                     ZStack {
@@ -64,9 +62,7 @@ struct ContentView: View {
                     IconView(icon: document.icon, size: 512, renderShadow: false)
                         .modifier(IconCorners(size: 512))
                 }
-                ColorPicker(selection: $document.icon.bottomColor) {
-                    EmptyView()
-                }
+                ColorPicker(selection: $document.icon.bottomColor, supportsOpacity: false)
             }
             .padding()
             Form {
