@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D821B9E028ACDB6000504AA4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9DF28ACDB6000504AA4 /* View.swift */; };
-		D821B9E228ACDB8500504AA4 /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E128ACDB8500504AA4 /* NSColor.swift */; };
 		D821B9E428ACDBA800504AA4 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E328ACDBA800504AA4 /* IconView.swift */; };
 		D821B9E828ACDBE000504AA4 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E728ACDBE000504AA4 /* Icon.swift */; };
 		D821B9EA28ACDBF700504AA4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E928ACDBF700504AA4 /* String.swift */; };
@@ -58,7 +57,6 @@
 
 /* Begin PBXFileReference section */
 		D821B9DF28ACDB6000504AA4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		D821B9E128ACDB8500504AA4 /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
 		D821B9E328ACDBA800504AA4 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		D821B9E728ACDBE000504AA4 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		D821B9E928ACDBF700504AA4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				D83970E128B0B45300282EE8 /* Color.swift */,
-				D821B9E128ACDB8500504AA4 /* NSColor.swift */,
 				D821B9E928ACDBF700504AA4 /* String.swift */,
 				D86B0ED0291BEFC100352367 /* UTType.swift */,
 				D821B9DF28ACDB6000504AA4 /* View.swift */,
@@ -444,7 +441,6 @@
 				D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */,
 				D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */,
 				D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */,
-				D821B9E228ACDB8500504AA4 /* NSColor.swift in Sources */,
 				D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
