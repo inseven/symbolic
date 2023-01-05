@@ -21,23 +21,12 @@
 import Combine
 import SwiftUI
 
-enum PreviewType: Equatable, Identifiable, CaseIterable {
+enum DeviceType: Equatable, Identifiable, CaseIterable {
 
     var id: Self { self }
 
     case macOS
     case iOS
     case watchOS
-
-    var systemImage: String {
-        switch self {
-        case .macOS:
-            return "desktopcomputer"
-        case .iOS:
-            return "iphone"
-        case .watchOS:
-            return "applewatch"
-        }
-    }
 
 }

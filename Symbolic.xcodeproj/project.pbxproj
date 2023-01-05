@@ -17,8 +17,7 @@
 		D83970E228B0B45300282EE8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E128B0B45300282EE8 /* Color.swift */; };
 		D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E428B11F5200282EE8 /* SymbolicError.swift */; };
 		D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E628B132C700282EE8 /* UnityScaleWindow.swift */; };
-		D83970E928B1340900282EE8 /* PreviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E828B1340900282EE8 /* PreviewType.swift */; };
-		D83970EB28B1343C00282EE8 /* PreviewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970EA28B1343C00282EE8 /* PreviewToolbar.swift */; };
+		D83970E928B1340900282EE8 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E828B1340900282EE8 /* DeviceType.swift */; };
 		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
 		D864A23C2965E239008A4261 /* MacIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864A23B2965E239008A4261 /* MacIconView.swift */; };
 		D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ECE291BEF7400352367 /* IconDocument.swift */; };
@@ -69,8 +68,7 @@
 		D83970E328B0B61700282EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D83970E428B11F5200282EE8 /* SymbolicError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicError.swift; sourceTree = "<group>"; };
 		D83970E628B132C700282EE8 /* UnityScaleWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityScaleWindow.swift; sourceTree = "<group>"; };
-		D83970E828B1340900282EE8 /* PreviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewType.swift; sourceTree = "<group>"; };
-		D83970EA28B1343C00282EE8 /* PreviewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewToolbar.swift; sourceTree = "<group>"; };
+		D83970E828B1340900282EE8 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 		D864A2382965999C008A4261 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D864A23B2965E239008A4261 /* MacIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacIconView.swift; sourceTree = "<group>"; };
 		D86B0ECE291BEF7400352367 /* IconDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDocument.swift; sourceTree = "<group>"; };
@@ -138,9 +136,9 @@
 			isa = PBXGroup;
 			children = (
 				D8B61309293BB98100F29E0C /* ApplicationModel.swift */,
+				D83970E828B1340900282EE8 /* DeviceType.swift */,
 				D821B9E728ACDBE000504AA4 /* Icon.swift */,
 				D86B0ECE291BEF7400352367 /* IconDocument.swift */,
-				D83970E828B1340900282EE8 /* PreviewType.swift */,
 				D83970E428B11F5200282EE8 /* SymbolicError.swift */,
 				D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */,
 			);
@@ -255,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */,
-				D83970EA28B1343C00282EE8 /* PreviewToolbar.swift */,
 			);
 			path = Toolbars;
 			sourceTree = "<group>";
@@ -434,7 +431,7 @@
 				D821B9EE28ACDC6F00504AA4 /* SymbolPicker.swift in Sources */,
 				D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */,
 				D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */,
-				D83970E928B1340900282EE8 /* PreviewType.swift in Sources */,
+				D83970E928B1340900282EE8 /* DeviceType.swift in Sources */,
 				D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */,
 				D86B0ED1291BEFC100352367 /* UTType.swift in Sources */,
 				D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */,
@@ -445,7 +442,6 @@
 				D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */,
 				D83970E228B0B45300282EE8 /* Color.swift in Sources */,
 				D821B9E028ACDB6000504AA4 /* View.swift in Sources */,
-				D83970EB28B1343C00282EE8 /* PreviewToolbar.swift in Sources */,
 				D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */,
 				D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */,
 				D864A23C2965E239008A4261 /* MacIconView.swift in Sources */,
