@@ -48,6 +48,8 @@ struct ContentView: View {
                                     .frame(width: icon.size.width, height: icon.size.height)
                             }
                         }
+                        Text("\(Int(icon.size.width))pt")
+                            .foregroundColor(.secondary)
                     }
                     Text("iOS")
                         .foregroundColor(.secondary)
