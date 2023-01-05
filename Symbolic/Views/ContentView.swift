@@ -80,6 +80,19 @@ struct ContentView: View {
                     ColorPicker("Top Color",
                                 selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
                                 supportsOpacity: false)
+                    Button {
+                        let topColor = document.icon.topColor
+                        let bottomColor = document.icon.bottomColor
+                        undoManager?.registerUndo(undoContext) {
+                            document.icon.topColor = topColor
+                            document.icon.bottomColor = bottomColor
+                        }
+                        document.icon.topColor = bottomColor
+                        document.icon.bottomColor = topColor
+                    } label: {
+                        Image(systemName: "arrow.up.arrow.down")
+                    }
+                    .horizontalSpace(.both)
                     ColorPicker("Bottom Color",
                                 selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
                                 supportsOpacity: false)
