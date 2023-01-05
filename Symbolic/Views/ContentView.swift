@@ -33,33 +33,41 @@ struct ContentView: View {
     @State var undoContext = UndoContext()
 
     var body: some View {
-        HStack {
-            VStack {
-                ColorPicker(selection: $document.icon.topColor.undoable(undoManager, context: undoContext), supportsOpacity: false)
-                switch previewType {
-                case .macOS:
-                    ZStack {
-                        MacIconView(icon: document.icon, size: 512, isShadowFlipped: false)
-                        if showGrid {
-                            Image("Grid_macOS")
+        HStack(spacing: 0) {
+            ScrollView {
+                VStack {
+                    ColorPicker(selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
+                                supportsOpacity: false)
+                    switch previewType {
+                    case .macOS:
+                        ZStack {
+                            MacIconView(icon: document.icon, size: 512, isShadowFlipped: false)
+                            if showGrid {
+                                Image("Grid_macOS")
+                            }
                         }
-                    }
-                    .frame(width: 512, height: 512)
-                case .iOS:
-                    ZStack {
+                        .frame(width: 512, height: 512)
+                    case .iOS:
+                        ZStack {
+                            IconView(icon: document.icon, size: 512, renderShadow: false)
+                                .modifier(IconCorners(size: 512))
+                            if showGrid {
+                                Image("Grid_iOS")
+                            }
+                        }
+                    case .watchOS:
                         IconView(icon: document.icon, size: 512, renderShadow: false)
-                            .modifier(IconCorners(size: 512))
-                        if showGrid {
-                            Image("Grid_iOS")
-                        }
+                            .clipShape(Circle())
                     }
-                case .watchOS:
-                    IconView(icon: document.icon, size: 512, renderShadow: false)
-                        .clipShape(Circle())
+                    ColorPicker(selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
+                                supportsOpacity: false)
                 }
-                ColorPicker(selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext), supportsOpacity: false)
+                .padding()
+                .horizontalSpace(.both)
             }
-            .padding()
+            .background(Color(nsColor: .textBackgroundColor))
+            .frame(maxWidth: .infinity)
+            Divider()
             Form {
                 Section("Icon") {
                     SymbolPicker("Image", systemImage: $document.icon.systemImage.undoable(undoManager, context: undoContext))
@@ -78,8 +86,8 @@ struct ContentView: View {
                 }
             }
             .formStyle(.grouped)
+            .frame(width: 300)
         }
-        .padding()
         .toolbar(id: "main") {
             ToolbarItem(id: "grid") {
                 Toggle(isOn: $showGrid) {
