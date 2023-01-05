@@ -29,38 +29,45 @@ struct ContentView: View {
     @EnvironmentObject var document: IconDocument
 
     @State var showGrid = false
-    @State var previewType: PreviewType = .macOS
     @State var undoContext = UndoContext()
 
     var body: some View {
         HStack(spacing: 0) {
             ScrollView {
                 VStack {
-                    ColorPicker(selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
-                                supportsOpacity: false)
-                    switch previewType {
-                    case .macOS:
+                    Text("macOS")
+                        .foregroundColor(.secondary)
+                        .horizontalSpace(.leading)
+                    Divider()
+                    ForEach(ExportToolbar.icons["macOS"]!) { icon in
                         ZStack {
-                            MacIconView(icon: document.icon, size: 512, isShadowFlipped: false)
+                            MacIconView(icon: document.icon, size: icon.size.width, isShadowFlipped: false)
                             if showGrid {
                                 Image("Grid_macOS")
+                                    .resizable()
+                                    .frame(width: icon.size.width, height: icon.size.height)
                             }
                         }
-                        .frame(width: 512, height: 512)
-                    case .iOS:
-                        ZStack {
-                            IconView(icon: document.icon, size: 512, renderShadow: false)
-                                .modifier(IconCorners(size: 512))
-                            if showGrid {
-                                Image("Grid_iOS")
-                            }
-                        }
-                    case .watchOS:
-                        IconView(icon: document.icon, size: 512, renderShadow: false)
-                            .clipShape(Circle())
+                        Text("\(Int(icon.size.width))pt")
+                            .foregroundColor(.secondary)
                     }
-                    ColorPicker(selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
-                                supportsOpacity: false)
+                    Text("iOS")
+                        .foregroundColor(.secondary)
+                        .horizontalSpace(.leading)
+                    Divider()
+                    ZStack {
+                        IconView(icon: document.icon, size: 512, renderShadow: false)
+                            .modifier(IconCorners(size: 512))
+                        if showGrid {
+                            Image("Grid_iOS")
+                        }
+                    }
+                    Text("watchOS")
+                        .foregroundColor(.secondary)
+                        .horizontalSpace(.leading)
+                    Divider()
+                    IconView(icon: document.icon, size: 512, renderShadow: false)
+                        .clipShape(Circle())
                 }
                 .padding()
                 .horizontalSpace(.both)
@@ -69,6 +76,14 @@ struct ContentView: View {
             .frame(maxWidth: .infinity)
             Divider()
             Form {
+                Section("Background") {
+                    ColorPicker("Top Color",
+                                selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
+                                supportsOpacity: false)
+                    ColorPicker("Bottom Color",
+                                selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
+                                supportsOpacity: false)
+                }
                 Section("Icon") {
                     SymbolPicker("Image", systemImage: $document.icon.systemImage.undoable(undoManager, context: undoContext))
                     Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext)) {
@@ -95,7 +110,6 @@ struct ContentView: View {
                 }
                 .help("Hide/show the icon grid")
             }
-            PreviewToolbar(previewType: $previewType)
             ExportToolbar(document: document.icon)
         }
     }

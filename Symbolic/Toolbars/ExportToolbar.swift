@@ -20,9 +20,41 @@
 
 import SwiftUI
 
+struct IconDefinition {
+
+    let size: CGSize
+    let scales: [CGFloat]
+
+    init(_ size: CGFloat, scales: [CGFloat]) {
+        self.size = CGSize(width: size, height: size)
+        self.scales = scales
+    }
+
+}
+
+extension IconDefinition: Identifiable {
+
+    var id: CGFloat {
+        return size.width
+    }
+
+}
+
 struct ExportToolbar: CustomizableToolbarContent {
 
     // https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/
+
+    static let icons: [String:[IconDefinition]] = [
+
+        "macOS": [
+            IconDefinition(16, scales: [1, 2]),
+            IconDefinition(32, scales: [1, 2]),
+            IconDefinition(128, scales: [1, 2]),
+            IconDefinition(256, scales: [1, 2]),
+            IconDefinition(512, scales: [1, 2]),
+        ]
+
+    ]
 
     let macOS_icons: [(CGFloat, Int)] = [
 
