@@ -47,10 +47,11 @@ struct SymbolPicker: View {
             } label: {
                 HStack {
                     Image(systemName: systemImage.wrappedValue)
-                        .resizable()
+                        .imageScale(.large)
                 }
-                .frame(width: 12, height: 12)
+                .frame(width: 32, height: 32)
             }
+            .controlSize(.large)
             .popover(isPresented: $isPresented) {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16.0) {
