@@ -46,10 +46,8 @@ struct SymbolPicker: View {
                 isPresented = true
             } label: {
                 HStack {
-                    Spacer()
                     Image(systemName: systemImage.wrappedValue)
                         .imageScale(.large)
-                    Spacer()
                 }
                 .frame(width: 32, height: 32)
             }
