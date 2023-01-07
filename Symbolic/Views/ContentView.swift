@@ -76,6 +76,21 @@ struct ContentView: View {
             .frame(maxWidth: .infinity)
             Divider()
             Form {
+                Section("Icon") {
+                    SymbolPicker("Image", systemImage: $document.icon.systemImage.undoable(undoManager, context: undoContext))
+                    Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext)) {
+                        Text("Size")
+                    }
+                    ColorPicker("Color", selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext))
+                }
+                Section("Shadow") {
+                    Slider(value: $document.icon.shadowOpacity.undoable(undoManager, context: undoContext)) {
+                        Text("Opacity")
+                    }
+                    Slider(value: $document.icon.shadowHeight.undoable(undoManager, context: undoContext)) {
+                        Text("Height")
+                    }
+                }
                 Section("Background") {
                     ColorPicker("Top Color",
                                 selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
@@ -96,21 +111,6 @@ struct ContentView: View {
                     ColorPicker("Bottom Color",
                                 selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
                                 supportsOpacity: false)
-                }
-                Section("Icon") {
-                    SymbolPicker("Image", systemImage: $document.icon.systemImage.undoable(undoManager, context: undoContext))
-                    Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext)) {
-                        Text("Size")
-                    }
-                    ColorPicker("Color", selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext))
-                }
-                Section("Shadow") {
-                    Slider(value: $document.icon.shadowOpacity.undoable(undoManager, context: undoContext)) {
-                        Text("Opacity")
-                    }
-                    Slider(value: $document.icon.shadowHeight.undoable(undoManager, context: undoContext)) {
-                        Text("Height")
-                    }
                 }
             }
             .formStyle(.grouped)
