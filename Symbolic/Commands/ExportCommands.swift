@@ -19,25 +19,25 @@
 // SOFTWARE.
 
 import SwiftUI
+struct ExportCommands: Commands {
 
-@main
-struct SymbolicApp: App {
+    @FocusedObject private var document: IconDocument?
 
-    @StateObject var applicationModel = ApplicationModel()
+    let applicationModel: ApplicationModel
 
-    var body: some Scene {
+    init(applicationModel: ApplicationModel) {
+        self.applicationModel = applicationModel
+    }
 
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView()
-                .environmentObject(applicationModel)
+    @MainActor public var body: some Commands {
+        CommandGroup(replacing: .importExport) {
+            Button("Export...") {
+                guard let document else { return }
+                applicationModel.export(icon: document.icon)
+            }
+            .disabled(document == nil)
+            .keyboardShortcut("e")
         }
-        .commands {
-            AboutCommands(applicationModel: applicationModel)
-            ExportCommands(applicationModel: applicationModel)
-        }
-
     }
 
 }
