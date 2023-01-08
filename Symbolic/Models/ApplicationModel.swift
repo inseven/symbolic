@@ -152,6 +152,17 @@ class ApplicationModel: ObservableObject {
 
     ]
 
+    @MainActor static func showSavePanel(_ title: String) -> URL? {
+        let savePanel = NSSavePanel()
+        savePanel.allowedContentTypes = [.directory]
+        savePanel.canCreateDirectories = true
+        savePanel.isExtensionHidden = false
+        savePanel.allowsOtherFileTypes = false
+        savePanel.title = title
+        let response = savePanel.runModal()
+        return response == .OK ? savePanel.url : nil
+    }
+
     @MainActor private lazy var aboutWindow: NSWindow = {
         return NSWindow(repository: "inseven/symbolic", copyright: "Copyright © 2022-2023 InSeven Limited") {
             Action("Website", url: URL(string: "https://symbolic.app")!)
@@ -180,24 +191,13 @@ class ApplicationModel: ObservableObject {
         aboutWindow.makeKeyAndOrderFront(nil)
     }
 
-    @MainActor func showSavePanel(_ title: String) -> URL? {
-        let savePanel = NSSavePanel()
-        savePanel.allowedContentTypes = [.directory]
-        savePanel.canCreateDirectories = true
-        savePanel.isExtensionHidden = false
-        savePanel.allowsOtherFileTypes = false
-        savePanel.title = title
-        let response = savePanel.runModal()
-        return response == .OK ? savePanel.url : nil
-    }
-
     @MainActor func export(icon: Icon) {
-        guard let url = showSavePanel("Export Icon") else {
+        guard let url = Self.showSavePanel("Export Icon") else {
             return
         }
         do {
             try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
-            for section in ApplicationModel.icons {
+            for section in Self.icons {
                 for iconSet in section.sets {
                     let directoryUrl = url.appendingPathComponent(section.directory,
                                                                   conformingTo: .directory)
