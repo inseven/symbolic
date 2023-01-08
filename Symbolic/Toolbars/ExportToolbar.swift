@@ -45,9 +45,10 @@ extension Icon {
     @MainActor func saveSnapshot(size: CGFloat,
                                  scale: Int = 1,
                                  shadow: Bool = true,
+                                 isWatchOS: Bool = false,
                                  directoryURL: URL) throws {
         let scaledSize = size * CGFloat(scale)
-        let icon = IconView(icon: self, size: scaledSize, renderShadow: shadow, isShadowFlipped: true)
+        let icon = IconView(icon: self, size: scaledSize, renderShadow: shadow, isShadowFlipped: true, isWatchOS: isWatchOS)
         guard let data = icon.snapshot() else {
             throw SymbolicError.exportFailure
         }

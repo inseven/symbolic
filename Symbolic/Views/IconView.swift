@@ -30,10 +30,18 @@ struct IconView: View {
     var size: CGFloat
     var renderShadow: Bool = true
     var isShadowFlipped = false
+    var isWatchOS = false
+
+    var iconSize: CGFloat {
+        if isWatchOS {
+            return size * icon.iconScale * (768.0 / 890.0)
+        } else {
+            return size * icon.iconScale
+        }
+    }
 
     var body: some View {
         ZStack {
-            let iconSize = size * icon.iconScale
             let x = size / 2
             let y = size / 2
             let shadowRadius = size * icon.shadowHeight * Constants.shadowOffsetScaleFactor
