@@ -19,27 +19,25 @@
 // SOFTWARE.
 
 import SwiftUI
+struct ViewCommands: Commands {
 
-@main
-struct SymbolicApp: App {
+    @FocusedObject private var sceneModel: SceneModel?
 
-    @StateObject var applicationModel = ApplicationModel()
-
-    var body: some Scene {
-
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView()
-                .environmentObject(applicationModel)
+    var showGrid: Binding<Bool> {
+        return Binding {
+            return sceneModel?.showGrid ?? false
+        } set: { value in
+            sceneModel?.showGrid = value
         }
-        .commands {
-            AboutCommands(applicationModel: applicationModel)
-            ExportCommands(applicationModel: applicationModel)
-            ViewCommands()
-            ToolbarCommands()
-        }
+    }
 
+    @MainActor public var body: some Commands {
+        if let sceneModel = sceneModel {
+            CommandGroup(before: .sidebar) {
+                Toggle("Show Grid", isOn: Binding(get: { sceneModel.showGrid }, set: { sceneModel.showGrid = $0 }))
+                Divider()
+            }
+        }
     }
 
 }
