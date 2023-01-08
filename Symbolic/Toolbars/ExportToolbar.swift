@@ -20,133 +20,132 @@
 
 import SwiftUI
 
-struct IconDefinition: Identifiable {
-
-    enum Style {
-        case macOS
-        case iOS
-        case watchOS
-    }
-
-    var id = UUID()
-
-    let style: Style
-    let size: CGSize
-    let scales: [CGFloat]
-    let description: String?
-
-    init(_ style: Style, size: CGFloat, scales: [CGFloat], description: String? = nil) {
-        self.style = style
-        self.size = CGSize(width: size, height: size)
-        self.scales = scales
-        self.description = description
-    }
-
-}
-
 struct ExportToolbar: CustomizableToolbarContent {
 
     // https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/
 
-    static let icons: [String:[IconDefinition]] = [
+    static let icons: [IconSection] = [
 
-        "macOS": [
-            IconDefinition(.macOS, size: 16, scales: [1, 2]),
-            IconDefinition(.macOS, size: 32, scales: [1, 2]),
-            IconDefinition(.macOS, size: 128, scales: [1, 2]),
-            IconDefinition(.macOS, size: 256, scales: [1, 2]),
-            IconDefinition(.macOS, size: 512, scales: [1, 2]),
-        ],
+        IconSection("macOS", directory: "macOS.iconset") {
 
-        "iOS": [
+            IconSet("16pt") {
+                IconDefinition(.macOS, size: 16, scale: 1)
+                IconDefinition(.macOS, size: 16, scale: 2)
+            }
+
+            IconSet("32pt") {
+                IconDefinition(.macOS, size: 32, scale: 1)
+                IconDefinition(.macOS, size: 32, scale: 2)
+            }
+
+            IconSet("128pt") {
+                IconDefinition(.macOS, size: 128, scale: 1)
+                IconDefinition(.macOS, size: 128, scale: 2)
+            }
+
+            IconSet("256pt") {
+                IconDefinition(.macOS, size: 256, scale: 1)
+                IconDefinition(.macOS, size: 256, scale: 2)
+            }
+            
+            IconSet("512pt") {
+                IconDefinition(.macOS, size: 512, scale: 1)
+                IconDefinition(.macOS, size: 512, scale: 2)
+            }
+
+            // App Store
+            IconSet("App Store") {
+                IconDefinition(.macOS, size: 1024, scale: 1)
+            }
+
+        },
+
+        IconSection("iOS", directory: "iOS") {
 
             // iPhone
-            IconDefinition(.iOS, size: 20, scales: [2, 3], description: "iPhone Notifications"),
-            IconDefinition(.iOS, size: 29, scales: [2, 3], description: "iPhone Settings"),
-            IconDefinition(.iOS, size: 40, scales: [2, 3], description: "iPhone Spotlight"),
-            IconDefinition(.iOS, size: 60, scales: [2, 3], description: "iPhone App"),
+            IconSet("iPhone Notifications") {
+                IconDefinition(.iOS, size: 20, scale: 2)
+                IconDefinition(.iOS, size: 20, scale: 3)
+            }
+            IconSet("iPhone Settings") {
+                IconDefinition(.iOS, size: 29, scale: 2)
+                IconDefinition(.iOS, size: 29, scale: 3)
+            }
+            IconSet("iPhone Spotlight") {
+                IconDefinition(.iOS, size: 40, scale: 2)
+                IconDefinition(.iOS, size: 40, scale: 3)
+            }
+            IconSet("iPhone App") {
+                IconDefinition(.iOS, size: 60, scale: 2)
+                IconDefinition(.iOS, size: 60, scale: 3)
+            }
 
             // iPad
-            IconDefinition(.iOS, size: 20, scales: [1, 2], description: "iPad Notifications"),
-            IconDefinition(.iOS, size: 29, scales: [1, 2], description: "iPad Settings"),
-            IconDefinition(.iOS, size: 40, scales: [1, 2], description: "iPad Spotlight"),
-            IconDefinition(.iOS, size: 76, scales: [1, 2], description: "iPad App"),
-            IconDefinition(.iOS, size: 83.5, scales: [2, 3], description: "iPad Pro (12.9-inch) App"),
+            IconSet("iPad Notifications") {
+                IconDefinition(.iOS, size: 20, scale: 1)
+                IconDefinition(.iOS, size: 20, scale: 2)
+            }
+            IconSet("iPad Settings") {
+                IconDefinition(.iOS, size: 29, scale: 1)
+                IconDefinition(.iOS, size: 29, scale: 2)
+            }
+            IconSet("iPad Spotlight") {
+                IconDefinition(.iOS, size: 40, scale: 1)
+                IconDefinition(.iOS, size: 40, scale: 2)
+            }
+            
+            IconSet("iPad App") {
+                IconDefinition(.iOS, size: 76, scale: 1)
+                IconDefinition(.iOS, size: 76, scale: 2)
+            }
+            IconSet("iPad Pro (12.9-inch) App") {
+                IconDefinition(.iOS, size: 83.5, scale: 2)
+                IconDefinition(.iOS, size: 83.5, scale: 3)
+            }
 
-            IconDefinition(.iOS, size: 1024, scales: [1], description: "App Store"),
-        ],
+            // App Store
+            IconSet("App Store") {
+                IconDefinition(.iOS, size: 1024, scale: 1)
+            }
 
-        "watchOS": [
-        ]
+        },
 
-    ]
+        IconSection("watchOS", directory: "watchOS") {
 
-    let macOS_icons: [(CGFloat, Int)] = [
+            IconSet("Notification Center") {
+                IconDefinition(.watchOS, size: 24, scale: 2)
+                IconDefinition(.watchOS, size: 27.5, scale: 2)
+                IconDefinition(.watchOS, size: 33, scale: 2)
+            }
 
-        (16, 1),
-        (16, 2),
+            IconSet("Companion Settings") {
+                IconDefinition(.watchOS, size: 29, scale: 2)
+                IconDefinition(.watchOS, size: 29, scale: 3)
+            }
 
-        (32, 1),
-        (32, 2),
+            IconSet("Home Screen") {
+                IconDefinition(.watchOS, size: 40, scale: 2, description: "38mm")
+                IconDefinition(.watchOS, size: 44, scale: 2, description: "40mm")
+                IconDefinition(.watchOS, size: 46, scale: 2, description: "41mm")
+                IconDefinition(.watchOS, size: 40, scale: 2, description: "42mm")
+                IconDefinition(.watchOS, size: 50, scale: 2, description: "44mm")
+                IconDefinition(.watchOS, size: 51, scale: 2, description: "45mm")
+                IconDefinition(.watchOS, size: 54, scale: 2, description: "49mm")
+            }
 
-        (128, 1),
-        (128, 2),
+            IconSet("Short Look") {
+                IconDefinition(.watchOS, size: 86, scale: 2, description: "38mm")
+                IconDefinition(.watchOS, size: 98, scale: 2, description: "42mm")
+                IconDefinition(.watchOS, size: 108, scale: 2, description: "44mm")
+                IconDefinition(.watchOS, size: 117, scale: 2, description: "45mm")
+                IconDefinition(.watchOS, size: 129, scale: 2, description: "49mm")
+            }
 
-        (256, 1),
-        (256, 2),
+            IconSet("App Store") {
+                IconDefinition(.watchOS, size: 1024, scale: 1)
+            }
 
-        (512, 1),
-        (512, 2),
-
-    ]
-
-    let iOS_icons: [(CGFloat, Int)] = [
-
-        (20, 1),
-        (20, 2),
-        (20, 3),
-
-        (29, 1),
-        (29, 2),
-        (29, 3),
-
-        (40, 1),
-        (40, 2),
-        (40, 3),
-
-        (60, 2),
-        (60, 3),
-
-        (76, 1),
-        (76, 2),
-
-        (83.5, 2),
-
-        (1024, 1),
-    ]
-
-    let watchOS_icons: [(CGFloat, Int)] = [
-
-        // Home Screen
-        (80, 2),
-        (88, 2),
-        (92, 2),
-        (100, 2),
-        (102, 2),
-        (108, 2),
-
-        // Notification Center
-        (48, 2),
-        (55, 2),
-        (58, 2),
-        (66, 2),
-
-        // Short Look
-        (172, 2),
-        (196, 2),
-        (216, 2),
-        (234, 2),
-        (258, 2),
+        },
 
     ]
 
@@ -154,7 +153,11 @@ struct ExportToolbar: CustomizableToolbarContent {
 
     var document: Icon
 
-    @MainActor func saveSnapshot(for document: Icon, size: CGFloat, scale: Int = 1, shadow: Bool = true, directoryURL: URL) throws {
+    @MainActor func saveSnapshot(for document: Icon,
+                                 size: CGFloat,
+                                 scale: Int = 1,
+                                 shadow: Bool = true,
+                                 directoryURL: URL) throws {
         let scaledSize = size * CGFloat(scale)
         let icon = IconView(icon: document, size: scaledSize, renderShadow: shadow, isShadowFlipped: true)
         guard let data = icon.snapshot() else {
@@ -171,7 +174,11 @@ struct ExportToolbar: CustomizableToolbarContent {
         try data.write(to: url)
     }
 
-    @MainActor func saveMacSnapshot(for document: Icon, size: CGFloat, scale: Int = 1, shadow: Bool = true, directoryURL: URL) throws {
+    @MainActor func saveMacSnapshot(for document: Icon,
+                                    size: CGFloat,
+                                    scale: Int = 1,
+                                    shadow: Bool = true,
+                                    directoryURL: URL) throws {
         let scaledSize = size * CGFloat(scale)
         let icon = MacIconView(icon: document, size: scaledSize, isShadowFlipped: true)
         guard let data = icon.snapshot() else {
@@ -208,20 +215,28 @@ struct ExportToolbar: CustomizableToolbarContent {
                         try FileManager.default.createDirectory(at: iOSUrl, withIntermediateDirectories: true)
                         try FileManager.default.createDirectory(at: watchOSUrl, withIntermediateDirectories: true)
 
-                        // macOS
-                        try saveSnapshot(for: document, size: 1024, directoryURL: url)
-                        for (size, scale) in macOS_icons {
-                            try saveMacSnapshot(for: document, size: size, scale: scale, directoryURL: macOSUrl)
-                        }
-
-                        // iOS
-                        for (size, scale) in iOS_icons {
-                            try saveSnapshot(for: document, size: size, scale: scale, shadow: false, directoryURL: iOSUrl)
-                        }
-
-                        // watchOS
-                        for (size, scale) in watchOS_icons {
-                            try saveSnapshot(for: document, size: size, scale: scale, shadow: false, directoryURL: watchOSUrl)
+                        for section in ExportToolbar.icons {
+                            for iconSet in section.sets {
+                                let directoryUrl = url.appendingPathComponent(section.directory,
+                                                                              conformingTo: .directory)
+                                try FileManager.default.createDirectory(at: directoryUrl,
+                                                                        withIntermediateDirectories: true)
+                                for definition in iconSet.definitions {
+                                    switch definition.style {
+                                    case .macOS:
+                                        try saveMacSnapshot(for: document,
+                                                            size: definition.size.width,
+                                                            scale: definition.scale,
+                                                            directoryURL: directoryUrl)
+                                    case .iOS, .watchOS:
+                                        try saveSnapshot(for: document,
+                                                         size: definition.size.width,
+                                                         scale: definition.scale,
+                                                         shadow: false,
+                                                         directoryURL: directoryUrl)
+                                    }
+                                }
+                            }
                         }
 
                         NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)

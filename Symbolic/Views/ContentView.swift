@@ -35,23 +35,18 @@ struct ContentView: View {
         HStack(spacing: 0) {
             ScrollView {
                 VStack {
-                    Header("macOS")
-                    ForEach(ExportToolbar.icons["macOS"]!) { definition in
-                        IconPreview(icon: document.icon, definition: definition, showGrid: showGrid)
+                    ForEach(ExportToolbar.icons) { section in
+                        Header(section.name)
+                        ForEach(section.sets) { iconSet in
+                            IconSetView(icon: document.icon, iconSet: iconSet, showGrid: showGrid)
+                        }
                     }
-                    Header("iOS")
-                    ForEach(ExportToolbar.icons["iOS"]!) { definition in
-                        IconPreview(icon: document.icon, definition: definition, showGrid: showGrid)
-                    }
-                    Header("watchOS")
-                    IconView(icon: document.icon, size: 512, renderShadow: false)
-                        .clipShape(Circle())
                 }
                 .padding()
                 .horizontalSpace(.both)
             }
             .background(Color(nsColor: .textBackgroundColor))
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, minHeight: 400)
             Divider()
             Form {
                 Section("Icon") {
