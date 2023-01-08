@@ -48,6 +48,10 @@ ul.navigation > li {
     font-weight: 400;
 }
 
+.actions {
+    text-align: center;
+}
+
 .footer {
     max-width: var(--content-width);
     margin: auto;
