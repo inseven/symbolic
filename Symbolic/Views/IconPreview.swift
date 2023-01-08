@@ -20,29 +20,42 @@
 
 import SwiftUI
 
-struct IconSetView: View {
+struct IconPreview: View {
 
     let icon: Icon
-    let iconSet: IconSet
+    let definition: IconDefinition
     let showGrid: Bool
 
     var body: some View {
-        VStack {
-            HStack(alignment: .bottom, spacing: 16) {
-                ForEach(iconSet.definitions) { definition in
-                    VStack {
-                        IconPreview(icon: icon, definition: definition, showGrid: showGrid)
-                        Text("\(Int(definition.scale))x")
-                        if let description = definition.description {
-                            Text(description)
-                        }
-                    }
+        ZStack {
+
+            let width = definition.size.width * (CGFloat(definition.scale) / 2)
+            let height = definition.size.height * (CGFloat(definition.scale) / 2)
+
+            switch definition.style {
+            case .macOS:
+                MacIconView(icon: icon, size: width, isShadowFlipped: false)
+                if showGrid {
+                    Image("Grid_macOS")
+                        .resizable()
+                        .frame(width: width, height: height)
+                }
+            case .iOS:
+                IconView(icon: icon, size: width, renderShadow: false)
+                    .modifier(IconCorners(size: width))
+                if showGrid {
+                    Image("Grid_iOS")
+                        .resizable()
+                        .frame(width: width, height: height)
+                }
+            case .watchOS:
+                IconView(icon: icon, size: width, renderShadow: false, isWatchOS: true)
+                    .clipShape(Circle())
+                if showGrid {
+                    WatchGridView(size: width)
                 }
             }
-            Divider()
-            Text(iconSet.name)
         }
-        .foregroundColor(.secondary)
     }
 
 }
