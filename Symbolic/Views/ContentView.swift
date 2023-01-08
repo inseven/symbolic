@@ -89,6 +89,7 @@ struct ContentView: View {
             .formStyle(.grouped)
             .frame(width: 300)
         }
+        .focusedSceneObject(document)
         .toolbar(id: "main") {
             ToolbarItem(id: "grid") {
                 Toggle(isOn: $showGrid) {
