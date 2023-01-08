@@ -43,13 +43,16 @@ struct ContentView: View {
                 VStack {
                     ForEach(ApplicationModel.icons) { section in
                         Header(section.name)
-                        ForEach(section.sets) { iconSet in
-                            IconSetView(icon: document.icon, iconSet: iconSet, showGrid: sceneModel.showGrid)
+                        CenteredFlowLayout {
+                            ForEach(section.sets) { iconSet in
+                                IconSetView(icon: document.icon, iconSet: iconSet, showGrid: sceneModel.showGrid)
+                                    .padding()
+                            }
                         }
+                        .padding()
                     }
                 }
                 .padding()
-                .horizontalSpace(.both)
             }
             .background(Color(nsColor: .textBackgroundColor))
             .frame(maxWidth: .infinity, minHeight: 400)

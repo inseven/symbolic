@@ -17,6 +17,8 @@
 		D826B5C6296B09FC00693D27 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826B5C5296B09FC00693D27 /* Path.swift */; };
 		D826B5C9296B13CB00693D27 /* ExportCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826B5C8296B13CB00693D27 /* ExportCommands.swift */; };
 		D826B5CB296B243800693D27 /* ViewCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826B5CA296B243800693D27 /* ViewCommands.swift */; };
+		D826B5CD296B312300693D27 /* IconPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826B5CC296B312300693D27 /* IconPreview.swift */; };
+		D826B5D0296B478400693D27 /* CenteredFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826B5CF296B478400693D27 /* CenteredFlowLayout.swift */; };
 		D82B249B2915D8540093B073 /* symbolic-license in Resources */ = {isa = PBXBuildFile; fileRef = D82B249A2915D8540093B073 /* symbolic-license */; };
 		D83970E228B0B45300282EE8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E128B0B45300282EE8 /* Color.swift */; };
 		D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E428B11F5200282EE8 /* SymbolicError.swift */; };
@@ -75,6 +77,8 @@
 		D826B5C5296B09FC00693D27 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		D826B5C8296B13CB00693D27 /* ExportCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCommands.swift; sourceTree = "<group>"; };
 		D826B5CA296B243800693D27 /* ViewCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommands.swift; sourceTree = "<group>"; };
+		D826B5CC296B312300693D27 /* IconPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPreview.swift; sourceTree = "<group>"; };
+		D826B5CF296B478400693D27 /* CenteredFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredFlowLayout.swift; sourceTree = "<group>"; };
 		D82B249A2915D8540093B073 /* symbolic-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "symbolic-license"; sourceTree = "<group>"; };
 		D83970E128B0B45300282EE8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D83970E328B0B61700282EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */,
 				D83970E628B132C700282EE8 /* UnityScaleWindow.swift */,
 				D826B5C3296B054000693D27 /* WatchGridView.swift */,
+				D826B5CC296B312300693D27 /* IconPreview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +192,14 @@
 				D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D826B5CE296B477600693D27 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				D826B5CF296B478400693D27 /* CenteredFlowLayout.swift */,
+			);
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 		D8B61306293BB7FF00F29E0C /* Commands */ = {
@@ -230,6 +243,7 @@
 				D8CD4A8128AC35C600D57F34 /* Assets.xcassets */,
 				D8B61306293BB7FF00F29E0C /* Commands */,
 				D821B9DE28ACDB5500504AA4 /* Extensions */,
+				D826B5CE296B477600693D27 /* Layouts */,
 				D8F99EC128B13946007C3868 /* Licenses */,
 				D821B9E528ACDBC300504AA4 /* Models */,
 				D8CD4A8328AC35C600D57F34 /* Preview Content */,
@@ -447,6 +461,7 @@
 				D86B0ED1291BEFC100352367 /* UTType.swift in Sources */,
 				D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */,
 				D826B5C9296B13CB00693D27 /* ExportCommands.swift in Sources */,
+				D826B5CD296B312300693D27 /* IconPreview.swift in Sources */,
 				D84868EE296AE486009FDF32 /* IconDefinition.swift in Sources */,
 				D821B9EA28ACDBF700504AA4 /* String.swift in Sources */,
 				D821B9E428ACDBA800504AA4 /* IconView.swift in Sources */,
@@ -460,6 +475,7 @@
 				D826B5C6296B09FC00693D27 /* Path.swift in Sources */,
 				D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */,
 				D864A23C2965E239008A4261 /* MacIconView.swift in Sources */,
+				D826B5D0296B478400693D27 /* CenteredFlowLayout.swift in Sources */,
 				D84868EC296AE437009FDF32 /* IconSet.swift in Sources */,
 				D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */,
 				D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */,
