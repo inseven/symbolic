@@ -20,21 +20,10 @@
 
 import SwiftUI
 
-struct MacIconView: View {
+extension SwiftUI.Path {
 
-    var icon: Icon
-    var size: CGFloat
-    var isShadowFlipped: Bool
-
-    var body: some View {
-        HStack {
-            IconView(icon: icon, size: size * 0.8046875, isShadowFlipped: isShadowFlipped)
-                .modifier(IconCorners(size: size * 0.8046875))
-                .shadow(color: .black.opacity(0.3),
-                        radius: size * 0.0068359375,
-                        y: size * 0.009765625 * (isShadowFlipped ? -1.0 : 1.0))
-        }
-        .frame(width: size, height: size)
+    mutating func addCircle(center: CGPoint, radius: CGFloat) {
+        addArc(center: center, radius: radius, startAngle: Angle(), endAngle: Angle(degrees: 360), clockwise: true)
     }
 
 }

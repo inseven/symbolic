@@ -52,7 +52,7 @@ struct IconPreview: View {
                 IconView(icon: icon, size: width, renderShadow: false)
                     .clipShape(Circle())
                 if showGrid {
-                    Text("GRID")
+                    WatchGridView(size: width)
                 }
             }
         }

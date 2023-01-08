@@ -20,20 +20,45 @@
 
 import SwiftUI
 
-struct MacIconView: View {
+struct WatchGridView: View {
 
-    var icon: Icon
     var size: CGFloat
-    var isShadowFlipped: Bool
+
+    static let scale1 = 256.0 / 1024.0
+    static let scale2 = 541.87 / 1024.0
+    static let scale3 = 768.0 / 1024.0
+
+    let radius1: CGFloat
+    let radius2: CGFloat
+    let radius3: CGFloat
+    let radius4: CGFloat
+    let center: CGPoint
+
+    init(size: CGFloat) {
+        self.size = size
+        self.radius1 = size * Self.scale1 / 2
+        self.radius2 = size * Self.scale2 / 2
+        self.radius3 = size * Self.scale3 / 2
+        self.radius4 = size / 2
+        self.center = CGPoint(x: size / 2, y: size / 2)
+    }
 
     var body: some View {
-        HStack {
-            IconView(icon: icon, size: size * 0.8046875, isShadowFlipped: isShadowFlipped)
-                .modifier(IconCorners(size: size * 0.8046875))
-                .shadow(color: .black.opacity(0.3),
-                        radius: size * 0.0068359375,
-                        y: size * 0.009765625 * (isShadowFlipped ? -1.0 : 1.0))
+
+        ZStack {
+            Path() { path in
+                path.move(to: CGPoint(x: size / 2, y: 0))
+                path.addLine(to: CGPoint(x: size / 2, y: size))
+                path.move(to: CGPoint(x: 0, y: size / 2))
+                path.addLine(to: CGPoint(x: size, y: size / 2))
+                path.addCircle(center: center, radius: radius1)
+                path.addCircle(center: center, radius: radius2)
+                path.addCircle(center: center, radius: radius3)
+                path.addCircle(center: center, radius: radius4)
+            }
+            .stroke(lineWidth: 1)
         }
+        .foregroundColor(.blue)
         .frame(width: size, height: size)
     }
 
