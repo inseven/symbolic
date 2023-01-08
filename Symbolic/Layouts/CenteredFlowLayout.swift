@@ -40,6 +40,7 @@ extension LayoutSubviews {
             if rowWidth + size.width > width {
                 rows.append(row)
                 row = []
+                rowWidth = 0.0
             }
             row.append((subview, size))
             rowWidth += size.width
@@ -55,8 +56,6 @@ extension LayoutSubviews {
 struct CenteredFlowLayout: Layout {
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
-
         let rows = subviews.rows(proposal: proposal)
 
         let width = rows
