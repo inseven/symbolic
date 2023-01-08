@@ -35,6 +35,7 @@ struct ViewCommands: Commands {
         if let sceneModel = sceneModel {
             CommandGroup(before: .sidebar) {
                 Toggle("Show Grid", isOn: Binding(get: { sceneModel.showGrid }, set: { sceneModel.showGrid = $0 }))
+                    .keyboardShortcut("G")
                 Divider()
             }
         }
