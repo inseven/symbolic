@@ -35,7 +35,7 @@ struct ContentView: View {
         HStack(spacing: 0) {
             ScrollView {
                 VStack {
-                    ForEach(ExportToolbar.icons) { section in
+                    ForEach(ApplicationModel.icons) { section in
                         Header(section.name)
                         ForEach(section.sets) { iconSet in
                             IconSetView(icon: document.icon, iconSet: iconSet, showGrid: showGrid)
@@ -96,7 +96,7 @@ struct ContentView: View {
                 }
                 .help("Hide/show the icon grid")
             }
-            ExportToolbar(document: document.icon)
+            ExportToolbar(icon: document.icon)
         }
     }
 }
