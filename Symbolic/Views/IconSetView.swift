@@ -49,7 +49,7 @@ struct IconPreview: View {
                         .frame(width: width, height: height)
                 }
             case .watchOS:
-                IconView(icon: icon, size: width, renderShadow: false)
+                IconView(icon: icon, size: width, renderShadow: false, isWatchOS: true)
                     .clipShape(Circle())
                 if showGrid {
                     WatchGridView(size: width)

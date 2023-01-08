@@ -210,10 +210,16 @@ class ApplicationModel: ObservableObject {
                             try icon.saveMacSnapshot(size: definition.size.width,
                                                      scale: definition.scale,
                                                      directoryURL: directoryUrl)
-                        case .iOS, .watchOS:
+                        case .iOS:
                             try icon.saveSnapshot(size: definition.size.width,
                                                   scale: definition.scale,
                                                   shadow: false,
+                                                  directoryURL: directoryUrl)
+                        case .watchOS:
+                            try icon.saveSnapshot(size: definition.size.width,
+                                                  scale: definition.scale,
+                                                  shadow: false,
+                                                  isWatchOS: true,
                                                   directoryURL: directoryUrl)
                         }
                     }
