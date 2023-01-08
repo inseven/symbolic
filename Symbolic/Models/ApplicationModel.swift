@@ -166,6 +166,7 @@ class ApplicationModel: ObservableObject {
     @MainActor private lazy var aboutWindow: NSWindow = {
         return NSWindow(repository: "inseven/symbolic", copyright: "Copyright © 2022-2023 InSeven Limited") {
             Action("Website", url: URL(string: "https://symbolic.app")!)
+            Action("Privacy", url: URL(string: "https://symbolic.app/privacy-policy")!)
             Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!)
             Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
         } acknowledgements: {
