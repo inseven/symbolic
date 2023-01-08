@@ -28,20 +28,19 @@ struct WatchGridView: View {
     static let scale2 = 541.87 / 1024.0
     static let scale3 = 768.0 / 1024.0
 
-    var radius1: CGFloat {
-        return size * Self.scale1
-    }
+    let radius1: CGFloat
+    let radius2: CGFloat
+    let radius3: CGFloat
+    let radius4: CGFloat
+    let center: CGPoint
 
-    var radius2: CGFloat {
-        return size * Self.scale2
-    }
-
-    var radius3: CGFloat {
-        return size * Self.scale3
-    }
-
-    var radius4: CGFloat {
-        return size
+    init(size: CGFloat) {
+        self.size = size
+        self.radius1 = size * Self.scale1 / 2
+        self.radius2 = size * Self.scale2 / 2
+        self.radius3 = size * Self.scale3 / 2
+        self.radius4 = size / 2
+        self.center = CGPoint(x: size / 2, y: size / 2)
     }
 
     var body: some View {
@@ -52,23 +51,15 @@ struct WatchGridView: View {
                 path.addLine(to: CGPoint(x: size / 2, y: size))
                 path.move(to: CGPoint(x: 0, y: size / 2))
                 path.addLine(to: CGPoint(x: size, y: size / 2))
+                path.addCircle(center: center, radius: radius1)
+                path.addCircle(center: center, radius: radius2)
+                path.addCircle(center: center, radius: radius3)
+                path.addCircle(center: center, radius: radius4)
             }
             .stroke(lineWidth: 1)
-            .frame(width: size, height: size)
-            Circle()
-                .stroke(lineWidth: 1)
-                .frame(width: radius1, height: radius1)
-            Circle()
-                .stroke(lineWidth: 1)
-                .frame(width: radius2, height: radius2)
-            Circle()
-                .stroke(lineWidth: 1)
-                .frame(width: radius3, height: radius3)
-            Circle()
-                .stroke(lineWidth: 1)
-                .frame(width: radius4, height: radius4)
         }
         .foregroundColor(.blue)
+        .frame(width: size, height: size)
     }
 
 }
