@@ -23,12 +23,18 @@ import SwiftUI
 
 import Interact
 
+class SceneModel: ObservableObject {
+
+    @Published var showGrid = false
+
+}
+
 struct ContentView: View {
 
     @Environment(\.undoManager) var undoManager
     @EnvironmentObject var document: IconDocument
 
-    @State var showGrid = false
+    @StateObject var sceneModel = SceneModel()
     @State var undoContext = UndoContext()
 
     var body: some View {
@@ -38,7 +44,7 @@ struct ContentView: View {
                     ForEach(ApplicationModel.icons) { section in
                         Header(section.name)
                         ForEach(section.sets) { iconSet in
-                            IconSetView(icon: document.icon, iconSet: iconSet, showGrid: showGrid)
+                            IconSetView(icon: document.icon, iconSet: iconSet, showGrid: sceneModel.showGrid)
                         }
                     }
                 }
@@ -90,9 +96,10 @@ struct ContentView: View {
             .frame(width: 300)
         }
         .focusedSceneObject(document)
+        .focusedSceneObject(sceneModel)
         .toolbar(id: "main") {
             ToolbarItem(id: "grid") {
-                Toggle(isOn: $showGrid) {
+                Toggle(isOn: $sceneModel.showGrid) {
                     Label("Grid", systemImage: "grid")
                 }
                 .help("Hide/show the icon grid")
