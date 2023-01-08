@@ -35,37 +35,15 @@ struct ContentView: View {
         HStack(spacing: 0) {
             ScrollView {
                 VStack {
-                    Text("macOS")
-                        .foregroundColor(.secondary)
-                        .horizontalSpace(.leading)
-                    Divider()
-                    ForEach(ExportToolbar.icons["macOS"]!) { icon in
-                        ZStack {
-                            MacIconView(icon: document.icon, size: icon.size.width, isShadowFlipped: false)
-                            if showGrid {
-                                Image("Grid_macOS")
-                                    .resizable()
-                                    .frame(width: icon.size.width, height: icon.size.height)
-                            }
-                        }
-                        Text("\(Int(icon.size.width))pt")
-                            .foregroundColor(.secondary)
+                    Header("macOS")
+                    ForEach(ExportToolbar.icons["macOS"]!) { definition in
+                        IconPreview(icon: document.icon, definition: definition, showGrid: showGrid)
                     }
-                    Text("iOS")
-                        .foregroundColor(.secondary)
-                        .horizontalSpace(.leading)
-                    Divider()
-                    ZStack {
-                        IconView(icon: document.icon, size: 512, renderShadow: false)
-                            .modifier(IconCorners(size: 512))
-                        if showGrid {
-                            Image("Grid_iOS")
-                        }
+                    Header("iOS")
+                    ForEach(ExportToolbar.icons["iOS"]!) { definition in
+                        IconPreview(icon: document.icon, definition: definition, showGrid: showGrid)
                     }
-                    Text("watchOS")
-                        .foregroundColor(.secondary)
-                        .horizontalSpace(.leading)
-                    Divider()
+                    Header("watchOS")
                     IconView(icon: document.icon, size: 512, renderShadow: false)
                         .clipShape(Circle())
                 }

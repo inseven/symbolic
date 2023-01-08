@@ -20,22 +20,26 @@
 
 import SwiftUI
 
-struct IconDefinition {
+struct IconDefinition: Identifiable {
 
-    let size: CGSize
-    let scales: [CGFloat]
-
-    init(_ size: CGFloat, scales: [CGFloat]) {
-        self.size = CGSize(width: size, height: size)
-        self.scales = scales
+    enum Style {
+        case macOS
+        case iOS
+        case watchOS
     }
 
-}
+    var id = UUID()
 
-extension IconDefinition: Identifiable {
+    let style: Style
+    let size: CGSize
+    let scales: [CGFloat]
+    let description: String?
 
-    var id: CGFloat {
-        return size.width
+    init(_ style: Style, size: CGFloat, scales: [CGFloat], description: String? = nil) {
+        self.style = style
+        self.size = CGSize(width: size, height: size)
+        self.scales = scales
+        self.description = description
     }
 
 }
@@ -47,11 +51,32 @@ struct ExportToolbar: CustomizableToolbarContent {
     static let icons: [String:[IconDefinition]] = [
 
         "macOS": [
-            IconDefinition(16, scales: [1, 2]),
-            IconDefinition(32, scales: [1, 2]),
-            IconDefinition(128, scales: [1, 2]),
-            IconDefinition(256, scales: [1, 2]),
-            IconDefinition(512, scales: [1, 2]),
+            IconDefinition(.macOS, size: 16, scales: [1, 2]),
+            IconDefinition(.macOS, size: 32, scales: [1, 2]),
+            IconDefinition(.macOS, size: 128, scales: [1, 2]),
+            IconDefinition(.macOS, size: 256, scales: [1, 2]),
+            IconDefinition(.macOS, size: 512, scales: [1, 2]),
+        ],
+
+        "iOS": [
+
+            // iPhone
+            IconDefinition(.iOS, size: 20, scales: [2, 3], description: "iPhone Notifications"),
+            IconDefinition(.iOS, size: 29, scales: [2, 3], description: "iPhone Settings"),
+            IconDefinition(.iOS, size: 40, scales: [2, 3], description: "iPhone Spotlight"),
+            IconDefinition(.iOS, size: 60, scales: [2, 3], description: "iPhone App"),
+
+            // iPad
+            IconDefinition(.iOS, size: 20, scales: [1, 2], description: "iPad Notifications"),
+            IconDefinition(.iOS, size: 29, scales: [1, 2], description: "iPad Settings"),
+            IconDefinition(.iOS, size: 40, scales: [1, 2], description: "iPad Spotlight"),
+            IconDefinition(.iOS, size: 76, scales: [1, 2], description: "iPad App"),
+            IconDefinition(.iOS, size: 83.5, scales: [2, 3], description: "iPad Pro (12.9-inch) App"),
+
+            IconDefinition(.iOS, size: 1024, scales: [1], description: "App Store"),
+        ],
+
+        "watchOS": [
         ]
 
     ]
