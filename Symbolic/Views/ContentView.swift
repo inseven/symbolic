@@ -25,11 +25,9 @@ import Interact
 
 struct ContentView: View {
 
-    @Environment(\.undoManager) var undoManager
     @EnvironmentObject var document: IconDocument
 
     @StateObject var sceneModel = SceneModel()
-    @State var undoContext = UndoContext()
 
     var body: some View {
         HStack(spacing: 0) {
@@ -51,48 +49,8 @@ struct ContentView: View {
             .background(Color(nsColor: .textBackgroundColor))
             .frame(maxWidth: .infinity, minHeight: 400)
             Divider()
-            Form {
-                Section("Icon") {
-                    SymbolPicker("Image", systemImage: $document.icon.systemImage.undoable(undoManager, context: undoContext))
-                    Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext)) {
-                        Text("Size")
-                    }
-                    ColorPicker("Color",
-                                selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext),
-                                supportsOpacity: false)
-                }
-                Section("Shadow") {
-                    Slider(value: $document.icon.shadowOpacity.undoable(undoManager, context: undoContext)) {
-                        Text("Opacity")
-                    }
-                    Slider(value: $document.icon.shadowHeight.undoable(undoManager, context: undoContext)) {
-                        Text("Height")
-                    }
-                }
-                Section("Background") {
-                    ColorPicker("Top Color",
-                                selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
-                                supportsOpacity: false)
-                    Button {
-                        let topColor = document.icon.topColor
-                        let bottomColor = document.icon.bottomColor
-                        undoManager?.registerUndo(undoContext) {
-                            document.icon.topColor = topColor
-                            document.icon.bottomColor = bottomColor
-                        }
-                        document.icon.topColor = bottomColor
-                        document.icon.bottomColor = topColor
-                    } label: {
-                        Image(systemName: "arrow.up.arrow.down")
-                    }
-                    .horizontalSpace(.both)
-                    ColorPicker("Bottom Color",
-                                selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
-                                supportsOpacity: false)
-                }
-            }
-            .formStyle(.grouped)
-            .frame(width: 300)
+            SettingsView(document: document)
+                .frame(width: 300)
         }
         .focusedSceneObject(document)
         .focusedSceneObject(sceneModel)
