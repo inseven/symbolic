@@ -34,10 +34,8 @@ struct SymbolPickerCell: View {
 
     var body: some View {
         ZStack {
-            if isHighlighted || isHovering {
-                RoundedRectangle(cornerRadius: LayoutMetrics.cornerRadius)
-                    .fill(Color(nsColor: NSColor.unemphasizedSelectedContentBackgroundColor))
-            }
+            RoundedRectangle(cornerRadius: LayoutMetrics.cornerRadius)
+                .fill(isHighlighted || isHovering ? Color(nsColor: NSColor.unemphasizedSelectedContentBackgroundColor) : .clear)
             Image(systemName: systemName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
