@@ -2,7 +2,7 @@
 title: Privacy
 ---
 
-# Privacy Policy
+# Privacy
 
 Symbolic does not collect or store any personal data.
 
