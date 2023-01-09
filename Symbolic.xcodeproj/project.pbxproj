@@ -31,6 +31,7 @@
 		D84868F0296AE616009FDF32 /* IconSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868EF296AE616009FDF32 /* IconSection.swift */; };
 		D84B5D6F296C5229005E6C59 /* SceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B5D6E296C5229005E6C59 /* SceneModel.swift */; };
 		D84B5D71296C52BE005E6C59 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B5D70296C52BE005E6C59 /* SettingsView.swift */; };
+		D84B5D74296C5540005E6C59 /* Template.symbolic in Resources */ = {isa = PBXBuildFile; fileRef = D84B5D73296C5540005E6C59 /* Template.symbolic */; };
 		D857297C296C176C0037E58F /* SymbolPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D857297B296C176C0037E58F /* SymbolPickerCell.swift */; };
 		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
 		D864A23C2965E239008A4261 /* MacIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864A23B2965E239008A4261 /* MacIconView.swift */; };
@@ -95,6 +96,7 @@
 		D84868EF296AE616009FDF32 /* IconSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSection.swift; sourceTree = "<group>"; };
 		D84B5D6E296C5229005E6C59 /* SceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModel.swift; sourceTree = "<group>"; };
 		D84B5D70296C52BE005E6C59 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D84B5D73296C5540005E6C59 /* Template.symbolic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Template.symbolic; sourceTree = "<group>"; };
 		D857297B296C176C0037E58F /* SymbolPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerCell.swift; sourceTree = "<group>"; };
 		D864A2382965999C008A4261 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D864A23B2965E239008A4261 /* MacIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacIconView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,14 @@
 			path = Layouts;
 			sourceTree = "<group>";
 		};
+		D84B5D72296C5530005E6C59 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D84B5D73296C5540005E6C59 /* Template.symbolic */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		D8B61306293BB7FF00F29E0C /* Commands */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +266,7 @@
 				D8F99EC128B13946007C3868 /* Licenses */,
 				D821B9E528ACDBC300504AA4 /* Models */,
 				D8CD4A8328AC35C600D57F34 /* Preview Content */,
+				D84B5D72296C5530005E6C59 /* Resources */,
 				D8D9730F28ACF8BA006CBF15 /* Toolbars */,
 				D821B9EF28ACF0A900504AA4 /* Utilities */,
 				D821B9E628ACDBCB00504AA4 /* Views */,
@@ -430,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8CD4A8528AC35C600D57F34 /* Preview Assets.xcassets in Resources */,
+				D84B5D74296C5540005E6C59 /* Template.symbolic in Resources */,
 				D8F99EC328B13955007C3868 /* diligence-license in Resources */,
 				D82B249B2915D8540093B073 /* symbolic-license in Resources */,
 				D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */,
