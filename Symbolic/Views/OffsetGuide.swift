@@ -20,10 +20,30 @@
 
 import SwiftUI
 
-class SceneModel: ObservableObject {
+struct OffsetGuide: View {
 
-    @Published var showGrid = false
-    @Published var showOffsetX = false
-    @Published var showOffsetY = false
+    var size: CGFloat
+    var showX: Bool
+    var showY: Bool
+
+    var body: some View {
+
+        ZStack {
+            Path() { path in
+                if showY {
+                    path.move(to: CGPoint(x: 0, y: size / 2))
+                    path.addLine(to: CGPoint(x: size, y: size / 2))
+                }
+                if showX {
+                    path.move(to: CGPoint(x: size / 2, y: 0))
+                    path.addLine(to: CGPoint(x: size / 2, y: size))
+                }
+            }
+            .stroke(lineWidth: 2)
+            .opacity(0.4)
+        }
+        .foregroundColor(.accentColor)
+        .frame(width: size, height: size)
+    }
 
 }

@@ -22,16 +22,17 @@ import SwiftUI
 
 struct IconSetView: View {
 
+    @ObservedObject var sceneModel: SceneModel
+
     let icon: Icon
     let iconSet: IconSet
-    let showGrid: Bool
 
     var body: some View {
         VStack {
             HStack(alignment: .bottom, spacing: 16) {
                 ForEach(iconSet.definitions) { definition in
                     VStack {
-                        IconPreview(icon: icon, definition: definition, showGrid: showGrid)
+                        IconPreview(sceneModel: sceneModel, icon: icon, definition: definition)
                         Text("\(Int(definition.scale))x")
                             .fixedSize()
                         if let description = definition.description {

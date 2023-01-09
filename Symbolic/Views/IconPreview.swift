@@ -22,9 +22,10 @@ import SwiftUI
 
 struct IconPreview: View {
 
+    @ObservedObject var sceneModel: SceneModel
+
     let icon: Icon
     let definition: IconDefinition
-    let showGrid: Bool
 
     var body: some View {
         ZStack {
@@ -35,7 +36,7 @@ struct IconPreview: View {
             switch definition.style {
             case .macOS:
                 MacIconView(icon: icon, size: width, isShadowFlipped: false)
-                if showGrid {
+                if sceneModel.showGrid {
                     Image("Grid_macOS")
                         .resizable()
                         .frame(width: width, height: height)
@@ -43,7 +44,7 @@ struct IconPreview: View {
             case .iOS:
                 IconView(icon: icon, size: width, renderShadow: false)
                     .modifier(IconCorners(size: width, style: .iOS))
-                if showGrid {
+                if sceneModel.showGrid {
                     Image("Grid_iOS")
                         .resizable()
                         .frame(width: width, height: height)
@@ -51,10 +52,12 @@ struct IconPreview: View {
             case .watchOS:
                 IconView(icon: icon, size: width, renderShadow: false, isWatchOS: true)
                     .modifier(IconCorners(size: width, style: .watchOS))
-                if showGrid {
+                if sceneModel.showGrid {
                     WatchGridView(size: width)
                 }
             }
+
+            OffsetGuide(size: width, showX: sceneModel.showOffsetX, showY: sceneModel.showOffsetY)
         }
     }
 

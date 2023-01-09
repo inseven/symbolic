@@ -37,7 +37,7 @@ struct ContentView: View {
                         Header(section.name)
                         CenteredFlowLayout {
                             ForEach(section.sets) { iconSet in
-                                IconSetView(icon: document.icon, iconSet: iconSet, showGrid: sceneModel.showGrid)
+                                IconSetView(sceneModel: sceneModel, icon: document.icon, iconSet: iconSet)
                                     .padding()
                             }
                         }
@@ -49,7 +49,7 @@ struct ContentView: View {
             .background(Color(nsColor: .textBackgroundColor))
             .frame(maxWidth: .infinity, minHeight: 400)
             Divider()
-            SettingsView(document: document)
+            SettingsView(sceneModel: sceneModel, document: document)
                 .frame(width: 300)
         }
         .focusedSceneObject(document)

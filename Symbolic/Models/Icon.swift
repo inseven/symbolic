@@ -22,6 +22,18 @@ import SwiftUI
 
 struct Icon: Identifiable, Codable {
 
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case topColor = "topColor"
+        case bottomColor = "bottomColor"
+        case systemImage = "systemImage"
+        case symbolColor = "symbolColor"
+        case iconScale = "iconScale"
+        case iconOffset = "iconOffset"
+        case shadowOpacity = "shadowOpacity"
+        case shadowHeight = "shadowHeight"
+    }
+
     var id = UUID()
 
     var topColor: Color = .pink
@@ -30,8 +42,26 @@ struct Icon: Identifiable, Codable {
     var systemImage: String = "face.smiling"
     var symbolColor: Color = .white
     var iconScale: CGFloat = 0.8
+    var iconOffset: CGSize = .zero
 
     var shadowOpacity: CGFloat = 0.4
     var shadowHeight: CGFloat = 0.3
+
+    init() {
+        
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(UUID.self, forKey: .id)
+        self.topColor = try container.decode(Color.self, forKey: .topColor)
+        self.bottomColor = try container.decode(Color.self, forKey: .bottomColor)
+        self.systemImage = try container.decode(String.self, forKey: .systemImage)
+        self.symbolColor = try container.decode(Color.self, forKey: .symbolColor)
+        self.iconScale = try container.decode(CGFloat.self, forKey: .iconScale)
+        self.iconOffset = (try? container.decode(CGSize.self, forKey: .iconOffset)) ?? .zero
+        self.shadowOpacity = try container.decode(CGFloat.self, forKey: .shadowOpacity)
+        self.shadowHeight = try container.decode(CGFloat.self, forKey: .shadowHeight)
+    }
 
 }
