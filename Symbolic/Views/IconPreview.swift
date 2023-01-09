@@ -42,7 +42,7 @@ struct IconPreview: View {
                 }
             case .iOS:
                 IconView(icon: icon, size: width, renderShadow: false)
-                    .modifier(IconCorners(size: width))
+                    .modifier(IconCorners(size: width, style: .iOS))
                 if showGrid {
                     Image("Grid_iOS")
                         .resizable()
@@ -50,7 +50,7 @@ struct IconPreview: View {
                 }
             case .watchOS:
                 IconView(icon: icon, size: width, renderShadow: false, isWatchOS: true)
-                    .clipShape(Circle())
+                    .modifier(IconCorners(size: width, style: .watchOS))
                 if showGrid {
                     WatchGridView(size: width)
                 }

@@ -22,16 +22,34 @@ import SwiftUI
 
 struct IconCorners: ViewModifier {
 
+    enum Style {
+        case macOS
+        case iOS
+        case watchOS
+    }
+
     struct LayoutMetrics {
         static let cornerRadiusRatio = 0.1754
     }
 
     let size: CGFloat
+    let style: Style
 
     func body(content: Content) -> some View {
-        content.self
-            .frame(width: size, height: size)
-            .clipShape(RoundedRectangle(cornerRadius: size * 0.2233009709, style: .continuous))
+        switch style {
+        case .macOS:
+            content.self
+                .frame(width: size, height: size)
+                .clipShape(RoundedRectangle(cornerRadius: size * 0.2233009709, style: .continuous))
+        case .iOS:
+            content.self
+                .frame(width: size, height: size)
+                .clipShape(RoundedRectangle(cornerRadius: size * 0.2233009709, style: .circular))
+        case .watchOS:
+            content.self
+                .frame(width: size, height: size)
+                .clipShape(Circle())
+        }
     }
 
 }
