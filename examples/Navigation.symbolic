@@ -1,0 +1,25 @@
+{
+  "systemImage" : "helm",
+  "topColor" : {
+    "red" : 0,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 0.58980089430000004
+  },
+  "iconScale" : 0.86365530831473225,
+  "id" : "BC791BC2-346B-476C-99DE-0E6F0AB7E3A6",
+  "symbolColor" : {
+    "red" : 0.99999600649999998,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 1
+  },
+  "shadowOpacity" : 0.40000000000000002,
+  "shadowHeight" : 0.29999999999999999,
+  "bottomColor" : {
+    "red" : 0.47684186699999997,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 0.50480759139999998
+  }
+}

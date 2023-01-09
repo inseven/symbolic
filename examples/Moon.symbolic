@@ -1,0 +1,25 @@
+{
+  "systemImage" : "moon.fill",
+  "topColor" : {
+    "red" : 0,
+    "alpha" : 1,
+    "blue" : 0,
+    "green" : 0.97680455450000003
+  },
+  "iconScale" : 0.8051694597516742,
+  "id" : "84921040-1671-485F-B9F6-C1AF374B267A",
+  "symbolColor" : {
+    "red" : 1,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 1
+  },
+  "shadowOpacity" : 0.39264090401785723,
+  "shadowHeight" : 0.13596801757812502,
+  "bottomColor" : {
+    "red" : 0,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 0.99143940210000003
+  }
+}
