@@ -33,6 +33,7 @@ struct IconSetView: View {
                     VStack {
                         IconPreview(icon: icon, definition: definition, showGrid: showGrid)
                         Text("\(Int(definition.scale))x")
+                            .fixedSize()
                         if let description = definition.description {
                             Text(description)
                         }
