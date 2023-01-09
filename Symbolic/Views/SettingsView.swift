@@ -26,6 +26,7 @@ struct SettingsView: View {
 
     @Environment(\.undoManager) var undoManager
 
+    @ObservedObject var sceneModel: SceneModel
     @ObservedObject var document: IconDocument
 
     @State var undoContext = UndoContext()
@@ -40,6 +41,32 @@ struct SettingsView: View {
                 ColorPicker("Color",
                             selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext),
                             supportsOpacity: false)
+                Slider(value:  $document.icon.iconOffset.width.undoable(undoManager, context: undoContext), in: -0.5...0.5) {
+                    Text("X Offset")
+                        .onTapGesture(count: 2) {
+                            let width = document.icon.iconOffset.width
+                            undoManager?.registerUndo(undoContext) {
+                                document.icon.iconOffset.width = width
+                            }
+                            document.icon.iconOffset.width = 0
+                        }
+                }
+                .onHover { isHovering in
+                    sceneModel.showOffsetX = isHovering
+                }
+                Slider(value:  $document.icon.iconOffset.height.undoable(undoManager, context: undoContext), in: -0.5...0.5) {
+                    Text("Y Offset")
+                        .onTapGesture(count: 2) {
+                            let height = document.icon.iconOffset.height
+                            undoManager?.registerUndo(undoContext) {
+                                document.icon.iconOffset.height = height
+                            }
+                            document.icon.iconOffset.height = 0
+                        }
+                }
+                .onHover { isHovering in
+                    sceneModel.showOffsetY = isHovering
+                }
             }
             Section("Shadow") {
                 Slider(value: $document.icon.shadowOpacity.undoable(undoManager, context: undoContext)) {

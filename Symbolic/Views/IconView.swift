@@ -40,6 +40,11 @@ struct IconView: View {
         }
     }
 
+    var iconOffset: CGSize {
+        return CGSize(width: icon.iconOffset.width * size,
+                      height: icon.iconOffset.height * size * -1.0)
+    }
+
     var body: some View {
         ZStack {
             let x = size / 2
@@ -63,8 +68,10 @@ struct IconView: View {
                                 radius: shadowRadius,
                                 x: 0,
                                 y: shadowOffset)
+                        .offset(iconOffset)
                 } else {
                     image
+                        .offset(iconOffset)
                 }
             }
             .frame(width: iconSize, height: iconSize)
