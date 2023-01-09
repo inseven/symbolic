@@ -63,7 +63,9 @@ struct ContentView: View {
                     Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext)) {
                         Text("Size")
                     }
-                    ColorPicker("Color", selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext))
+                    ColorPicker("Color",
+                                selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext),
+                                supportsOpacity: false)
                 }
                 Section("Shadow") {
                     Slider(value: $document.icon.shadowOpacity.undoable(undoManager, context: undoContext)) {
