@@ -1,0 +1,25 @@
+{
+  "systemImage" : "face.smiling",
+  "topColor" : {
+    "red" : 0.99953407049999998,
+    "alpha" : 1,
+    "blue" : 0.47265523669999998,
+    "green" : 0.98835557699999999
+  },
+  "iconScale" : 0.80000000000000004,
+  "id" : "45E30943-C3DB-4C61-A168-147C3B617BA4",
+  "symbolColor" : {
+    "red" : 0,
+    "alpha" : 1,
+    "blue" : 0,
+    "green" : 0
+  },
+  "shadowOpacity" : 0.44363141741071438,
+  "shadowHeight" : 0.093811253138950904,
+  "bottomColor" : {
+    "red" : 0.99942404029999998,
+    "alpha" : 1,
+    "blue" : 0,
+    "green" : 0.98555368190000003
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "systemImage" : "cloud.bolt.fill",
+  "topColor" : {
+    "red" : 0,
+    "alpha" : 1,
+    "blue" : 0.57488495110000004,
+    "green" : 0.32852089410000002
+  },
+  "iconScale" : 0.8050495692661831,
+  "id" : "E963E6C1-8EA6-47DC-92FA-481DBFFE9B90",
+  "symbolColor" : {
+    "red" : 1,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 1
+  },
+  "shadowOpacity" : 0.40000000000000002,
+  "shadowHeight" : 0.29999999999999999,
+  "bottomColor" : {
+    "red" : 0.32369780539999998,
+    "alpha" : 1,
+    "blue" : 0.574860394,
+    "green" : 0.1063579395
+  }
+}
