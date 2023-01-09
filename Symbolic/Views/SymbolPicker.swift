@@ -22,6 +22,12 @@ import SwiftUI
 
 struct SymbolPicker: View {
 
+    struct LayoutMetrics {
+        static let itemSize = 38.0
+        static let interItemSpacing = 6.0
+        static let height = 400.0
+    }
+
     var title: String
     var systemImage: Binding<String>
     @State var initialImage: String
@@ -34,11 +40,11 @@ struct SymbolPicker: View {
         _initialImage = State(initialValue: systemImage.wrappedValue)
     }
 
-    let columns = [GridItem(.flexible(minimum: 38), spacing: 16.0),
-                   GridItem(.flexible(minimum: 38), spacing: 16.0),
-                   GridItem(.flexible(minimum: 38), spacing: 16.0),
-                   GridItem(.flexible(minimum: 38), spacing: 16.0),
-                   GridItem(.flexible(minimum: 38), spacing: 16.0)]
+    let columns = [GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
+                   GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
+                   GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
+                   GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
+                   GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing)]
 
     var body: some View {
         LabeledContent("Symbol") {
@@ -54,23 +60,18 @@ struct SymbolPicker: View {
             .controlSize(.large)
             .popover(isPresented: $isPresented) {
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 16.0) {
+                    LazyVGrid(columns: columns, spacing: LayoutMetrics.interItemSpacing) {
                         ForEach(model.filteredSymbolNames) { symbol in
-                            HStack {
-                                Image(systemName: symbol)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .controlSize(.regular)
-                                    .onTapGesture {
-                                        isPresented = false
-                                        systemImage.wrappedValue = symbol
-                                    }
-                            }
-                            .aspectRatio(1.0, contentMode: .fit)
+                            SymbolPickerCell(systemName: symbol, isHighlighted: systemImage.wrappedValue == symbol)
+                                .onTapGesture {
+                                    isPresented = false
+                                    systemImage.wrappedValue = symbol
+                                }
                         }
                     }
-                    .padding()
+                    .padding([.leading, .trailing, .bottom])
                 }
+                .background(Color(nsColor: NSColor.controlBackgroundColor))
                 .safeAreaInset(edge: .top) {
                     TextField(text: $model.filter, prompt: Text("Search")) {
                         EmptyView()
@@ -78,9 +79,9 @@ struct SymbolPicker: View {
                     .multilineTextAlignment(.leading)
                     .textFieldStyle(.roundedBorder)
                     .padding()
-                    .background(.regularMaterial)
+                    .background(Color(nsColor: NSColor.controlBackgroundColor))
                 }
-                .frame(height: 400)
+                .frame(height: LayoutMetrics.height)
             }
         }
         .onAppear {
