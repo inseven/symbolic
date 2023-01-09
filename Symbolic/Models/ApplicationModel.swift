@@ -174,8 +174,9 @@ class ApplicationModel: ObservableObject {
                 Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
             }
             Acknowledgements("Thanks") {
-                Credit("Sarah Barbour")
                 Credit("Michael Dales")
+                Credit("Pavlos Vinieratos")
+                Credit("Sarah Barbour")
             }
         } licenses: {
             License("Interact", author: "InSeven Limited", url: Interact.Package.licenseURL)
