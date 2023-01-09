@@ -29,7 +29,7 @@ struct MacIconView: View {
     var body: some View {
         HStack {
             IconView(icon: icon, size: size * 0.8046875, isShadowFlipped: isShadowFlipped)
-                .modifier(IconCorners(size: size * 0.8046875))
+                .modifier(IconCorners(size: size * 0.8046875, style: .macOS))
                 .shadow(color: .black.opacity(0.3),
                         radius: size * 0.0068359375,
                         y: size * 0.009765625 * (isShadowFlipped ? -1.0 : 1.0))
