@@ -80,14 +80,11 @@ struct CenteredFlowLayout: Layout {
     }
 
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        guard let width = proposal.width else {
-            return
-        }
         var posY = bounds.minY
         for row in subviews.rows(proposal: proposal) {
             let rowWidth = row.map({ $1.width }).reduce(0.0, +)
             let rowHeight = row.map({ $1.height }).reduce(0.0, max)
-            var posX = ((width - rowWidth) / 2)
+            var posX = ((bounds.width - rowWidth) / 2) + bounds.minX
             for (subview, size) in row {
                 subview.place(at: CGPoint(x: posX, y: posY + rowHeight),
                               anchor: .bottomLeading,
