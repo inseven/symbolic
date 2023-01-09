@@ -23,12 +23,6 @@ import SwiftUI
 
 import Interact
 
-class SceneModel: ObservableObject {
-
-    @Published var showGrid = false
-
-}
-
 struct ContentView: View {
 
     @Environment(\.undoManager) var undoManager

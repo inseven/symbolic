@@ -29,6 +29,7 @@
 		D84868EC296AE437009FDF32 /* IconSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868EB296AE437009FDF32 /* IconSet.swift */; };
 		D84868EE296AE486009FDF32 /* IconDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868ED296AE486009FDF32 /* IconDefinition.swift */; };
 		D84868F0296AE616009FDF32 /* IconSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868EF296AE616009FDF32 /* IconSection.swift */; };
+		D84B5D6F296C5229005E6C59 /* SceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B5D6E296C5229005E6C59 /* SceneModel.swift */; };
 		D857297C296C176C0037E58F /* SymbolPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D857297B296C176C0037E58F /* SymbolPickerCell.swift */; };
 		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
 		D864A23C2965E239008A4261 /* MacIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864A23B2965E239008A4261 /* MacIconView.swift */; };
@@ -91,6 +92,7 @@
 		D84868EB296AE437009FDF32 /* IconSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSet.swift; sourceTree = "<group>"; };
 		D84868ED296AE486009FDF32 /* IconDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDefinition.swift; sourceTree = "<group>"; };
 		D84868EF296AE616009FDF32 /* IconSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSection.swift; sourceTree = "<group>"; };
+		D84B5D6E296C5229005E6C59 /* SceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModel.swift; sourceTree = "<group>"; };
 		D857297B296C176C0037E58F /* SymbolPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerCell.swift; sourceTree = "<group>"; };
 		D864A2382965999C008A4261 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D864A23B2965E239008A4261 /* MacIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacIconView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				D83970E428B11F5200282EE8 /* SymbolicError.swift */,
 				D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */,
 				D84868EF296AE616009FDF32 /* IconSection.swift */,
+				D84B5D6E296C5229005E6C59 /* SceneModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D84B5D6F296C5229005E6C59 /* SceneModel.swift in Sources */,
 				D826B5C4296B054000693D27 /* WatchGridView.swift in Sources */,
 				D821B9E828ACDBE000504AA4 /* Icon.swift in Sources */,
 				D821B9EC28ACDC2600504AA4 /* IconCorners.swift in Sources */,
