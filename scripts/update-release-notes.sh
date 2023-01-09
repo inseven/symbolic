@@ -36,4 +36,4 @@ source "${SCRIPTS_DIRECTORY}/environment.sh"
 
 cd "$ROOT_DIRECTORY"
 
-changes notes --all --released --template "$RELEASE_NOTES_TEMPLATE_PATH" > "$RELEASE_NOTES_PATH"
+changes notes --all --template "$RELEASE_NOTES_TEMPLATE_PATH" > "$RELEASE_NOTES_PATH"
