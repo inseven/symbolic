@@ -33,6 +33,7 @@ struct SymbolicApp: App {
             ContentView()
                 .environmentObject(applicationModel)
         }
+        .defaultSize(width: 800, height: 780)
         .commands {
             AboutCommands(applicationModel: applicationModel)
             ExportCommands(applicationModel: applicationModel)
