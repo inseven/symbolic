@@ -174,6 +174,7 @@ class ApplicationModel: ObservableObject {
                 Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
             }
             Acknowledgements("Thanks") {
+                Credit("Lukas Fittl")
                 Credit("Michael Dales")
                 Credit("Pavlos Vinieratos")
                 Credit("Sarah Barbour")
