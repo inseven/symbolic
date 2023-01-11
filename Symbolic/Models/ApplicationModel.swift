@@ -178,6 +178,7 @@ class ApplicationModel: ObservableObject {
                 Credit("Michael Dales")
                 Credit("Pavlos Vinieratos")
                 Credit("Sarah Barbour")
+                Credit("Simon Frost")
             }
         } licenses: {
             License("Interact", author: "InSeven Limited", url: Interact.Package.licenseURL)
