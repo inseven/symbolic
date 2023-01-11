@@ -1,6 +1,6 @@
 # Symbolic
 
-SF Symbols icon designer
+Icon designer
 
 <img src="screenshots/main.png" width="1012" />
 
