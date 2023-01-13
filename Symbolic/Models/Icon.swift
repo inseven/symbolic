@@ -53,8 +53,6 @@ struct Icon: Identifiable, Codable {
         
     }
 
-    // TODO: Test for earlier file types.
-
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -82,7 +80,7 @@ struct Icon: Identifiable, Codable {
             self.shadowOpacity = try container.decode(CGFloat.self, forKey: .shadowOpacity)
             self.shadowHeight = try container.decode(CGFloat.self, forKey: .shadowHeight)
         default:
-            print("BUGGER")
+            assertionFailure("Unsupported file format")
         }
 
     }
