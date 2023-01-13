@@ -34,6 +34,8 @@ struct Manifest: Codable {
 
     let id: String
     let name: String
+    let author: String
+    let license: String
     let symbols: [Symbol]
 
 }

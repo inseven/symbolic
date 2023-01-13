@@ -39,16 +39,20 @@ struct SymbolSet {
     let name: String
     let symbols: [Symbol]
     let symbolsById: [String:[Symbol]]
+    let author: String
+    let licenseUrl: URL?
 
     static var sfSymbols: SymbolSet = {
-        return SymbolSet(id: "sf-symbols", name: "SF Symbols", symbols: SFSymbols.allSymbols)
+        return SymbolSet(id: "sf-symbols", name: "SF Symbols", author: "Apple Inc", symbols: SFSymbols.allSymbols)
     }()
 
-    init(id: String, name: String, symbols: [Symbol]) {
+    init(id: String, name: String, author: String, symbols: [Symbol]) {
         self.id = id
         self.name = name
+        self.author = author
         self.symbols = symbols
         self.symbolsById = symbols.lookup()
+        self.licenseUrl = nil
     }
 
     init(directory: String) throws {
@@ -57,6 +61,8 @@ struct SymbolSet {
                                           subdirectory: directory)!  // TODO: Throw
         let data = try Data(contentsOf: manifestURL)
         let manifest = try JSONDecoder().decode(Manifest.self, from: data)
+
+        // TODO: Exist cleanly if unable to load license
 
         self.id = manifest.id
         self.name = manifest.name
@@ -69,6 +75,8 @@ struct SymbolSet {
             return variants
         }.reduce([], +)
         self.symbolsById = symbols.lookup()
+        self.author = manifest.author
+        self.licenseUrl = Bundle.main.url(forResource: manifest.license, withExtension: nil, subdirectory: directory)!
     }
 
 }

@@ -228,6 +228,9 @@ class ApplicationModel: ObservableObject {
                     }
                 }
             }
+            if let licenseUrl = SymbolManager.shared.set(for: icon.symbol)?.licenseUrl {
+                try FileManager.default.copyItem(at: licenseUrl, to: url.appendingPathComponent("LICENSE"))
+            }
 
             NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)
 

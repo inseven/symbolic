@@ -14,15 +14,21 @@ MATERIAL_ICONS_DIRECTORY = os.path.join(RESOURCES_DIRECTORY, "material-icons")
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("src")
+    parser.add_argument("repository")
     options = parser.parse_args()
 
     manifest = {}
     manifest["id"] = "material-icons"
     manifest["name"] = "Material Icons"
+    manifest["author"] = "Google"
+    manifest["license"] = "LICENSE"
     manifest["symbols"] = []
 
-    src_directory = os.path.abspath(options.src)
+    repository_directory = os.path.abspath(options.repository)
+    license_path = os.path.join(repository_directory, "LICENSE")
+    shutil.copy(license_path, MATERIAL_ICONS_DIRECTORY)
+
+    src_directory = os.path.join(repository_directory, "src")
     categories = os.listdir(src_directory)
     for category in categories:
         category_path = os.path.join(src_directory, category)

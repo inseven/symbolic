@@ -1,6 +1,8 @@
 {
     "id": "material-icons",
     "name": "Material Icons",
+    "author": "Google",
+    "license": "LICENSE",
     "symbols": [
         {
             "id": "agriculture",
