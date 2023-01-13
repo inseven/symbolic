@@ -21,9 +21,40 @@
 import Combine
 import SwiftUI
 
+protocol Filterable {
+
+    func matches(_ filter: String) -> Bool
+
+}
+
+extension Array where Element: Filterable {
+
+    func filter(_ filter: String) -> [Element] {
+        if filter.isEmpty {
+            return self
+        }
+        return self.filter { $0.matches(filter) }
+    }
+
+}
+
+extension Symbol: Filterable {
+
+    func matches(_ filter: String) -> Bool {
+        return name.localizedCaseInsensitiveContains(filter)
+    }
+
+}
+
 class SymbolPickerModel: ObservableObject {
 
-    @Published var filteredSymbolNames: [String] = []
+    struct Section: Identifiable {
+        let id: String
+        let name: String
+        let symbols: [Symbol]
+    }
+
+    @Published var filteredSymbols: [Section] = []
     @Published var filter: String = ""
 
     var cancellables: Set<AnyCancellable> = []
@@ -32,14 +63,17 @@ class SymbolPickerModel: ObservableObject {
         $filter
             .receive(on: DispatchQueue.global(qos: .userInteractive))
             .map { filter in
-                if filter.isEmpty {
-                    return SFSymbols.allNames
+
+                let sections = SymbolManager.shared.sets.map { symbolSet in
+                    Section(id: symbolSet.id, name: symbolSet.name, symbols: symbolSet.symbols.filter(filter))
                 }
-                return SFSymbols.allNames.filter { $0.localizedCaseInsensitiveContains(filter) }
+
+                return sections
+                    .filter { !$0.symbols.isEmpty }
             }
             .receive(on: DispatchQueue.main)
-            .sink { filteredSymbolNames in
-                self.filteredSymbolNames = filteredSymbolNames
+            .sink { filteredSymbols in
+                self.filteredSymbols = filteredSymbols
             }
             .store(in: &cancellables)
     }

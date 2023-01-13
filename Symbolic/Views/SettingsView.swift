@@ -34,8 +34,11 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section("Icon") {
-                SymbolPicker("Image", systemImage: $document.icon.systemImage.undoable(undoManager, context: undoContext))
-                Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext)) {
+                SymbolPicker("Image", selection: $document.icon.symbol.undoable(undoManager, context: undoContext))
+                if let set = SymbolManager.shared.set(for: document.icon.symbol) {
+                    LabeledContent("Author", value: set.author)
+                }
+                Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext), in: 0...1.2) {
                     Text("Size")
                 }
                 ColorPicker("Color",
@@ -97,6 +100,13 @@ struct SettingsView: View {
                             selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
                             supportsOpacity: false)
             }
+#if DEBUG
+            Section("Details") {
+                LabeledContent("Family", value: document.icon.symbol.family)
+                LabeledContent("Name", value: document.icon.symbol.name)
+                LabeledContent("Variant", value: document.icon.symbol.variant ?? "")
+            }
+#endif
         }
         .formStyle(.grouped)
     }

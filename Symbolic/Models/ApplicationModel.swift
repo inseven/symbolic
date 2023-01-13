@@ -181,8 +181,16 @@ class ApplicationModel: ObservableObject {
                 Credit("Simon Frost")
             }
         } licenses: {
+
             License("Interact", author: "InSeven Limited", url: Interact.Package.licenseURL)
             License("Symbolic", author: "InSeven Limited", filename: "symbolic-license")
+            License("SVGKit", author: "Matt Rajca, Various Authors, Tipbit Inc", filename: "svgkit-license")
+            License("CocoaLumberjack", author: "Deusty, LLC", filename: "cocoalumberjack-license")
+            License("SwiftLog", author: "Apple Inc", filename: "swiftlog-license")
+
+            for symbolSet in SymbolManager.shared.sets.filter({ $0.licenseUrl != nil }) {
+                License(symbolSet.name, author: symbolSet.author, url: symbolSet.licenseUrl!)
+            }
         }
     }()
 
@@ -227,6 +235,9 @@ class ApplicationModel: ObservableObject {
                         }
                     }
                 }
+            }
+            if let licenseUrl = SymbolManager.shared.set(for: icon.symbol)?.licenseUrl {
+                try FileManager.default.copyItem(at: licenseUrl, to: url.appendingPathComponent("LICENSE"))
             }
 
             NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)

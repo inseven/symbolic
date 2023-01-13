@@ -56,9 +56,7 @@ struct IconView: View {
                            startPoint: .top,
                            endPoint: .bottom)
 
-            let image = Image(systemName: icon.systemImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            let image = SymbolView(symbol: icon.symbol)
                 .foregroundColor(icon.symbolColor)
 
             VStack {

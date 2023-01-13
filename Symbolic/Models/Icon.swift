@@ -23,10 +23,12 @@ import SwiftUI
 struct Icon: Identifiable, Codable {
 
     enum CodingKeys: String, CodingKey {
+        case version = "version"
         case id = "id"
         case topColor = "topColor"
         case bottomColor = "bottomColor"
         case systemImage = "systemImage"
+        case symbol = "symbol"
         case symbolColor = "symbolColor"
         case iconScale = "iconScale"
         case iconOffset = "iconOffset"
@@ -39,7 +41,7 @@ struct Icon: Identifiable, Codable {
     var topColor: Color = .pink
     var bottomColor: Color = .purple
 
-    var systemImage: String = "face.smiling"
+    var symbol: SymbolReference = SymbolReference(family: "sf-symbols", name: "face.smiling", variant: nil)
     var symbolColor: Color = .white
     var iconScale: CGFloat = 0.8
     var iconOffset: CGSize = .zero
@@ -53,15 +55,48 @@ struct Icon: Identifiable, Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(UUID.self, forKey: .id)
-        self.topColor = try container.decode(Color.self, forKey: .topColor)
-        self.bottomColor = try container.decode(Color.self, forKey: .bottomColor)
-        self.systemImage = try container.decode(String.self, forKey: .systemImage)
-        self.symbolColor = try container.decode(Color.self, forKey: .symbolColor)
-        self.iconScale = try container.decode(CGFloat.self, forKey: .iconScale)
-        self.iconOffset = (try? container.decode(CGSize.self, forKey: .iconOffset)) ?? .zero
-        self.shadowOpacity = try container.decode(CGFloat.self, forKey: .shadowOpacity)
-        self.shadowHeight = try container.decode(CGFloat.self, forKey: .shadowHeight)
+
+        let version = (try? container.decode(Int.self, forKey: .version)) ?? 0
+        switch version {
+        case 0:
+            self.id = try container.decode(UUID.self, forKey: .id)
+            self.topColor = try container.decode(Color.self, forKey: .topColor)
+            self.bottomColor = try container.decode(Color.self, forKey: .bottomColor)
+            let systemImage = try container.decode(String.self, forKey: .systemImage)
+            self.symbol = SymbolReference(family: "sf-symbols", name: systemImage, variant: nil)
+            self.symbolColor = try container.decode(Color.self, forKey: .symbolColor)
+            self.iconScale = try container.decode(CGFloat.self, forKey: .iconScale)
+            self.iconOffset = (try? container.decode(CGSize.self, forKey: .iconOffset)) ?? .zero
+            self.shadowOpacity = try container.decode(CGFloat.self, forKey: .shadowOpacity)
+            self.shadowHeight = try container.decode(CGFloat.self, forKey: .shadowHeight)
+        case 1:
+            self.id = try container.decode(UUID.self, forKey: .id)
+            self.topColor = try container.decode(Color.self, forKey: .topColor)
+            self.bottomColor = try container.decode(Color.self, forKey: .bottomColor)
+            self.symbol = try container.decode(SymbolReference.self, forKey: .symbol)
+            self.symbolColor = try container.decode(Color.self, forKey: .symbolColor)
+            self.iconScale = try container.decode(CGFloat.self, forKey: .iconScale)
+            self.iconOffset = (try? container.decode(CGSize.self, forKey: .iconOffset)) ?? .zero
+            self.shadowOpacity = try container.decode(CGFloat.self, forKey: .shadowOpacity)
+            self.shadowHeight = try container.decode(CGFloat.self, forKey: .shadowHeight)
+        default:
+            assertionFailure("Unsupported file format")
+        }
+
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(1, forKey: .version)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.topColor, forKey: .topColor)
+        try container.encode(self.bottomColor, forKey: .bottomColor)
+        try container.encode(self.symbol, forKey: .symbol)
+        try container.encode(self.symbolColor, forKey: .symbolColor)
+        try container.encode(self.iconScale, forKey: .iconScale)
+        try container.encode(self.iconOffset, forKey: .iconOffset)
+        try container.encode(self.shadowOpacity, forKey: .shadowOpacity)
+        try container.encode(self.shadowHeight, forKey: .shadowHeight)
     }
 
 }

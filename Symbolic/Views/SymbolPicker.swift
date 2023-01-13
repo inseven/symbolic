@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import Interact
+
 struct SymbolPicker: View {
 
     struct LayoutMetrics {
@@ -29,15 +31,13 @@ struct SymbolPicker: View {
     }
 
     var title: String
-    var systemImage: Binding<String>
-    @State var initialImage: String
+    var selection: Binding<SymbolReference>
     @State var isPresented: Bool = false
     @StateObject var model = SymbolPickerModel()
 
-    init(_ title: String, systemImage: Binding<String>) {
+    init(_ title: String, selection: Binding<SymbolReference>) {
         self.title = title
-        self.systemImage = systemImage
-        _initialImage = State(initialValue: systemImage.wrappedValue)
+        self.selection = selection
     }
 
     let columns = [GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
@@ -52,27 +52,14 @@ struct SymbolPicker: View {
                 isPresented = true
             } label: {
                 HStack {
-                    Image(systemName: systemImage.wrappedValue)
-                        .imageScale(.large)
+                    SymbolView(symbol: selection.wrappedValue)
                 }
-                .frame(width: 32, height: 32)
+                .frame(width: 24, height: 24)
             }
             .controlSize(.large)
             .popover(isPresented: $isPresented) {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: LayoutMetrics.interItemSpacing) {
-                        ForEach(model.filteredSymbolNames) { symbol in
-                            SymbolPickerCell(systemName: symbol, isHighlighted: systemImage.wrappedValue == symbol)
-                                .onTapGesture {
-                                    isPresented = false
-                                    systemImage.wrappedValue = symbol
-                                }
-                        }
-                    }
-                    .padding([.leading, .trailing, .bottom])
-                }
-                .background(Color(nsColor: NSColor.controlBackgroundColor))
-                .safeAreaInset(edge: .top) {
+
+                VStack(spacing: 0) {
                     TextField(text: $model.filter, prompt: Text("Search")) {
                         EmptyView()
                     }
@@ -80,7 +67,33 @@ struct SymbolPicker: View {
                     .textFieldStyle(.roundedBorder)
                     .padding()
                     .background(Color(nsColor: NSColor.controlBackgroundColor))
+
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: LayoutMetrics.interItemSpacing, pinnedViews: [.sectionHeaders]) {
+                            ForEach(model.filteredSymbols) { section in
+                                Section {
+                                    ForEach(section.symbols) { symbol in
+                                        SymbolView(symbol: symbol.reference)
+                                            .modifier(SymbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference))
+                                            .onTapGesture {
+                                                isPresented = false
+                                                selection.wrappedValue = symbol.reference
+                                            }
+                                            .help(symbol.name)
+                                    }
+                                } header: {
+                                    Text(section.name)
+                                        .textCase(.uppercase)
+                                        .horizontalSpace(.trailing)
+                                        .padding([.top, .bottom], 8.0)
+                                        .background(Color(nsColor: NSColor.controlBackgroundColor))
+                                }
+                            }
+                        }
+                        .padding([.leading, .trailing, .bottom])
+                    }
                 }
+                .background(Color(nsColor: NSColor.controlBackgroundColor))
                 .frame(height: LayoutMetrics.height)
             }
         }
