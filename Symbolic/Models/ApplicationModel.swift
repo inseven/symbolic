@@ -183,6 +183,9 @@ class ApplicationModel: ObservableObject {
         } licenses: {
             License("Interact", author: "InSeven Limited", url: Interact.Package.licenseURL)
             License("Symbolic", author: "InSeven Limited", filename: "symbolic-license")
+            for symbolSet in SymbolManager.shared.sets.filter({ $0.licenseUrl != nil }) {
+                License(symbolSet.name, author: symbolSet.author, url: symbolSet.licenseUrl!)
+            }
         }
     }()
 
