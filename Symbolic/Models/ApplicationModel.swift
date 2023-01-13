@@ -23,6 +23,35 @@ import SwiftUI
 import Diligence
 import Interact
 
+class SymbolManager {
+
+    static let shared: SymbolManager = {
+        return SymbolManager()
+    }()
+
+    let sets: [SymbolSet]
+
+    init() {
+        self.sets = [
+            SymbolSet(id: "material-icons", name: "Material Icons", directory: "Material Icons"),
+            SymbolSet(id: "material-symbols", name: "Material Symbols", directory: "Material Symbols"),
+            SymbolSet.sfSymbols
+        ]
+    }
+
+    func set(for reference: SymbolReference) -> SymbolSet? {
+        return sets.first { $0.id == reference.family }
+    }
+
+    func symbol(for reference: SymbolReference) -> Symbol? {
+        return self
+            .set(for: reference)?
+            .symbols
+            .first { $0.name == reference.name }
+    }
+
+}
+
 class ApplicationModel: ObservableObject {
 
     // https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/

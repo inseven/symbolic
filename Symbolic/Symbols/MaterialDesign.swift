@@ -20,17 +20,54 @@
 
 import Foundation
 
-struct MaterialDesign {
+struct Symbol: Identifiable {
 
-    static let allSymbols: [Symbol] = {
+    var id: String {
+        return reference.id
+    }
 
-        let resources = Bundle.main.urls(forResourcesWithExtension: "svg", subdirectory: "Material Design")!
-        return resources.map { url in
-            let name = url.lastPathComponent.deletingPathExtension
-            return Symbol(set: .materialDesign, name: name)
-        }.sorted { lhs, rhs in
-            lhs.name.localizedStandardCompare(rhs.name) == .orderedAscending
-        }
+    enum Format {
+        case svg
+        case symbol
+    }
+
+    let reference: SymbolReference
+    let format: Format
+    let url: URL?
+
+    var name: String {
+        return reference.name
+    }
+}
+
+// TODO: Protocol?
+struct SymbolSet {
+
+    let id: String
+    let name: String
+    let symbols: [Symbol]
+
+    static var sfSymbols: SymbolSet = {
+        return SymbolSet(id: "sf-symbols", name: "SF Symbols", symbols: SFSymbols.allSymbols)
     }()
 
+    init(id: String, name: String, symbols: [Symbol]) {
+        self.id = id
+        self.name = name
+        self.symbols = symbols
+    }
+
+    init(id: String, name: String, directory: String) {
+        self.id = id
+        self.name = name
+        self.symbols = Bundle.main.urls(forResourcesWithExtension: "svg", subdirectory: directory)!
+            .map { url -> Symbol in
+                let name = url.lastPathComponent.deletingPathExtension
+                return Symbol(reference: SymbolReference(family: id, name: name), format: .svg, url: url)
+            }.sorted { (lhs: Symbol, rhs: Symbol) in
+                lhs.name.localizedStandardCompare(rhs.name) == .orderedAscending
+            }
+    }
+
 }
+

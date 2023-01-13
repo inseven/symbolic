@@ -21,38 +21,6 @@
 import Combine
 import SwiftUI
 
-enum SymbolIdentifier: String, Codable {
-    case sfSymbols = "sf-symbols"
-    case materialDesign = "material-design"
-    case emoji = "emoji"
-}
-
-extension SymbolIdentifier {
-
-    var name: String {
-        switch self {
-        case .sfSymbols:
-            return "SF Symbols"
-        case .materialDesign:
-            return "Material Design"
-        case .emoji:
-            return "Emoji"
-        }
-    }
-
-}
-
-struct Symbol: Identifiable, Equatable, Codable {
-
-    var id: String {
-        return "\(set.rawValue)-\(name)"
-    }
-
-    let set: SymbolIdentifier
-    let name: String
-
-}
-
 protocol Filterable {
 
     func matches(_ filter: String) -> Bool
@@ -81,7 +49,8 @@ extension Symbol: Filterable {
 class SymbolPickerModel: ObservableObject {
 
     struct Section: Identifiable {
-        let id: SymbolIdentifier
+        let id: String
+        let name: String
         let symbols: [Symbol]
     }
 
@@ -94,10 +63,13 @@ class SymbolPickerModel: ObservableObject {
         $filter
             .receive(on: DispatchQueue.global(qos: .userInteractive))
             .map { filter in
-                return [
-                    Section(id: .materialDesign, symbols: MaterialDesign.allSymbols.filter(filter)),
-                    Section(id: .sfSymbols, symbols: SFSymbols.allSymbols.filter(filter)),
-                ].filter { !$0.symbols.isEmpty }
+
+                let sections = SymbolManager.shared.sets.map { symbolSet in
+                    Section(id: symbolSet.id, name: symbolSet.name, symbols: symbolSet.symbols.filter(filter))
+                }
+
+                return sections
+                    .filter { !$0.symbols.isEmpty }
             }
             .receive(on: DispatchQueue.main)
             .sink { filteredSymbols in

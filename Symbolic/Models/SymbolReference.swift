@@ -20,36 +20,13 @@
 
 import SwiftUI
 
-struct SymbolView: View {
+struct SymbolReference: Identifiable, Equatable, Codable {
 
-    let symbol: SymbolReference  // TODO: Rename?
-
-    var body: some View {
-        HStack {
-            if let symbol = SymbolManager.shared.symbol(for: symbol) {
-                switch symbol.format {
-                case .svg:
-                    SVGImage(url: symbol.url!)
-                case .symbol:
-                    Image(systemName: symbol.name)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }
-            } else {
-                EmptyView()
-            }
-        }
+    var id: String {
+        return "\(family)-\(name)"
     }
 
+    let family: String
+    let name: String
+
 }
-
-
-
-//            case .emoji:
-//                HStack {
-//                    Text(symbol.name)
-//                        .multilineTextAlignment(.center)
-//                        .font(.system(size: 1024))
-//                        .minimumScaleFactor(0.001)
-//                }
-//            }

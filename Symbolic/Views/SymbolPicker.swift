@@ -31,11 +31,11 @@ struct SymbolPicker: View {
     }
 
     var title: String
-    var selection: Binding<Symbol>
+    var selection: Binding<SymbolReference>
     @State var isPresented: Bool = false
     @StateObject var model = SymbolPickerModel()
 
-    init(_ title: String, selection: Binding<Symbol>) {
+    init(_ title: String, selection: Binding<SymbolReference>) {
         self.title = title
         self.selection = selection
     }
@@ -64,16 +64,16 @@ struct SymbolPicker: View {
                         ForEach(model.filteredSymbols) { section in
                             Section {
                                 ForEach(section.symbols) { symbol in
-                                    SymbolView(symbol: symbol)
-                                        .modifier(SymbolPickerCell(isHighlighted: selection.wrappedValue == symbol))
+                                    SymbolView(symbol: symbol.reference)
+                                        .modifier(SymbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference))
                                         .onTapGesture {
                                             isPresented = false
-                                            selection.wrappedValue = symbol
+                                            selection.wrappedValue = symbol.reference
                                         }
                                         .help(symbol.name)
                                 }
                             } header: {
-                                Text(section.id.name)
+                                Text(section.name)
                                     .textCase(.uppercase)
                                     .horizontalSpace(.trailing)
                                     .ignoresSafeArea()
