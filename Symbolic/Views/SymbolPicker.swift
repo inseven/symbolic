@@ -59,31 +59,8 @@ struct SymbolPicker: View {
             }
             .controlSize(.large)
             .popover(isPresented: $isPresented) {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: LayoutMetrics.interItemSpacing, pinnedViews: [.sectionHeaders]) {
-                        ForEach(model.filteredSymbols) { section in
-                            Section {
-                                ForEach(section.symbols) { symbol in
-                                    SymbolView(symbol: symbol.reference)
-                                        .modifier(SymbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference))
-                                        .onTapGesture {
-                                            isPresented = false
-                                            selection.wrappedValue = symbol.reference
-                                        }
-                                        .help(symbol.name)
-                                }
-                            } header: {
-                                Text(section.name)
-                                    .textCase(.uppercase)
-                                    .horizontalSpace(.trailing)
-                                    .ignoresSafeArea()
-                            }
-                        }
-                    }
-                    .padding([.leading, .trailing, .bottom])
-                }
-                .background(Color(nsColor: NSColor.controlBackgroundColor))
-                .safeAreaInset(edge: .top) {
+
+                VStack(spacing: 0) {
                     TextField(text: $model.filter, prompt: Text("Search")) {
                         EmptyView()
                     }
@@ -91,7 +68,33 @@ struct SymbolPicker: View {
                     .textFieldStyle(.roundedBorder)
                     .padding()
                     .background(Color(nsColor: NSColor.controlBackgroundColor))
+
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: LayoutMetrics.interItemSpacing, pinnedViews: [.sectionHeaders]) {
+                            ForEach(model.filteredSymbols) { section in
+                                Section {
+                                    ForEach(section.symbols) { symbol in
+                                        SymbolView(symbol: symbol.reference)
+                                            .modifier(SymbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference))
+                                            .onTapGesture {
+                                                isPresented = false
+                                                selection.wrappedValue = symbol.reference
+                                            }
+                                            .help(symbol.name)
+                                    }
+                                } header: {
+                                    Text(section.name)
+                                        .textCase(.uppercase)
+                                        .horizontalSpace(.trailing)
+                                        .padding([.top, .bottom], 8.0)
+                                        .background(Color(nsColor: NSColor.controlBackgroundColor))
+                                }
+                            }
+                        }
+                        .padding([.leading, .trailing, .bottom])
+                    }
                 }
+                .background(Color(nsColor: NSColor.controlBackgroundColor))
                 .frame(height: LayoutMetrics.height)
             }
         }
