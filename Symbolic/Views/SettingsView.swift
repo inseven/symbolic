@@ -35,7 +35,7 @@ struct SettingsView: View {
         Form {
             Section("Icon") {
                 SymbolPicker("Image", selection: $document.icon.symbol.undoable(undoManager, context: undoContext))
-                Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext)) {
+                Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext), in: 0...1.2) {
                     Text("Size")
                 }
                 ColorPicker("Color",
