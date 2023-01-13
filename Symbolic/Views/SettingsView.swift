@@ -34,7 +34,7 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section("Icon") {
-                SymbolPicker("Image", systemImage: $document.icon.systemImage.undoable(undoManager, context: undoContext))
+                SymbolPicker("Image", selection: $document.icon.symbol.undoable(undoManager, context: undoContext))
                 Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext)) {
                     Text("Size")
                 }

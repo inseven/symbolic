@@ -20,25 +20,22 @@
 
 import SwiftUI
 
-struct SymbolPickerCell: View {
+struct SymbolPickerCell: ViewModifier {
 
     struct LayoutMetrics {
         static let cornerRadius = 6.0
         static let padding = 6.0
     }
 
-    let systemName: String
     let isHighlighted: Bool
 
     @State var isHovering: Bool = false
 
-    var body: some View {
+    func body(content: Content) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: LayoutMetrics.cornerRadius)
                 .fill(isHighlighted || isHovering ? Color(nsColor: NSColor.unemphasizedSelectedContentBackgroundColor) : .clear)
-            Image(systemName: systemName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            content
                 .controlSize(.regular)
                 .foregroundColor(.primary)
                 .padding(LayoutMetrics.padding)
@@ -47,7 +44,6 @@ struct SymbolPickerCell: View {
         .onHover { isHovering in
             self.isHovering = isHovering
         }
-
     }
 
 }

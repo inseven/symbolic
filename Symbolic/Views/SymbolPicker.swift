@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import Interact
+
 struct SymbolPicker: View {
 
     struct LayoutMetrics {
@@ -29,15 +31,13 @@ struct SymbolPicker: View {
     }
 
     var title: String
-    var systemImage: Binding<String>
-    @State var initialImage: String
+    var selection: Binding<Symbol>
     @State var isPresented: Bool = false
     @StateObject var model = SymbolPickerModel()
 
-    init(_ title: String, systemImage: Binding<String>) {
+    init(_ title: String, selection: Binding<Symbol>) {
         self.title = title
-        self.systemImage = systemImage
-        _initialImage = State(initialValue: systemImage.wrappedValue)
+        self.selection = selection
     }
 
     let columns = [GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
@@ -52,7 +52,7 @@ struct SymbolPicker: View {
                 isPresented = true
             } label: {
                 HStack {
-                    Image(systemName: systemImage.wrappedValue)
+                    SymbolView(symbol: selection.wrappedValue)
                         .imageScale(.large)
                 }
                 .frame(width: 32, height: 32)
@@ -60,13 +60,24 @@ struct SymbolPicker: View {
             .controlSize(.large)
             .popover(isPresented: $isPresented) {
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: LayoutMetrics.interItemSpacing) {
-                        ForEach(model.filteredSymbolNames) { symbol in
-                            SymbolPickerCell(systemName: symbol, isHighlighted: systemImage.wrappedValue == symbol)
-                                .onTapGesture {
-                                    isPresented = false
-                                    systemImage.wrappedValue = symbol
+                    LazyVGrid(columns: columns, spacing: LayoutMetrics.interItemSpacing, pinnedViews: [.sectionHeaders]) {
+                        ForEach(model.filteredSymbols) { section in
+                            Section {
+                                ForEach(section.symbols) { symbol in
+                                    SymbolView(symbol: symbol)
+                                        .modifier(SymbolPickerCell(isHighlighted: selection.wrappedValue == symbol))
+                                        .onTapGesture {
+                                            isPresented = false
+                                            selection.wrappedValue = symbol
+                                        }
+                                        .help(symbol.name)
                                 }
+                            } header: {
+                                Text(section.id.name)
+                                    .textCase(.uppercase)
+                                    .horizontalSpace(.trailing)
+                                    .ignoresSafeArea()
+                            }
                         }
                     }
                     .padding([.leading, .trailing, .bottom])
