@@ -20,41 +20,6 @@
 
 import Foundation
 
-struct Symbol: Identifiable {
-
-    var id: String {
-        return reference.id
-    }
-
-    enum Format {
-        case svg
-        case symbol
-    }
-
-    let reference: SymbolReference
-    let name: String
-    let format: Format
-    let url: URL?
-
-}
-
-struct Manifest: Codable {
-
-    struct Variant: Codable {
-        let path: String
-    }
-
-    struct Symbol: Codable {
-        let name: String
-        let variants: [String: Variant]
-    }
-
-    let id: String
-    let name: String
-    let symbols: [Symbol]
-
-}
-
 // TODO: Protocol?
 struct SymbolSet {
 
@@ -73,7 +38,6 @@ struct SymbolSet {
     }
 
     init(directory: String) throws {
-
         let manifestURL = Bundle.main.url(forResource: "manifest",
                                           withExtension: "json",
                                           subdirectory: directory)!  // TODO: Throw
