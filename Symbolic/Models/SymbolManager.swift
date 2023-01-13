@@ -30,7 +30,7 @@ class SymbolManager {
 
     init() {
         self.sets = [
-            try! SymbolSet(directory: "Material Icons"),
+            try! SymbolSet(directory: "material-icons"),
             SymbolSet.sfSymbols
         ]
     }

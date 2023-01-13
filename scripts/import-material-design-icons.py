@@ -9,7 +9,7 @@ SCRIPTS_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIRECOTRY = os.path.dirname(SCRIPTS_DIRECTORY)
 RESOURCES_DIRECTORY = os.path.join(ROOT_DIRECOTRY, "Symbolic", "Resources")
 
-MATERIAL_ICONS_DIRECTORY = os.path.join(RESOURCES_DIRECTORY, "Material Icons")
+MATERIAL_ICONS_DIRECTORY = os.path.join(RESOURCES_DIRECTORY, "material-icons")
 
 
 def main():
