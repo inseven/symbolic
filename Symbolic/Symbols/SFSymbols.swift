@@ -24,7 +24,7 @@ struct SFSymbols {
 
     static var allSymbols: [Symbol] = {
         allNames.map { name in
-            return Symbol(reference: SymbolReference(family: "sf-symbols", name: name), format: .symbol, url: nil)
+            return Symbol(reference: SymbolReference(family: "sf-symbols", name: name), name: name, format: .symbol, url: nil)
         }
     }()
 

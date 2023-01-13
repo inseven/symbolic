@@ -32,12 +32,10 @@ struct Symbol: Identifiable {
     }
 
     let reference: SymbolReference
+    let name: String
     let format: Format
     let url: URL?
 
-    var name: String {
-        return reference.name
-    }
 }
 
 struct Manifest: Codable {
@@ -76,7 +74,9 @@ struct SymbolSet {
 
     init(directory: String) throws {
 
-        let manifestURL = Bundle.main.url(forResource: "manifest", withExtension: "json", subdirectory: directory)!  // TODO: Throw
+        let manifestURL = Bundle.main.url(forResource: "manifest",
+                                          withExtension: "json",
+                                          subdirectory: directory)!  // TODO: Throw
         let data = try Data(contentsOf: manifestURL)
         let manifest = try JSONDecoder().decode(Manifest.self, from: data)
 
@@ -87,11 +87,11 @@ struct SymbolSet {
             let variants = symbol.variants.map { (identifier, variant) in
                 let url = Bundle.main.url(forResource: variant.path, withExtension: nil, subdirectory: directory)
                 let reference = SymbolReference(family: manifest.id, name: symbol.name)  // TODO: Include the variant in the identifier
-                return Symbol(reference: reference, format: .svg, url: url)
+                return Symbol(reference: reference, name: symbol.name, format: .svg, url: url)
             }
             return variants
         }.reduce([], +)
-        
+
     }
 
 }
