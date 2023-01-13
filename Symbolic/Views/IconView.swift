@@ -20,41 +20,6 @@
 
 import SwiftUI
 
-import SVGView
-import SVGKit
-
-
-import SwiftUI
-import SVGKit
-
-struct SVGImage: View {
-
-    let url: URL
-
-    func image(for size: CGSize) -> NSImage? {
-        guard !CGRect(origin: .zero, size: size).isEmpty else {
-            return nil
-        }
-        let svg = SVGKImage(contentsOf: url)!
-        svg.size = size
-        return svg.nsImage
-    }
-
-    var body: some View {
-        GeometryReader { geometry in
-            if let image = image(for: geometry.size) {
-                Image(nsImage: image)
-                    .renderingMode(.template)
-                    .resizable()
-            } else {
-                EmptyView()
-            }
-        }
-    }
-
-
-}
-
 struct IconView: View {
 
     struct Constants {
@@ -91,32 +56,8 @@ struct IconView: View {
                            startPoint: .top,
                            endPoint: .bottom)
 
-//            let image = Image(systemName: icon.systemImage)
-//                .resizable()
-//                .aspectRatio(contentMode: .fit)
-//                .foregroundColor(icon.symbolColor)
-//
-//            let image =
-//
-//            let image = SVGView(contentsOf: Bundle.main.url(forResource: "activity", withExtension: "svg")!)
-//                .blending(color: icon.symbolColor)
-//                .colorInvert()
-//                .foregroundColor(icon.symbolColor)
-//
-//            let image = Image("Image")
-//                .resizable()
-//                .foregroundColor(icon.symbolColor)
-//                .blending(color: icon.symbolColor)
-
-//            let image = SVGKFastImageViewSUI(url: Bundle.main.url(forResource: "activity", withExtension: "svg")!)
-//                .foregroundColor(.red)
-
             let image = SymbolView(symbol: icon.symbol)
                 .foregroundColor(icon.symbolColor)
-
-//            let image = SVGImage(url: Bundle.main.url(forResource: "meter", withExtension: "svg")!)
-//                .foregroundColor(icon.symbolColor)
-
 
             VStack {
                 if renderShadow {

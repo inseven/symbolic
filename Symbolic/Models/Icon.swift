@@ -20,8 +20,6 @@
 
 import SwiftUI
 
-// TODO: Defined symbols for the families
-
 struct Icon: Identifiable, Codable {
 
     enum CodingKeys: String, CodingKey {

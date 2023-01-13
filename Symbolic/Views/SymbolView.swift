@@ -42,14 +42,3 @@ struct SymbolView: View {
     }
 
 }
-
-
-
-//            case .emoji:
-//                HStack {
-//                    Text(symbol.name)
-//                        .multilineTextAlignment(.center)
-//                        .font(.system(size: 1024))
-//                        .minimumScaleFactor(0.001)
-//                }
-//            }

@@ -46,10 +46,10 @@
 		D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A392970E8DB002007C4 /* SymbolView.swift */; };
 		D8CB5A3C2970E92A002007C4 /* SymbolSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A3B2970E92A002007C4 /* SymbolSet.swift */; };
 		D8CB5A3E2970F4D0002007C4 /* SymbolReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A3D2970F4D0002007C4 /* SymbolReference.swift */; };
-		D8CB5A402970FAD1002007C4 /* Material Symbols in Resources */ = {isa = PBXBuildFile; fileRef = D8CB5A3F2970FAD1002007C4 /* Material Symbols */; };
 		D8CB5A4229718D23002007C4 /* SymbolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A4129718D23002007C4 /* SymbolManager.swift */; };
 		D8CB5A442971925A002007C4 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A432971925A002007C4 /* Symbol.swift */; };
 		D8CB5A4629719395002007C4 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A4529719395002007C4 /* Manifest.swift */; };
+		D8CB5A482971C4B5002007C4 /* SVGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A472971C4B5002007C4 /* SVGImage.swift */; };
 		D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */; };
 		D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7F28AC35C300D57F34 /* ContentView.swift */; };
 		D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CD4A8128AC35C600D57F34 /* Assets.xcassets */; };
@@ -120,10 +120,10 @@
 		D8CB5A392970E8DB002007C4 /* SymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
 		D8CB5A3B2970E92A002007C4 /* SymbolSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSet.swift; sourceTree = "<group>"; };
 		D8CB5A3D2970F4D0002007C4 /* SymbolReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolReference.swift; sourceTree = "<group>"; };
-		D8CB5A3F2970FAD1002007C4 /* Material Symbols */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Material Symbols"; sourceTree = "<group>"; };
 		D8CB5A4129718D23002007C4 /* SymbolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolManager.swift; sourceTree = "<group>"; };
 		D8CB5A432971925A002007C4 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		D8CB5A4529719395002007C4 /* Manifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
+		D8CB5A472971C4B5002007C4 /* SVGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImage.swift; sourceTree = "<group>"; };
 		D8CD4A7A28AC35C300D57F34 /* Symbolic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Symbolic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicApp.swift; sourceTree = "<group>"; };
 		D8CD4A7F28AC35C300D57F34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -218,10 +218,10 @@
 				D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */,
 				D84B5D70296C52BE005E6C59 /* SettingsView.swift */,
 				D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */,
-				D857297B296C176C0037E58F /* SymbolPickerCell.swift */,
 				D8CB5A392970E8DB002007C4 /* SymbolView.swift */,
 				D83970E628B132C700282EE8 /* UnityScaleWindow.swift */,
 				D826B5C3296B054000693D27 /* WatchGridView.swift */,
+				D8CB5A472971C4B5002007C4 /* SVGImage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,7 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				D8CB5A372970D9A5002007C4 /* material-icons */,
-				D8CB5A3F2970FAD1002007C4 /* Material Symbols */,
 				D84B5D73296C5540005E6C59 /* Template.symbolic */,
 			);
 			path = Resources;
@@ -260,6 +259,14 @@
 				D826B5CA296B243800693D27 /* ViewCommands.swift */,
 			);
 			path = Commands;
+			sourceTree = "<group>";
+		};
+		D8CB5A492971C536002007C4 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				D857297B296C176C0037E58F /* SymbolPickerCell.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		D8CD4A7128AC35C300D57F34 = {
@@ -296,10 +303,11 @@
 				D826B5CE296B477600693D27 /* Layouts */,
 				D8F99EC128B13946007C3868 /* Licenses */,
 				D821B9E528ACDBC300504AA4 /* Models */,
+				D8CB5A492971C536002007C4 /* Modifiers */,
 				D8CD4A8328AC35C600D57F34 /* Preview Content */,
 				D84B5D72296C5530005E6C59 /* Resources */,
-				D8D9730F28ACF8BA006CBF15 /* Toolbars */,
 				D821B9EF28ACF0A900504AA4 /* Symbols */,
+				D8D9730F28ACF8BA006CBF15 /* Toolbars */,
 				D821B9E628ACDBCB00504AA4 /* Views */,
 			);
 			path = Symbolic;
@@ -482,7 +490,6 @@
 				D84B5D74296C5540005E6C59 /* Template.symbolic in Resources */,
 				D8F99EC328B13955007C3868 /* diligence-license in Resources */,
 				D82B249B2915D8540093B073 /* symbolic-license in Resources */,
-				D8CB5A402970FAD1002007C4 /* Material Symbols in Resources */,
 				D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +525,7 @@
 				D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */,
 				D857297C296C176C0037E58F /* SymbolPickerCell.swift in Sources */,
 				D84868F0296AE616009FDF32 /* IconSection.swift in Sources */,
+				D8CB5A482971C4B5002007C4 /* SVGImage.swift in Sources */,
 				D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */,
 				D8CB5A4629719395002007C4 /* Manifest.swift in Sources */,
 				D83970E928B1340900282EE8 /* DeviceType.swift in Sources */,
