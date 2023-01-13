@@ -40,6 +40,23 @@ struct Symbol: Identifiable {
     }
 }
 
+struct Manifest: Codable {
+
+    struct Variant: Codable {
+        let path: String
+    }
+
+    struct Symbol: Codable {
+        let name: String
+        let variants: [String: Variant]
+    }
+
+    let id: String
+    let name: String
+    let symbols: [Symbol]
+
+}
+
 // TODO: Protocol?
 struct SymbolSet {
 
@@ -57,16 +74,24 @@ struct SymbolSet {
         self.symbols = symbols
     }
 
-    init(id: String, name: String, directory: String) {
-        self.id = id
-        self.name = name
-        self.symbols = Bundle.main.urls(forResourcesWithExtension: "svg", subdirectory: directory)!
-            .map { url -> Symbol in
-                let name = url.lastPathComponent.deletingPathExtension
-                return Symbol(reference: SymbolReference(family: id, name: name), format: .svg, url: url)
-            }.sorted { (lhs: Symbol, rhs: Symbol) in
-                lhs.name.localizedStandardCompare(rhs.name) == .orderedAscending
+    init(directory: String) throws {
+
+        let manifestURL = Bundle.main.url(forResource: "manifest", withExtension: "json", subdirectory: directory)!  // TODO: Throw
+        let data = try Data(contentsOf: manifestURL)
+        let manifest = try JSONDecoder().decode(Manifest.self, from: data)
+
+        self.id = manifest.id
+        self.name = manifest.name
+
+        self.symbols = manifest.symbols.map { symbol in
+            let variants = symbol.variants.map { (identifier, variant) in
+                let url = Bundle.main.url(forResource: variant.path, withExtension: nil, subdirectory: directory)
+                let reference = SymbolReference(family: manifest.id, name: symbol.name)  // TODO: Include the variant in the identifier
+                return Symbol(reference: reference, format: .svg, url: url)
             }
+            return variants
+        }.reduce([], +)
+        
     }
 
 }

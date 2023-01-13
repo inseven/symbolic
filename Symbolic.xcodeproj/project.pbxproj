@@ -47,6 +47,7 @@
 		D8CB5A3C2970E92A002007C4 /* MaterialDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A3B2970E92A002007C4 /* MaterialDesign.swift */; };
 		D8CB5A3E2970F4D0002007C4 /* SymbolReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A3D2970F4D0002007C4 /* SymbolReference.swift */; };
 		D8CB5A402970FAD1002007C4 /* Material Symbols in Resources */ = {isa = PBXBuildFile; fileRef = D8CB5A3F2970FAD1002007C4 /* Material Symbols */; };
+		D8CB5A4229718D23002007C4 /* SymbolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A4129718D23002007C4 /* SymbolManager.swift */; };
 		D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */; };
 		D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7F28AC35C300D57F34 /* ContentView.swift */; };
 		D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CD4A8128AC35C600D57F34 /* Assets.xcassets */; };
@@ -118,6 +119,7 @@
 		D8CB5A3B2970E92A002007C4 /* MaterialDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialDesign.swift; sourceTree = "<group>"; };
 		D8CB5A3D2970F4D0002007C4 /* SymbolReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolReference.swift; sourceTree = "<group>"; };
 		D8CB5A3F2970FAD1002007C4 /* Material Symbols */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Material Symbols"; sourceTree = "<group>"; };
+		D8CB5A4129718D23002007C4 /* SymbolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolManager.swift; sourceTree = "<group>"; };
 		D8CD4A7A28AC35C300D57F34 /* Symbolic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Symbolic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicApp.swift; sourceTree = "<group>"; };
 		D8CD4A7F28AC35C300D57F34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				D84868EB296AE437009FDF32 /* IconSet.swift */,
 				D84B5D6E296C5229005E6C59 /* SceneModel.swift */,
 				D83970E428B11F5200282EE8 /* SymbolicError.swift */,
+				D8CB5A4129718D23002007C4 /* SymbolManager.swift */,
 				D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */,
 				D8CB5A3D2970F4D0002007C4 /* SymbolReference.swift */,
 			);
@@ -534,6 +537,7 @@
 				D864A23C2965E239008A4261 /* MacIconView.swift in Sources */,
 				D8CB5A3E2970F4D0002007C4 /* SymbolReference.swift in Sources */,
 				D826B5D0296B478400693D27 /* CenteredFlowLayout.swift in Sources */,
+				D8CB5A4229718D23002007C4 /* SymbolManager.swift in Sources */,
 				D84868EC296AE437009FDF32 /* IconSet.swift in Sources */,
 				D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */,
 				D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */,
