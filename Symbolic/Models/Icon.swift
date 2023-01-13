@@ -43,7 +43,7 @@ struct Icon: Identifiable, Codable {
     var topColor: Color = .pink
     var bottomColor: Color = .purple
 
-    var symbol: SymbolReference = SymbolReference(family: "sf-symbols", name: "face.smiling")
+    var symbol: SymbolReference = SymbolReference(family: "sf-symbols", name: "face.smiling", variant: nil)
     var symbolColor: Color = .white
     var iconScale: CGFloat = 0.8
     var iconOffset: CGSize = .zero
@@ -67,7 +67,7 @@ struct Icon: Identifiable, Codable {
             self.topColor = try container.decode(Color.self, forKey: .topColor)
             self.bottomColor = try container.decode(Color.self, forKey: .bottomColor)
             let systemImage = try container.decode(String.self, forKey: .systemImage)
-            self.symbol = SymbolReference(family: "sf-symbols", name: systemImage)
+            self.symbol = SymbolReference(family: "sf-symbols", name: systemImage, variant: nil)
             self.symbolColor = try container.decode(Color.self, forKey: .symbolColor)
             self.iconScale = try container.decode(CGFloat.self, forKey: .iconScale)
             self.iconOffset = (try? container.decode(CGSize.self, forKey: .iconOffset)) ?? .zero

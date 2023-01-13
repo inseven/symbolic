@@ -26,6 +26,10 @@ struct Symbol: Identifiable {
         return reference.id
     }
 
+    var variant: String? {
+        return reference.variant
+    }
+
     enum Format {
         case svg
         case symbol

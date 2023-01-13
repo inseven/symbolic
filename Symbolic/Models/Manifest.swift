@@ -27,6 +27,7 @@ struct Manifest: Codable {
     }
 
     struct Symbol: Codable {
+        let id: String
         let name: String
         let variants: [String: Variant]
     }

@@ -42,8 +42,8 @@ class SymbolManager {
     func symbol(for reference: SymbolReference) -> Symbol? {
         return self
             .set(for: reference)?
-            .symbols
-            .first { $0.name == reference.name }
+            .symbolsById[reference.name]?
+            .first { $0.variant == reference.variant }
     }
 
 }

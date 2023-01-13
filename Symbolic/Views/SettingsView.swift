@@ -97,6 +97,13 @@ struct SettingsView: View {
                             selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
                             supportsOpacity: false)
             }
+#if DEBUG
+            Section("Details") {
+                LabeledContent("Family", value: document.icon.symbol.family)
+                LabeledContent("Name", value: document.icon.symbol.name)
+                LabeledContent("Variant", value: document.icon.symbol.variant ?? "")
+            }
+#endif
         }
         .formStyle(.grouped)
     }

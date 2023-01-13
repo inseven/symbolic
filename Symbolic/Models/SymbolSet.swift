@@ -20,12 +20,25 @@
 
 import Foundation
 
-// TODO: Protocol?
+extension Array where Element == Symbol {
+
+    func lookup() -> [String:[Symbol]] {
+        return reduce(into: [String: [Symbol]]()) { partialResult, symbol in
+            if partialResult[symbol.reference.name] == nil {
+                partialResult[symbol.reference.name] = []
+            }
+            partialResult[symbol.reference.name]?.append(symbol)
+        }
+    }
+
+}
+
 struct SymbolSet {
 
     let id: String
     let name: String
     let symbols: [Symbol]
+    let symbolsById: [String:[Symbol]]
 
     static var sfSymbols: SymbolSet = {
         return SymbolSet(id: "sf-symbols", name: "SF Symbols", symbols: SFSymbols.allSymbols)
@@ -35,6 +48,7 @@ struct SymbolSet {
         self.id = id
         self.name = name
         self.symbols = symbols
+        self.symbolsById = symbols.lookup()
     }
 
     init(directory: String) throws {
@@ -46,16 +60,15 @@ struct SymbolSet {
 
         self.id = manifest.id
         self.name = manifest.name
-
         self.symbols = manifest.symbols.map { symbol in
             let variants = symbol.variants.map { (identifier, variant) in
                 let url = Bundle.main.url(forResource: variant.path, withExtension: nil, subdirectory: directory)
-                let reference = SymbolReference(family: manifest.id, name: symbol.name)  // TODO: Include the variant in the identifier
+                let reference = SymbolReference(family: manifest.id, name: symbol.id, variant: identifier)
                 return Symbol(reference: reference, name: symbol.name, format: .svg, url: url)
             }
             return variants
         }.reduce([], +)
-
+        self.symbolsById = symbols.lookup()
     }
 
 }

@@ -23,10 +23,11 @@ import SwiftUI
 struct SymbolReference: Identifiable, Equatable, Codable {
 
     var id: String {
-        return "\(family)-\(name)"
+        return "\(family)-\(name)-\(variant)"
     }
 
     let family: String
     let name: String
+    let variant: String?
 
 }

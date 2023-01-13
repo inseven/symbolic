@@ -29,23 +29,24 @@ def main():
         icons = os.listdir(category_path)
         for icon in icons:
             symbol = {
+                "id": icon,
                 "name": icon.replace("_", " ").title(),
                 "variants": {}
             }
-            icon_path = os.path.join(category_path, icon, "materialicons", "24px.svg")
-            if os.path.exists(icon_path):
-                basename = "%s.svg" % icon
+
+            icon_base_path = os.path.join(category_path, icon)
+            variants = os.listdir(icon_base_path)
+
+            for variant in variants:
+                assert variant.startswith("materialicons")
+                variant_name = variant[len("materialicons"):]
+                variant_key = variant_name if variant_name else "default"
+                icon_path = os.path.join(category_path, icon, variant, "24px.svg")
+                basename = "%s.%s.svg" % (icon, variant_key)
                 shutil.copyfile(icon_path, os.path.join(MATERIAL_ICONS_DIRECTORY, basename))
-                symbol["variants"]["default"] = {
+                symbol["variants"][variant_key] = {
                     "path": basename
                 }
-            else:
-                print(icon_path)
-            outlined_icon_path = os.path.join(category_path, icon, "materialiconsoutlined", "24px.svg")
-            if os.path.exists(outlined_icon_path):
-                shutil.copyfile(outlined_icon_path, os.path.join(MATERIAL_ICONS_DIRECTORY, "%s-outlined.svg" % icon))
-            else:
-                print(icon_path)
             manifest["symbols"].append(symbol)
 
     with open(os.path.join(MATERIAL_ICONS_DIRECTORY, "manifest.json"), "w") as fh:
