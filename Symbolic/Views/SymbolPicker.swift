@@ -53,9 +53,8 @@ struct SymbolPicker: View {
             } label: {
                 HStack {
                     SymbolView(symbol: selection.wrappedValue)
-                        .imageScale(.large)
                 }
-                .frame(width: 32, height: 32)
+                .frame(width: 24, height: 24)
             }
             .controlSize(.large)
             .popover(isPresented: $isPresented) {
