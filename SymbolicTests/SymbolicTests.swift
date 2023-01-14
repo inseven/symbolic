@@ -29,4 +29,22 @@ final class SymbolicTests: XCTestCase {
     override func tearDownWithError() throws {
     }
 
+    func testLoadSymbols() throws {
+
+        let symbolManager = SymbolManager.shared
+
+        var count = 0
+        for symbolSet in symbolManager.sets {
+            for symbol in symbolSet.symbols {
+                if symbol.format == .svg, let url = symbol.url {
+                    XCTAssertNotNil(SVGImage(url: url))
+                    count = count + 1
+                }
+            }
+        }
+
+        XCTAssertEqual(count, 10751)
+
+    }
+
 }
