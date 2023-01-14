@@ -20,6 +20,7 @@
 
 import XCTest
 @testable import Symbolic
+@testable import SVGKit
 
 final class SymbolicTests: XCTestCase {
 
@@ -37,7 +38,10 @@ final class SymbolicTests: XCTestCase {
         for symbolSet in symbolManager.sets {
             for symbol in symbolSet.symbols {
                 if symbol.format == .svg, let url = symbol.url {
-                    XCTAssertNotNil(SVGImage(url: url))
+                    let image = SVGKImage(contentsOf: url)
+                    XCTAssertNotNil(image)
+                    image?.size = CGSize(width: 1024, height: 1024)
+                    XCTAssertNotNil(image?.nsImage)
                     count = count + 1
                 }
             }
@@ -45,6 +49,23 @@ final class SymbolicTests: XCTestCase {
 
         XCTAssertEqual(count, 10751)
 
+    }
+
+    func testLoadCachedSymbols() {
+
+        let symbolManager = SymbolManager.shared
+
+        var count = 0
+        for symbolSet in symbolManager.sets {
+            for symbol in symbolSet.symbols {
+                if symbol.format == .svg, let url = symbol.url {
+                    XCTAssertNotNil(SVGImage(url: url).cacheVectorGraphics(true))
+                    count = count + 1
+                }
+            }
+        }
+
+        XCTAssertEqual(count, 10751)
     }
 
 }
