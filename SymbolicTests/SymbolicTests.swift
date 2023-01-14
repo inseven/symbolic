@@ -20,6 +20,7 @@
 
 import XCTest
 @testable import Symbolic
+@testable import SwiftDraw
 
 final class SymbolicTests: XCTestCase {
 
@@ -27,6 +28,28 @@ final class SymbolicTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
+    }
+
+    func testLoadSymbols() throws {
+
+        let symbolManager = SymbolManager.shared
+
+        var count = 0
+        for symbolSet in symbolManager.sets {
+            for symbol in symbolSet.symbols {
+                if symbol.format == .svg, let url = symbol.url {
+                    autoreleasepool {
+                        let svg = SVG(fileURL: url)
+                        XCTAssertNotNil(svg)
+                        XCTAssertNotNil(svg?.rasterize(with: CGSize(width: 1024, height: 1024)))
+                        count = count + 1
+                    }
+                }
+            }
+        }
+
+        XCTAssertEqual(count, 10751)
+
     }
 
 }

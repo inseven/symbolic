@@ -20,7 +20,7 @@
 
 import SwiftUI
 
-import SVGKit
+import SwiftDraw
 
 private struct CacheVectorGraphics: EnvironmentKey {
 
@@ -57,9 +57,10 @@ struct SVGImage: View {
         guard !CGRect(origin: .zero, size: size).isEmpty else {
             return nil
         }
-        let svg = SVGKImage(contentsOf: url)!
-        svg.size = size
-        return svg.nsImage
+        guard let svg = SVG(fileURL: url) else {
+            return nil
+        }
+        return svg.rasterize(with: size)
     }
 
     // Return an image representing the SVG.
