@@ -74,7 +74,7 @@ struct SymbolPicker: View {
                                 Section {
                                     ForEach(section.symbols) { symbol in
                                         SymbolView(symbol: symbol.reference)
-                                            .modifier(SymbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference))
+                                            .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
                                             .onTapGesture {
                                                 isPresented = false
                                                 selection.wrappedValue = symbol.reference
