@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D808A2152979918300763881 /* Variant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808A2142979918300763881 /* Variant.swift */; };
+		D808A2172979928900763881 /* LibraryInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808A2162979928900763881 /* LibraryInfoButton.swift */; };
 		D821B9E028ACDB6000504AA4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9DF28ACDB6000504AA4 /* View.swift */; };
 		D821B9E428ACDBA800504AA4 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E328ACDBA800504AA4 /* IconView.swift */; };
 		D821B9E828ACDBE000504AA4 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E728ACDBE000504AA4 /* Icon.swift */; };
@@ -43,9 +45,9 @@
 		D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61309293BB98100F29E0C /* ApplicationModel.swift */; };
 		D8CB5A382970D9A5002007C4 /* material-icons in Resources */ = {isa = PBXBuildFile; fileRef = D8CB5A372970D9A5002007C4 /* material-icons */; };
 		D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A392970E8DB002007C4 /* SymbolView.swift */; };
-		D8CB5A3C2970E92A002007C4 /* SymbolSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A3B2970E92A002007C4 /* SymbolSet.swift */; };
+		D8CB5A3C2970E92A002007C4 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A3B2970E92A002007C4 /* Library.swift */; };
 		D8CB5A3E2970F4D0002007C4 /* SymbolReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A3D2970F4D0002007C4 /* SymbolReference.swift */; };
-		D8CB5A4229718D23002007C4 /* SymbolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A4129718D23002007C4 /* SymbolManager.swift */; };
+		D8CB5A4229718D23002007C4 /* LibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A4129718D23002007C4 /* LibraryManager.swift */; };
 		D8CB5A442971925A002007C4 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A432971925A002007C4 /* Symbol.swift */; };
 		D8CB5A4629719395002007C4 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A4529719395002007C4 /* Manifest.swift */; };
 		D8CB5A482971C4B5002007C4 /* SVGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A472971C4B5002007C4 /* SVGImage.swift */; };
@@ -58,7 +60,7 @@
 		D8CD4A9A28AC35C600D57F34 /* SymbolicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9928AC35C600D57F34 /* SymbolicUITests.swift */; };
 		D8CD4A9C28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9B28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift */; };
 		D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */; };
-		D8E4C3C12979809D00A25DF9 /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C3C02979809D00A25DF9 /* LicenseView.swift */; };
+		D8E4C3C12979809D00A25DF9 /* LibraryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C3C02979809D00A25DF9 /* LibraryInfoView.swift */; };
 		D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */; };
 		D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */; };
 		D8F99EC328B13955007C3868 /* diligence-license in Resources */ = {isa = PBXBuildFile; fileRef = D8F99EC228B13955007C3868 /* diligence-license */; };
@@ -83,6 +85,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D808A2142979918300763881 /* Variant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variant.swift; sourceTree = "<group>"; };
+		D808A2162979928900763881 /* LibraryInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryInfoButton.swift; sourceTree = "<group>"; };
 		D821B9DF28ACDB6000504AA4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		D821B9E328ACDBA800504AA4 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		D821B9E728ACDBE000504AA4 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
@@ -119,9 +123,9 @@
 		D8B61309293BB98100F29E0C /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
 		D8CB5A372970D9A5002007C4 /* material-icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "material-icons"; sourceTree = "<group>"; };
 		D8CB5A392970E8DB002007C4 /* SymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
-		D8CB5A3B2970E92A002007C4 /* SymbolSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSet.swift; sourceTree = "<group>"; };
+		D8CB5A3B2970E92A002007C4 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		D8CB5A3D2970F4D0002007C4 /* SymbolReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolReference.swift; sourceTree = "<group>"; };
-		D8CB5A4129718D23002007C4 /* SymbolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolManager.swift; sourceTree = "<group>"; };
+		D8CB5A4129718D23002007C4 /* LibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
 		D8CB5A432971925A002007C4 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		D8CB5A4529719395002007C4 /* Manifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
 		D8CB5A472971C4B5002007C4 /* SVGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImage.swift; sourceTree = "<group>"; };
@@ -138,7 +142,7 @@
 		D8CD4A9928AC35C600D57F34 /* SymbolicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicUITests.swift; sourceTree = "<group>"; };
 		D8CD4A9B28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToolbar.swift; sourceTree = "<group>"; };
-		D8E4C3C02979809D00A25DF9 /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
+		D8E4C3C02979809D00A25DF9 /* LibraryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryInfoView.swift; sourceTree = "<group>"; };
 		D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerModel.swift; sourceTree = "<group>"; };
 		D8F99EC028B138FE007C3868 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
@@ -195,14 +199,15 @@
 				D86B0ECE291BEF7400352367 /* IconDocument.swift */,
 				D84868EF296AE616009FDF32 /* IconSection.swift */,
 				D84868EB296AE437009FDF32 /* IconSet.swift */,
+				D8CB5A3B2970E92A002007C4 /* Library.swift */,
+				D8CB5A4129718D23002007C4 /* LibraryManager.swift */,
 				D8CB5A4529719395002007C4 /* Manifest.swift */,
 				D84B5D6E296C5229005E6C59 /* SceneModel.swift */,
 				D8CB5A432971925A002007C4 /* Symbol.swift */,
 				D83970E428B11F5200282EE8 /* SymbolicError.swift */,
-				D8CB5A4129718D23002007C4 /* SymbolManager.swift */,
 				D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */,
 				D8CB5A3D2970F4D0002007C4 /* SymbolReference.swift */,
-				D8CB5A3B2970E92A002007C4 /* SymbolSet.swift */,
+				D808A2142979918300763881 /* Variant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,15 +221,16 @@
 				D826B5CC296B312300693D27 /* IconPreview.swift */,
 				D84868E9296ACC8B009FDF32 /* IconSetView.swift */,
 				D821B9E328ACDBA800504AA4 /* IconView.swift */,
+				D808A2162979928900763881 /* LibraryInfoButton.swift */,
+				D8E4C3C02979809D00A25DF9 /* LibraryInfoView.swift */,
 				D864A23B2965E239008A4261 /* MacIconView.swift */,
 				D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */,
 				D84B5D70296C52BE005E6C59 /* SettingsView.swift */,
+				D8CB5A472971C4B5002007C4 /* SVGImage.swift */,
 				D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */,
 				D8CB5A392970E8DB002007C4 /* SymbolView.swift */,
 				D83970E628B132C700282EE8 /* UnityScaleWindow.swift */,
 				D826B5C3296B054000693D27 /* WatchGridView.swift */,
-				D8CB5A472971C4B5002007C4 /* SVGImage.swift */,
-				D8E4C3C02979809D00A25DF9 /* LicenseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -535,6 +541,7 @@
 				D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */,
 				D826B5CB296B243800693D27 /* ViewCommands.swift in Sources */,
 				D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */,
+				D808A2152979918300763881 /* Variant.swift in Sources */,
 				D86B0ED1291BEFC100352367 /* UTType.swift in Sources */,
 				D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */,
 				D826B5C9296B13CB00693D27 /* ExportCommands.swift in Sources */,
@@ -545,19 +552,20 @@
 				D821B9E428ACDBA800504AA4 /* IconView.swift in Sources */,
 				D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */,
 				D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */,
-				D8CB5A3C2970E92A002007C4 /* SymbolSet.swift in Sources */,
+				D8CB5A3C2970E92A002007C4 /* Library.swift in Sources */,
 				D83970E228B0B45300282EE8 /* Color.swift in Sources */,
 				D84868EA296ACC8B009FDF32 /* IconSetView.swift in Sources */,
 				D821B9E028ACDB6000504AA4 /* View.swift in Sources */,
 				D84868E8296ACC58009FDF32 /* Header.swift in Sources */,
 				D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */,
 				D826B5C6296B09FC00693D27 /* Path.swift in Sources */,
-				D8E4C3C12979809D00A25DF9 /* LicenseView.swift in Sources */,
+				D8E4C3C12979809D00A25DF9 /* LibraryInfoView.swift in Sources */,
 				D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */,
+				D808A2172979928900763881 /* LibraryInfoButton.swift in Sources */,
 				D864A23C2965E239008A4261 /* MacIconView.swift in Sources */,
 				D8CB5A3E2970F4D0002007C4 /* SymbolReference.swift in Sources */,
 				D826B5D0296B478400693D27 /* CenteredFlowLayout.swift in Sources */,
-				D8CB5A4229718D23002007C4 /* SymbolManager.swift in Sources */,
+				D8CB5A4229718D23002007C4 /* LibraryManager.swift in Sources */,
 				D84868EC296AE437009FDF32 /* IconSet.swift in Sources */,
 				D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */,
 				D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */,

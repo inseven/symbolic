@@ -64,8 +64,8 @@ class SymbolPickerModel: ObservableObject {
             .receive(on: DispatchQueue.global(qos: .userInteractive))
             .map { filter in
 
-                let sections = SymbolManager.shared.sets.map { symbolSet in
-                    Section(id: symbolSet.id, name: symbolSet.name, symbols: symbolSet.symbols.filter(filter))
+                let sections = LibraryManager.shared.sets.map { library in
+                    Section(id: library.id, name: library.name, symbols: library.symbols.filter(filter))
                 }
 
                 return sections

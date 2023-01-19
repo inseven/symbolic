@@ -26,7 +26,7 @@ struct SymbolView: View {
 
     var body: some View {
         HStack {
-            if let symbol = SymbolManager.shared.symbol(for: symbol) {
+            if let symbol = LibraryManager.shared.symbol(for: symbol) {
                 switch symbol.format {
                 case .svg:
                     SVGImage(url: symbol.url!)

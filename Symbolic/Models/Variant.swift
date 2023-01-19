@@ -18,36 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import XCTest
-@testable import Symbolic
-@testable import SwiftDraw
+import Foundation
 
-final class SymbolicTests: XCTestCase {
+struct Variant {
 
-    override func setUpWithError() throws {
-    }
-
-    override func tearDownWithError() throws {
-    }
-
-    func testLoadSymbols() throws {
-
-        var count = 0
-        for library in LibraryManager.shared.sets {
-            for symbol in library.symbols {
-                if symbol.format == .svg, let url = symbol.url {
-                    autoreleasepool {
-                        let svg = SVG(fileURL: url)
-                        XCTAssertNotNil(svg)
-                        XCTAssertNotNil(svg?.rasterize(with: CGSize(width: 1024, height: 1024)))
-                        count = count + 1
-                    }
-                }
-            }
-        }
-
-        XCTAssertEqual(count, 10751)
-
-    }
+    let id: String
+    let name: String
 
 }
