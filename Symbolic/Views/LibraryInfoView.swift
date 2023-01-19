@@ -22,17 +22,17 @@ import SwiftUI
 
 import Diligence
 
-struct LicenseView: View {
+struct LibraryInfoView: View {
 
     private struct LayoutMetrics {
         static let width = 400.0
         static let height = 500.0
     }
 
-    var license: License
+    var library: Library
 
-    public init(license: License) {
-        self.license = license
+    public init(library: Library) {
+        self.library = library
     }
 
     public var body: some View {
@@ -41,12 +41,17 @@ struct LicenseView: View {
                 HStack {
                     Text("Author")
                     Spacer()
-                    Text(license.author)
+                    Text(library.author)
                         .foregroundColor(.secondary)
                 }
                 Divider()
-                Text(license.text)
-                    .multilineTextAlignment(.leading)
+                if let licenseUrl = library.licenseUrl,
+                   let licenseText = try? String(contentsOf: licenseUrl) {
+                    Text(licenseText)
+                        .multilineTextAlignment(.leading)
+                } else {
+                    Text("Unknwon")
+                }
             }
             .padding()
         }
@@ -56,8 +61,11 @@ struct LicenseView: View {
                 HStack {
                     Spacer()
                     Button("Copy") {
-                        NSPasteboard.general.clearContents()
-                        NSPasteboard.general.setString(license.text, forType: .string)
+                        if let licenseUrl = library.licenseUrl,
+                           let licenseText = try? String(contentsOf: licenseUrl) {
+                            NSPasteboard.general.clearContents()
+                            NSPasteboard.general.setString(licenseText, forType: .string)
+                        }
                     }
                 }
                 .padding()
@@ -65,7 +73,7 @@ struct LicenseView: View {
             .background(Color.textBackgroundColor)
         }
         .background(Color.textBackgroundColor)
-        .navigationTitle(license.name)
+        .navigationTitle(library.name)
         .frame(width: LayoutMetrics.width, height: LayoutMetrics.height)
         .foregroundColor(.primary)
     }

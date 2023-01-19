@@ -20,7 +20,6 @@
 
 import SwiftUI
 
-import Diligence
 import Interact
 
 struct SymbolPicker: View {
@@ -102,8 +101,8 @@ struct SymbolPicker: View {
                     .background(Color(nsColor: NSColor.controlBackgroundColor))
                     .frame(height: LayoutMetrics.height)
                 }
-                if let set = SymbolManager.shared.set(for: selection.wrappedValue) {
-                    SetDetails(set: set)
+                if let library = LibraryManager.shared.library(for: selection.wrappedValue) {
+                    LibraryInfoButton(library: library)
                 }
             }
         }
@@ -114,33 +113,6 @@ struct SymbolPicker: View {
             model.stop()
         }
 
-    }
-
-}
-
-struct SetDetails: View {
-
-    let set: SymbolSet
-
-    @State var isPresented: Bool = false
-
-    var body: some View {
-        HStack(spacing: 4.0) {
-            Text(set.name)
-            Button {
-                isPresented.toggle()
-            } label: {
-                Image(systemName: "info.circle")
-            }
-            .buttonStyle(.plain)
-            .popover(isPresented: $isPresented) {
-                if let licenseUrl = set.licenseUrl {
-                    LicenseView(license: License(set.name, author: set.author, url: licenseUrl))
-                } else {
-                    LicenseView(license: License(set.name, author: set.author, text: "Unknown"))
-                }
-            }
-        }
     }
 
 }

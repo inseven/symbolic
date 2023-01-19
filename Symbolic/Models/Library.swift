@@ -33,14 +33,7 @@ extension Array where Element == Symbol {
 
 }
 
-struct Variant {
-
-    let id: String
-    let name: String
-
-}
-
-struct SymbolSet {
+struct Library {
 
     let id: String
     let name: String
@@ -50,8 +43,8 @@ struct SymbolSet {
     let licenseUrl: URL?
     let variants: [String: Variant]
 
-    static var sfSymbols: SymbolSet = {
-        return SymbolSet(id: "sf-symbols",
+    static var sfSymbols: Library = {
+        return Library(id: "sf-symbols",
                          name: "SF Symbols",
                          author: "Apple Inc",
                          symbols: SFSymbols.allSymbols,

@@ -20,28 +20,28 @@
 
 import Foundation
 
-class SymbolManager {
+class LibraryManager {
 
-    static let shared: SymbolManager = {
-        return SymbolManager()
+    static let shared: LibraryManager = {
+        return LibraryManager()
     }()
 
-    let sets: [SymbolSet]
+    let sets: [Library]
 
     init() {
         self.sets = [
-            try! SymbolSet(directory: "material-icons"),
-            SymbolSet.sfSymbols
+            try! Library(directory: "material-icons"),
+            Library.sfSymbols
         ]
     }
 
-    func set(for reference: SymbolReference) -> SymbolSet? {
+    func library(for reference: SymbolReference) -> Library? {
         return sets.first { $0.id == reference.family }
     }
 
     func symbol(for reference: SymbolReference) -> Symbol? {
         return self
-            .set(for: reference)?
+            .library(for: reference)?
             .symbolsById[reference.name]?
             .first { $0.variant?.id == reference.variant }
     }

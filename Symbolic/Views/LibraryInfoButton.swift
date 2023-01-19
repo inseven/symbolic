@@ -18,36 +18,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import XCTest
-@testable import Symbolic
-@testable import SwiftDraw
+import SwiftUI
 
-final class SymbolicTests: XCTestCase {
+import Diligence
 
-    override func setUpWithError() throws {
-    }
+struct LibraryInfoButton: View {
 
-    override func tearDownWithError() throws {
-    }
+    let library: Library
 
-    func testLoadSymbols() throws {
+    @State var isPresented: Bool = false
 
-        var count = 0
-        for library in LibraryManager.shared.sets {
-            for symbol in library.symbols {
-                if symbol.format == .svg, let url = symbol.url {
-                    autoreleasepool {
-                        let svg = SVG(fileURL: url)
-                        XCTAssertNotNil(svg)
-                        XCTAssertNotNil(svg?.rasterize(with: CGSize(width: 1024, height: 1024)))
-                        count = count + 1
-                    }
-                }
+    var body: some View {
+        HStack(spacing: 4.0) {
+            Text(library.name)
+            Button {
+                isPresented.toggle()
+            } label: {
+                Image(systemName: "info.circle")
+            }
+            .buttonStyle(.plain)
+            .popover(isPresented: $isPresented) {
+                LibraryInfoView(library: library)
             }
         }
-
-        XCTAssertEqual(count, 10751)
-
     }
 
 }
