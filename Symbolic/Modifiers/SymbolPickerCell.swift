@@ -47,3 +47,11 @@ struct SymbolPickerCell: ViewModifier {
     }
 
 }
+
+extension View {
+
+    func symbolPickerCell(isHighlighted: Bool) -> some View {
+        return modifier(SymbolPickerCell(isHighlighted: isHighlighted))
+    }
+
+}
