@@ -20,6 +20,7 @@
 
 import SwiftUI
 
+import Diligence
 import Interact
 
 struct SymbolPicker: View {
@@ -50,55 +51,60 @@ struct SymbolPicker: View {
 
     var body: some View {
         LabeledContent("Symbol") {
-            Button {
-                isPresented = true
-            } label: {
-                HStack {
-                    SymbolView(symbol: selection.wrappedValue)
-                }
-                .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
-            }
-            .controlSize(.large)
-            .popover(isPresented: $isPresented) {
-
-                VStack(spacing: 0) {
-                    TextField(text: $model.filter, prompt: Text("Search")) {
-                        EmptyView()
+            VStack(alignment: .trailing) {
+                Button {
+                    isPresented = true
+                } label: {
+                    HStack {
+                        SymbolView(symbol: selection.wrappedValue)
                     }
-                    .multilineTextAlignment(.leading)
-                    .textFieldStyle(.roundedBorder)
-                    .padding()
-                    .background(Color(nsColor: NSColor.controlBackgroundColor))
+                    .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
+                }
+                .controlSize(.large)
+                .popover(isPresented: $isPresented) {
 
-                    ScrollView {
-                        LazyVGrid(columns: columns,
-                                  spacing: LayoutMetrics.interItemSpacing,
-                                  pinnedViews: [.sectionHeaders]) {
-                            ForEach(model.filteredSymbols) { section in
-                                Section {
-                                    ForEach(section.symbols) { symbol in
-                                        SymbolView(symbol: symbol.reference)
-                                            .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
-                                            .onTapGesture {
-                                                isPresented = false
-                                                selection.wrappedValue = symbol.reference
-                                            }
-                                            .help(symbol.localizedDescription)
+                    VStack(spacing: 0) {
+                        TextField(text: $model.filter, prompt: Text("Search")) {
+                            EmptyView()
+                        }
+                        .multilineTextAlignment(.leading)
+                        .textFieldStyle(.roundedBorder)
+                        .padding()
+                        .background(Color(nsColor: NSColor.controlBackgroundColor))
+
+                        ScrollView {
+                            LazyVGrid(columns: columns,
+                                      spacing: LayoutMetrics.interItemSpacing,
+                                      pinnedViews: [.sectionHeaders]) {
+                                ForEach(model.filteredSymbols) { section in
+                                    Section {
+                                        ForEach(section.symbols) { symbol in
+                                            SymbolView(symbol: symbol.reference)
+                                                .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
+                                                .onTapGesture {
+                                                    isPresented = false
+                                                    selection.wrappedValue = symbol.reference
+                                                }
+                                                .help(symbol.localizedDescription)
+                                        }
+                                    } header: {
+                                        Text(section.name)
+                                            .textCase(.uppercase)
+                                            .horizontalSpace(.trailing)
+                                            .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
+                                            .background(Color(nsColor: NSColor.controlBackgroundColor))
                                     }
-                                } header: {
-                                    Text(section.name)
-                                        .textCase(.uppercase)
-                                        .horizontalSpace(.trailing)
-                                        .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
-                                        .background(Color(nsColor: NSColor.controlBackgroundColor))
                                 }
                             }
+                                      .padding([.leading, .trailing, .bottom])
                         }
-                        .padding([.leading, .trailing, .bottom])
                     }
+                    .background(Color(nsColor: NSColor.controlBackgroundColor))
+                    .frame(height: LayoutMetrics.height)
                 }
-                .background(Color(nsColor: NSColor.controlBackgroundColor))
-                .frame(height: LayoutMetrics.height)
+                if let set = SymbolManager.shared.set(for: selection.wrappedValue) {
+                    SetDetails(set: set)
+                }
             }
         }
         .onAppear {
@@ -108,6 +114,33 @@ struct SymbolPicker: View {
             model.stop()
         }
 
+    }
+
+}
+
+struct SetDetails: View {
+
+    let set: SymbolSet
+
+    @State var isPresented: Bool = false
+
+    var body: some View {
+        HStack(spacing: 4.0) {
+            Text(set.name)
+            Button {
+                isPresented.toggle()
+            } label: {
+                Image(systemName: "info.circle")
+            }
+            .buttonStyle(.plain)
+            .popover(isPresented: $isPresented) {
+                if let licenseUrl = set.licenseUrl {
+                    LicenseView(license: License(set.name, author: set.author, url: licenseUrl))
+                } else {
+                    LicenseView(license: License(set.name, author: set.author, text: "Unknown"))
+                }
+            }
+        }
     }
 
 }
