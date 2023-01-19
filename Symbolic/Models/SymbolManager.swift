@@ -43,7 +43,7 @@ class SymbolManager {
         return self
             .set(for: reference)?
             .symbolsById[reference.name]?
-            .first { $0.variant == reference.variant }
+            .first { $0.variant?.id == reference.variant }
     }
 
 }

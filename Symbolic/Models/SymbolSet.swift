@@ -33,6 +33,13 @@ extension Array where Element == Symbol {
 
 }
 
+struct Variant {
+
+    let id: String
+    let name: String
+
+}
+
 struct SymbolSet {
 
     let id: String
@@ -41,18 +48,26 @@ struct SymbolSet {
     let symbolsById: [String:[Symbol]]
     let author: String
     let licenseUrl: URL?
+    let variants: [String: Variant]
 
     static var sfSymbols: SymbolSet = {
-        return SymbolSet(id: "sf-symbols", name: "SF Symbols", author: "Apple Inc", symbols: SFSymbols.allSymbols)
+        return SymbolSet(id: "sf-symbols",
+                         name: "SF Symbols",
+                         author: "Apple Inc",
+                         symbols: SFSymbols.allSymbols,
+                         variants: [])
     }()
 
-    init(id: String, name: String, author: String, symbols: [Symbol]) {
+    init(id: String, name: String, author: String, symbols: [Symbol], variants: [Variant]) {
         self.id = id
         self.name = name
         self.author = author
         self.symbols = symbols
         self.symbolsById = symbols.lookup()
         self.licenseUrl = nil
+        self.variants = variants.reduce(into: [String: Variant]()) { partialResult, variant in
+            partialResult[variant.id] = variant
+        }
     }
 
     init(directory: String) throws {
@@ -64,19 +79,34 @@ struct SymbolSet {
 
         // TODO: Exist cleanly if unable to load license
 
-        self.id = manifest.id
-        self.name = manifest.name
-        self.symbols = manifest.symbols.map { symbol in
+        let variants = manifest.variants.map { (id, variant) in
+            return Variant(id: id, name: variant.name)
+        }.reduce(into: [String: Variant]()) { partialResult, variant in
+            partialResult[variant.id] = variant
+        }
+
+        let symbols: [Symbol] = manifest.symbols.map { symbol in
             let variants = symbol.variants.map { (identifier, variant) in
                 let url = Bundle.main.url(forResource: variant.path, withExtension: nil, subdirectory: directory)
                 let reference = SymbolReference(family: manifest.id, name: symbol.id, variant: identifier)
-                return Symbol(reference: reference, name: symbol.name, format: .svg, url: url)
+                let variant: Variant?
+                if let variantId = reference.variant {
+                    variant = variants[variantId]
+                } else {
+                    variant = nil
+                }
+                return Symbol(reference: reference, variant: variant, name: symbol.name, format: .svg, url: url)
             }
             return variants
         }.reduce([], +)
+
+        self.id = manifest.id
+        self.name = manifest.name
+        self.symbols = symbols
         self.symbolsById = symbols.lookup()
         self.author = manifest.author
         self.licenseUrl = Bundle.main.url(forResource: manifest.license, withExtension: nil, subdirectory: directory)!
+        self.variants = variants
     }
 
 }

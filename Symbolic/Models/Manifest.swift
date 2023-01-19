@@ -22,6 +22,10 @@ import Foundation
 
 struct Manifest: Codable {
 
+    struct VariantDefinition: Codable {
+        let name: String
+    }
+
     struct Variant: Codable {
         let path: String
     }
@@ -31,11 +35,12 @@ struct Manifest: Codable {
         let name: String
         let variants: [String: Variant]
     }
-
+    
     let id: String
     let name: String
     let author: String
     let license: String
+    let variants: [String: VariantDefinition]
     let symbols: [Symbol]
 
 }

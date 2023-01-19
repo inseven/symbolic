@@ -17,12 +17,30 @@ def main():
     parser.add_argument("repository")
     options = parser.parse_args()
 
-    manifest = {}
-    manifest["id"] = "material-icons"
-    manifest["name"] = "Material Icons"
-    manifest["author"] = "Google"
-    manifest["license"] = "LICENSE"
-    manifest["symbols"] = []
+    manifest = {
+        "id": "material-icons",
+        "name": "Material Icons",
+        "author": "Google",
+        "license": "LICENSE",
+        "variants": {
+            "default": {
+                "name": "Default",
+            },
+            "outlined": {
+                "name": "Outlined"
+            },
+            "twotone": {
+                "name": "Two Tone",
+            },
+            "round": {
+                "name": "Round",
+            },
+            "sharp": {
+                "name": "Sharp",
+            },
+        },
+        "symbols": [],
+    }
 
     repository_directory = os.path.abspath(options.repository)
     license_path = os.path.join(repository_directory, "LICENSE")
@@ -34,6 +52,7 @@ def main():
         category_path = os.path.join(src_directory, category)
         icons = os.listdir(category_path)
         for icon in icons:
+            print("Importing '%s'..." % icon)
             symbol = {
                 "id": icon,
                 "name": icon.replace("_", " ").title(),
@@ -47,6 +66,8 @@ def main():
                 assert variant.startswith("materialicons")
                 variant_name = variant[len("materialicons"):]
                 variant_key = variant_name if variant_name else "default"
+                if variant_key not in manifest["variants"]:
+                    exit("Variant '%s' not defined in manfiest." % variant_key)
                 icon_path = os.path.join(category_path, icon, variant, "24px.svg")
                 basename = "%s.%s.svg" % (icon, variant_key)
                 shutil.copyfile(icon_path, os.path.join(MATERIAL_ICONS_DIRECTORY, basename))
