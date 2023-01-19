@@ -3,6 +3,23 @@
     "name": "Material Icons",
     "author": "Google",
     "license": "LICENSE",
+    "variants": {
+        "default": {
+            "name": "Default"
+        },
+        "outlined": {
+            "name": "Outlined"
+        },
+        "twotone": {
+            "name": "Two Tone"
+        },
+        "round": {
+            "name": "Round"
+        },
+        "sharp": {
+            "name": "Sharp"
+        }
+    },
     "symbols": [
         {
             "id": "agriculture",

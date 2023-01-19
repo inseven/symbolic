@@ -26,18 +26,30 @@ struct Symbol: Identifiable {
         return reference.id
     }
 
-    var variant: String? {
-        return reference.variant
-    }
-
     enum Format {
         case svg
         case symbol
     }
 
     let reference: SymbolReference
+    let variant: Variant?
     let name: String
     let format: Format
     let url: URL?
+
+    var localizedDescription: String {
+        guard let variant = variant else {
+            return name
+        }
+        return "\(name) (\(variant.name))"
+    }
+
+    init(reference: SymbolReference, variant: Variant? = nil, name: String, format: Format, url: URL? = nil) {
+        self.reference = reference
+        self.variant = variant
+        self.name = name
+        self.format = format
+        self.url = url
+    }
 
 }

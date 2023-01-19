@@ -79,7 +79,7 @@ struct SymbolPicker: View {
                                                 isPresented = false
                                                 selection.wrappedValue = symbol.reference
                                             }
-                                            .help(symbol.name)
+                                            .help(symbol.localizedDescription)
                                     }
                                 } header: {
                                     Text(section.name)
