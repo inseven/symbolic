@@ -28,6 +28,8 @@ struct SymbolPicker: View {
         static let itemSize = 38.0
         static let interItemSpacing = 6.0
         static let height = 400.0
+        static let buttonSize = CGSize(width: 24.0, height: 24.0)
+        static let sectionHeaderVerticalPadding = 8.0
     }
 
     var title: String
@@ -54,7 +56,7 @@ struct SymbolPicker: View {
                 HStack {
                     SymbolView(symbol: selection.wrappedValue)
                 }
-                .frame(width: 24, height: 24)
+                .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
             }
             .controlSize(.large)
             .popover(isPresented: $isPresented) {
@@ -69,7 +71,9 @@ struct SymbolPicker: View {
                     .background(Color(nsColor: NSColor.controlBackgroundColor))
 
                     ScrollView {
-                        LazyVGrid(columns: columns, spacing: LayoutMetrics.interItemSpacing, pinnedViews: [.sectionHeaders]) {
+                        LazyVGrid(columns: columns,
+                                  spacing: LayoutMetrics.interItemSpacing,
+                                  pinnedViews: [.sectionHeaders]) {
                             ForEach(model.filteredSymbols) { section in
                                 Section {
                                     ForEach(section.symbols) { symbol in
@@ -85,7 +89,7 @@ struct SymbolPicker: View {
                                     Text(section.name)
                                         .textCase(.uppercase)
                                         .horizontalSpace(.trailing)
-                                        .padding([.top, .bottom], 8.0)
+                                        .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
                                         .background(Color(nsColor: NSColor.controlBackgroundColor))
                                 }
                             }
