@@ -57,48 +57,38 @@ struct LibraryInfoView: View {
             VStack {
                 LabeledContent("Name", value: library.name)
                 Divider()
+
                 LabeledContent("Author", value: library.author)
-                Divider()
+                if library.warning != nil || library.licenseUrl != nil {
+                    Divider()
+                }
+
                 if let warning = library.warning {
                     HStack {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .symbolRenderingMode(.multicolor)
                         Text(warning.plain)
                     }
-                    Divider()
+                    if library.licenseUrl != nil {
+                        Divider()
+                    }
                 }
+
                 if let licenseUrl = library.licenseUrl,
                    let licenseText = try? String(contentsOf: licenseUrl) {
                     Text(licenseText)
-                } else {
-                    Text("Unknown")
                 }
+
             }
             .padding()
             .labeledContentStyle(.info)
         }
         .multilineTextAlignment(.leading)
-        .safeAreaInset(edge: .bottom) {
-            VStack(spacing: 0) {
-                Divider()
-                HStack {
-                    Spacer()
-                    Button("Copy") {
-                        if let licenseUrl = library.licenseUrl,
-                           let licenseText = try? String(contentsOf: licenseUrl) {
-                            NSPasteboard.general.clearContents()
-                            NSPasteboard.general.setString(licenseText, forType: .string)
-                        }
-                    }
-                }
-                .padding()
-            }
-            .background(Color.textBackgroundColor)
-        }
         .background(Color.textBackgroundColor)
         .navigationTitle(library.name)
-        .frame(width: LayoutMetrics.width, height: LayoutMetrics.height)
+        .frame(idealWidth: LayoutMetrics.width, maxWidth: LayoutMetrics.width, maxHeight: LayoutMetrics.height)
         .foregroundColor(.primary)
+        .textSelection(.enabled)
     }
 
 }

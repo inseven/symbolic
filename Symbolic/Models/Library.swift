@@ -57,7 +57,7 @@ struct Library {
                        author: "Apple Inc",
                        symbols: SFSymbols.allSymbols,
                        variants: [],
-                       warning: FormattedText(plain: "SF Symbols are not licensed under a permissive license and are prohibited from use as icons.", html: nil))
+                       warning: FormattedText(plain: "SF Symbols are licensed under a non-permissive license and are prohibited from use as icons.", html: nil))
     }()
 
     init(id: String,

@@ -32,7 +32,7 @@ struct LibraryInfoButton: View {
         HStack(spacing: 4.0) {
             Text(library.name)
             Button {
-                isPresented.toggle()
+                isPresented = true
             } label: {
                 if library.warning == nil {
                     Image(systemName: "info.circle")
@@ -42,7 +42,7 @@ struct LibraryInfoButton: View {
                 }
             }
             .buttonStyle(.plain)
-            .popover(isPresented: $isPresented) {
+            .popover(isPresented: $isPresented, attachmentAnchor: .point(.bottom), arrowEdge: .bottom) {
                 LibraryInfoView(library: library)
             }
         }
