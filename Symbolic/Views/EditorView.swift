@@ -22,7 +22,7 @@ import SwiftUI
 
 import Interact
 
-struct SettingsView: View {
+struct EditorView: View {
 
     @Environment(\.undoManager) var undoManager
 

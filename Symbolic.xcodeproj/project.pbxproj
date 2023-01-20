@@ -33,7 +33,7 @@
 		D84868EE296AE486009FDF32 /* IconDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868ED296AE486009FDF32 /* IconDefinition.swift */; };
 		D84868F0296AE616009FDF32 /* IconSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868EF296AE616009FDF32 /* IconSection.swift */; };
 		D84B5D6F296C5229005E6C59 /* SceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B5D6E296C5229005E6C59 /* SceneModel.swift */; };
-		D84B5D71296C52BE005E6C59 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B5D70296C52BE005E6C59 /* SettingsView.swift */; };
+		D84B5D71296C52BE005E6C59 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B5D70296C52BE005E6C59 /* EditorView.swift */; };
 		D84B5D74296C5540005E6C59 /* Template.symbolic in Resources */ = {isa = PBXBuildFile; fileRef = D84B5D73296C5540005E6C59 /* Template.symbolic */; };
 		D857297C296C176C0037E58F /* SymbolPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D857297B296C176C0037E58F /* SymbolPickerCell.swift */; };
 		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
@@ -114,7 +114,7 @@
 		D84868ED296AE486009FDF32 /* IconDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDefinition.swift; sourceTree = "<group>"; };
 		D84868EF296AE616009FDF32 /* IconSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSection.swift; sourceTree = "<group>"; };
 		D84B5D6E296C5229005E6C59 /* SceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModel.swift; sourceTree = "<group>"; };
-		D84B5D70296C52BE005E6C59 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D84B5D70296C52BE005E6C59 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		D84B5D73296C5540005E6C59 /* Template.symbolic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Template.symbolic; sourceTree = "<group>"; };
 		D857297B296C176C0037E58F /* SymbolPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerCell.swift; sourceTree = "<group>"; };
 		D864A2382965999C008A4261 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
@@ -222,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				D8CD4A7F28AC35C300D57F34 /* ContentView.swift */,
+				D84B5D70296C52BE005E6C59 /* EditorView.swift */,
 				D84868E7296ACC58009FDF32 /* Header.swift */,
 				D821B9EB28ACDC2600504AA4 /* IconCorners.swift */,
 				D826B5CC296B312300693D27 /* IconPreview.swift */,
@@ -231,7 +232,6 @@
 				D8E4C3C02979809D00A25DF9 /* LibraryInfoView.swift */,
 				D864A23B2965E239008A4261 /* MacIconView.swift */,
 				D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */,
-				D84B5D70296C52BE005E6C59 /* SettingsView.swift */,
 				D886619F297AC14A001E41DD /* SimpleHTMLView.swift */,
 				D8CB5A472971C4B5002007C4 /* SVGImage.swift */,
 				D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */,
@@ -548,7 +548,7 @@
 				D8B0B1F1296CD4AB00F907BE /* OffsetGuide.swift in Sources */,
 				D821B9EC28ACDC2600504AA4 /* IconCorners.swift in Sources */,
 				D821B9EE28ACDC6F00504AA4 /* SymbolPicker.swift in Sources */,
-				D84B5D71296C52BE005E6C59 /* SettingsView.swift in Sources */,
+				D84B5D71296C52BE005E6C59 /* EditorView.swift in Sources */,
 				D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */,
 				D857297C296C176C0037E58F /* SymbolPickerCell.swift in Sources */,
 				D84868F0296AE616009FDF32 /* IconSection.swift in Sources */,

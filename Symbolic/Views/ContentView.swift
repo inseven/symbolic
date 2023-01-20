@@ -50,7 +50,7 @@ struct ContentView: View {
             .frame(maxWidth: .infinity, minHeight: 400)
             .cacheVectorGraphics(true)
             Divider()
-            SettingsView(sceneModel: sceneModel, document: document)
+            EditorView(sceneModel: sceneModel, document: document)
                 .frame(width: 300)
         }
         .focusedSceneObject(document)
