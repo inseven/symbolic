@@ -20,8 +20,6 @@
 
 import SwiftUI
 
-import Diligence
-
 struct LibraryInfoView: View {
 
     static let html = """
@@ -47,7 +45,6 @@ struct LibraryInfoView: View {
 
     let library: Library
 
-
     public init(library: Library) {
         self.library = library
     }
@@ -55,7 +52,11 @@ struct LibraryInfoView: View {
     public var body: some View {
         ScrollView {
             VStack {
-                LabeledContent("Name", value: library.name)
+                LabeledContent("Library") {
+                    Text(library.name)
+                        .conditionalLink(library.url)
+                }
+
                 Divider()
 
                 LabeledContent("Author", value: library.author)

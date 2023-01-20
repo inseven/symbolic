@@ -20,8 +20,12 @@ def main():
     manifest = {
         "id": "material-icons",
         "name": "Material Icons",
+        "url": "https://fonts.google.com/icons",
         "author": "Google",
-        "license": "LICENSE",
+        "license": {
+            "path": "LICENSE",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
         "variants": {
             "default": {
                 "name": "Default",
