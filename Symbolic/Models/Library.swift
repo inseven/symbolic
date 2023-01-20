@@ -44,9 +44,10 @@ struct Library {
 
     let id: String
     let name: String
+    let author: String
+    let url: URL?
     let symbols: [Symbol]
     let symbolsById: [String:[Symbol]]
-    let author: String
     let licenseUrl: URL?
     let variants: [String: Variant]
     let warning: FormattedText?
@@ -55,6 +56,7 @@ struct Library {
         return Library(id: "sf-symbols",
                        name: "SF Symbols",
                        author: "Apple Inc",
+                       url: URL(string: "https://developer.apple.com/sf-symbols/")!,
                        symbols: SFSymbols.allSymbols,
                        variants: [],
                        warning: FormattedText(plain: "SF Symbols are licensed under a non-permissive license and are prohibited from use as icons.", html: nil))
@@ -63,12 +65,14 @@ struct Library {
     init(id: String,
          name: String,
          author: String,
+         url: URL? = nil,
          symbols: [Symbol],
          variants: [Variant],
          warning: FormattedText? = nil) {
         self.id = id
         self.name = name
         self.author = author
+        self.url = url
         self.symbols = symbols
         self.symbolsById = symbols.lookup()
         self.licenseUrl = nil
@@ -110,10 +114,11 @@ struct Library {
 
         self.id = manifest.id
         self.name = manifest.name
+        self.author = manifest.author
+        self.url = manifest.url
         self.symbols = symbols
         self.symbolsById = symbols.lookup()
-        self.author = manifest.author
-        self.licenseUrl = Bundle.main.url(forResource: manifest.license, withExtension: nil, subdirectory: directory)!
+        self.licenseUrl = Bundle.main.url(forResource: manifest.license.path, withExtension: nil, subdirectory: directory)!
         self.variants = variants
         self.warning = nil
     }

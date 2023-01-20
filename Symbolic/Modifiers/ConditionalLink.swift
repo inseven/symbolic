@@ -18,35 +18,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Foundation
+import SwiftUI
 
-struct Manifest: Codable {
+struct ConditionalLink: ViewModifier {
 
-    struct VariantDefinition: Codable {
-        let name: String
-    }
+    @Environment(\.openURL) var openURL
 
-    struct Variant: Codable {
-        let path: String
-    }
-
-    struct Symbol: Codable {
-        let id: String
-        let name: String
-        let variants: [String: Variant]
-    }
-
-    struct License: Codable {
-        let path: String
-        let url: URL?
-    }
-    
-    let id: String
-    let name: String
-    let author: String
     let url: URL?
-    let license: License
-    let variants: [String: VariantDefinition]
-    let symbols: [Symbol]
+
+    func body(content: Content) -> some View {
+        if let url = url {
+            Button {
+                openURL(url)
+            } label: {
+                content
+            }
+            .buttonStyle(.plain)
+            .foregroundColor(.accentColor)
+            .underline()
+        } else {
+            content
+        }
+    }
+
+}
+
+extension View {
+
+    func conditionalLink(_ url: URL?) -> some View {
+        modifier(ConditionalLink(url: url))
+    }
 
 }
