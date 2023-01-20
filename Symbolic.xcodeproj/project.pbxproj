@@ -40,6 +40,9 @@
 		D864A23C2965E239008A4261 /* MacIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864A23B2965E239008A4261 /* MacIconView.swift */; };
 		D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ECE291BEF7400352367 /* IconDocument.swift */; };
 		D86B0ED1291BEFC100352367 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ED0291BEFC100352367 /* UTType.swift */; };
+		D886619E2979DCB2001E41DD /* XMLParsing in Frameworks */ = {isa = PBXBuildFile; productRef = D886619D2979DCB2001E41DD /* XMLParsing */; };
+		D88661A0297AC14B001E41DD /* SimpleHTMLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D886619F297AC14A001E41DD /* SimpleHTMLView.swift */; };
+		D88661A3297AC893001E41DD /* InfoLabeledContentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */; };
 		D8B0B1F1296CD4AB00F907BE /* OffsetGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */; };
 		D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61307293BB81100F29E0C /* AboutCommands.swift */; };
 		D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61309293BB98100F29E0C /* ApplicationModel.swift */; };
@@ -118,6 +121,8 @@
 		D864A23B2965E239008A4261 /* MacIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacIconView.swift; sourceTree = "<group>"; };
 		D86B0ECE291BEF7400352367 /* IconDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDocument.swift; sourceTree = "<group>"; };
 		D86B0ED0291BEFC100352367 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
+		D886619F297AC14A001E41DD /* SimpleHTMLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHTMLView.swift; sourceTree = "<group>"; };
+		D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabeledContentStyle.swift; sourceTree = "<group>"; };
 		D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetGuide.swift; sourceTree = "<group>"; };
 		D8B61307293BB81100F29E0C /* AboutCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommands.swift; sourceTree = "<group>"; };
 		D8B61309293BB98100F29E0C /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
@@ -157,6 +162,7 @@
 				D831DD1C297319FC00C20B11 /* SwiftDraw in Frameworks */,
 				D864A23A2965A2D1008A4261 /* Interact in Frameworks */,
 				D8F99EC628B13998007C3868 /* Diligence in Frameworks */,
+				D886619E2979DCB2001E41DD /* XMLParsing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +232,7 @@
 				D864A23B2965E239008A4261 /* MacIconView.swift */,
 				D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */,
 				D84B5D70296C52BE005E6C59 /* SettingsView.swift */,
+				D886619F297AC14A001E41DD /* SimpleHTMLView.swift */,
 				D8CB5A472971C4B5002007C4 /* SVGImage.swift */,
 				D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */,
 				D8CB5A392970E8DB002007C4 /* SymbolView.swift */,
@@ -258,6 +265,14 @@
 				D84B5D73296C5540005E6C59 /* Template.symbolic */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D88661A1297AC880001E41DD /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */,
+			);
+			path = Styles;
 			sourceTree = "<group>";
 		};
 		D8B61306293BB7FF00F29E0C /* Commands */ = {
@@ -315,6 +330,7 @@
 				D8CB5A492971C536002007C4 /* Modifiers */,
 				D8CD4A8328AC35C600D57F34 /* Preview Content */,
 				D84B5D72296C5530005E6C59 /* Resources */,
+				D88661A1297AC880001E41DD /* Styles */,
 				D821B9EF28ACF0A900504AA4 /* Symbols */,
 				D8D9730F28ACF8BA006CBF15 /* Toolbars */,
 				D821B9E628ACDBCB00504AA4 /* Views */,
@@ -401,6 +417,7 @@
 				D8F99EC528B13998007C3868 /* Diligence */,
 				D864A2392965A2D1008A4261 /* Interact */,
 				D831DD1B297319FC00C20B11 /* SwiftDraw */,
+				D886619D2979DCB2001E41DD /* XMLParsing */,
 			);
 			productName = Iconify;
 			productReference = D8CD4A7A28AC35C300D57F34 /* Symbolic.app */;
@@ -476,6 +493,7 @@
 			mainGroup = D8CD4A7128AC35C300D57F34;
 			packageReferences = (
 				D831DD1A297319FC00C20B11 /* XCRemoteSwiftPackageReference "SwiftDraw" */,
+				D886619C2979DCB2001E41DD /* XCRemoteSwiftPackageReference "XMLParsing" */,
 			);
 			productRefGroup = D8CD4A7B28AC35C300D57F34 /* Products */;
 			projectDirPath = "";
@@ -548,6 +566,7 @@
 				D826B5CD296B312300693D27 /* IconPreview.swift in Sources */,
 				D84868EE296AE486009FDF32 /* IconDefinition.swift in Sources */,
 				D821B9EA28ACDBF700504AA4 /* String.swift in Sources */,
+				D88661A3297AC893001E41DD /* InfoLabeledContentStyle.swift in Sources */,
 				D8CB5A442971925A002007C4 /* Symbol.swift in Sources */,
 				D821B9E428ACDBA800504AA4 /* IconView.swift in Sources */,
 				D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */,
@@ -567,6 +586,7 @@
 				D826B5D0296B478400693D27 /* CenteredFlowLayout.swift in Sources */,
 				D8CB5A4229718D23002007C4 /* LibraryManager.swift in Sources */,
 				D84868EC296AE437009FDF32 /* IconSet.swift in Sources */,
+				D88661A0297AC14B001E41DD /* SimpleHTMLView.swift in Sources */,
 				D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */,
 				D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */,
 			);
@@ -910,6 +930,14 @@
 				minimumVersion = 0.9.6;
 			};
 		};
+		D886619C2979DCB2001E41DD /* XCRemoteSwiftPackageReference "XMLParsing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ShawnMoore/XMLParsing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -921,6 +949,11 @@
 		D864A2392965A2D1008A4261 /* Interact */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Interact;
+		};
+		D886619D2979DCB2001E41DD /* XMLParsing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D886619C2979DCB2001E41DD /* XCRemoteSwiftPackageReference "XMLParsing" */;
+			productName = XMLParsing;
 		};
 		D8F99EC528B13998007C3868 /* Diligence */ = {
 			isa = XCSwiftPackageProductDependency;

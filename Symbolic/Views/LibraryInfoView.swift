@@ -24,12 +24,29 @@ import Diligence
 
 struct LibraryInfoView: View {
 
+    static let html = """
+<html>
+    <head></head>
+    <body>
+        <h1>Title</h1>
+        <h2>Subtitle</h2>
+        <strong>Cheese</strong>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent facilisis facilisis vulputate. Nulla accumsan mauris sem, ac rhoncus urna ullamcorper quis. Nunc in commodo tellus. Integer pharetra auctor pulvinar. Mauris gravida justo eu eros lobortis convallis. Quisque ut turpis fringilla, consectetur velit vel, congue magna. Morbi congue pulvinar porttitor. Quisque id justo facilisis, fringilla nisl ac, porttitor mi. Etiam accumsan mauris a nibh fermentum, non pretium felis euismod. Aliquam blandit libero a ante lobortis tincidunt.</p>
+        <ol>
+            <li>Random news</li>
+            <li>Obscure something</li>
+        </ol>
+    </body>
+</html>
+"""
+
     private struct LayoutMetrics {
-        static let width = 400.0
-        static let height = 500.0
+        static let width = 300.0
+        static let height = 400.0
     }
 
-    var library: Library
+    let library: Library
+
 
     public init(library: Library) {
         self.library = library
@@ -38,44 +55,40 @@ struct LibraryInfoView: View {
     public var body: some View {
         ScrollView {
             VStack {
-                HStack {
-                    Text("Author")
-                    Spacer()
-                    Text(library.author)
-                        .foregroundColor(.secondary)
-                }
+                LabeledContent("Name", value: library.name)
                 Divider()
+
+                LabeledContent("Author", value: library.author)
+                if library.warning != nil || library.licenseUrl != nil {
+                    Divider()
+                }
+
+                if let warning = library.warning {
+                    HStack {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .symbolRenderingMode(.multicolor)
+                        Text(warning.plain)
+                    }
+                    if library.licenseUrl != nil {
+                        Divider()
+                    }
+                }
+
                 if let licenseUrl = library.licenseUrl,
                    let licenseText = try? String(contentsOf: licenseUrl) {
                     Text(licenseText)
-                        .multilineTextAlignment(.leading)
-                } else {
-                    Text("Unknwon")
                 }
+
             }
             .padding()
+            .labeledContentStyle(.info)
         }
-        .safeAreaInset(edge: .bottom) {
-            VStack(spacing: 0) {
-                Divider()
-                HStack {
-                    Spacer()
-                    Button("Copy") {
-                        if let licenseUrl = library.licenseUrl,
-                           let licenseText = try? String(contentsOf: licenseUrl) {
-                            NSPasteboard.general.clearContents()
-                            NSPasteboard.general.setString(licenseText, forType: .string)
-                        }
-                    }
-                }
-                .padding()
-            }
-            .background(Color.textBackgroundColor)
-        }
+        .multilineTextAlignment(.leading)
         .background(Color.textBackgroundColor)
         .navigationTitle(library.name)
-        .frame(width: LayoutMetrics.width, height: LayoutMetrics.height)
+        .frame(idealWidth: LayoutMetrics.width, maxWidth: LayoutMetrics.width, maxHeight: LayoutMetrics.height)
         .foregroundColor(.primary)
+        .textSelection(.enabled)
     }
 
 }

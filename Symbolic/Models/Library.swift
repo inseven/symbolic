@@ -33,6 +33,13 @@ extension Array where Element == Symbol {
 
 }
 
+struct FormattedText {
+
+    let plain: String
+    let html: String?
+
+}
+
 struct Library {
 
     let id: String
@@ -42,16 +49,23 @@ struct Library {
     let author: String
     let licenseUrl: URL?
     let variants: [String: Variant]
+    let warning: FormattedText?
 
     static var sfSymbols: Library = {
         return Library(id: "sf-symbols",
-                         name: "SF Symbols",
-                         author: "Apple Inc",
-                         symbols: SFSymbols.allSymbols,
-                         variants: [])
+                       name: "SF Symbols",
+                       author: "Apple Inc",
+                       symbols: SFSymbols.allSymbols,
+                       variants: [],
+                       warning: FormattedText(plain: "SF Symbols are licensed under a non-permissive license and are prohibited from use as icons.", html: nil))
     }()
 
-    init(id: String, name: String, author: String, symbols: [Symbol], variants: [Variant]) {
+    init(id: String,
+         name: String,
+         author: String,
+         symbols: [Symbol],
+         variants: [Variant],
+         warning: FormattedText? = nil) {
         self.id = id
         self.name = name
         self.author = author
@@ -61,6 +75,7 @@ struct Library {
         self.variants = variants.reduce(into: [String: Variant]()) { partialResult, variant in
             partialResult[variant.id] = variant
         }
+        self.warning = warning
     }
 
     init(directory: String) throws {
@@ -70,7 +85,7 @@ struct Library {
         let data = try Data(contentsOf: manifestURL)
         let manifest = try JSONDecoder().decode(Manifest.self, from: data)
 
-        // TODO: Exist cleanly if unable to load license
+        // TODO: Exit cleanly if unable to load license
 
         let variants = manifest.variants.map { (id, variant) in
             return Variant(id: id, name: variant.name)
@@ -100,6 +115,7 @@ struct Library {
         self.author = manifest.author
         self.licenseUrl = Bundle.main.url(forResource: manifest.license, withExtension: nil, subdirectory: directory)!
         self.variants = variants
+        self.warning = nil
     }
 
 }

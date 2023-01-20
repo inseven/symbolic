@@ -20,32 +20,23 @@
 
 import SwiftUI
 
-import Diligence
+struct InfoLabeledContentStyle: LabeledContentStyle {
 
-struct LibraryInfoButton: View {
-
-    let library: Library
-
-    @State var isPresented: Bool = false
-
-    var body: some View {
-        HStack(spacing: 4.0) {
-            Text(library.name)
-            Button {
-                isPresented = true
-            } label: {
-                if library.warning == nil {
-                    Image(systemName: "info.circle")
-                } else {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .symbolRenderingMode(.multicolor)
-                }
-            }
-            .buttonStyle(.plain)
-            .popover(isPresented: $isPresented, attachmentAnchor: .point(.bottom), arrowEdge: .bottom) {
-                LibraryInfoView(library: library)
-            }
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            configuration.label
+            Spacer()
+            configuration.content
+                .foregroundColor(.secondary)
         }
+    }
+
+}
+
+extension LabeledContentStyle where Self == InfoLabeledContentStyle {
+
+    static var info: InfoLabeledContentStyle {
+        InfoLabeledContentStyle()
     }
 
 }
