@@ -23,6 +23,7 @@ def main():
         "url": "https://fonts.google.com/icons",
         "author": "Google",
         "license": {
+            "name": "Apache License, Version 2.0",
             "path": "LICENSE",
             "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
         },

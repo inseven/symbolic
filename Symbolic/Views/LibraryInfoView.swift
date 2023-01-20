@@ -56,11 +56,16 @@ struct LibraryInfoView: View {
                     Text(library.name)
                         .conditionalLink(library.url)
                 }
-
                 Divider()
 
                 LabeledContent("Author", value: library.author)
-                if library.warning != nil || library.licenseUrl != nil {
+                Divider()
+
+                LabeledContent("License") {
+                    Text(library.license.name)
+                        .conditionalLink(library.license.url)
+                }
+                if library.warning != nil || library.license.fileURL != nil {
                     Divider()
                 }
 
@@ -70,12 +75,12 @@ struct LibraryInfoView: View {
                             .symbolRenderingMode(.multicolor)
                         Text(warning.plain)
                     }
-                    if library.licenseUrl != nil {
+                    if library.license.fileURL != nil {
                         Divider()
                     }
                 }
 
-                if let licenseUrl = library.licenseUrl,
+                if let licenseUrl = library.license.fileURL,
                    let licenseText = try? String(contentsOf: licenseUrl) {
                     Text(licenseText)
                 }

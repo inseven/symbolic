@@ -186,8 +186,8 @@ class ApplicationModel: ObservableObject {
             License("Symbolic", author: "InSeven Limited", filename: "symbolic-license")
             License("SwiftDraw", author: "Simon Whitty", filename: "swiftdraw-license")
 
-            for library in LibraryManager.shared.sets.filter({ $0.licenseUrl != nil }) {
-                License(library.name, author: library.author, url: library.licenseUrl!)
+            for library in LibraryManager.shared.sets.filter({ $0.license.fileURL != nil }) {
+                License(library.name, author: library.author, url: library.license.fileURL!)
             }
         }
     }()
@@ -234,7 +234,7 @@ class ApplicationModel: ObservableObject {
                     }
                 }
             }
-            if let licenseUrl = LibraryManager.shared.library(for: icon.symbol)?.licenseUrl {
+            if let licenseUrl = LibraryManager.shared.library(for: icon.symbol)?.license.fileURL {
                 try FileManager.default.copyItem(at: licenseUrl, to: url.appendingPathComponent("LICENSE"))
             }
 
