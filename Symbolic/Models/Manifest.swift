@@ -37,6 +37,7 @@ struct Manifest: Codable {
     }
 
     struct License: Codable {
+        let name: String
         let path: String
         let url: URL?
     }
