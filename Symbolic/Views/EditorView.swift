@@ -26,6 +26,8 @@ struct EditorView: View {
 
     @Environment(\.undoManager) var undoManager
 
+    @EnvironmentObject var settings: Settings
+
     @ObservedObject var sceneModel: SceneModel
     @ObservedObject var document: IconDocument
 
@@ -98,10 +100,12 @@ struct EditorView: View {
                             supportsOpacity: false)
             }
 #if DEBUG
-            Section("Details") {
-                LabeledContent("Family", value: document.icon.symbol.family)
-                LabeledContent("Name", value: document.icon.symbol.name)
-                LabeledContent("Variant", value: document.icon.symbol.variant ?? "")
+            if settings.showIconDetails {
+                Section("Details") {
+                    LabeledContent("Family", value: document.icon.symbol.family)
+                    LabeledContent("Name", value: document.icon.symbol.name)
+                    LabeledContent("Variant", value: document.icon.symbol.variant ?? "")
+                }
             }
 #endif
         }

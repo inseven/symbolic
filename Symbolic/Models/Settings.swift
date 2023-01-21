@@ -19,36 +19,34 @@
 // SOFTWARE.
 
 import SwiftUI
-struct ViewCommands: Commands {
 
-    @FocusedObject private var sceneModel: SceneModel?
-    @ObservedObject private var settings: Settings
+extension UserDefaults {
 
-    init(settings: Settings) {
-        self.settings = settings
+    func bool(forKey defaultName: String, defaultValue: Bool) -> Bool {
+        if object(forKey: defaultName) == nil {
+            return defaultValue
+        }
+        return bool(forKey: defaultName)
     }
 
-    var showGrid: Binding<Bool> {
-        return Binding {
-            return sceneModel?.showGrid ?? false
-        } set: { value in
-            sceneModel?.showGrid = value
+}
+
+public class Settings: ObservableObject {
+
+    enum Key: String {
+        case showIconDetails = "showIconDetails"
+    }
+
+    @Published public var showIconDetails: Bool {
+        didSet {
+            defaults.set(showIconDetails, forKey: Key.showIconDetails.rawValue)
         }
     }
 
-    @MainActor public var body: some Commands {
-        if let sceneModel = sceneModel {
-            CommandGroup(before: .sidebar) {
-                Toggle("Show Grid", isOn: Binding(get: { sceneModel.showGrid }, set: { sceneModel.showGrid = $0 }))
-                    .keyboardShortcut("G")
-#if DEBUG
-                Toggle("Show Details", isOn: $settings.showIconDetails)
-                    .keyboardShortcut("D")
-#endif
-                Divider()
-            }
+    private let defaults =  UserDefaults.standard
 
-        }
+    public init() {
+        showIconDetails = defaults.bool(forKey: Key.showIconDetails.rawValue, defaultValue: false)
     }
 
 }

@@ -32,12 +32,13 @@ struct SymbolicApp: App {
         } editor: { configuration in
             ContentView()
                 .environmentObject(applicationModel)
+                .environmentObject(applicationModel.settings)
         }
         .defaultSize(width: 1250, height: 780)
         .commands {
             AboutCommands(applicationModel: applicationModel)
             ExportCommands(applicationModel: applicationModel)
-            ViewCommands()
+            ViewCommands(settings: applicationModel.settings)
             ToolbarCommands()
         }
 

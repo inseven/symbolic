@@ -152,6 +152,8 @@ class ApplicationModel: ObservableObject {
 
     ]
 
+    let settings = Settings()
+
     @MainActor static func showSavePanel(_ title: String) -> URL? {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [.directory]
