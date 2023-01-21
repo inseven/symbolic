@@ -40,6 +40,7 @@
 		D864A23C2965E239008A4261 /* MacIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864A23B2965E239008A4261 /* MacIconView.swift */; };
 		D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ECE291BEF7400352367 /* IconDocument.swift */; };
 		D86B0ED1291BEFC100352367 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ED0291BEFC100352367 /* UTType.swift */; };
+		D870818E297C1F02007CAE83 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D870818D297C1F02007CAE83 /* Settings.swift */; };
 		D88661A3297AC893001E41DD /* InfoLabeledContentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */; };
 		D88661A5297AD82A001E41DD /* ConditionalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88661A4297AD82A001E41DD /* ConditionalLink.swift */; };
 		D8B0B1F1296CD4AB00F907BE /* OffsetGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */; };
@@ -120,6 +121,7 @@
 		D864A23B2965E239008A4261 /* MacIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacIconView.swift; sourceTree = "<group>"; };
 		D86B0ECE291BEF7400352367 /* IconDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDocument.swift; sourceTree = "<group>"; };
 		D86B0ED0291BEFC100352367 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
+		D870818D297C1F02007CAE83 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabeledContentStyle.swift; sourceTree = "<group>"; };
 		D88661A4297AD82A001E41DD /* ConditionalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalLink.swift; sourceTree = "<group>"; };
 		D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetGuide.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				D8CB5A4129718D23002007C4 /* LibraryManager.swift */,
 				D8CB5A4529719395002007C4 /* Manifest.swift */,
 				D84B5D6E296C5229005E6C59 /* SceneModel.swift */,
+				D870818D297C1F02007CAE83 /* Settings.swift */,
 				D8CB5A432971925A002007C4 /* Symbol.swift */,
 				D83970E428B11F5200282EE8 /* SymbolicError.swift */,
 				D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */,
@@ -580,6 +583,7 @@
 				D808A2172979928900763881 /* LibraryInfoButton.swift in Sources */,
 				D864A23C2965E239008A4261 /* MacIconView.swift in Sources */,
 				D8CB5A3E2970F4D0002007C4 /* SymbolReference.swift in Sources */,
+				D870818E297C1F02007CAE83 /* Settings.swift in Sources */,
 				D826B5D0296B478400693D27 /* CenteredFlowLayout.swift in Sources */,
 				D8CB5A4229718D23002007C4 /* LibraryManager.swift in Sources */,
 				D84868EC296AE437009FDF32 /* IconSet.swift in Sources */,
