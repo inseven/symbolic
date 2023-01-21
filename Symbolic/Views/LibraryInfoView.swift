@@ -57,7 +57,7 @@ struct LibraryInfoView: View {
                     HStack {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .symbolRenderingMode(.multicolor)
-                        Text(warning.plain)
+                        Text(warning)
                     }
                 }
 

@@ -18,17 +18,65 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Combine
 import SwiftUI
 
-class SceneModel: ObservableObject {
+import Interact
 
+class SceneModel: ObservableObject, Runnable {
+
+    var settings: Settings
+    var document: IconDocument
+
+    @Published var library: Library? = nil
     @Published var showGrid = false
     @Published var showOffsetX = false
     @Published var showOffsetY = false
+    @Published var showExportWarning = false
     @Published var showExportPanel = false
 
+    @MainActor private var cancellables: Set<AnyCancellable> = []
+
+    init(settings: Settings, document: IconDocument) {
+        self.settings = settings
+        self.document = document
+    }
+
+    @MainActor func start() {
+        document.$icon
+            .receive(on: DispatchQueue.main)
+            .map { icon in
+                return LibraryManager.shared.library(for: icon.symbol)
+            }
+            .sink { [weak self] library in
+                guard let self else { return }
+                self.library = library
+            }
+            .store(in: &cancellables)
+    }
+
+    @MainActor func stop() {
+        cancellables.removeAll()
+    }
+
     @MainActor func export() {
-        showExportPanel = true
+        if library?.warning != nil {
+            showExportWarning = true
+        } else {
+            showExportPanel = true
+        }
+    }
+
+    @MainActor func cancelExport() {
+        showExportWarning = false
+        showExportPanel = false
+    }
+
+    @MainActor func continueExport() {
+        showExportWarning = false
+        DispatchQueue.main.async {
+            self.showExportPanel = true
+        }
     }
 
 }

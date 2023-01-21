@@ -30,7 +30,7 @@ struct SymbolicApp: App {
         DocumentGroup {
             IconDocument()
         } editor: { configuration in
-            ContentView()
+            ContentView(settings: applicationModel.settings, document: configuration.document)
                 .environmentObject(applicationModel)
                 .environmentObject(applicationModel.settings)
         }

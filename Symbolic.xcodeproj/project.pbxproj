@@ -126,6 +126,7 @@
 		D870818F297C6121007CAE83 /* SavePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePanel.swift; sourceTree = "<group>"; };
 		D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabeledContentStyle.swift; sourceTree = "<group>"; };
 		D88661A4297AD82A001E41DD /* ConditionalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalLink.swift; sourceTree = "<group>"; };
+		D89A7404297C9BDE00F632ED /* SavePanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavePanel.swift; sourceTree = "<group>"; };
 		D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetGuide.swift; sourceTree = "<group>"; };
 		D8B61307293BB81100F29E0C /* AboutCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommands.swift; sourceTree = "<group>"; };
 		D8B61309293BB98100F29E0C /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
@@ -290,6 +291,7 @@
 		D8CB5A492971C536002007C4 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				D89A7404297C9BDE00F632ED /* SavePanel.swift */,
 				D88661A4297AD82A001E41DD /* ConditionalLink.swift */,
 				D857297B296C176C0037E58F /* SymbolPickerCell.swift */,
 				D870818F297C6121007CAE83 /* SavePanel.swift */,
