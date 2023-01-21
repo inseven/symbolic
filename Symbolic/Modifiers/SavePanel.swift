@@ -35,19 +35,19 @@ struct SavePanel: ViewModifier {
 
     @Binding var isPresented: Bool
     let title: String
-    let allowedContentTypes: [UTType]
+    let contentTypes: [UTType]
     let options: Options
     let action: (URL) -> Void
     @State var window: NativeWindow? = nil
 
     init(isPresented: Binding<Bool>,
          title: String,
-         allowedContentTypes: [UTType],
+         contentTypes: [UTType],
          options: Options,
          perform action: @escaping (URL) -> Void) {
         self.title = title
         _isPresented = isPresented
-        self.allowedContentTypes = allowedContentTypes
+        self.contentTypes = contentTypes
         self.options = options
         self.action = action
     }
@@ -64,7 +64,7 @@ struct SavePanel: ViewModifier {
                     return
                 }
                 let savePanel = NSSavePanel()
-                savePanel.allowedContentTypes = allowedContentTypes
+                savePanel.allowedContentTypes = contentTypes
                 savePanel.canCreateDirectories = options.contains(.canCreateDirectories)
                 savePanel.isExtensionHidden = options.contains(.isExtensionHidden)
                 savePanel.allowsOtherFileTypes = options.contains(.allowsOtherFileTypes)
@@ -87,12 +87,12 @@ extension View {
 
     func savePanel(isPresented: Binding<Bool>,
                    title: String,
-                   allowedContentTypes: [UTType],
+                   contentTypes: [UTType],
                    options: SavePanel.Options = [],
                    perform action: @escaping (URL) -> Void) -> some View {
         modifier(SavePanel(isPresented: isPresented,
                            title: title,
-                           allowedContentTypes: allowedContentTypes,
+                           contentTypes: contentTypes,
                            options: options,
                            perform: action))
     }

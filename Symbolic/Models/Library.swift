@@ -33,13 +33,6 @@ extension Array where Element == Symbol {
 
 }
 
-struct FormattedText {
-
-    let plain: String
-    let html: String?
-
-}
-
 struct Library {
 
     struct License {
@@ -58,7 +51,7 @@ struct Library {
     let symbolsById: [String:[Symbol]]
     let variants: [String: Variant]
     let license: License
-    let warning: FormattedText?
+    let warning: String?
 
     static var sfSymbols: Library = {
         return Library(id: "sf-symbols",
@@ -70,7 +63,7 @@ struct Library {
                        license: License(name: "Agreements and Guidelines",
                                         fileURL: nil,
                                         url: URL(string: "https://developer.apple.com/support/terms/")!),
-                       warning: FormattedText(plain: "SF Symbols are licensed under a non-permissive license and are prohibited from use as icons.", html: nil))
+                       warning: "SF Symbols are licensed under a non-permissive license and are prohibited from use as icons.")
     }()
 
     init(id: String,
@@ -80,7 +73,7 @@ struct Library {
          symbols: [Symbol],
          variants: [Variant],
          license: License,
-         warning: FormattedText? = nil) {
+         warning: String? = nil) {
         self.id = id
         self.name = name
         self.author = author

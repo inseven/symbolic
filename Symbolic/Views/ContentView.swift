@@ -25,9 +25,16 @@ import Interact
 
 struct ContentView: View {
 
-    @EnvironmentObject var document: IconDocument
+    @EnvironmentObject var settings: Settings
 
-    @StateObject var sceneModel = SceneModel()
+    @ObservedObject var document: IconDocument
+
+    @StateObject var sceneModel: SceneModel
+
+    init(settings: Settings, document: IconDocument) {
+        self.document = document
+        _sceneModel = StateObject(wrappedValue: SceneModel(settings: settings, document: document))
+    }
 
     var body: some View {
         HStack(spacing: 0) {
@@ -55,11 +62,19 @@ struct ContentView: View {
         }
         .focusedSceneObject(document)
         .focusedSceneObject(sceneModel)
-        .savePanel(isPresented: $sceneModel.showExportPanel,
-                   title: "Export",
-                   allowedContentTypes: [.directory],
-                   options: [.canCreateDirectories]) { url in
+        .savePanel(isPresented: $sceneModel.showExportPanel, title: "Export", contentTypes: [.directory], options: [.canCreateDirectories]) {
+            url in
             document.export(destination: url)
+        }
+        .alert("Export Icon?", isPresented: $sceneModel.showExportWarning, presenting: "Export") { text in
+            Button("Export") {
+                sceneModel.continueExport()
+            }
+            Button("Cancel") {
+                sceneModel.cancelExport()
+            }
+        } message: { text in
+            Text(sceneModel.library?.warning ?? "")
         }
         .toolbar(id: "main") {
             ToolbarItem(id: "grid") {
@@ -70,11 +85,13 @@ struct ContentView: View {
             }
             ExportToolbar()
         }
+        .environmentObject(sceneModel)
+        .runs(sceneModel)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(settings: Settings(), document: IconDocument())
     }
 }
