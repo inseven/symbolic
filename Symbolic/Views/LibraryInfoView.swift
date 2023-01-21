@@ -22,22 +22,6 @@ import SwiftUI
 
 struct LibraryInfoView: View {
 
-    static let html = """
-<html>
-    <head></head>
-    <body>
-        <h1>Title</h1>
-        <h2>Subtitle</h2>
-        <strong>Cheese</strong>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent facilisis facilisis vulputate. Nulla accumsan mauris sem, ac rhoncus urna ullamcorper quis. Nunc in commodo tellus. Integer pharetra auctor pulvinar. Mauris gravida justo eu eros lobortis convallis. Quisque ut turpis fringilla, consectetur velit vel, congue magna. Morbi congue pulvinar porttitor. Quisque id justo facilisis, fringilla nisl ac, porttitor mi. Etiam accumsan mauris a nibh fermentum, non pretium felis euismod. Aliquam blandit libero a ante lobortis tincidunt.</p>
-        <ol>
-            <li>Random news</li>
-            <li>Obscure something</li>
-        </ol>
-    </body>
-</html>
-"""
-
     private struct LayoutMetrics {
         static let width = 300.0
         static let height = 400.0
