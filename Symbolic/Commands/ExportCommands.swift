@@ -21,7 +21,7 @@
 import SwiftUI
 struct ExportCommands: Commands {
 
-    @FocusedObject private var document: IconDocument?
+    @FocusedObject private var sceneModel: SceneModel?
 
     let applicationModel: ApplicationModel
 
@@ -32,10 +32,9 @@ struct ExportCommands: Commands {
     @MainActor public var body: some Commands {
         CommandGroup(replacing: .importExport) {
             Button("Export...") {
-                guard let document else { return }
-                applicationModel.export(icon: document.icon)
+                sceneModel?.export()
             }
-            .disabled(document == nil)
+            .disabled(sceneModel == nil)
             .keyboardShortcut("e")
         }
     }
