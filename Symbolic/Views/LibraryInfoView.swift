@@ -54,11 +54,9 @@ struct LibraryInfoView: View {
                 }
 
                 if let warning = library.warning {
-                    HStack {
-                        Image(systemName: "exclamationmark.triangle.fill")
-                            .symbolRenderingMode(.multicolor)
-                        Text(warning)
-                    }
+                    Text(warning)
+                        .multilineTextAlignment(.center)
+                        .padding()
                 }
 
             }
