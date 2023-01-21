@@ -55,6 +55,12 @@ struct ContentView: View {
         }
         .focusedSceneObject(document)
         .focusedSceneObject(sceneModel)
+        .savePanel(isPresented: $sceneModel.showExportPanel,
+                   title: "Export",
+                   allowedContentTypes: [.directory],
+                   options: [.canCreateDirectories]) { url in
+            document.export(destination: url)
+        }
         .toolbar(id: "main") {
             ToolbarItem(id: "grid") {
                 Toggle(isOn: $sceneModel.showGrid) {
@@ -62,7 +68,7 @@ struct ContentView: View {
                 }
                 .help("Hide/show the icon grid")
             }
-            ExportToolbar(icon: document.icon)
+            ExportToolbar()
         }
     }
 }

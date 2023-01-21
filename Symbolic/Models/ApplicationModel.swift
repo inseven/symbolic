@@ -154,17 +154,6 @@ class ApplicationModel: ObservableObject {
 
     let settings = Settings()
 
-    @MainActor static func showSavePanel(_ title: String) -> URL? {
-        let savePanel = NSSavePanel()
-        savePanel.allowedContentTypes = [.directory]
-        savePanel.canCreateDirectories = true
-        savePanel.isExtensionHidden = false
-        savePanel.allowsOtherFileTypes = false
-        savePanel.title = title
-        let response = savePanel.runModal()
-        return response == .OK ? savePanel.url : nil
-    }
-
     @MainActor private lazy var aboutWindow: NSWindow = {
         return NSWindow(repository: "inseven/symbolic", copyright: "Copyright © 2022-2023 InSeven Limited") {
             Action("Website", url: URL(string: "https://symbolic.app")!)
@@ -201,51 +190,6 @@ class ApplicationModel: ObservableObject {
             aboutWindow.center()
         }
         aboutWindow.makeKeyAndOrderFront(nil)
-    }
-
-    @MainActor func export(icon: Icon) {
-        guard let url = Self.showSavePanel("Export Icon") else {
-            return
-        }
-        do {
-            try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
-            for section in Self.icons {
-                for iconSet in section.sets {
-                    let directoryUrl = url.appendingPathComponent(section.directory,
-                                                                  conformingTo: .directory)
-                    try FileManager.default.createDirectory(at: directoryUrl,
-                                                            withIntermediateDirectories: true)
-                    for definition in iconSet.definitions {
-                        switch definition.style {
-                        case .macOS:
-                            try icon.saveMacSnapshot(size: definition.size.width,
-                                                     scale: definition.scale,
-                                                     directoryURL: directoryUrl)
-                        case .iOS:
-                            try icon.saveSnapshot(size: definition.size.width,
-                                                  scale: definition.scale,
-                                                  shadow: false,
-                                                  directoryURL: directoryUrl)
-                        case .watchOS:
-                            try icon.saveSnapshot(size: definition.size.width,
-                                                  scale: definition.scale,
-                                                  shadow: false,
-                                                  isWatchOS: true,
-                                                  directoryURL: directoryUrl)
-                        }
-                    }
-                }
-            }
-            if let licenseUrl = LibraryManager.shared.library(for: icon.symbol)?.license.fileURL {
-                try FileManager.default.copyItem(at: licenseUrl, to: url.appendingPathComponent("LICENSE"))
-            }
-
-            NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)
-
-        } catch {
-            print("Failed to write to file with error \(error)")
-        }
-
     }
 
 }

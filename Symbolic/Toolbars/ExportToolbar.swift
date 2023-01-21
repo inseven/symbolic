@@ -67,9 +67,7 @@ extension Icon {
 
 struct ExportToolbar: CustomizableToolbarContent {
 
-    @EnvironmentObject var applicationModel: ApplicationModel
-
-    var icon: Icon
+    @FocusedObject private var sceneModel: SceneModel?
 
     var body: some CustomizableToolbarContent {
 
@@ -78,7 +76,7 @@ struct ExportToolbar: CustomizableToolbarContent {
                 // We're dispatching to main here because for some reason the compiler doens't think the button action
                 // is being performed on MainActor and is giving warnings (which is surprising).
                 DispatchQueue.main.async {
-                    applicationModel.export(icon: icon)
+                    sceneModel?.export()
                 }
             } label: {
                 Label("Export", systemImage: "square.and.arrow.up")

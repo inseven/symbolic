@@ -25,5 +25,10 @@ class SceneModel: ObservableObject {
     @Published var showGrid = false
     @Published var showOffsetX = false
     @Published var showOffsetY = false
+    @Published var showExportPanel = false
+
+    @MainActor func export() {
+        showExportPanel = true
+    }
 
 }
