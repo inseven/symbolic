@@ -65,7 +65,7 @@ struct LibraryInfoView: View {
                     Text(library.license.name)
                         .conditionalLink(library.license.url)
                 }
-                if library.warning != nil || library.license.fileURL != nil {
+                if library.warning != nil {
                     Divider()
                 }
 
@@ -75,14 +75,6 @@ struct LibraryInfoView: View {
                             .symbolRenderingMode(.multicolor)
                         Text(warning.plain)
                     }
-                    if library.license.fileURL != nil {
-                        Divider()
-                    }
-                }
-
-                if let licenseUrl = library.license.fileURL,
-                   let licenseText = try? String(contentsOf: licenseUrl) {
-                    Text(licenseText)
                 }
 
             }
