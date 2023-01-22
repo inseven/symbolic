@@ -63,7 +63,7 @@ struct Library {
                        license: License(name: "Agreements and Guidelines",
                                         fileURL: nil,
                                         url: URL(string: "https://developer.apple.com/support/terms/")!),
-                       warning: "SF Symbols are licensed under a non-permissive license and are prohibited from use as icons.")
+                       warning: "Apple sets out specific guidelines defining acceptable use of SF Symbols and explicitly prohibits their use in icons.\n\nEnsure you only use exported files containing SF Symbols in ways permitted under the relevant terms and conditions.")
     }()
 
     init(id: String,
