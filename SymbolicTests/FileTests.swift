@@ -60,7 +60,7 @@ final class FileTests: XCTestCase {
 
         let data = try Data(contentsOf: url)
         XCTAssertThrowsError(try JSONDecoder().decode(Icon.self, from: data)) { error in
-            XCTAssertEqual(error as? SymbolicError, SymbolicError.unknownVersion)
+            XCTAssertEqual(error as? SymbolicError, SymbolicError.unsupportedVersion)
         }
     }
 

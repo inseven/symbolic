@@ -26,7 +26,7 @@ enum SymbolicError: Error {
     case exportFailure
     case missingManifest
     case missingLicense
-    case unknownVersion
+    case unsupportedVersion
 
 }
 
@@ -46,8 +46,8 @@ extension SymbolicError: LocalizedError {
             return "Missing library manifest."
         case .missingLicense:
             return "Missing library license."
-        case .unknownVersion:
-            return "Unknown version."
+        case .unsupportedVersion:
+            return "Unsupported version."
         }
     }
 
@@ -61,7 +61,7 @@ extension SymbolicError: LocalizedError {
             return nil
         case .missingLicense:
             return nil
-        case .unknownVersion:
+        case .unsupportedVersion:
             return "Document was created with a later version of Symbolic. Update Symbolic to view and edit this document."
         }
     }
