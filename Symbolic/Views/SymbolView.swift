@@ -22,11 +22,11 @@ import SwiftUI
 
 struct SymbolView: View {
 
-    let symbol: SymbolReference  // TODO: Rename?
+    let symbolReference: SymbolReference
 
     var body: some View {
         HStack {
-            if let symbol = LibraryManager.shared.symbol(for: symbol) {
+            if let symbol = LibraryManager.shared.symbol(for: symbolReference) {
                 switch symbol.format {
                 case .svg:
                     SVGImage(url: symbol.url!)
