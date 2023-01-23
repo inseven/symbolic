@@ -34,6 +34,7 @@ class SceneModel: ObservableObject, Runnable {
     @Published var showOffsetY = false
     @Published var showExportWarning = false
     @Published var showExportPanel = false
+    @Published var lastError: Error?
 
     @MainActor private var cancellables: Set<AnyCancellable> = []
 
@@ -80,8 +81,12 @@ class SceneModel: ObservableObject, Runnable {
     }
 
     @MainActor func export(destination url: URL) {
-        document.export(destination: url)
-        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)
+        do {
+            try document.export(destination: url)
+            NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)
+        } catch {
+            self.lastError = error
+        }
     }
 
 }

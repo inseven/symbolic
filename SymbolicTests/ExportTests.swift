@@ -53,7 +53,7 @@ final class ExportTests: XCTestCase {
 
         let document = IconDocument()
         XCTAssertEqual(document.icon.symbol.family, "material-icons")
-        await document.export(destination: exportURL)
+        try await document.export(destination: exportURL)
 
         XCTAssertDirectoryExists(exportURL)
         XCTAssertDirectoryExists(exportURL.appendingPathComponent("macOS.iconset"))
@@ -70,13 +70,61 @@ final class ExportTests: XCTestCase {
         let document = IconDocument()
         XCTAssertEqual(document.icon.symbol.family, "material-icons")
         document.icon.symbol = SymbolReference(family: "sf-symbols", name: "square.and.arrow.up", variant: nil)
-        await document.export(destination: exportURL)
+        try await document.export(destination: exportURL)
 
         XCTAssertDirectoryExists(exportURL)
         XCTAssertDirectoryExists(exportURL.appendingPathComponent("macOS.iconset"))
         XCTAssertDirectoryExists(exportURL.appendingPathComponent("iOS"))
         XCTAssertDirectoryExists(exportURL.appendingPathComponent("watchOS"))
         XCTAssertNotFileExists(exportURL.appendingPathComponent("LICENSE"))
+    }
+
+    func testExportFailsMissingDirectory() async {
+
+        let directoryURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString)
+        let exportURL = directoryURL.appendingPathComponent("Export")
+
+        let document = IconDocument()
+        XCTAssertEqual(document.icon.symbol.family, "material-icons")
+
+        do {
+            try await document.export(destination: exportURL)
+            XCTFail("Export succeeded unexpectedly.")
+        } catch {
+            XCTAssertError(error, domain: NSCocoaErrorDomain, code: NSFileNoSuchFileError)
+        }
+    }
+
+    func testExportFailsMissingMaterialIconsSymbol() async throws {
+
+        let directoryURL = try createTemporaryDirectory()
+        let exportURL = directoryURL.appendingPathComponent("Export")
+
+        let document = IconDocument()
+        document.icon.symbol = SymbolReference(family: "material-icons", name: "heffalump", variant: "default")
+
+        do {
+            try await document.export(destination: exportURL)
+            XCTFail("Export succeeded unexpectedly.")
+        } catch {
+            XCTAssertEqual(error as? SymbolicError, SymbolicError.unknownSymbol)
+        }
+    }
+
+    func testExportFailsMissingSFSymbolsSymbol() async throws {
+
+        let directoryURL = try createTemporaryDirectory()
+        let exportURL = directoryURL.appendingPathComponent("Export")
+
+        let document = IconDocument()
+        document.icon.symbol = SymbolReference(family: "sf-symbols", name: "heffalump", variant: nil)
+
+        do {
+            try await document.export(destination: exportURL)
+            XCTFail("Export succeeded unexpectedly.")
+        } catch {
+            XCTAssertEqual(error as? SymbolicError, SymbolicError.unknownSymbol)
+        }
     }
 
 }

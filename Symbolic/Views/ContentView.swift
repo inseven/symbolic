@@ -76,6 +76,7 @@ struct ContentView: View {
         } message: { text in
             Text(sceneModel.library?.warning ?? "")
         }
+        .showsError($sceneModel.lastError)
         .toolbar(id: "main") {
             ToolbarItem(id: "grid") {
                 Toggle(isOn: $sceneModel.showGrid) {
