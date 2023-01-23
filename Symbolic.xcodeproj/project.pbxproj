@@ -56,11 +56,15 @@
 		D8CB5A4629719395002007C4 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A4529719395002007C4 /* Manifest.swift */; };
 		D8CB5A482971C4B5002007C4 /* SVGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A472971C4B5002007C4 /* SVGImage.swift */; };
 		D8CB5A4D2971DBCC002007C4 /* swiftdraw-license in Resources */ = {isa = PBXBuildFile; fileRef = D8CB5A4C2971DBCC002007C4 /* swiftdraw-license */; };
+		D8CCF728297E814D006A1185 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CCF727297E814D006A1185 /* FileTests.swift */; };
+		D8CCF72B297E822A006A1185 /* v0.symbolic in Resources */ = {isa = PBXBuildFile; fileRef = D8CCF72A297E822A006A1185 /* v0.symbolic */; };
+		D8CCF72D297E8785006A1185 /* v1.symbolic in Resources */ = {isa = PBXBuildFile; fileRef = D8CCF72C297E8785006A1185 /* v1.symbolic */; };
+		D8CCF72F297E8970006A1185 /* v1000.symbolic in Resources */ = {isa = PBXBuildFile; fileRef = D8CCF72E297E8970006A1185 /* v1000.symbolic */; };
 		D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */; };
 		D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7F28AC35C300D57F34 /* ContentView.swift */; };
 		D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CD4A8128AC35C600D57F34 /* Assets.xcassets */; };
 		D8CD4A8528AC35C600D57F34 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CD4A8428AC35C600D57F34 /* Preview Assets.xcassets */; };
-		D8CD4A9028AC35C600D57F34 /* SymbolicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A8F28AC35C600D57F34 /* SymbolicTests.swift */; };
+		D8CD4A9028AC35C600D57F34 /* LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A8F28AC35C600D57F34 /* LibraryTests.swift */; };
 		D8CD4A9A28AC35C600D57F34 /* SymbolicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9928AC35C600D57F34 /* SymbolicUITests.swift */; };
 		D8CD4A9C28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9B28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift */; };
 		D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */; };
@@ -139,6 +143,10 @@
 		D8CB5A4529719395002007C4 /* Manifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
 		D8CB5A472971C4B5002007C4 /* SVGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImage.swift; sourceTree = "<group>"; };
 		D8CB5A4C2971DBCC002007C4 /* swiftdraw-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "swiftdraw-license"; sourceTree = "<group>"; };
+		D8CCF727297E814D006A1185 /* FileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
+		D8CCF72A297E822A006A1185 /* v0.symbolic */ = {isa = PBXFileReference; lastKnownFileType = text; name = v0.symbolic; path = SymbolicTests/Resources/v0.symbolic; sourceTree = SOURCE_ROOT; };
+		D8CCF72C297E8785006A1185 /* v1.symbolic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.symbolic; sourceTree = "<group>"; };
+		D8CCF72E297E8970006A1185 /* v1000.symbolic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1000.symbolic; sourceTree = "<group>"; };
 		D8CD4A7A28AC35C300D57F34 /* Symbolic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Symbolic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicApp.swift; sourceTree = "<group>"; };
 		D8CD4A7F28AC35C300D57F34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -146,7 +154,7 @@
 		D8CD4A8428AC35C600D57F34 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D8CD4A8628AC35C600D57F34 /* Symbolic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Symbolic.entitlements; sourceTree = "<group>"; };
 		D8CD4A8B28AC35C600D57F34 /* SymbolicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8CD4A8F28AC35C600D57F34 /* SymbolicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicTests.swift; sourceTree = "<group>"; };
+		D8CD4A8F28AC35C600D57F34 /* LibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTests.swift; sourceTree = "<group>"; };
 		D8CD4A9528AC35C600D57F34 /* SymbolicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A9928AC35C600D57F34 /* SymbolicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicUITests.swift; sourceTree = "<group>"; };
 		D8CD4A9B28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -299,6 +307,16 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		D8CCF729297E821F006A1185 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D8CCF72A297E822A006A1185 /* v0.symbolic */,
+				D8CCF72C297E8785006A1185 /* v1.symbolic */,
+				D8CCF72E297E8970006A1185 /* v1000.symbolic */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		D8CD4A7128AC35C300D57F34 = {
 			isa = PBXGroup;
 			children = (
@@ -355,7 +373,9 @@
 		D8CD4A8E28AC35C600D57F34 /* SymbolicTests */ = {
 			isa = PBXGroup;
 			children = (
-				D8CD4A8F28AC35C600D57F34 /* SymbolicTests.swift */,
+				D8CCF729297E821F006A1185 /* Resources */,
+				D8CCF727297E814D006A1185 /* FileTests.swift */,
+				D8CD4A8F28AC35C600D57F34 /* LibraryTests.swift */,
 			);
 			path = SymbolicTests;
 			sourceTree = "<group>";
@@ -529,6 +549,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8CCF72D297E8785006A1185 /* v1.symbolic in Resources */,
+				D8CCF72B297E822A006A1185 /* v0.symbolic in Resources */,
+				D8CCF72F297E8970006A1185 /* v1000.symbolic in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,7 +625,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8CD4A9028AC35C600D57F34 /* SymbolicTests.swift in Sources */,
+				D8CCF728297E814D006A1185 /* FileTests.swift in Sources */,
+				D8CD4A9028AC35C600D57F34 /* LibraryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

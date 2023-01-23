@@ -22,13 +22,7 @@ import XCTest
 @testable import Symbolic
 @testable import SwiftDraw
 
-final class SymbolicTests: XCTestCase {
-
-    override func setUpWithError() throws {
-    }
-
-    override func tearDownWithError() throws {
-    }
+final class LibraryTests: XCTestCase {
 
     func testLoadSymbols() throws {
 
