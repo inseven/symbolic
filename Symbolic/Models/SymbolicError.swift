@@ -24,5 +24,7 @@ enum SymbolicError: Error {
 
     case invalidColorspace
     case exportFailure
+    case missingManifest
+    case missingLicense
 
 }
