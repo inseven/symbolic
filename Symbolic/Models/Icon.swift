@@ -80,7 +80,7 @@ struct Icon: Identifiable, Codable {
             self.shadowOpacity = try container.decode(CGFloat.self, forKey: .shadowOpacity)
             self.shadowHeight = try container.decode(CGFloat.self, forKey: .shadowHeight)
         default:
-            assertionFailure("Unsupported file format")
+            throw SymbolicError.unknownVersion
         }
 
     }

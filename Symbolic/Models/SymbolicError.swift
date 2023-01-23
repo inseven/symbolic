@@ -26,5 +26,6 @@ enum SymbolicError: Error {
     case exportFailure
     case missingManifest
     case missingLicense
+    case unknownVersion
 
 }
