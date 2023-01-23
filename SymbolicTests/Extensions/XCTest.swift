@@ -51,3 +51,14 @@ public func XCTAssertDirectoryExists(_ url: URL,
                   line: line)
     XCTAssertTrue(isDirectory.boolValue, message(), file: file, line: line)
 }
+
+public func XCTAssertError(_ error: Error,
+                           domain: String,
+                           code: Int,
+                           _ message: @autoclosure () -> String = "",
+                           file: StaticString = #filePath,
+                           line: UInt = #line) {
+    let nsError = error as NSError
+    XCTAssertEqual(nsError.domain, domain, message(), file: file, line: line)
+    XCTAssertEqual(nsError.code, code, message(), file: file, line: line)
+}

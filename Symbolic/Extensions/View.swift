@@ -46,4 +46,11 @@ extension View {
         return pngData
     }
 
+    func showsError(_ error: Binding<Error?>) -> some View {
+        self.alert(isPresented: error.mappedToBool()) {
+            Alert(title: Text("Error"),
+                  message: Text(error.wrappedValue?.localizedDescription ?? ""))
+        }
+    }
+
 }

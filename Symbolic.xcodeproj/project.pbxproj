@@ -62,6 +62,8 @@
 		D8CCF72F297E8970006A1185 /* v1000.symbolic in Resources */ = {isa = PBXBuildFile; fileRef = D8CCF72E297E8970006A1185 /* v1000.symbolic */; };
 		D8CCF731297E9DB4006A1185 /* ExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CCF730297E9DB4006A1185 /* ExportTests.swift */; };
 		D8CCF734297EA3A8006A1185 /* XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CCF733297EA3A8006A1185 /* XCTest.swift */; };
+		D8CCF736297EB22F006A1185 /* binding-mappedtobool-license in Resources */ = {isa = PBXBuildFile; fileRef = D8CCF735297EB22F006A1185 /* binding-mappedtobool-license */; };
+		D8CCF738297EB299006A1185 /* Binding+mappedToBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CCF737297EB299006A1185 /* Binding+mappedToBool.swift */; };
 		D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */; };
 		D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A7F28AC35C300D57F34 /* ContentView.swift */; };
 		D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CD4A8128AC35C600D57F34 /* Assets.xcassets */; };
@@ -151,6 +153,8 @@
 		D8CCF72E297E8970006A1185 /* v1000.symbolic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1000.symbolic; sourceTree = "<group>"; };
 		D8CCF730297E9DB4006A1185 /* ExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportTests.swift; sourceTree = "<group>"; };
 		D8CCF733297EA3A8006A1185 /* XCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest.swift; sourceTree = "<group>"; };
+		D8CCF735297EB22F006A1185 /* binding-mappedtobool-license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "binding-mappedtobool-license"; sourceTree = "<group>"; };
+		D8CCF737297EB299006A1185 /* Binding+mappedToBool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+mappedToBool.swift"; sourceTree = "<group>"; };
 		D8CD4A7A28AC35C300D57F34 /* Symbolic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Symbolic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicApp.swift; sourceTree = "<group>"; };
 		D8CD4A7F28AC35C300D57F34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 		D821B9DE28ACDB5500504AA4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D8CCF737297EB299006A1185 /* Binding+mappedToBool.swift */,
 				D83970E128B0B45300282EE8 /* Color.swift */,
 				D826B5C5296B09FC00693D27 /* Path.swift */,
 				D821B9E928ACDBF700504AA4 /* String.swift */,
@@ -423,6 +428,7 @@
 		D8F99EC128B13946007C3868 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
+				D8CCF735297EB22F006A1185 /* binding-mappedtobool-license */,
 				D8F99EC228B13955007C3868 /* diligence-license */,
 				D8CB5A4C2971DBCC002007C4 /* swiftdraw-license */,
 				D82B249A2915D8540093B073 /* symbolic-license */,
@@ -551,6 +557,7 @@
 			files = (
 				D8CB5A382970D9A5002007C4 /* material-icons in Resources */,
 				D8CD4A8528AC35C600D57F34 /* Preview Assets.xcassets in Resources */,
+				D8CCF736297EB22F006A1185 /* binding-mappedtobool-license in Resources */,
 				D84B5D74296C5540005E6C59 /* Template.symbolic in Resources */,
 				D8F99EC328B13955007C3868 /* diligence-license in Resources */,
 				D82B249B2915D8540093B073 /* symbolic-license in Resources */,
@@ -600,6 +607,7 @@
 				D83970E928B1340900282EE8 /* DeviceType.swift in Sources */,
 				D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */,
 				D826B5CB296B243800693D27 /* ViewCommands.swift in Sources */,
+				D8CCF738297EB299006A1185 /* Binding+mappedToBool.swift in Sources */,
 				D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */,
 				D808A2152979918300763881 /* Variant.swift in Sources */,
 				D88661A5297AD82A001E41DD /* ConditionalLink.swift in Sources */,

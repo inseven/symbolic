@@ -56,43 +56,42 @@ final class IconDocument: ReferenceFileDocument {
         return fileWrapper
     }
 
-    @MainActor func export(destination url: URL) {
-        do {
-            try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
-            for section in ApplicationModel.icons {
-                for iconSet in section.sets {
-                    let directoryUrl = url.appendingPathComponent(section.directory,
-                                                                  conformingTo: .directory)
-                    try FileManager.default.createDirectory(at: directoryUrl,
-                                                            withIntermediateDirectories: true)
-                    for definition in iconSet.definitions {
-                        switch definition.style {
-                        case .macOS:
-                            try icon.saveMacSnapshot(size: definition.size.width,
-                                                     scale: definition.scale,
-                                                     directoryURL: directoryUrl)
-                        case .iOS:
-                            try icon.saveSnapshot(size: definition.size.width,
-                                                  scale: definition.scale,
-                                                  shadow: false,
-                                                  directoryURL: directoryUrl)
-                        case .watchOS:
-                            try icon.saveSnapshot(size: definition.size.width,
-                                                  scale: definition.scale,
-                                                  shadow: false,
-                                                  isWatchOS: true,
-                                                  directoryURL: directoryUrl)
-                        }
+    @MainActor func export(destination url: URL) throws {
+
+        // Check that the symbol exists.
+        guard LibraryManager.shared.symbol(for: icon.symbol) != nil else {
+            throw SymbolicError.unknownSymbol
+        }
+
+        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: false)
+        for section in ApplicationModel.icons {
+            for iconSet in section.sets {
+                let directoryUrl = url.appendingPathComponent(section.directory, conformingTo: .directory)
+                try FileManager.default.createDirectory(at: directoryUrl, withIntermediateDirectories: true)
+                for definition in iconSet.definitions {
+                    switch definition.style {
+                    case .macOS:
+                        try icon.saveMacSnapshot(size: definition.size.width,
+                                                 scale: definition.scale,
+                                                 directoryURL: directoryUrl)
+                    case .iOS:
+                        try icon.saveSnapshot(size: definition.size.width,
+                                              scale: definition.scale,
+                                              shadow: false,
+                                              directoryURL: directoryUrl)
+                    case .watchOS:
+                        try icon.saveSnapshot(size: definition.size.width,
+                                              scale: definition.scale,
+                                              shadow: false,
+                                              isWatchOS: true,
+                                              directoryURL: directoryUrl)
                     }
                 }
             }
-            if let licenseUrl = LibraryManager.shared.library(for: icon.symbol)?.license.fileURL {
-                try FileManager.default.copyItem(at: licenseUrl, to: url.appendingPathComponent("LICENSE"))
-            }
-        } catch {
-            print("Failed to write to file with error \(error)")
         }
-
+        if let licenseUrl = LibraryManager.shared.library(for: icon.symbol)?.license.fileURL {
+            try FileManager.default.copyItem(at: licenseUrl, to: url.appendingPathComponent("LICENSE"))
+        }
     }
 
 }
