@@ -26,6 +26,44 @@ enum SymbolicError: Error {
     case exportFailure
     case missingManifest
     case missingLicense
-    case unknownVersion
+    case unsupportedVersion
+
+}
+
+extension SymbolicError: LocalizedError {
+
+    var errorDescription: String? {
+        return nil
+    }
+
+    var failureReason: String? {
+        switch self {
+        case .invalidColorspace:
+            return "Invalid colorspace."
+        case .exportFailure:
+            return "Export failure."
+        case .missingManifest:
+            return "Missing library manifest."
+        case .missingLicense:
+            return "Missing library license."
+        case .unsupportedVersion:
+            return "Unsupported version."
+        }
+    }
+
+    var recoverySuggestion: String? {
+        switch self {
+        case .invalidColorspace:
+            return nil
+        case .exportFailure:
+            return nil
+        case .missingManifest:
+            return nil
+        case .missingLicense:
+            return nil
+        case .unsupportedVersion:
+            return "Document was created with a later version of Symbolic. Update Symbolic to view and edit this document."
+        }
+    }
 
 }
