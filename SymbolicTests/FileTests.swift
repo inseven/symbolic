@@ -20,7 +20,6 @@
 
 import XCTest
 @testable import Symbolic
-@testable import SwiftDraw
 
 final class FileTests: XCTestCase {
 

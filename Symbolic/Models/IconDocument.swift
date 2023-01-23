@@ -89,9 +89,6 @@ final class IconDocument: ReferenceFileDocument {
             if let licenseUrl = LibraryManager.shared.library(for: icon.symbol)?.license.fileURL {
                 try FileManager.default.copyItem(at: licenseUrl, to: url.appendingPathComponent("LICENSE"))
             }
-
-            NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)
-
         } catch {
             print("Failed to write to file with error \(error)")
         }

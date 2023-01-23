@@ -64,7 +64,7 @@ struct ContentView: View {
         .focusedSceneObject(sceneModel)
         .savePanel(isPresented: $sceneModel.showExportPanel, title: "Export", contentTypes: [.directory], options: [.canCreateDirectories]) {
             url in
-            document.export(destination: url)
+            sceneModel.export(destination: url)
         }
         .alert("Export Icon?", isPresented: $sceneModel.showExportWarning, presenting: "Export") { text in
             Button("Export") {
