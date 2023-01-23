@@ -131,11 +131,17 @@ echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base
 # Install the provisioning profiles.
 build-tools install-provisioning-profile "Symbolic_Mac_App_Store_Profile.provisionprofile"
 
+# Clean the build.
+sudo xcode-select --switch "$MACOS_XCODE_PATH"
+xcode_project \
+    -scheme "Symbolic" \
+    clean
+
 # Build, test and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
 xcode_project \
     -scheme "Symbolic" \
-    clean build build-for-testing test
+    build build-for-testing test
 
 # Build and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
@@ -146,7 +152,7 @@ xcode_project \
     OTHER_CODE_SIGN_FLAGS="--keychain=\"${KEYCHAIN_PATH}\"" \
     CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
     MARKETING_VERSION=$VERSION_NUMBER \
-    clean archive
+    archive
 xcodebuild \
     -archivePath "$ARCHIVE_PATH" \
     -exportArchive \
