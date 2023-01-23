@@ -79,4 +79,9 @@ class SceneModel: ObservableObject, Runnable {
         }
     }
 
+    @MainActor func export(destination url: URL) {
+        document.export(destination: url)
+        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)
+    }
+
 }
