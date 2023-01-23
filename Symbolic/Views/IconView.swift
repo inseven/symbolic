@@ -56,7 +56,7 @@ struct IconView: View {
                            startPoint: .top,
                            endPoint: .bottom)
 
-            let image = SymbolView(symbol: icon.symbol)
+            let image = SymbolView(symbolReference: icon.symbol)
                 .foregroundColor(icon.symbolColor)
 
             VStack {

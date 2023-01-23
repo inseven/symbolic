@@ -55,7 +55,7 @@ struct SymbolPicker: View {
                     isPresented = true
                 } label: {
                     HStack {
-                        SymbolView(symbol: selection.wrappedValue)
+                        SymbolView(symbolReference: selection.wrappedValue)
                     }
                     .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
                 }
@@ -78,7 +78,7 @@ struct SymbolPicker: View {
                                 ForEach(model.filteredSymbols) { section in
                                     Section {
                                         ForEach(section.symbols) { symbol in
-                                            SymbolView(symbol: symbol.reference)
+                                            SymbolView(symbolReference: symbol.reference)
                                                 .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
                                                 .onTapGesture {
                                                     isPresented = false
