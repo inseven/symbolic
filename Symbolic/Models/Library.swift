@@ -88,13 +88,13 @@ struct Library {
     }
 
     init(directory: String) throws {
-        let manifestURL = Bundle.main.url(forResource: "manifest",
-                                          withExtension: "json",
-                                          subdirectory: directory)!  // TODO: Throw
+        guard  let manifestURL = Bundle.main.url(forResource: "manifest",
+                                                 withExtension: "json",
+                                                 subdirectory: directory) else {
+            throw SymbolicError.missingManifest
+        }
         let data = try Data(contentsOf: manifestURL)
         let manifest = try JSONDecoder().decode(Manifest.self, from: data)
-
-        // TODO: Exit cleanly if unable to load license
 
         let variants = manifest.variants.map { (id, variant) in
             return Variant(id: id, name: variant.name)
@@ -123,7 +123,11 @@ struct Library {
         self.url = manifest.url
         self.symbols = symbols
         self.symbolsById = symbols.lookup()
-        let fileURL =  Bundle.main.url(forResource: manifest.license.path, withExtension: nil, subdirectory: directory)!  // TODO: Don't fail hard
+        guard let fileURL =  Bundle.main.url(forResource: manifest.license.path,
+                                             withExtension: nil,
+                                             subdirectory: directory) else {
+            throw SymbolicError.missingManifest
+        }
         self.license = License(name: manifest.license.name, fileURL: fileURL, url: manifest.license.url)
         self.variants = variants
         self.warning = nil
