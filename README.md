@@ -21,9 +21,9 @@ Instead of using a submodule, they have been imported into the project using `sc
 Update the icons as follows:
 
 ```bash
-scripts/import-material-design-icons.py ~/Projects/material-design-icons	
+scripts/import-material-design-icons.py ~/Projects/material-design-icons
 ```
 
 ## Licensing
 
-Symbolic is licensed under the MIT License (see [LICENSE](LICENSE)).
+Symbolic is licensed under the BSD 3-Clause license modified by the Commons Clause (see [LICENSE](LICENSE)).
