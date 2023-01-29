@@ -26,6 +26,6 @@ scripts/import-material-design-icons.py ~/Projects/material-design-icons
 
 ## Licensing
 
-Symbolic is licensed under the BSD 3-Clause license modified by the Commons Clause (see [LICENSE](LICENSE)). It contains third-party code under other licenses, details of which can be found in the relevant directories and source file headers.
+Symbolic is licensed under the [BSD 3-Clause license](https://opensource.org/licenses/BSD-3-Clause) **modified by** the [Commons Clause](https://commonsclause.com) (see [LICENSE](LICENSE)). It also contains third-party code under other licenses, details of which can be found in the relevant directories and source file headers.
 
-The intent behind using the Commons Clause is to protect Symbolic as a revenue source while also encouraging code sharing and reuse. If this prevents you from making use of the source in a way that aligns with this intent, please reach out and we can explore alternative approaches. If there are specific pieces of functionality you would like to reuse, please let me know; I am open to moving these into more permissively licensed libraries.
+The Commons Clause is applied to protect Symbolic as a revenue source while still encouraging code sharing and reuse. If it prevents you from making use of the source in a way that aligns with this intent, please reach out and we can explore alternative approaches. If there are specific pieces of functionality you would like to use, please let me know; I am open to moving these into more permissively licensed libraries.
