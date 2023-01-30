@@ -1,0 +1,33 @@
+{
+  "symbol" : {
+    "name" : "cloud.drizzle.fill",
+    "family" : "sf-symbols"
+  },
+  "iconScale" : 0.82547343708537568,
+  "topColor" : {
+    "red" : 0.32369780539999998,
+    "alpha" : 1,
+    "blue" : 0.574860394,
+    "green" : 0.1063579395
+  },
+  "id" : "24670896-9CE6-40DD-86CB-111B3E0DEB8D",
+  "symbolColor" : {
+    "red" : 0.99999994039535522,
+    "alpha" : 1,
+    "blue" : 0.99999994039535522,
+    "green" : 0.99999994039535522
+  },
+  "iconOffset" : [
+    0,
+    0
+  ],
+  "shadowOpacity" : 0.40000000000000002,
+  "shadowHeight" : 0.29999999999999999,
+  "bottomColor" : {
+    "red" : 0,
+    "alpha" : 1,
+    "blue" : 0.57488495110000004,
+    "green" : 0.32852089410000002
+  },
+  "version" : 1
+}
