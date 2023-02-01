@@ -46,7 +46,7 @@ struct EditorView: View {
                 LabeledContent {
                     HStack {
                         PositionOffsetSlider(title: "X",
-                                             isHovering: $sceneModel.showOffsetY,
+                                             isHovering: $sceneModel.showOffsetX,
                                              value: $document.icon.iconOffset.width.undoable(undoManager,
                                                                                              context: undoContext))
                         PositionOffsetSlider(title: "Y",
