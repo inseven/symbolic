@@ -35,6 +35,7 @@ struct EditorView: View {
 
     var body: some View {
         Form {
+            
             Section("Icon") {
                 SymbolPicker("Image", selection: $document.icon.symbol.undoable(undoManager, context: undoContext))
                 Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext), in: 0...1.2) {
@@ -65,6 +66,7 @@ struct EditorView: View {
                         }
                 }
             }
+
             Section("Shadow") {
                 Slider(value: $document.icon.shadowOpacity.undoable(undoManager, context: undoContext)) {
                     Text("Opacity")
@@ -73,26 +75,28 @@ struct EditorView: View {
                     Text("Height")
                 }
             }
+
             Section("Background") {
-                ColorPicker("Top Color",
-                            selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
-                            supportsOpacity: false)
-                Button {
-                    let topColor = document.icon.topColor
-                    let bottomColor = document.icon.bottomColor
-                    undoManager?.registerUndo(undoContext) {
-                        document.icon.topColor = topColor
-                        document.icon.bottomColor = bottomColor
+                LabeledContent("Gradient") {
+                    HStack {
+                        ColorPicker(selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
+                                    supportsOpacity: false)
+                        Button {
+                            let topColor = document.icon.topColor
+                            let bottomColor = document.icon.bottomColor
+                            undoManager?.registerUndo(undoContext) {
+                                document.icon.topColor = topColor
+                                document.icon.bottomColor = bottomColor
+                            }
+                            document.icon.topColor = bottomColor
+                            document.icon.bottomColor = topColor
+                        } label: {
+                            Image(systemName: "arrow.left.arrow.right")
+                        }
+                        ColorPicker(selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
+                                    supportsOpacity: false)
                     }
-                    document.icon.topColor = bottomColor
-                    document.icon.bottomColor = topColor
-                } label: {
-                    Image(systemName: "arrow.up.arrow.down")
                 }
-                .horizontalSpace(.both)
-                ColorPicker("Bottom Color",
-                            selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
-                            supportsOpacity: false)
             }
 #if DEBUG
             if settings.showIconDetails {
