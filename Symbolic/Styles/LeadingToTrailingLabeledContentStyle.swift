@@ -20,23 +20,20 @@
 
 import SwiftUI
 
-struct InfoLabeledContentStyle: LabeledContentStyle {
+struct LeadingToTrailingLabeledContentStyle: LabeledContentStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         HStack {
             configuration.label
-            Spacer()
             configuration.content
-                .foregroundColor(.secondary)
         }
     }
-
 }
 
-extension LabeledContentStyle where Self == InfoLabeledContentStyle {
+extension LabeledContentStyle where Self == LeadingToTrailingLabeledContentStyle {
 
-    static var info: InfoLabeledContentStyle {
-        return InfoLabeledContentStyle()
+    static var leadingToTrailing: Self {
+        return LeadingToTrailingLabeledContentStyle()
     }
 
 }
