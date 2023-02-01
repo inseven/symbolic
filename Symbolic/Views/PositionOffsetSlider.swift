@@ -20,23 +20,24 @@
 
 import SwiftUI
 
-struct InfoLabeledContentStyle: LabeledContentStyle {
+struct PositionOffsetSlider: View {
 
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.label
-            Spacer()
-            configuration.content
-                .foregroundColor(.secondary)
+    var title: String
+    @Binding var isHovering: Bool
+    @Binding var value: CGFloat
+
+    var body: some View {
+        Slider(value: $value, in: -0.5...0.5) {
+            Text(title)
+                .onTapGesture(count: 2) {
+                    value = 0
+                }
+                .textSelection(.disabled)
         }
-    }
-
-}
-
-extension LabeledContentStyle where Self == InfoLabeledContentStyle {
-
-    static var info: InfoLabeledContentStyle {
-        return InfoLabeledContentStyle()
+        .onHover { isHovering in
+            self.isHovering = isHovering
+        }
+        .labeledContentStyle(.leadingToTrailing)
     }
 
 }
