@@ -43,31 +43,26 @@ struct EditorView: View {
                 ColorPicker("Color",
                             selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext),
                             supportsOpacity: false)
-                Slider(value:  $document.icon.iconOffset.width.undoable(undoManager, context: undoContext), in: -0.5...0.5) {
-                    Text("X Offset")
+                LabeledContent {
+                    HStack {
+                        PositionOffsetSlider(title: "X",
+                                             isHovering: $sceneModel.showOffsetX,
+                                             value: $document.icon.iconOffset.width.undoable(undoManager,
+                                                                                             context: undoContext))
+                        PositionOffsetSlider(title: "Y",
+                                             isHovering: $sceneModel.showOffsetY,
+                                             value: $document.icon.iconOffset.height.undoable(undoManager,
+                                                                                              context: undoContext))
+                    }
+                } label: {
+                    Text("Position")
                         .onTapGesture(count: 2) {
-                            let width = document.icon.iconOffset.width
+                            let offset = document.icon.iconOffset
                             undoManager?.registerUndo(undoContext) {
-                                document.icon.iconOffset.width = width
+                                document.icon.iconOffset = offset
                             }
-                            document.icon.iconOffset.width = 0
+                            document.icon.iconOffset = .zero
                         }
-                }
-                .onHover { isHovering in
-                    sceneModel.showOffsetX = isHovering
-                }
-                Slider(value:  $document.icon.iconOffset.height.undoable(undoManager, context: undoContext), in: -0.5...0.5) {
-                    Text("Y Offset")
-                        .onTapGesture(count: 2) {
-                            let height = document.icon.iconOffset.height
-                            undoManager?.registerUndo(undoContext) {
-                                document.icon.iconOffset.height = height
-                            }
-                            document.icon.iconOffset.height = 0
-                        }
-                }
-                .onHover { isHovering in
-                    sceneModel.showOffsetY = isHovering
                 }
             }
             Section("Shadow") {

@@ -46,6 +46,8 @@
 		D8B0B1F1296CD4AB00F907BE /* OffsetGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */; };
 		D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61307293BB81100F29E0C /* AboutCommands.swift */; };
 		D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61309293BB98100F29E0C /* ApplicationModel.swift */; };
+		D8B7677B298A6E4F00E99C6A /* PositionOffsetSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */; };
+		D8B7677D298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B7677C298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift */; };
 		D8CB5A382970D9A5002007C4 /* material-icons in Resources */ = {isa = PBXBuildFile; fileRef = D8CB5A372970D9A5002007C4 /* material-icons */; };
 		D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A392970E8DB002007C4 /* SymbolView.swift */; };
 		D8CB5A3C2970E92A002007C4 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A3B2970E92A002007C4 /* Library.swift */; };
@@ -136,6 +138,8 @@
 		D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetGuide.swift; sourceTree = "<group>"; };
 		D8B61307293BB81100F29E0C /* AboutCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommands.swift; sourceTree = "<group>"; };
 		D8B61309293BB98100F29E0C /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
+		D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionOffsetSlider.swift; sourceTree = "<group>"; };
+		D8B7677C298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingToTrailingLabeledContentStyle.swift; sourceTree = "<group>"; };
 		D8CB5A372970D9A5002007C4 /* material-icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "material-icons"; sourceTree = "<group>"; };
 		D8CB5A392970E8DB002007C4 /* SymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
 		D8CB5A3B2970E92A002007C4 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 				D8CB5A392970E8DB002007C4 /* SymbolView.swift */,
 				D83970E628B132C700282EE8 /* UnityScaleWindow.swift */,
 				D826B5C3296B054000693D27 /* WatchGridView.swift */,
+				D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */,
+				D8B7677C298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -594,6 +600,7 @@
 				D821B9EC28ACDC2600504AA4 /* IconCorners.swift in Sources */,
 				D821B9EE28ACDC6F00504AA4 /* SymbolPicker.swift in Sources */,
 				D84B5D71296C52BE005E6C59 /* EditorView.swift in Sources */,
+				D8B7677B298A6E4F00E99C6A /* PositionOffsetSlider.swift in Sources */,
 				D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */,
 				D857297C296C176C0037E58F /* SymbolPickerCell.swift in Sources */,
 				D84868F0296AE616009FDF32 /* IconSection.swift in Sources */,
@@ -604,6 +611,7 @@
 				D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */,
 				D826B5CB296B243800693D27 /* ViewCommands.swift in Sources */,
 				D8CCF738297EB299006A1185 /* Binding+mappedToBool.swift in Sources */,
+				D8B7677D298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift in Sources */,
 				D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */,
 				D808A2152979918300763881 /* Variant.swift in Sources */,
 				D88661A5297AD82A001E41DD /* ConditionalLink.swift in Sources */,
