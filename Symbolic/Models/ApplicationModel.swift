@@ -176,7 +176,6 @@ class ApplicationModel: ObservableObject {
             License("Binding+mappedToBool", author: "Joseph Duffy", filename: "binding-mappedtobool-license")
             License("Interact", author: "InSeven Limited", url: Interact.Package.licenseURL)
             License("SwiftDraw", author: "Simon Whitty", filename: "swiftdraw-license")
-            License("Symbolic", author: "InSeven Limited", filename: "symbolic-license")
 
             for library in LibraryManager.shared.sets.filter({ $0.license.fileURL != nil }) {
                 License(library.name, author: library.author, url: library.license.fileURL!)
