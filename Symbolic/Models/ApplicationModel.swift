@@ -169,6 +169,7 @@ class ApplicationModel: ObservableObject {
                 Credit("Pavlos Vinieratos")
                 Credit("Sarah Barbour")
                 Credit("Simon Frost")
+                Credit("Tom Sutcliffe")
             }
         } licenses: {
 
