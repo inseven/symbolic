@@ -105,6 +105,7 @@ struct EditorView: View {
                     LabeledContent("Name", value: document.icon.symbol.name)
                     LabeledContent("Variant", value: document.icon.symbol.variant ?? "")
                 }
+                .labeledContentStyle(.selectionDisabled)
             }
 #endif
         }

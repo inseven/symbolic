@@ -184,7 +184,15 @@ class ApplicationModel: ObservableObject {
     }()
 
     @MainActor func showAbout() {
-        dispatchPrecondition(condition: .onQueue(.main))
+
+        // TODO: Selecting text when the color picker is open sets the color to black #177
+        //       https://github.com/inseven/symbolic/issues/177
+        // The SwiftUI color picker has a curious bug where it assigns black to the currently focused color if the user
+        // taps on a selectable area of text. Since we can't disable text selection in the alerts that may be presented
+        // during this flow, we simply dismiss the picker. We should revisit this in a later SwiftUI release and see if
+        // it's been fixed.
+        NSApplication.shared.closeColorPanels()
+
         NSApplication.shared.activate(ignoringOtherApps: true)
         if !aboutWindow.isVisible {
             aboutWindow.center()

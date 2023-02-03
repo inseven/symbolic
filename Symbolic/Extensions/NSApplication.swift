@@ -20,33 +20,11 @@
 
 import SwiftUI
 
-import Diligence
+extension NSApplication {
 
-struct LibraryInfoButton: View {
-
-    let library: Library
-
-    @State var isPresented: Bool = false
-
-    var body: some View {
-        HStack(spacing: 4.0) {
-            Text(library.name)
-                .textSelection(.disabled)
-            Button {
-                isPresented = true
-            } label: {
-                if library.warning == nil {
-                    Image(systemName: "info.circle")
-                } else {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .symbolRenderingMode(.multicolor)
-                }
-            }
-            .buttonStyle(.plain)
-            .popover(isPresented: $isPresented, attachmentAnchor: .point(.bottom), arrowEdge: .bottom) {
-                LibraryInfoView(library: library)
-            }
-        }
+    @MainActor func closeColorPanels() {
+        NSApplication.shared.windows
+            .compactMap { $0 as? NSColorPanel }
+            .forEach { $0.close() }
     }
-
 }

@@ -68,7 +68,6 @@ struct LibraryInfoView: View {
         .navigationTitle(library.name)
         .frame(idealWidth: LayoutMetrics.width, maxWidth: LayoutMetrics.width, maxHeight: LayoutMetrics.height)
         .foregroundColor(.primary)
-        .textSelection(.enabled)
     }
 
 }
