@@ -20,23 +20,43 @@
 
 import SwiftUI
 
-struct SelectionDisabledLabeledContentStyle: LabeledContentStyle {
+struct SidebarSectionHeader: View {
 
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.label
-            Spacer()
-            configuration.content
-                .textSelection(.disabled)
-                .foregroundColor(.secondary)
-        }
+    let title: String
+
+    init(_ title: String) {
+        self.title = title
     }
+
+    var body: some View {
+        Text(title)
+            .fontWeight(.bold)
+            .foregroundColor(.secondary)
+            .horizontalSpace(.trailing)
+            .padding()
+    }
+
 }
 
-extension LabeledContentStyle where Self == SelectionDisabledLabeledContentStyle {
+struct SidebarSectionFooter: View {
 
-    static var selectionDisabled: Self {
-        return SelectionDisabledLabeledContentStyle()
+    var body: some View {
+        Divider()
+            .padding(.top)
+    }
+
+}
+
+extension Section where Parent == SidebarSectionHeader, Footer == SidebarSectionFooter, Content: View {
+
+    init(forSidebarWithTitle title: String, @ViewBuilder content: () -> Content) {
+        self.init {
+            content()
+        } header: {
+            SidebarSectionHeader(title)
+        } footer: {
+            SidebarSectionFooter()
+        }
     }
 
 }

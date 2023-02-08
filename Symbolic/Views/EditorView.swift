@@ -36,8 +36,13 @@ struct EditorView: View {
     var body: some View {
         Form {
             
-            Section("Icon") {
+            Section(forSidebarWithTitle: "Icon") {
                 SymbolPicker("Image", selection: $document.icon.symbol.undoable(undoManager, context: undoContext))
+                if let library = sceneModel.library {
+                    LabeledContent("") {
+                        LibraryInfoButton(library: library)
+                    }
+                }
                 Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext), in: 0...1.2) {
                     Text("Size")
                 }
@@ -67,7 +72,7 @@ struct EditorView: View {
                 }
             }
 
-            Section("Shadow") {
+            Section(forSidebarWithTitle: "Shadow") {
                 Slider(value: $document.icon.shadowOpacity.undoable(undoManager, context: undoContext)) {
                     Text("Opacity")
                 }
@@ -76,7 +81,7 @@ struct EditorView: View {
                 }
             }
 
-            Section("Background") {
+            Section(forSidebarWithTitle: "Background") {
                 LabeledContent("Gradient") {
                     HStack {
                         ColorPicker(selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
@@ -100,16 +105,15 @@ struct EditorView: View {
             }
 #if DEBUG
             if settings.showIconDetails {
-                Section("Details") {
+                Section(forSidebarWithTitle: "Details") {
                     LabeledContent("Family", value: document.icon.symbol.family)
                     LabeledContent("Name", value: document.icon.symbol.name)
                     LabeledContent("Variant", value: document.icon.symbol.variant ?? "")
                 }
-                .labeledContentStyle(.selectionDisabled)
             }
 #endif
         }
-        .formStyle(.grouped)
+        .formStyle(.sidebar)
     }
 
 }
