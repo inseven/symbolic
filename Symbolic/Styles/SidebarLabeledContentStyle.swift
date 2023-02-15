@@ -20,34 +20,27 @@
 
 import SwiftUI
 
-import Diligence
+struct SidebarLabeledContentStyle: LabeledContentStyle {
 
-struct LibraryInfoButton: View {
-
-    let library: Library
-
-    @State var isPresented: Bool = false
-
-    var body: some View {
-        HStack(spacing: 4.0) {
-            Text(library.name)
-                .textSelection(.disabled)
-            Button {
-                isPresented = true
-            } label: {
-                if library.warning == nil {
-                    Image(systemName: "info.circle")
-                } else {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .symbolRenderingMode(.multicolor)
-                }
-            }
-            .buttonStyle(.plain)
-            .popover(isPresented: $isPresented, attachmentAnchor: .point(.bottom), arrowEdge: .bottom) {
-                LibraryInfoView(library: library)
-            }
+    func makeBody(configuration: Configuration) -> some View {
+        GridRow(alignment: .firstTextBaseline) {
+            configuration.label
+                .foregroundColor(.secondary)
+                .padding(.leading)
+                .gridColumnAlignment(.trailing)
+            configuration.content
+                .padding(.trailing)
+                .gridColumnAlignment(.leading)
         }
-        .foregroundColor(.secondary)
+        .textSelection(.disabled)
+    }
+
+}
+
+extension LabeledContentStyle where Self == SidebarLabeledContentStyle {
+
+    static var sidebar: Self {
+        return Self()
     }
 
 }

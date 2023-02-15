@@ -38,7 +38,6 @@
 		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
 		D864A23C2965E239008A4261 /* MacIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864A23B2965E239008A4261 /* MacIconView.swift */; };
 		D8685CFF298D17A200A7DA60 /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8685CFE298D17A200A7DA60 /* NSApplication.swift */; };
-		D8685D01298D189C00A7DA60 /* SelectionDisabledLabeledContentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8685D00298D189C00A7DA60 /* SelectionDisabledLabeledContentStyle.swift */; };
 		D86B0ECF291BEF7400352367 /* IconDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ECE291BEF7400352367 /* IconDocument.swift */; };
 		D86B0ED1291BEFC100352367 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B0ED0291BEFC100352367 /* UTType.swift */; };
 		D870818E297C1F02007CAE83 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D870818D297C1F02007CAE83 /* Settings.swift */; };
@@ -50,6 +49,9 @@
 		D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61309293BB98100F29E0C /* ApplicationModel.swift */; };
 		D8B7677B298A6E4F00E99C6A /* PositionOffsetSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */; };
 		D8B7677D298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B7677C298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift */; };
+		D8C99CF72993E59C00D85286 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C99CF62993E59C00D85286 /* Sidebar.swift */; };
+		D8C99CF92993E5D800D85286 /* SidebarFormStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C99CF82993E5D800D85286 /* SidebarFormStyle.swift */; };
+		D8C99CFB2993E60300D85286 /* SidebarLabeledContentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C99CFA2993E60300D85286 /* SidebarLabeledContentStyle.swift */; };
 		D8CB5A382970D9A5002007C4 /* material-icons in Resources */ = {isa = PBXBuildFile; fileRef = D8CB5A372970D9A5002007C4 /* material-icons */; };
 		D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A392970E8DB002007C4 /* SymbolView.swift */; };
 		D8CB5A3C2970E92A002007C4 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB5A3B2970E92A002007C4 /* Library.swift */; };
@@ -131,7 +133,6 @@
 		D864A2382965999C008A4261 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = interact; sourceTree = "<group>"; };
 		D864A23B2965E239008A4261 /* MacIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacIconView.swift; sourceTree = "<group>"; };
 		D8685CFE298D17A200A7DA60 /* NSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSApplication.swift; sourceTree = "<group>"; };
-		D8685D00298D189C00A7DA60 /* SelectionDisabledLabeledContentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionDisabledLabeledContentStyle.swift; sourceTree = "<group>"; };
 		D86B0ECE291BEF7400352367 /* IconDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDocument.swift; sourceTree = "<group>"; };
 		D86B0ED0291BEFC100352367 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		D870818D297C1F02007CAE83 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -144,6 +145,9 @@
 		D8B61309293BB98100F29E0C /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
 		D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionOffsetSlider.swift; sourceTree = "<group>"; };
 		D8B7677C298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingToTrailingLabeledContentStyle.swift; sourceTree = "<group>"; };
+		D8C99CF62993E59C00D85286 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		D8C99CF82993E5D800D85286 /* SidebarFormStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFormStyle.swift; sourceTree = "<group>"; };
+		D8C99CFA2993E60300D85286 /* SidebarLabeledContentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarLabeledContentStyle.swift; sourceTree = "<group>"; };
 		D8CB5A372970D9A5002007C4 /* material-icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "material-icons"; sourceTree = "<group>"; };
 		D8CB5A392970E8DB002007C4 /* SymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
 		D8CB5A3B2970E92A002007C4 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				D83970E128B0B45300282EE8 /* Color.swift */,
 				D8685CFE298D17A200A7DA60 /* NSApplication.swift */,
 				D826B5C5296B09FC00693D27 /* Path.swift */,
+				D8C99CF62993E59C00D85286 /* Sidebar.swift */,
 				D821B9E928ACDBF700504AA4 /* String.swift */,
 				D86B0ED0291BEFC100352367 /* UTType.swift */,
 				D821B9DF28ACDB6000504AA4 /* View.swift */,
@@ -300,7 +305,8 @@
 			children = (
 				D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */,
 				D8B7677C298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift */,
-				D8685D00298D189C00A7DA60 /* SelectionDisabledLabeledContentStyle.swift */,
+				D8C99CF82993E5D800D85286 /* SidebarFormStyle.swift */,
+				D8C99CFA2993E60300D85286 /* SidebarLabeledContentStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */,
 				D8CB5A4629719395002007C4 /* Manifest.swift in Sources */,
 				D83970E928B1340900282EE8 /* DeviceType.swift in Sources */,
+				D8C99CF72993E59C00D85286 /* Sidebar.swift in Sources */,
 				D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */,
 				D826B5CB296B243800693D27 /* ViewCommands.swift in Sources */,
 				D8CCF738297EB299006A1185 /* Binding+mappedToBool.swift in Sources */,
@@ -633,12 +640,12 @@
 				D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */,
 				D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */,
 				D8CB5A3C2970E92A002007C4 /* Library.swift in Sources */,
+				D8C99CFB2993E60300D85286 /* SidebarLabeledContentStyle.swift in Sources */,
 				D83970E228B0B45300282EE8 /* Color.swift in Sources */,
 				D84868EA296ACC8B009FDF32 /* IconSetView.swift in Sources */,
 				D821B9E028ACDB6000504AA4 /* View.swift in Sources */,
 				D84868E8296ACC58009FDF32 /* Header.swift in Sources */,
 				D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */,
-				D8685D01298D189C00A7DA60 /* SelectionDisabledLabeledContentStyle.swift in Sources */,
 				D826B5C6296B09FC00693D27 /* Path.swift in Sources */,
 				D8E4C3C12979809D00A25DF9 /* LibraryInfoView.swift in Sources */,
 				D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */,
@@ -646,6 +653,7 @@
 				D864A23C2965E239008A4261 /* MacIconView.swift in Sources */,
 				D8CB5A3E2970F4D0002007C4 /* SymbolReference.swift in Sources */,
 				D8685CFF298D17A200A7DA60 /* NSApplication.swift in Sources */,
+				D8C99CF92993E5D800D85286 /* SidebarFormStyle.swift in Sources */,
 				D870818E297C1F02007CAE83 /* Settings.swift in Sources */,
 				D826B5D0296B478400693D27 /* CenteredFlowLayout.swift in Sources */,
 				D8CB5A4229718D23002007C4 /* LibraryManager.swift in Sources */,

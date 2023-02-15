@@ -50,60 +50,55 @@ struct SymbolPicker: View {
 
     var body: some View {
         LabeledContent("Symbol") {
-            VStack(alignment: .trailing) {
-                Button {
-                    isPresented = true
-                } label: {
-                    HStack {
-                        SymbolView(symbolReference: selection.wrappedValue)
-                    }
-                    .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
+            Button {
+                isPresented = true
+            } label: {
+                HStack {
+                    SymbolView(symbolReference: selection.wrappedValue)
                 }
-                .controlSize(.large)
-                .popover(isPresented: $isPresented) {
+                .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
+            }
+            .controlSize(.large)
+            .popover(isPresented: $isPresented) {
 
-                    VStack(spacing: 0) {
-                        TextField(text: $model.filter, prompt: Text("Search")) {
-                            EmptyView()
-                        }
-                        .multilineTextAlignment(.leading)
-                        .textFieldStyle(.roundedBorder)
-                        .padding()
-                        .background(Color(nsColor: NSColor.controlBackgroundColor))
+                VStack(spacing: 0) {
+                    TextField(text: $model.filter, prompt: Text("Search")) {
+                        EmptyView()
+                    }
+                    .multilineTextAlignment(.leading)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                    .background(Color(nsColor: NSColor.controlBackgroundColor))
 
-                        ScrollView {
-                            LazyVGrid(columns: columns,
-                                      spacing: LayoutMetrics.interItemSpacing,
-                                      pinnedViews: [.sectionHeaders]) {
-                                ForEach(model.filteredSymbols) { section in
-                                    Section {
-                                        ForEach(section.symbols) { symbol in
-                                            SymbolView(symbolReference: symbol.reference)
-                                                .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
-                                                .onTapGesture {
-                                                    isPresented = false
-                                                    selection.wrappedValue = symbol.reference
-                                                }
-                                                .help(symbol.localizedDescription)
-                                        }
-                                    } header: {
-                                        Text(section.name)
-                                            .textCase(.uppercase)
-                                            .horizontalSpace(.trailing)
-                                            .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
-                                            .background(Color(nsColor: NSColor.controlBackgroundColor))
+                    ScrollView {
+                        LazyVGrid(columns: columns,
+                                  spacing: LayoutMetrics.interItemSpacing,
+                                  pinnedViews: [.sectionHeaders]) {
+                            ForEach(model.filteredSymbols) { section in
+                                Section {
+                                    ForEach(section.symbols) { symbol in
+                                        SymbolView(symbolReference: symbol.reference)
+                                            .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
+                                            .onTapGesture {
+                                                isPresented = false
+                                                selection.wrappedValue = symbol.reference
+                                            }
+                                            .help(symbol.localizedDescription)
                                     }
+                                } header: {
+                                    Text(section.name)
+                                        .textCase(.uppercase)
+                                        .horizontalSpace(.trailing)
+                                        .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
+                                        .background(Color(nsColor: NSColor.controlBackgroundColor))
                                 }
                             }
-                                      .padding([.leading, .trailing, .bottom])
                         }
+                        .padding([.leading, .trailing, .bottom])
                     }
-                    .background(Color(nsColor: NSColor.controlBackgroundColor))
-                    .frame(height: LayoutMetrics.height)
                 }
-                if let library = LibraryManager.shared.library(for: selection.wrappedValue) {
-                    LibraryInfoButton(library: library)
-                }
+                .background(Color(nsColor: NSColor.controlBackgroundColor))
+                .frame(height: LayoutMetrics.height)
             }
         }
         .onAppear {

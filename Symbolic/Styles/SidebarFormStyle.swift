@@ -20,34 +20,23 @@
 
 import SwiftUI
 
-import Diligence
+struct SidebarFormStyle: FormStyle {
 
-struct LibraryInfoButton: View {
-
-    let library: Library
-
-    @State var isPresented: Bool = false
-
-    var body: some View {
-        HStack(spacing: 4.0) {
-            Text(library.name)
-                .textSelection(.disabled)
-            Button {
-                isPresented = true
-            } label: {
-                if library.warning == nil {
-                    Image(systemName: "info.circle")
-                } else {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .symbolRenderingMode(.multicolor)
-                }
+    func makeBody(configuration: Configuration) -> some View {
+        ScrollView {
+            Grid {
+                configuration.content
+                    .labeledContentStyle(.sidebar)
             }
-            .buttonStyle(.plain)
-            .popover(isPresented: $isPresented, attachmentAnchor: .point(.bottom), arrowEdge: .bottom) {
-                LibraryInfoView(library: library)
-            }
+            Spacer()
         }
-        .foregroundColor(.secondary)
+    }
+}
+
+extension FormStyle where Self == SidebarFormStyle {
+
+    static var sidebar: Self {
+        return Self()
     }
 
 }
