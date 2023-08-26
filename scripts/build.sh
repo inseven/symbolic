@@ -107,15 +107,11 @@ echo "$TEMPORARY_KEYCHAIN_PASSWORD" | build-tools create-keychain "$KEYCHAIN_PAT
 
 function cleanup {
 
-    # Cleanup the temporary files and keychain.
+    # Cleanup the temporary files, keychain and keys.
     cd "$ROOT_DIRECTORY"
     build-tools delete-keychain "$KEYCHAIN_PATH"
     rm -rf "$TEMPORARY_DIRECTORY"
-
-    # Clean up any private keys.
-    if [ -f ~/.appstoreconnect/private_keys ]; then
-        rm -r ~/.appstoreconnect/private_keys
-    fi
+    rm -rf ~/.appstoreconnect/private_keys
 }
 
 trap cleanup EXIT
@@ -162,8 +158,12 @@ xcodebuild \
 APP_BASENAME="Symbolic.app"
 APP_PATH="$BUILD_DIRECTORY/$APP_BASENAME"
 PKG_PATH="$BUILD_DIRECTORY/Symbolic.pkg"
-#
-# # Validate the macOS build.
+
+# Install the private key.
+mkdir -p ~/.appstoreconnect/private_keys/
+echo -n "$APPLE_API_KEY_BASE64" | base64 --decode -o ~/".appstoreconnect/private_keys/AuthKey_${APPLE_API_KEY_ID}.p8"
+
+# Validate the macOS build.
 xcrun altool --validate-app \
     -f "${PKG_PATH}" \
     --apiKey "$APPLE_API_KEY_ID" \
@@ -179,10 +179,6 @@ zip -r "${ZIP_BASENAME}" .
 popd
 
 if $RELEASE ; then
-
-    # Install the private key.
-    mkdir -p ~/.appstoreconnect/private_keys/
-    echo -n "$APPLE_API_KEY" | base64 --decode -o ~/".appstoreconnect/private_keys/AuthKey_${APPLE_API_KEY_ID}.p8"
 
     changes \
         release \
