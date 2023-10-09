@@ -1,4 +1,4 @@
-// Copyright (c) 2022-2023 InSeven Limited
+// Copyright (c) 2022-2023 Jason Barrie Morley
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -155,10 +155,9 @@ class ApplicationModel: ObservableObject {
     let settings = Settings()
 
     @MainActor private lazy var aboutWindow: NSWindow = {
-        return NSWindow(copyright: "Copyright © 2022-2023 InSeven Limited") {
+        return NSWindow(copyright: "Copyright © 2022-2023 Jason Barrie Morley") {
             Action("Website", url: URL(string: "https://symbolic.app")!)
             Action("Privacy", url: URL(string: "https://symbolic.app/privacy")!)
-            Action("InSeven Limited", url: URL(string: "https://inseven.co.uk")!)
         } acknowledgements: {
             Acknowledgements("Developers") {
                 Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
