@@ -77,15 +77,6 @@ function xcode_project {
         -project Symbolic.xcodeproj "$@"
 }
 
-function build_scheme {
-    # Disable code signing for the build server.
-    xcode_project \
-        -scheme "$1" \
-        CODE_SIGN_IDENTITY="" \
-        CODE_SIGNING_REQUIRED=NO \
-        CODE_SIGNING_ALLOWED=NO "${@:2}"
-}
-
 cd "$ROOT_DIRECTORY"
 
 # List the available schemes.
