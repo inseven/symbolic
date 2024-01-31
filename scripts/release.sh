@@ -30,7 +30,7 @@ set -x
 # Upload the macOS build.
 xcrun altool --upload-app \
     -f "$1" \
-    --primary-bundle-id "uk.co.inseven.iconic" \
+    --primary-bundle-id "app.symbolic.apps.appstore" \
     --apiKey "$APPLE_API_KEY_ID" \
     --apiIssuer "$APPLE_API_KEY_ISSUER_ID" \
     --type macos
