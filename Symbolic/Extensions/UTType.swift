@@ -21,5 +21,5 @@
 import UniformTypeIdentifiers
 
 extension UTType {
-    static let iconDocument = UTType(exportedAs: "uk.co.inseven.symbolic.icon")
+    static let iconDocument = UTType(exportedAs: "app.symbolic.types.icon")
 }
