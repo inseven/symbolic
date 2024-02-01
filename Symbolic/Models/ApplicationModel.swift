@@ -177,7 +177,7 @@ class ApplicationModel: ObservableObject {
         } licenses: {
 
             License("Binding+mappedToBool", author: "Joseph Duffy", filename: "binding-mappedtobool-license")
-            License("Interact", author: "InSeven Limited", url: Interact.Package.licenseURL)
+            License(Interact.Package.name, author: Interact.Package.author, url: Interact.Package.licenseURL)
             License("SwiftDraw", author: "Simon Whitty", filename: "swiftdraw-license")
             License("Symbolic", author: "Jason Morley", filename: "symbolic-license")
 
