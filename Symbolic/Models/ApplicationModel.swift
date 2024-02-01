@@ -1,4 +1,4 @@
-// Copyright (c) 2022-2024 Jason Barrie Morley
+// Copyright (c) 2022-2024 Jason Morley
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -155,7 +155,7 @@ class ApplicationModel: ObservableObject {
     let settings = Settings()
 
     @MainActor private lazy var aboutWindow: NSWindow = {
-        return NSWindow(copyright: "Copyright © 2022-2024 Jason Barrie Morley") {
+        return NSWindow(copyright: "Copyright © 2022-2024 Jason Morley") {
             Action("Website", url: URL(string: "https://symbolic.app")!)
             Action("Privacy", url: URL(string: "https://symbolic.app/privacy")!)
         } acknowledgements: {
@@ -175,7 +175,7 @@ class ApplicationModel: ObservableObject {
             License("Binding+mappedToBool", author: "Joseph Duffy", filename: "binding-mappedtobool-license")
             License("Interact", author: "InSeven Limited", url: Interact.Package.licenseURL)
             License("SwiftDraw", author: "Simon Whitty", filename: "swiftdraw-license")
-            License("Symbolic", author: "Jason Barrie Morley", filename: "symbolic-license")
+            License("Symbolic", author: "Jason Morley", filename: "symbolic-license")
 
             for library in LibraryManager.shared.sets.filter({ $0.license.fileURL != nil }) {
                 License(library.name, author: library.author, url: library.license.fileURL!)
