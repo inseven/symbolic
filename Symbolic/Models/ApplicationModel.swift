@@ -155,9 +155,13 @@ class ApplicationModel: ObservableObject {
     let settings = Settings()
 
     @MainActor private lazy var aboutWindow: NSWindow = {
+
+        let title = "Symbolic Support (\(Bundle.main.version ?? "Unknown Version"))"
+
         return NSWindow(copyright: "Copyright © 2022-2024 Jason Morley") {
             Action("Website", url: URL(string: "https://symbolic.app")!)
             Action("Privacy", url: URL(string: "https://symbolic.app/privacy")!)
+            Action("Support", url: URL(address: "support@symbolic.app", subject: title)!)
         } acknowledgements: {
             Acknowledgements("Developers") {
                 Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk"))
