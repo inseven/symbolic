@@ -39,7 +39,7 @@ https://symbolic.app
 
 ### Copyright
 
-2022-2023 Jason Barrie Morley
+2022-2024 Jason Barrie Morley
 
 ## Screenshots
 
