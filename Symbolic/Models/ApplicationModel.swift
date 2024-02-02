@@ -160,7 +160,7 @@ class ApplicationModel: ObservableObject {
 
         return NSWindow(copyright: "Copyright © 2022-2024 Jason Morley") {
             Action("Website", url: URL(string: "https://symbolic.app")!)
-            Action("Privacy", url: URL(string: "https://symbolic.app/privacy")!)
+            Action("Privacy", url: URL(string: "https://symbolic.app/privacy-policy")!)
             Action("Support", url: URL(address: "support@symbolic.app", subject: title)!)
         } acknowledgements: {
             Acknowledgements("Developers") {
