@@ -19,25 +19,31 @@
 // SOFTWARE.
 
 import SwiftUI
-struct ExportCommands: Commands {
 
-    @FocusedObject private var sceneModel: SceneModel?
+struct RequiresSubscription: ViewModifier {
 
-    let applicationModel: ApplicationModel
+    let groupID: String
 
-    init(applicationModel: ApplicationModel) {
-        self.applicationModel = applicationModel
+    @State var isSubscribed: Bool = false
+
+    init(groupID: String) {
+        self.groupID = groupID
     }
 
-    @MainActor public var body: some Commands {
-        CommandGroup(replacing: .importExport) {
-            Button("Export...") {
-                sceneModel?.export()
+    func body(content: Content) -> some View {
+        content
+            .subscriptionStatus(for: groupID) { isSubscribed in
+                self.isSubscribed = isSubscribed
             }
-            .disabled(sceneModel == nil)
-            .requiresSubscription(groupID: ApplicationModel.subscriptionGroupID)
-            .keyboardShortcut("e")
-        }
+            .disabled(!isSubscribed)
+    }
+
+}
+
+extension View {
+
+    func requiresSubscription(groupID: String) -> some View {
+        return modifier(RequiresSubscription(groupID: groupID))
     }
 
 }

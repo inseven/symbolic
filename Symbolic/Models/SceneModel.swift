@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 import Combine
+import StoreKit
 import SwiftUI
 
 import Interact
@@ -28,13 +29,14 @@ class SceneModel: ObservableObject, Runnable {
     var settings: Settings
     var document: IconDocument
 
-    @Published var library: Library? = nil
-    @Published var showGrid = false
-    @Published var showOffsetX = false
-    @Published var showOffsetY = false
-    @Published var showExportWarning = false
-    @Published var showExportPanel = false
-    @Published var lastError: Error?
+    @MainActor @Published var library: Library? = nil
+    @MainActor @Published var showGrid = false
+    @MainActor @Published var showOffsetX = false
+    @MainActor @Published var showOffsetY = false
+    @MainActor @Published var showExportWarning = false
+    @MainActor @Published var showExportPanel = false
+    @MainActor @Published var showSubscriptionsView: Bool = false
+    @MainActor @Published var lastError: Error?
 
     @MainActor private var cancellables: Set<AnyCancellable> = []
 
@@ -74,6 +76,26 @@ class SceneModel: ObservableObject, Runnable {
             showExportWarning = true
         } else {
             showExportPanel = true
+        }
+    }
+
+    @MainActor func showSubscriptions() {
+        showSubscriptionsView = true
+    }
+
+    @MainActor func dismissSubscriptions() {
+        showSubscriptionsView = false
+    }
+
+    func restorePurchases() {
+        Task {
+            do {
+                try await AppStore.sync()
+            } catch {
+                await MainActor.run {
+                    self.lastError = error
+                }
+            }
         }
     }
 

@@ -19,25 +19,28 @@
 // SOFTWARE.
 
 import SwiftUI
-struct ExportCommands: Commands {
 
-    @FocusedObject private var sceneModel: SceneModel?
+struct SubscriptionBanner: View {
 
-    let applicationModel: ApplicationModel
+    @ObservedObject var sceneModel: SceneModel
 
-    init(applicationModel: ApplicationModel) {
-        self.applicationModel = applicationModel
-    }
-
-    @MainActor public var body: some Commands {
-        CommandGroup(replacing: .importExport) {
-            Button("Export...") {
-                sceneModel?.export()
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Text("Subscribe to Symbolic for tvOS, visionOS, and exports...")
+                Spacer()
+                Button {
+                    sceneModel.showSubscriptions()
+                } label: {
+                    Text("Subscribe")
+                }
             }
-            .disabled(sceneModel == nil)
-            .requiresSubscription(groupID: ApplicationModel.subscriptionGroupID)
-            .keyboardShortcut("e")
+            .padding()
+            .background(.yellow)
+            Divider()
         }
+        .foregroundColor(.black)
+
     }
 
 }

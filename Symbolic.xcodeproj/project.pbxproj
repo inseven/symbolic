@@ -45,6 +45,11 @@
 		D8708190297C6121007CAE83 /* SavePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D870818F297C6121007CAE83 /* SavePanel.swift */; };
 		D88661A3297AC893001E41DD /* InfoLabeledContentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */; };
 		D88661A5297AD82A001E41DD /* ConditionalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88661A4297AD82A001E41DD /* ConditionalLink.swift */; };
+		D89C5E252B87F2D40022061B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89C5E242B87F2D40022061B /* StoreKit.framework */; };
+		D89C5E282B883DE70022061B /* SubscriptionCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C5E272B883DE70022061B /* SubscriptionCommands.swift */; };
+		D89C5E2A2B883E7D0022061B /* SubscriptionBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C5E292B883E7D0022061B /* SubscriptionBanner.swift */; };
+		D89C5E2C2B883F510022061B /* RequiresSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C5E2B2B883F510022061B /* RequiresSubscription.swift */; };
+		D89C5E2E2B8840100022061B /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C5E2D2B8840100022061B /* ValidationResult.swift */; };
 		D8B0B1F1296CD4AB00F907BE /* OffsetGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */; };
 		D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61307293BB81100F29E0C /* AboutCommands.swift */; };
 		D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61309293BB98100F29E0C /* ApplicationModel.swift */; };
@@ -142,6 +147,12 @@
 		D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabeledContentStyle.swift; sourceTree = "<group>"; };
 		D88661A4297AD82A001E41DD /* ConditionalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalLink.swift; sourceTree = "<group>"; };
 		D89A7404297C9BDE00F632ED /* SavePanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavePanel.swift; sourceTree = "<group>"; };
+		D89C5E242B87F2D40022061B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		D89C5E262B87F6550022061B /* Symbolic.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Symbolic.storekit; sourceTree = "<group>"; };
+		D89C5E272B883DE70022061B /* SubscriptionCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCommands.swift; sourceTree = "<group>"; };
+		D89C5E292B883E7D0022061B /* SubscriptionBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBanner.swift; sourceTree = "<group>"; };
+		D89C5E2B2B883F510022061B /* RequiresSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiresSubscription.swift; sourceTree = "<group>"; };
+		D89C5E2D2B8840100022061B /* ValidationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationResult.swift; sourceTree = "<group>"; };
 		D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetGuide.swift; sourceTree = "<group>"; };
 		D8B61307293BB81100F29E0C /* AboutCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommands.swift; sourceTree = "<group>"; };
 		D8B61309293BB98100F29E0C /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
@@ -194,6 +205,7 @@
 				D831DD1C297319FC00C20B11 /* SwiftDraw in Frameworks */,
 				D864A23A2965A2D1008A4261 /* Interact in Frameworks */,
 				D8F99EC628B13998007C3868 /* Diligence in Frameworks */,
+				D89C5E252B87F2D40022061B /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +237,7 @@
 				D821B9E928ACDBF700504AA4 /* String.swift */,
 				D86B0ED0291BEFC100352367 /* UTType.swift */,
 				D821B9DF28ACDB6000504AA4 /* View.swift */,
+				D89C5E2D2B8840100022061B /* ValidationResult.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -273,6 +286,7 @@
 				D83970E628B132C700282EE8 /* UnityScaleWindow.swift */,
 				D826B5C3296B054000693D27 /* WatchGridView.swift */,
 				D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */,
+				D89C5E292B883E7D0022061B /* SubscriptionBanner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +332,7 @@
 			children = (
 				D8B61307293BB81100F29E0C /* AboutCommands.swift */,
 				D826B5C8296B13CB00693D27 /* ExportCommands.swift */,
+				D89C5E272B883DE70022061B /* SubscriptionCommands.swift */,
 				D826B5CA296B243800693D27 /* ViewCommands.swift */,
 			);
 			path = Commands;
@@ -330,6 +345,7 @@
 				D88661A4297AD82A001E41DD /* ConditionalLink.swift */,
 				D857297B296C176C0037E58F /* SymbolPickerCell.swift */,
 				D870818F297C6121007CAE83 /* SavePanel.swift */,
+				D89C5E2B2B883F510022061B /* RequiresSubscription.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -379,6 +395,7 @@
 			children = (
 				D8CD4A8628AC35C600D57F34 /* Symbolic.entitlements */,
 				D83970E328B0B61700282EE8 /* Info.plist */,
+				D89C5E262B87F6550022061B /* Symbolic.storekit */,
 				D8CD4A7D28AC35C300D57F34 /* SymbolicApp.swift */,
 				D8CD4A8128AC35C600D57F34 /* Assets.xcassets */,
 				D8B61306293BB7FF00F29E0C /* Commands */,
@@ -457,6 +474,7 @@
 		D8F99EC428B13998007C3868 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D89C5E242B87F2D40022061B /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -631,6 +649,7 @@
 				D8B7677D298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift in Sources */,
 				D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */,
 				D808A2152979918300763881 /* Variant.swift in Sources */,
+				D89C5E2E2B8840100022061B /* ValidationResult.swift in Sources */,
 				D88661A5297AD82A001E41DD /* ConditionalLink.swift in Sources */,
 				D86B0ED1291BEFC100352367 /* UTType.swift in Sources */,
 				D8CD4A8028AC35C300D57F34 /* ContentView.swift in Sources */,
@@ -641,6 +660,7 @@
 				D88661A3297AC893001E41DD /* InfoLabeledContentStyle.swift in Sources */,
 				D8CB5A442971925A002007C4 /* Symbol.swift in Sources */,
 				D821B9E428ACDBA800504AA4 /* IconView.swift in Sources */,
+				D89C5E282B883DE70022061B /* SubscriptionCommands.swift in Sources */,
 				D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */,
 				D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */,
 				D8CB5A3C2970E92A002007C4 /* Library.swift in Sources */,
@@ -651,6 +671,8 @@
 				D84868E8296ACC58009FDF32 /* Header.swift in Sources */,
 				D8CD4A7E28AC35C300D57F34 /* SymbolicApp.swift in Sources */,
 				D826B5C6296B09FC00693D27 /* Path.swift in Sources */,
+				D89C5E2A2B883E7D0022061B /* SubscriptionBanner.swift in Sources */,
+				D89C5E2C2B883F510022061B /* RequiresSubscription.swift in Sources */,
 				D8E4C3C12979809D00A25DF9 /* LibraryInfoView.swift in Sources */,
 				D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */,
 				D808A2172979928900763881 /* LibraryInfoButton.swift in Sources */,
@@ -754,7 +776,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -809,7 +831,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -896,7 +918,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -915,7 +936,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

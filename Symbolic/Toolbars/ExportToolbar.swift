@@ -82,6 +82,7 @@ struct ExportToolbar: CustomizableToolbarContent {
                 Label("Export", systemImage: "square.and.arrow.up")
             }
             .help("Export icons")
+            .requiresSubscription(groupID: ApplicationModel.subscriptionGroupID)
         }
 
     }

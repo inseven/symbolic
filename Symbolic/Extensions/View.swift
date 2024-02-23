@@ -53,4 +53,15 @@ extension View {
         }
     }
 
+    func subscriptionStatus(for groupID: String, action: @escaping (Bool) -> Void) -> some View {
+        return subscriptionStatusTask(for: groupID) { taskState in
+            guard let statuses = taskState.value else {
+                return
+            }
+            let hasSubscription = statuses.map { $0.transaction.isValid }
+                .reduce(false) { $0 || $1 }
+            action(hasSubscription)
+        }
+    }
+
 }
