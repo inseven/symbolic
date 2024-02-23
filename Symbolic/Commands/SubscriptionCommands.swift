@@ -19,25 +19,31 @@
 // SOFTWARE.
 
 import SwiftUI
-struct ExportCommands: Commands {
+
+struct SubscriptionCommands: Commands {
 
     @FocusedObject private var sceneModel: SceneModel?
 
-    let applicationModel: ApplicationModel
+    var body: some Commands {
 
-    init(applicationModel: ApplicationModel) {
-        self.applicationModel = applicationModel
-    }
+        CommandGroup(after: .appSettings) {
 
-    @MainActor public var body: some Commands {
-        CommandGroup(replacing: .importExport) {
-            Button("Export...") {
-                sceneModel?.export()
+            Button {
+                sceneModel?.showSubscriptions()
+            } label: {
+                Text("Subscriptions...")
             }
             .disabled(sceneModel == nil)
-            .requiresSubscription(groupID: ApplicationModel.subscriptionGroupID)
-            .keyboardShortcut("e")
+
+            Button {
+                sceneModel?.restorePurchases()
+            } label: {
+                Text("Restore Purchases...")
+            }
+            .disabled(sceneModel == nil)
+
         }
+
     }
 
 }

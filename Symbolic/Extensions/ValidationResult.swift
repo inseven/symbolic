@@ -18,26 +18,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
-struct ExportCommands: Commands {
+import StoreKit
 
-    @FocusedObject private var sceneModel: SceneModel?
+extension VerificationResult where SignedType == Transaction {
 
-    let applicationModel: ApplicationModel
-
-    init(applicationModel: ApplicationModel) {
-        self.applicationModel = applicationModel
-    }
-
-    @MainActor public var body: some Commands {
-        CommandGroup(replacing: .importExport) {
-            Button("Export...") {
-                sceneModel?.export()
-            }
-            .disabled(sceneModel == nil)
-            .requiresSubscription(groupID: ApplicationModel.subscriptionGroupID)
-            .keyboardShortcut("e")
+    var isValid: Bool {
+        guard case .verified(let transaction) = self else {
+            // Ignore unverified transactions.
+            return false
+        }
+        if transaction.revocationDate != nil {
+            // Revoked.
+            return false
+        } else if let expirationDate = transaction.expirationDate, expirationDate < Date() {
+            // Expired.
+            return false
+        } else if transaction.isUpgraded {
+            // Supersceded by another subscription but still valid.
+            return true
+        } else {
+            return true
         }
     }
-
 }

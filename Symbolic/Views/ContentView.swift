@@ -19,17 +19,22 @@
 // SOFTWARE.
 
 import Combine
+import StoreKit
 import SwiftUI
 
 import Interact
 
 struct ContentView: View {
 
+    @EnvironmentObject var applicationModel: ApplicationModel
     @EnvironmentObject var settings: Settings
+
+    @Environment(\.openWindow) var openWindow
 
     @ObservedObject var document: IconDocument
 
     @StateObject var sceneModel: SceneModel
+    @State var isSubscribed = true
 
     init(settings: Settings, document: IconDocument) {
         self.document = document
@@ -53,6 +58,11 @@ struct ContentView: View {
                 }
                 .padding()
             }
+            .safeAreaInset(edge: .top) {
+                if !isSubscribed {
+                    SubscriptionBanner(sceneModel: sceneModel)
+                }
+            }
             .background(Color(nsColor: .textBackgroundColor))
             .frame(maxWidth: .infinity, minHeight: 400)
             .cacheVectorGraphics(true)
@@ -62,10 +72,20 @@ struct ContentView: View {
         }
         .focusedSceneObject(document)
         .focusedSceneObject(sceneModel)
-        .savePanel(isPresented: $sceneModel.showExportPanel, title: "Export", contentTypes: [.directory], options: [.canCreateDirectories]) {
+        .savePanel(isPresented: $sceneModel.showExportPanel,
+                   title: "Export",
+                   contentTypes: [.directory],
+                   options: [.canCreateDirectories]) {
             url in
             sceneModel.export(destination: url)
         }
+       .sheet(isPresented: $sceneModel.showSubscriptionsView) {
+           SubscriptionStoreView(groupID: ApplicationModel.subscriptionGroupID)
+               .frame(width: 500, height: 600)
+               .onInAppPurchaseCompletion { product, result in
+                   sceneModel.dismissSubscriptions()
+               }
+       }
         .alert("Export Icon?", isPresented: $sceneModel.showExportWarning, presenting: "Export") { text in
             Button("Export") {
                 sceneModel.continueExport()
@@ -88,6 +108,9 @@ struct ContentView: View {
         }
         .environmentObject(sceneModel)
         .runs(sceneModel)
+        .subscriptionStatus(for: ApplicationModel.subscriptionGroupID) { isSubscribed in
+            self.isSubscribed = isSubscribed
+        }
     }
 }
 
