@@ -86,7 +86,6 @@
 		D8E4C3C12979809D00A25DF9 /* LibraryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C3C02979809D00A25DF9 /* LibraryInfoView.swift */; };
 		D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */; };
 		D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */; };
-		D8F99EC328B13955007C3868 /* diligence-license in Resources */ = {isa = PBXBuildFile; fileRef = D8F99EC228B13955007C3868 /* diligence-license */; };
 		D8F99EC628B13998007C3868 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8F99EC528B13998007C3868 /* Diligence */; };
 /* End PBXBuildFile section */
 
@@ -194,7 +193,6 @@
 		D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerModel.swift; sourceTree = "<group>"; };
 		D8F99EC028B138FE007C3868 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = diligence; sourceTree = "<group>"; };
-		D8F99EC228B13955007C3868 /* diligence-license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "diligence-license"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -464,7 +462,6 @@
 			isa = PBXGroup;
 			children = (
 				D8CCF735297EB22F006A1185 /* binding-mappedtobool-license */,
-				D8F99EC228B13955007C3868 /* diligence-license */,
 				D8CB5A4C2971DBCC002007C4 /* swiftdraw-license */,
 				D831F9CD2B6B11E700C26C12 /* symbolic-license */,
 			);
@@ -596,7 +593,6 @@
 				D831F9CE2B6B11E700C26C12 /* symbolic-license in Resources */,
 				D8CCF736297EB22F006A1185 /* binding-mappedtobool-license in Resources */,
 				D84B5D74296C5540005E6C59 /* Template.symbolic in Resources */,
-				D8F99EC328B13955007C3868 /* diligence-license in Resources */,
 				D8CB5A4D2971DBCC002007C4 /* swiftdraw-license in Resources */,
 				D8CD4A8228AC35C600D57F34 /* Assets.xcassets in Resources */,
 			);
