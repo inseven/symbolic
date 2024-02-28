@@ -46,13 +46,6 @@ extension View {
         return pngData
     }
 
-    func showsError(_ error: Binding<Error?>) -> some View {
-        self.alert(isPresented: error.mappedToBool()) {
-            Alert(title: Text("Error"),
-                  message: Text(error.wrappedValue?.localizedDescription ?? ""))
-        }
-    }
-
     func subscriptionStatus(for groupID: String, action: @escaping (Bool) -> Void) -> some View {
         return subscriptionStatusTask(for: groupID) { taskState in
             guard let statuses = taskState.value else {

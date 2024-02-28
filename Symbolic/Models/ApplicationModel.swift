@@ -182,9 +182,8 @@ class ApplicationModel: ObservableObject {
                     License(library.name, author: library.author, url: library.license.fileURL!)
                 }
             }   
-            LicenseGroup("Licenses") {
+            LicenseGroup("Licenses", includeDiligenceLicense: true) {
                 .interact
-                License("Binding+mappedToBool", author: "Joseph Duffy", filename: "binding-mappedtobool-license")
                 License("SwiftDraw", author: "Simon Whitty", filename: "swiftdraw-license")
                 License("Symbolic", author: "Jason Morley", filename: "symbolic-license")
             }
