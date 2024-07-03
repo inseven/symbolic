@@ -69,7 +69,7 @@ final class IconDocument: ReferenceFileDocument {
                 let directoryUrl = url.appendingPathComponent(section.directory, conformingTo: .directory)
                 try FileManager.default.createDirectory(at: directoryUrl, withIntermediateDirectories: true)
                 for definition in iconSet.definitions {
-                    try icon.saveSnapshot(definition: definition, directoryURL: directoryUrl)
+                    _ = try icon.saveSnapshot(definition: definition, directoryURL: directoryUrl)
                 }
             }
         }

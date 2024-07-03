@@ -102,7 +102,6 @@ struct Icon: Identifiable, Codable {
     @ViewBuilder func view(for definition: IconDefinition) -> some View {
 
         let width = definition.size.width * (CGFloat(definition.scale) / 2)
-        let height = definition.size.height * (CGFloat(definition.scale) / 2)
 
         switch definition.style {
         case .macOS:

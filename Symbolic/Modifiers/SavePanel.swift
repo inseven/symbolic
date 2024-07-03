@@ -57,7 +57,7 @@ struct SavePanel: ViewModifier {
             .hookWindow { window in
                 self.window = window
             }
-            .onChange(of: isPresented) { newValue in
+            .onChange(of: isPresented) { _, newValue in
                 guard newValue,
                       let window = window
                 else {
