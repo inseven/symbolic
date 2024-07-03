@@ -7,6 +7,6 @@
 [submodule "scripts/build-tools"]
 	path = scripts/build-tools
 	url = https://github.com/jbmorley/build-tools.git
-[submodule "interact"]
-	path = interact
+[submodule "dependencies/interact"]
+	path = dependencies/interact
 	url = git@github.com:inseven/interact.git
