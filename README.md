@@ -4,7 +4,7 @@
 
 Icon designer
 
-<img src="screenshots/main.png" width="1012" />
+<img src="images/main.png" width="1012" />
 
 ## Development
 
