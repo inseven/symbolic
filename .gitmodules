@@ -1,5 +1,5 @@
-[submodule "diligence"]
-	path = diligence
+[submodule "dependencies/diligence"]
+	path = dependencies/diligence
 	url = git@github.com:inseven/diligence.git
 [submodule "scripts/changes"]
 	path = scripts/changes
