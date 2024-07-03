@@ -134,7 +134,7 @@
 		D84B5D70296C52BE005E6C59 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		D84B5D73296C5540005E6C59 /* Template.symbolic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Template.symbolic; sourceTree = "<group>"; };
 		D857297B296C176C0037E58F /* SymbolPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerCell.swift; sourceTree = "<group>"; };
-		D864A2382965999C008A4261 /* interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "dependencies/interact"; sourceTree = "<group>"; };
+		D864A2382965999C008A4261 /* dependencies/interact */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = dependencies/interact; sourceTree = "<group>"; };
 		D864A23B2965E239008A4261 /* MacIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacIconView.swift; sourceTree = "<group>"; };
 		D8685CFE298D17A200A7DA60 /* NSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSApplication.swift; sourceTree = "<group>"; };
 		D86B0ECE291BEF7400352367 /* IconDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDocument.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 		D8E4C3C02979809D00A25DF9 /* LibraryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryInfoView.swift; sourceTree = "<group>"; };
 		D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerModel.swift; sourceTree = "<group>"; };
-		D8F99EC028B138FE007C3868 /* diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "dependencies/diligence"; sourceTree = "<group>"; };
+		D8F99EC028B138FE007C3868 /* dependencies/diligence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = dependencies/diligence; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -447,8 +447,8 @@
 		D8F99EBF28B138FE007C3868 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				D8F99EC028B138FE007C3868 /* diligence */,
-				D864A2382965999C008A4261 /* interact */,
+				D8F99EC028B138FE007C3868 /* dependencies/diligence */,
+				D864A2382965999C008A4261 /* dependencies/interact */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -539,7 +539,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					D8CD4A7928AC35C300D57F34 = {
 						CreatedOnToolsVersion = 14.0;
@@ -717,6 +717,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -750,6 +751,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -778,6 +780,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -811,6 +814,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
