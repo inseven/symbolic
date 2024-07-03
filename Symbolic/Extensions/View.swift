@@ -22,22 +22,12 @@ import SwiftUI
 
 extension View {
 
-    func snapshot() -> Data? {
-        let controller = NSHostingController(rootView: self)
-        let targetSize = controller.view.intrinsicContentSize
-        let contentRect = NSRect(origin: .zero, size: targetSize)
-        let window = UnityScaleWindow(contentRect: contentRect,
-                                      styleMask: [.borderless],
-                                      backing: .buffered,
-                                      defer: false)
-        window.contentView = controller.view
-        guard let bitmapRep = controller.view.bitmapImageRepForCachingDisplay(in: contentRect) else {
+    @MainActor func pngData() -> Data? {
+        let renderer = ImageRenderer(content: self)
+        renderer.scale = 2
+        guard let image = renderer.nsImage else {
             return nil
         }
-        controller.view.cacheDisplay(in: contentRect, to: bitmapRep)
-        let image = NSImage(size: bitmapRep.size)
-        image.addRepresentation(bitmapRep)
-
         guard let tiffRepresentation = image.tiffRepresentation else {
             return nil
         }

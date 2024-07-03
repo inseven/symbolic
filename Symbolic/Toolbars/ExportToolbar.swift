@@ -20,51 +20,6 @@
 
 import SwiftUI
 
-extension Icon {
-
-    @MainActor func saveMacSnapshot(size: CGFloat,
-                                    scale: Int = 1,
-                                    shadow: Bool = true,
-                                    directoryURL: URL) throws {
-        let scaledSize = size * CGFloat(scale)
-        let icon = MacIconView(icon: self, size: scaledSize, isShadowFlipped: true)
-        guard let data = icon.snapshot() else {
-            throw SymbolicError.exportFailure
-        }
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
-        guard let sizeString = formatter.string(from: NSNumber(value: size)) else {
-            throw SymbolicError.exportFailure
-        }
-        let scaleString = scale > 1 ? String(format: "@%dx", scale) : ""
-        let url = directoryURL.appendingPathComponent("icon_\(sizeString)x\(sizeString)\(scaleString)", conformingTo: .png)
-        try data.write(to: url)
-    }
-
-    @MainActor func saveSnapshot(size: CGFloat,
-                                 scale: Int = 1,
-                                 shadow: Bool = true,
-                                 isWatchOS: Bool = false,
-                                 directoryURL: URL) throws {
-        let scaledSize = size * CGFloat(scale)
-        let icon = IconView(icon: self, size: scaledSize, renderShadow: shadow, isShadowFlipped: true, isWatchOS: isWatchOS)
-        guard let data = icon.snapshot() else {
-            throw SymbolicError.exportFailure
-        }
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
-        guard let sizeString = formatter.string(from: NSNumber(value: size)) else {
-            throw SymbolicError.exportFailure
-        }
-        let scaleString = scale > 1 ? String(format: "@%dx", scale) : ""
-        let url = directoryURL.appendingPathComponent("icon_\(sizeString)x\(sizeString)\(scaleString)", conformingTo: .png)
-        try data.write(to: url)
-    }
-
-}
-
 struct ExportToolbar: CustomizableToolbarContent {
 
     @FocusedObject private var sceneModel: SceneModel?
