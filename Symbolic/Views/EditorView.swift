@@ -50,25 +50,28 @@ struct EditorView: View {
                             selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext),
                             supportsOpacity: false)
                 LabeledContent {
-                    HStack {
-                        PositionOffsetSlider(title: "X",
-                                             isHovering: $sceneModel.showOffsetX,
-                                             value: $document.icon.iconOffset.width.undoable(undoManager,
-                                                                                             context: undoContext))
-                        PositionOffsetSlider(title: "Y",
-                                             isHovering: $sceneModel.showOffsetY,
-                                             value: $document.icon.iconOffset.height.undoable(undoManager,
-                                                                                              context: undoContext))
-                    }
-                } label: {
-                    Text("Position")
-                        .onTapGesture(count: 2) {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            PositionOffsetSlider(title: "X",
+                                                 isHovering: $sceneModel.showOffsetX,
+                                                 value: $document.icon.iconOffset.width.undoable(undoManager,
+                                                                                                 context: undoContext))
+                            PositionOffsetSlider(title: "Y",
+                                                 isHovering: $sceneModel.showOffsetY,
+                                                 value: $document.icon.iconOffset.height.undoable(undoManager,
+                                                                                                  context: undoContext))
+                        }
+                        Button("Reset") {
                             let offset = document.icon.iconOffset
                             undoManager?.registerUndo(undoContext) {
                                 document.icon.iconOffset = offset
                             }
                             document.icon.iconOffset = .zero
                         }
+                        .disabled(document.icon.iconOffset == .zero)
+                    }
+                } label: {
+                    Text("Position")
                 }
             }
 
