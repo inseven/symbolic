@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct IconSetView: View {
 
@@ -33,6 +34,15 @@ struct IconSetView: View {
                 ForEach(iconSet.definitions) { definition in
                     VStack {
                         IconPreview(sceneModel: sceneModel, icon: icon, definition: definition)
+                            .onDrag {
+                                do {
+                                    let url = try icon.saveSnapshot(definition: definition,
+                                                                    directoryURL: URL(fileURLWithPath: NSTemporaryDirectory()))
+                                    return NSItemProvider(item: url as NSURL, typeIdentifier: UTType.fileURL.identifier)
+                                } catch {
+                                    return NSItemProvider()
+                                }
+                            }
                         Text("\(Int(definition.scale))x")
                             .fixedSize()
                         if let description = definition.description {
