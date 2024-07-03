@@ -29,7 +29,6 @@ struct IconView: View {
     var icon: Icon
     var size: CGFloat
     var renderShadow: Bool = true
-    var isShadowFlipped = false
     var isWatchOS = false
 
     var iconSize: CGFloat {
@@ -50,7 +49,7 @@ struct IconView: View {
             let x = size / 2
             let y = size / 2
             let shadowRadius = size * icon.shadowHeight * Constants.shadowOffsetScaleFactor
-            let shadowOffset = size * icon.shadowHeight * Constants.shadowOffsetScaleFactor * (isShadowFlipped ? -1.0 : 1.0)
+            let shadowOffset = size * icon.shadowHeight * Constants.shadowOffsetScaleFactor
 
             LinearGradient(gradient: Gradient(colors: [icon.topColor, icon.bottomColor]),
                            startPoint: .top,

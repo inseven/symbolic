@@ -33,26 +33,19 @@ struct IconPreview: View {
             let width = definition.size.width * (CGFloat(definition.scale) / 2)
             let height = definition.size.height * (CGFloat(definition.scale) / 2)
 
-            switch definition.style {
-            case .macOS:
-                MacIconView(icon: icon, size: width, isShadowFlipped: false)
-                if sceneModel.showGrid {
+            icon.view(for: definition)
+
+            if sceneModel.showGrid {
+                switch definition.style {
+                case .macOS:
                     Image("Grid_macOS")
                         .resizable()
                         .frame(width: width, height: height)
-                }
-            case .iOS:
-                IconView(icon: icon, size: width, renderShadow: false)
-                    .modifier(IconCorners(size: width, style: .iOS))
-                if sceneModel.showGrid {
+                case .iOS:
                     Image("Grid_iOS")
                         .resizable()
                         .frame(width: width, height: height)
-                }
-            case .watchOS:
-                IconView(icon: icon, size: width, renderShadow: false, isWatchOS: true)
-                    .modifier(IconCorners(size: width, style: .watchOS))
-                if sceneModel.showGrid {
+                case .watchOS:
                     WatchGridView(size: width)
                 }
             }

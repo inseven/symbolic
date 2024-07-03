@@ -99,4 +99,39 @@ struct Icon: Identifiable, Codable {
         try container.encode(self.shadowHeight, forKey: .shadowHeight)
     }
 
+    @ViewBuilder func view(for definition: IconDefinition) -> some View {
+
+        let width = definition.size.width * (CGFloat(definition.scale) / 2)
+        let height = definition.size.height * (CGFloat(definition.scale) / 2)
+
+        switch definition.style {
+        case .macOS:
+            MacIconView(icon: self, size: width)
+        case .iOS:
+            IconView(icon: self, size: width, renderShadow: false)
+                .modifier(IconCorners(size: width, style: .iOS))
+        case .watchOS:
+            IconView(icon: self, size: width, renderShadow: false, isWatchOS: true)
+                .modifier(IconCorners(size: width, style: .watchOS))
+        }
+
+    }
+
+    @MainActor func saveSnapshot(definition: IconDefinition, directoryURL: URL) throws -> URL {
+        let icon = view(for: definition)
+        guard let data = icon.pngData() else {
+            throw SymbolicError.exportFailure
+        }
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        guard let sizeString = formatter.string(from: NSNumber(value: definition.size.width)) else {
+            throw SymbolicError.exportFailure
+        }
+        let scaleString = definition.scale > 1 ? String(format: "@%dx", definition.scale) : ""
+        let url = directoryURL.appendingPathComponent("icon_\(sizeString)x\(sizeString)\(scaleString)", conformingTo: .png)
+        try data.write(to: url)
+        return url
+    }
+
 }
