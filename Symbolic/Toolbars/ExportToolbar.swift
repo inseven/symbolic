@@ -22,6 +22,10 @@ import SwiftUI
 
 struct ExportToolbar: CustomizableToolbarContent {
 
+    struct LayoutMetrics {
+        static let buttonCornerRadius = 6.0
+    }
+
     @FocusedObject private var sceneModel: SceneModel?
 
     var body: some CustomizableToolbarContent {
@@ -34,8 +38,11 @@ struct ExportToolbar: CustomizableToolbarContent {
                     sceneModel?.export()
                 }
             } label: {
-                Label("Export", systemImage: "square.and.arrow.up")
+                Text("Export")
+                    .foregroundStyle(.white)
             }
+            .background(Color.accentColor
+                .cornerRadius(LayoutMetrics.buttonCornerRadius))
             .help("Export icons")
         }
 
