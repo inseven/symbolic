@@ -25,8 +25,6 @@ import Interact
 
 class ApplicationModel: ObservableObject {
 
-    static let subscriptionGroupID = "21450230"
-
     // https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/
 
     static let icons: [IconSection] = [

@@ -19,7 +19,6 @@
 // SOFTWARE.
 
 import Combine
-import StoreKit
 import SwiftUI
 
 import Interact
@@ -58,11 +57,6 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .safeAreaInset(edge: .top) {
-                if !isSubscribed {
-                    SubscriptionBanner(sceneModel: sceneModel)
-                }
-            }
             .background(Color(nsColor: .textBackgroundColor))
             .frame(maxWidth: .infinity, minHeight: 400)
             .cacheVectorGraphics(true)
@@ -79,13 +73,6 @@ struct ContentView: View {
             url in
             sceneModel.export(destination: url)
         }
-       .sheet(isPresented: $sceneModel.showSubscriptionsView) {
-           SubscriptionStoreView(groupID: ApplicationModel.subscriptionGroupID)
-               .frame(width: 500, height: 600)
-               .onInAppPurchaseCompletion { product, result in
-                   sceneModel.dismissSubscriptions()
-               }
-       }
         .alert("Export Icon?", isPresented: $sceneModel.showExportWarning, presenting: "Export") { text in
             Button("Export") {
                 sceneModel.continueExport()
@@ -108,9 +95,6 @@ struct ContentView: View {
         }
         .environmentObject(sceneModel)
         .runs(sceneModel)
-        .subscriptionStatus(for: ApplicationModel.subscriptionGroupID) { isSubscribed in
-            self.isSubscribed = isSubscribed
-        }
     }
 }
 
