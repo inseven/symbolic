@@ -40,7 +40,6 @@ struct SymbolicApp: App {
             ExportCommands(applicationModel: applicationModel)
             ViewCommands(settings: applicationModel.settings)
             ToolbarCommands()
-            SubscriptionCommands()
         }
 
     }

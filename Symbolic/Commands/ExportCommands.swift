@@ -35,7 +35,6 @@ struct ExportCommands: Commands {
                 sceneModel?.export()
             }
             .disabled(sceneModel == nil)
-            .requiresSubscription(groupID: ApplicationModel.subscriptionGroupID)
             .keyboardShortcut("e")
         }
     }
