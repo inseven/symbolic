@@ -27,11 +27,11 @@ icon, software, development, design, graphics
 
 ### Support URL
 
-https://symbolic.app
+https://symbolic.jbmorley.co.uk
 
 ### Marketing URL
 
-https://symbolic.app
+https://symbolic.jbmorley.co.uk
 
 ### Version
 
