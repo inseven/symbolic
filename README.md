@@ -21,9 +21,15 @@ Instead of using a submodule, they have been imported into the project using `sc
 Update the icons as follows:
 
 ```bash
-scripts/import-material-design-icons.py ~/Projects/material-design-icons	
+scripts/import-material-design-icons.py ~/Projects/material-design-icons
 ```
 
-## Licensing
+## License
 
-Symbolic is licensed under the MIT License (see [LICENSE](LICENSE)).
+Symbolic is licensed under the MIT License (see [LICENSE](LICENSE)). It depends on the following separately licensed third-party libraries and components:
+
+- [Diligence](https://github.com/inseven/diligence), MIT License
+- [Interact](https://github.com/inseven/interact), MIT License
+- [Licensable](https://github.com/inseven/licensable), MIT License
+- [Material Icons](https://github.com/google/material-design-icons), Apache License
+- [SwiftDraw](https://github.com/swhitty/SwiftDraw), zlib License
