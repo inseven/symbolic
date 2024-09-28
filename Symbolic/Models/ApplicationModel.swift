@@ -162,6 +162,7 @@ class ApplicationModel: ObservableObject {
                         copyright: "Copyright © 2022-2024 Jason Morley") {
             Action("Website", url: URL(string: "https://symbolic.jbmorley.co.uk")!)
             Action("Privacy", url: URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!)
+            Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!)
             Action("Support", url: URL(address: "support@jbmorley.co.uk", subject: title)!)
         } acknowledgements: {
             Acknowledgements("Developers") {
