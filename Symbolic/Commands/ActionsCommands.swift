@@ -20,29 +20,51 @@
 
 import SwiftUI
 
-@main
-struct SymbolicApp: App {
+import Diligence
 
-    @StateObject var applicationModel = ApplicationModel()
-
-    var body: some Scene {
-
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView(settings: applicationModel.settings, document: configuration.document)
-                .environmentObject(applicationModel)
-                .environmentObject(applicationModel.settings)
-        }
-        .defaultSize(width: 1250, height: 780)
-        .commands {
-            AboutCommands(applicationModel: applicationModel)
-            ExportCommands(applicationModel: applicationModel)
-            ViewCommands(settings: applicationModel.settings)
-            ToolbarCommands()
-            ActionsCommands(replacing: .help, actions: ApplicationModel.actions)
-        }
-
+struct ActionsCommands: Commands {
+    
+    enum Placement {
+        case after(CommandGroupPlacement)
+        case replacing(CommandGroupPlacement)
     }
-
+    
+    @Environment(\.openURL) private var openURL
+    
+    let placement: Placement
+    let actions: [Action]
+    
+    init(after: CommandGroupPlacement, actions: [Action]) {
+        self.placement = .after(after)
+        self.actions = actions
+    }
+    
+    init(replacing: CommandGroupPlacement, actions: [Action]) {
+        self.placement = .replacing(replacing)
+        self.actions = actions
+    }
+        
+    var buttons: some View {
+        ForEach(actions) { action in
+            Button {
+                openURL(action.url)
+            } label: {
+                Text(action.title)
+            }
+        }
+    }
+    
+    var body: some Commands {
+        switch placement {
+        case .after(let after):
+            CommandGroup(after: after) {
+                buttons
+            }
+        case .replacing(let replacing):
+            CommandGroup(replacing: replacing) {
+                buttons
+            }
+        }
+    }
+    
 }

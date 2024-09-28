@@ -45,6 +45,7 @@
 		D88661A3297AC893001E41DD /* InfoLabeledContentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */; };
 		D88661A5297AD82A001E41DD /* ConditionalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88661A4297AD82A001E41DD /* ConditionalLink.swift */; };
 		D8B0B1F1296CD4AB00F907BE /* OffsetGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */; };
+		D8B37ED72CA8A8AA00CC91BB /* ActionsCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B37ED62CA8A8A800CC91BB /* ActionsCommands.swift */; };
 		D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61307293BB81100F29E0C /* AboutCommands.swift */; };
 		D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61309293BB98100F29E0C /* ApplicationModel.swift */; };
 		D8B7677B298A6E4F00E99C6A /* PositionOffsetSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */; };
@@ -137,6 +138,7 @@
 		D88661A4297AD82A001E41DD /* ConditionalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalLink.swift; sourceTree = "<group>"; };
 		D89A7404297C9BDE00F632ED /* SavePanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavePanel.swift; sourceTree = "<group>"; };
 		D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetGuide.swift; sourceTree = "<group>"; };
+		D8B37ED62CA8A8A800CC91BB /* ActionsCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsCommands.swift; sourceTree = "<group>"; };
 		D8B61307293BB81100F29E0C /* AboutCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommands.swift; sourceTree = "<group>"; };
 		D8B61309293BB98100F29E0C /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
 		D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionOffsetSlider.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				D8B61307293BB81100F29E0C /* AboutCommands.swift */,
+				D8B37ED62CA8A8A800CC91BB /* ActionsCommands.swift */,
 				D826B5C8296B13CB00693D27 /* ExportCommands.swift */,
 				D826B5CA296B243800693D27 /* ViewCommands.swift */,
 			);
@@ -596,6 +599,7 @@
 				D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */,
 				D857297C296C176C0037E58F /* SymbolPickerCell.swift in Sources */,
 				D84868F0296AE616009FDF32 /* IconSection.swift in Sources */,
+				D8B37ED72CA8A8AA00CC91BB /* ActionsCommands.swift in Sources */,
 				D8CB5A482971C4B5002007C4 /* SVGImage.swift in Sources */,
 				D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */,
 				D8CB5A4629719395002007C4 /* Manifest.swift in Sources */,

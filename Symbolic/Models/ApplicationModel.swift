@@ -151,19 +151,23 @@ class ApplicationModel: ObservableObject {
         },
 
     ]
+    
+    static let actions: [Action] = {
+        let title = "Symbolic Support (\(Bundle.main.version ?? "Unknown Version"))"
+        return [
+            Action("Website", url: URL(string: "https://symbolic.jbmorley.co.uk")!),
+            Action("Privacy", url: URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!),
+            Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!),
+            Action("Support", url: URL(address: "support@jbmorley.co.uk", subject: title)!),
+        ]
+    }()
 
     let settings = Settings()
-
+    
     @MainActor private lazy var aboutWindow: NSWindow = {
-
-        let title = "Symbolic Support (\(Bundle.main.version ?? "Unknown Version"))"
-
         return NSWindow(repository: "inseven/symbolic",
                         copyright: "Copyright © 2022-2024 Jason Morley") {
-            Action("Website", url: URL(string: "https://symbolic.jbmorley.co.uk")!)
-            Action("Privacy", url: URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!)
-            Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!)
-            Action("Support", url: URL(address: "support@jbmorley.co.uk", subject: title)!)
+            Self.actions
         } acknowledgements: {
             Acknowledgements("Developers") {
                 Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk/about"))
