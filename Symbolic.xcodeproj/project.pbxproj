@@ -12,7 +12,6 @@
 		D821B9E028ACDB6000504AA4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9DF28ACDB6000504AA4 /* View.swift */; };
 		D821B9E428ACDBA800504AA4 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E328ACDBA800504AA4 /* IconView.swift */; };
 		D821B9E828ACDBE000504AA4 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E728ACDBE000504AA4 /* Icon.swift */; };
-		D821B9EA28ACDBF700504AA4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9E928ACDBF700504AA4 /* String.swift */; };
 		D821B9EC28ACDC2600504AA4 /* IconCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9EB28ACDC2600504AA4 /* IconCorners.swift */; };
 		D821B9EE28ACDC6F00504AA4 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */; };
 		D826B5C4296B054000693D27 /* WatchGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826B5C3296B054000693D27 /* WatchGridView.swift */; };
@@ -105,7 +104,6 @@
 		D821B9DF28ACDB6000504AA4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		D821B9E328ACDBA800504AA4 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		D821B9E728ACDBE000504AA4 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
-		D821B9E928ACDBF700504AA4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		D821B9EB28ACDC2600504AA4 /* IconCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCorners.swift; sourceTree = "<group>"; };
 		D821B9ED28ACDC6F00504AA4 /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
 		D826B5C3296B054000693D27 /* WatchGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGridView.swift; sourceTree = "<group>"; };
@@ -213,7 +211,6 @@
 				D8685CFE298D17A200A7DA60 /* NSApplication.swift */,
 				D826B5C5296B09FC00693D27 /* Path.swift */,
 				D8C99CF62993E59C00D85286 /* Sidebar.swift */,
-				D821B9E928ACDBF700504AA4 /* String.swift */,
 				D86B0ED0291BEFC100352367 /* UTType.swift */,
 				D821B9DF28ACDB6000504AA4 /* View.swift */,
 			);
@@ -615,7 +612,6 @@
 				D826B5C9296B13CB00693D27 /* ExportCommands.swift in Sources */,
 				D826B5CD296B312300693D27 /* IconPreview.swift in Sources */,
 				D84868EE296AE486009FDF32 /* IconDefinition.swift in Sources */,
-				D821B9EA28ACDBF700504AA4 /* String.swift in Sources */,
 				D88661A3297AC893001E41DD /* InfoLabeledContentStyle.swift in Sources */,
 				D8CB5A442971925A002007C4 /* Symbol.swift in Sources */,
 				D821B9E428ACDBA800504AA4 /* IconView.swift in Sources */,
