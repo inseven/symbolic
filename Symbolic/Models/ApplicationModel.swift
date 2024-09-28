@@ -160,9 +160,9 @@ class ApplicationModel: ObservableObject {
 
         return NSWindow(repository: "inseven/symbolic",
                         copyright: "Copyright © 2022-2024 Jason Morley") {
-            Action("Website", url: URL(string: "https://symbolic.app")!)
-            Action("Privacy", url: URL(string: "https://symbolic.app/privacy-policy")!)
-            Action("Support", url: URL(address: "support@symbolic.app", subject: title)!)
+            Action("Website", url: URL(string: "https://symbolic.jbmorley.co.uk")!)
+            Action("Privacy", url: URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!)
+            Action("Support", url: URL(address: "support@jbmorley.co.uk", subject: title)!)
         } acknowledgements: {
             Acknowledgements("Developers") {
                 Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk/about"))

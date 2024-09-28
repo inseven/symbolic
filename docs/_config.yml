@@ -3,7 +3,7 @@ author: Jason Morley
 email: support@jbmorley.co.uk
 description: ""
 baseurl: ""
-url: "https://symbolic.app"
+url: "https://symbolic.jbmorley.co.uk"
 
 plugins:
   - jekyll-feed
