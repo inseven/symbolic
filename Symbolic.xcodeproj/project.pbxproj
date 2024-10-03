@@ -26,6 +26,7 @@
 		D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E428B11F5200282EE8 /* SymbolicError.swift */; };
 		D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E628B132C700282EE8 /* UnityScaleWindow.swift */; };
 		D83970E928B1340900282EE8 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E828B1340900282EE8 /* DeviceType.swift */; };
+		D83E84302CAE2F6600B59B1A /* Legal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E842F2CAE2F6500B59B1A /* Legal.swift */; };
 		D84868E8296ACC58009FDF32 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868E7296ACC58009FDF32 /* Header.swift */; };
 		D84868EA296ACC8B009FDF32 /* IconSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868E9296ACC8B009FDF32 /* IconSetView.swift */; };
 		D84868EC296AE437009FDF32 /* IconSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868EB296AE437009FDF32 /* IconSet.swift */; };
@@ -45,7 +46,6 @@
 		D88661A3297AC893001E41DD /* InfoLabeledContentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88661A2297AC893001E41DD /* InfoLabeledContentStyle.swift */; };
 		D88661A5297AD82A001E41DD /* ConditionalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88661A4297AD82A001E41DD /* ConditionalLink.swift */; };
 		D8B0B1F1296CD4AB00F907BE /* OffsetGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */; };
-		D8B37ED72CA8A8AA00CC91BB /* ActionsCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B37ED62CA8A8A800CC91BB /* ActionsCommands.swift */; };
 		D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61307293BB81100F29E0C /* AboutCommands.swift */; };
 		D8B6130A293BB98100F29E0C /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B61309293BB98100F29E0C /* ApplicationModel.swift */; };
 		D8B7677B298A6E4F00E99C6A /* PositionOffsetSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */; };
@@ -119,6 +119,7 @@
 		D83970E428B11F5200282EE8 /* SymbolicError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicError.swift; sourceTree = "<group>"; };
 		D83970E628B132C700282EE8 /* UnityScaleWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityScaleWindow.swift; sourceTree = "<group>"; };
 		D83970E828B1340900282EE8 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
+		D83E842F2CAE2F6500B59B1A /* Legal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Legal.swift; sourceTree = "<group>"; };
 		D84868E7296ACC58009FDF32 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		D84868E9296ACC8B009FDF32 /* IconSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSetView.swift; sourceTree = "<group>"; };
 		D84868EB296AE437009FDF32 /* IconSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSet.swift; sourceTree = "<group>"; };
@@ -138,7 +139,6 @@
 		D88661A4297AD82A001E41DD /* ConditionalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalLink.swift; sourceTree = "<group>"; };
 		D89A7404297C9BDE00F632ED /* SavePanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavePanel.swift; sourceTree = "<group>"; };
 		D8B0B1F0296CD4AB00F907BE /* OffsetGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetGuide.swift; sourceTree = "<group>"; };
-		D8B37ED62CA8A8A800CC91BB /* ActionsCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsCommands.swift; sourceTree = "<group>"; };
 		D8B61307293BB81100F29E0C /* AboutCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCommands.swift; sourceTree = "<group>"; };
 		D8B61309293BB98100F29E0C /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
 		D8B7677A298A6E4F00E99C6A /* PositionOffsetSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionOffsetSlider.swift; sourceTree = "<group>"; };
@@ -229,6 +229,7 @@
 				D86B0ECE291BEF7400352367 /* IconDocument.swift */,
 				D84868EF296AE616009FDF32 /* IconSection.swift */,
 				D84868EB296AE437009FDF32 /* IconSet.swift */,
+				D83E842F2CAE2F6500B59B1A /* Legal.swift */,
 				D8CB5A3B2970E92A002007C4 /* Library.swift */,
 				D8CB5A4129718D23002007C4 /* LibraryManager.swift */,
 				D8CB5A4529719395002007C4 /* Manifest.swift */,
@@ -307,7 +308,6 @@
 			isa = PBXGroup;
 			children = (
 				D8B61307293BB81100F29E0C /* AboutCommands.swift */,
-				D8B37ED62CA8A8A800CC91BB /* ActionsCommands.swift */,
 				D826B5C8296B13CB00693D27 /* ExportCommands.swift */,
 				D826B5CA296B243800693D27 /* ViewCommands.swift */,
 			);
@@ -599,7 +599,6 @@
 				D8B61308293BB81100F29E0C /* AboutCommands.swift in Sources */,
 				D857297C296C176C0037E58F /* SymbolPickerCell.swift in Sources */,
 				D84868F0296AE616009FDF32 /* IconSection.swift in Sources */,
-				D8B37ED72CA8A8AA00CC91BB /* ActionsCommands.swift in Sources */,
 				D8CB5A482971C4B5002007C4 /* SVGImage.swift in Sources */,
 				D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */,
 				D8CB5A4629719395002007C4 /* Manifest.swift in Sources */,
@@ -608,6 +607,7 @@
 				D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */,
 				D826B5CB296B243800693D27 /* ViewCommands.swift in Sources */,
 				D8B7677D298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift in Sources */,
+				D83E84302CAE2F6600B59B1A /* Legal.swift in Sources */,
 				D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */,
 				D808A2152979918300763881 /* Variant.swift in Sources */,
 				D88661A5297AD82A001E41DD /* ConditionalLink.swift in Sources */,

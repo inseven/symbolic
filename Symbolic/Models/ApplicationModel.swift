@@ -151,47 +151,11 @@ class ApplicationModel: ObservableObject {
         },
 
     ]
-    
-    static let actions: [Action] = {
-        let title = "Symbolic Support (\(Bundle.main.version ?? "Unknown Version"))"
-        return [
-            Action("Website", url: URL(string: "https://symbolic.jbmorley.co.uk")!),
-            Action("Privacy", url: URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!),
-            Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!),
-            Action("Support", url: URL(address: "support@jbmorley.co.uk", subject: title)!),
-        ]
-    }()
 
     let settings = Settings()
     
     @MainActor private lazy var aboutWindow: NSWindow = {
-        return NSWindow(repository: "inseven/symbolic",
-                        copyright: "Copyright © 2022-2024 Jason Morley") {
-            Self.actions
-        } acknowledgements: {
-            Acknowledgements("Developers") {
-                Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk/about"))
-            }
-            Acknowledgements("Thanks") {
-                Credit("Lukas Fittl")
-                Credit("Michael Dales")
-                Credit("Pavlos Vinieratos")
-                Credit("Sarah Barbour")
-                Credit("Simon Frost")
-                Credit("Tom Sutcliffe")
-            }
-        } licenses: {
-            LicenseGroup("Symbol Libraries") {
-                for library in LibraryManager.shared.sets.filter({ $0.license.fileURL != nil }) {
-                    License(library.name, author: library.author, url: library.license.fileURL!)
-                }
-            }   
-            LicenseGroup("Licenses", includeDiligenceLicense: true) {
-                .interact
-                License("SwiftDraw", author: "Simon Whitty", filename: "swiftdraw-license")
-                License("Symbolic", author: "Jason Morley", filename: "symbolic-license")
-            }
-        }
+        return NSWindow(Legal.contents)
     }()
 
     @MainActor func showAbout() {
