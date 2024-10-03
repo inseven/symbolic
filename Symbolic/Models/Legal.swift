@@ -23,20 +23,13 @@ import Foundation
 import Diligence
 
 struct Legal {
-    
-    static let actions: [Action] = {
-        let title = "Symbolic Support (\(Bundle.main.version ?? "Unknown Version"))"
-        return [
-            Action("Website", url: URL(string: "https://symbolic.jbmorley.co.uk")!),
-            Action("Privacy", url: URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!),
-            Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!),
-            Action("Support", url: URL(address: "support@jbmorley.co.uk", subject: title)!),
-        ]
-    }()
-    
+        
     static let contents = Contents(repository: "inseven/symbolic",
                                    copyright: "Copyright © 2022-2024 Jason Morley") {
-        Self.actions
+        Action("Website", url: URL(string: "https://symbolic.jbmorley.co.uk")!)
+        Action("Privacy", url: URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!)
+        Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!)
+        Action("Support", url: URL(string: "https://symbolic.jbmorley.co.uk/support")!)
     } acknowledgements: {
         Acknowledgements("Developers") {
             Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk/about"))
