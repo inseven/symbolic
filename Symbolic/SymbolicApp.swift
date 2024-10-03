@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import Diligence
+
 @main
 struct SymbolicApp: App {
 
@@ -40,6 +42,7 @@ struct SymbolicApp: App {
             ExportCommands(applicationModel: applicationModel)
             ViewCommands(settings: applicationModel.settings)
             ToolbarCommands()
+            ActionsCommands(Legal.contents)
         }
 
     }

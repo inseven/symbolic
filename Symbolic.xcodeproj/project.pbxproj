@@ -26,6 +26,7 @@
 		D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E428B11F5200282EE8 /* SymbolicError.swift */; };
 		D83970E728B132C700282EE8 /* UnityScaleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E628B132C700282EE8 /* UnityScaleWindow.swift */; };
 		D83970E928B1340900282EE8 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83970E828B1340900282EE8 /* DeviceType.swift */; };
+		D83E84302CAE2F6600B59B1A /* Legal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E842F2CAE2F6500B59B1A /* Legal.swift */; };
 		D84868E8296ACC58009FDF32 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868E7296ACC58009FDF32 /* Header.swift */; };
 		D84868EA296ACC8B009FDF32 /* IconSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868E9296ACC8B009FDF32 /* IconSetView.swift */; };
 		D84868EC296AE437009FDF32 /* IconSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84868EB296AE437009FDF32 /* IconSet.swift */; };
@@ -118,6 +119,7 @@
 		D83970E428B11F5200282EE8 /* SymbolicError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicError.swift; sourceTree = "<group>"; };
 		D83970E628B132C700282EE8 /* UnityScaleWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityScaleWindow.swift; sourceTree = "<group>"; };
 		D83970E828B1340900282EE8 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
+		D83E842F2CAE2F6500B59B1A /* Legal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Legal.swift; sourceTree = "<group>"; };
 		D84868E7296ACC58009FDF32 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		D84868E9296ACC8B009FDF32 /* IconSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSetView.swift; sourceTree = "<group>"; };
 		D84868EB296AE437009FDF32 /* IconSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSet.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				D86B0ECE291BEF7400352367 /* IconDocument.swift */,
 				D84868EF296AE616009FDF32 /* IconSection.swift */,
 				D84868EB296AE437009FDF32 /* IconSet.swift */,
+				D83E842F2CAE2F6500B59B1A /* Legal.swift */,
 				D8CB5A3B2970E92A002007C4 /* Library.swift */,
 				D8CB5A4129718D23002007C4 /* LibraryManager.swift */,
 				D8CB5A4529719395002007C4 /* Manifest.swift */,
@@ -604,6 +607,7 @@
 				D8CB5A3A2970E8DB002007C4 /* SymbolView.swift in Sources */,
 				D826B5CB296B243800693D27 /* ViewCommands.swift in Sources */,
 				D8B7677D298A728D00E99C6A /* LeadingToTrailingLabeledContentStyle.swift in Sources */,
+				D83E84302CAE2F6600B59B1A /* Legal.swift in Sources */,
 				D83970E528B11F5200282EE8 /* SymbolicError.swift in Sources */,
 				D808A2152979918300763881 /* Variant.swift in Sources */,
 				D88661A5297AD82A001E41DD /* ConditionalLink.swift in Sources */,
