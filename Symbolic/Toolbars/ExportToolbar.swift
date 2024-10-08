@@ -38,12 +38,10 @@ struct ExportToolbar: CustomizableToolbarContent {
                     sceneModel?.export()
                 }
             } label: {
-                Text("Export")
-                    .foregroundStyle(.white)
+                Label("Export", systemImage: "arrow.down.document")
             }
-            .background(Color.accentColor
-                .cornerRadius(LayoutMetrics.buttonCornerRadius))
             .help("Export icons")
+            .buttonStyle(.toolbarAction)
         }
 
     }
