@@ -36,6 +36,7 @@ struct Legal {
         }
         Acknowledgements("Thanks") {
             Credit("Lukas Fittl")
+            Credit("Matt Sephton")
             Credit("Michael Dales")
             Credit("Pavlos Vinieratos")
             Credit("Sarah Barbour")
