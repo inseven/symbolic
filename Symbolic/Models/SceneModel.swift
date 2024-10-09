@@ -91,6 +91,10 @@ class SceneModel: ObservableObject, Runnable {
 
     @MainActor func export(destination url: URL) {
         do {
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: url.path) {
+                try fileManager.removeItem(at: url)
+            }
             try document.export(destination: url)
             NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.absoluteString)
         } catch {
