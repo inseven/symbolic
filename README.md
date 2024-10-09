@@ -1,6 +1,6 @@
 # Symbolic
 
-[![build](https://github.com/inseven/symbolic/actions/workflows/build.yaml/badge.svg)](https://github.com/inseven/symbolic/actions/workflows/build.yaml) [![update-release-notes](https://github.com/inseven/symbolic/actions/workflows/update-release-notes.yaml/badge.svg)](https://github.com/inseven/symbolic/actions/workflows/update-release-notes.yaml) [![pages-build-deployment](https://github.com/inseven/symbolic/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/inseven/symbolic/actions/workflows/pages/pages-build-deployment)
+[![build](https://github.com/inseven/symbolic/actions/workflows/build.yaml/badge.svg)](https://github.com/inseven/symbolic/actions/workflows/build.yaml)
 
 Icon designer
 
