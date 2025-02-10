@@ -39,7 +39,7 @@ https://symbolic.jbmorley.co.uk
 
 ### Copyright
 
-2022-2024 Jason Morley
+2022-2025 Jason Morley
 
 ## Screenshots
 
