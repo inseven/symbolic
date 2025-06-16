@@ -1,4 +1,4 @@
-// Copyright (c) 2022-2024 Jason Morley
+// Copyright (c) 2022-2025 Jason Morley
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@ import Diligence
 struct Legal {
         
     static let contents = Contents(repository: "inseven/symbolic",
-                                   copyright: "Copyright © 2022-2024 Jason Morley") {
+                                   copyright: "Copyright © 2022-2025 Jason Morley") {
         Action("Website", url: URL(string: "https://symbolic.jbmorley.co.uk")!)
         Action("Privacy", url: URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!)
         Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!)
