@@ -134,3 +134,8 @@ footer nav ul li {
     display: inline;
     margin: 0 0.25em;
 }
+
+nav.actions {
+    text-align: center;
+    margin-top: 30px;
+}
