@@ -1,3 +1,12 @@
-_site
-vendor
-.jekyll-cache
+**.xcuserdatad
+.DS_Store
+.env
+.nova
+/.local
+/_site
+/docs/.jekyll-cache
+/docs/_site
+/docs/releases
+build
+temp
+xcuserdata/
