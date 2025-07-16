@@ -4,12 +4,10 @@ title: Releases
 
 # Releases
 
-{% for release in releases | selectattr("is_initial_development", "false") -%}
-## {{ release.version }}{% if not release.is_released %} (Unreleased){% endif %}
-{% for section in release.sections %}
-**{{ section.title }}**
-
+{% for release in releases -%}
+## {% if release.is_released %}<a href="https://github.com/inseven/symbolic/releases/tag/{{ release.version }}">{{ release.version }}</a>{% else %}{{ release.version }} (Unreleased){% endif %}
+{% for section in release.sections -%}
 {% for change in section.changes | reverse -%}
-- {{ change.description }}{% if change.scope %}{{ change.scope }}{% endif %}
+- {{ change.description | regex_replace("\\s+\\(#(\\d+)\\)$", "") }}{% if change.scope %}{{ change.scope }}{% endif %}
 {% endfor %}{% endfor %}
 {% endfor %}
