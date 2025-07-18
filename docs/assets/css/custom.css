@@ -1,0 +1,13 @@
+:root {
+    --brand-color: #c987f8;
+    --showcase-color-high: #d783ff;
+    --showcase-color-low: #7b80ff;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --brand-color: #c987f8;
+        --showcase-color-high: #d783ff;
+        --showcase-color-low: #7b80ff;
+    }
+}
