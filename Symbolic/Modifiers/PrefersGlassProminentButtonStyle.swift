@@ -20,31 +20,24 @@
 
 import SwiftUI
 
-struct ExportToolbar: CustomizableToolbarContent {
+struct PrefersGlassProminentButtonStyle: ViewModifier {
 
-    struct LayoutMetrics {
-        static let buttonCornerRadius = 6.0
+    func body(content: Content) -> some View {
+        if #available(macOS 26, *) {
+            return content
+                .buttonStyle(.glassProminent)
+        } else {
+            return content
+                .buttonStyle(.toolbarAction)
+        }
     }
 
-    @FocusedObject private var sceneModel: SceneModel?
+}
 
-    var body: some CustomizableToolbarContent {
+extension View {
 
-        ToolbarItem(id: "export") {
-            Button {
-                // We're dispatching to main here because for some reason the compiler doens't think the button action
-                // is being performed on MainActor and is giving warnings (which is surprising).
-                DispatchQueue.main.async {
-                    sceneModel?.export()
-                }
-            } label: {
-                Label("Export", systemImage: "arrow.down.document")
-            }
-            .help("Export icons")
-            .prefersGlassProminentButtonStyle()
-            .labelStyle(.titleOnly)
-        }
-
+    func prefersGlassProminentButtonStyle() -> some View {
+        return modifier(PrefersGlassProminentButtonStyle())
     }
 
 }
