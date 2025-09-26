@@ -31,8 +31,10 @@ struct ExportCommands: Commands {
 
     @MainActor public var body: some Commands {
         CommandGroup(replacing: .importExport) {
-            Button("Export...") {
+            Button {
                 sceneModel?.export()
+            } label: {
+                Label("Export...", systemImage: "arrow.down.document")
             }
             .disabled(sceneModel == nil)
             .keyboardShortcut("e")
