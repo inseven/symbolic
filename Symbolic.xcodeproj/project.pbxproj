@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D831DD1C297319FC00C20B11 /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = D831DD1B297319FC00C20B11 /* SwiftDraw */; };
 		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
+		D8C16A922E874087005A0AC3 /* SymbolicCore in Frameworks */ = {isa = PBXBuildFile; productRef = D8C16A912E874087005A0AC3 /* SymbolicCore */; };
 		D8F99EC628B13998007C3868 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8F99EC528B13998007C3868 /* Diligence */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8C16A902E874062005A0AC3 /* SymbolicCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SymbolicCore; sourceTree = "<group>"; };
 		D8CD4A7A28AC35C300D57F34 /* Symbolic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Symbolic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A8B28AC35C600D57F34 /* SymbolicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A9528AC35C600D57F34 /* SymbolicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 				D831DD1C297319FC00C20B11 /* SwiftDraw in Frameworks */,
 				D864A23A2965A2D1008A4261 /* Interact in Frameworks */,
 				D8F99EC628B13998007C3868 /* Diligence in Frameworks */,
+				D8C16A922E874087005A0AC3 /* SymbolicCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +85,7 @@
 		D8CD4A7128AC35C300D57F34 = {
 			isa = PBXGroup;
 			children = (
+				D8C16A902E874062005A0AC3 /* SymbolicCore */,
 				D8D00CE52E87263800901654 /* Symbolic */,
 				D8D00D342E87277300901654 /* SymbolicTests */,
 				D8D00D2B2E87267700901654 /* SymbolicUITests */,
@@ -130,6 +134,7 @@
 				D8F99EC528B13998007C3868 /* Diligence */,
 				D864A2392965A2D1008A4261 /* Interact */,
 				D831DD1B297319FC00C20B11 /* SwiftDraw */,
+				D8C16A912E874087005A0AC3 /* SymbolicCore */,
 			);
 			productName = Iconify;
 			productReference = D8CD4A7A28AC35C300D57F34 /* Symbolic.app */;
@@ -613,6 +618,10 @@
 		D864A2392965A2D1008A4261 /* Interact */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Interact;
+		};
+		D8C16A912E874087005A0AC3 /* SymbolicCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SymbolicCore;
 		};
 		D8F99EC528B13998007C3868 /* Diligence */ = {
 			isa = XCSwiftPackageProductDependency;
