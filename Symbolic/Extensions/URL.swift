@@ -18,33 +18,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-import Diligence
+extension URL {
 
-@main
-struct SymbolicApp: App {
+    public static let gitHub = URL(string: "https://github.com/inseven/symbolic")!
+    public static let privacyPolicy = URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!
+    public static let software = URL(string: "https://jbmorley.co.uk/software")!
+    public static let website = URL(string: "https://symbolic.jbmorley.co.uk")!
 
-    @StateObject var applicationModel = ApplicationModel()
-
-    var body: some Scene {
-
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView(settings: applicationModel.settings, document: configuration.document)
-                .environmentObject(applicationModel)
-                .environmentObject(applicationModel.settings)
-        }
-        .defaultSize(width: 1250, height: 780)
-        .commands {
-            AboutCommands(applicationModel: applicationModel)
-            ExportCommands(applicationModel: applicationModel)
-            ViewCommands(settings: applicationModel.settings)
-            ToolbarCommands()
-            HelpCommands()
-        }
-
-    }
+    public static var support: URL = {
+        let subject = "Symbolic Support (\(Bundle.main.extendedVersion ?? "Unknown Version"))"
+        return URL(address: "support@jbmorley.co.uk", subject: subject)!
+    }()
 
 }
