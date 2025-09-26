@@ -26,10 +26,10 @@ struct Legal {
         
     static let contents = Contents(repository: "inseven/symbolic",
                                    copyright: "Copyright © 2022-2025 Jason Morley") {
-        Action("Website", url: URL(string: "https://symbolic.jbmorley.co.uk")!)
-        Action("Privacy", url: URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!)
-        Action("GitHub", url: URL(string: "https://github.com/inseven/symbolic")!)
-        Action("Support", url: URL(string: "https://symbolic.jbmorley.co.uk/support")!)
+        Action("Website", url: .website)
+        Action("Privacy", url: .privacyPolicy)
+        Action("GitHub", url: .gitHub)
+        Action("Support", url: .support)
     } acknowledgements: {
         Acknowledgements("Developers") {
             Credit("Jason Morley", url: URL(string: "https://jbmorley.co.uk/about"))

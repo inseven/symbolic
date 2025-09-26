@@ -20,29 +20,49 @@
 
 import SwiftUI
 
-import Diligence
+public struct HelpCommands: Commands {
 
-@main
-struct SymbolicApp: App {
+    @Environment(\.openURL) private var openURL
 
-    @StateObject var applicationModel = ApplicationModel()
+    public var body: some Commands {
 
-    var body: some Scene {
+        CommandGroup(replacing: .help) {
 
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView(settings: applicationModel.settings, document: configuration.document)
-                .environmentObject(applicationModel)
-                .environmentObject(applicationModel.settings)
+            Button {
+                openURL(.software)
+            } label: {
+                Label("More Software by Jason Morley", systemImage: "globe")
+            }
+
         }
-        .defaultSize(width: 1250, height: 780)
-        .commands {
-            AboutCommands(applicationModel: applicationModel)
-            ExportCommands(applicationModel: applicationModel)
-            ViewCommands(settings: applicationModel.settings)
-            ToolbarCommands()
-            HelpCommands()
+
+        CommandGroup(before: .help) {
+
+            Button {
+                openURL(.website)
+            } label: {
+                Label("Website", systemImage: "globe")
+            }
+
+            Button {
+                openURL(.privacyPolicy)
+            } label: {
+                Label("Privacy Policy", systemImage: "globe")
+            }
+
+            Button {
+                openURL(.gitHub)
+            } label: {
+                Label("GitHub", systemImage: "globe")
+            }
+
+            Button {
+                openURL(.support)
+            } label: {
+                Label("Support", systemImage: "mail")
+            }
+
+            Divider()
         }
 
     }
