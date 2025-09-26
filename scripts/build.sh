@@ -27,12 +27,12 @@ set -u
 
 ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
 SCRIPTS_DIRECTORY="$ROOT_DIRECTORY/scripts"
-BUILD_DIRECTORY="${ROOT_DIRECTORY}/build"
-TEMPORARY_DIRECTORY="${ROOT_DIRECTORY}/temp"
+BUILD_DIRECTORY="$ROOT_DIRECTORY/build"
+TEMPORARY_DIRECTORY="$ROOT_DIRECTORY/temp"
 
-KEYCHAIN_PATH="${TEMPORARY_DIRECTORY}/temporary.keychain"
-ARCHIVE_PATH="${BUILD_DIRECTORY}/Symbolic.xcarchive"
-ENV_PATH="${ROOT_DIRECTORY}/.env"
+KEYCHAIN_PATH="$TEMPORARY_DIRECTORY/temporary.keychain"
+ARCHIVE_PATH="$BUILD_DIRECTORY/Symbolic.xcarchive"
+ENV_PATH="$ROOT_DIRECTORY/.env"
 
 RELEASE_SCRIPT_PATH="$SCRIPTS_DIRECTORY/release.sh"
 
@@ -89,11 +89,17 @@ xcodebuild \
     -project Symbolic.xcodeproj \
     -list
 
-# Clean up the build directory.
+# Clean up and recreate the output directories.
+
 if [ -d "$BUILD_DIRECTORY" ] ; then
     rm -r "$BUILD_DIRECTORY"
 fi
 mkdir -p "$BUILD_DIRECTORY"
+
+if [ -d "$ARCHIVES_DIRECTORY" ] ; then
+    rm -r "$ARCHIVES_DIRECTORY"
+fi
+mkdir -p "$ARCHIVES_DIRECTORY"
 
 # Create the a new keychain.
 if [ -d "$TEMPORARY_DIRECTORY" ] ; then
@@ -127,19 +133,20 @@ echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base
 build-tools install-provisioning-profile "profiles/Symbolic_Developer_ID_Profile.provisionprofile"
 build-tools install-provisioning-profile "profiles/Symbolic_Mac_App_Store_Profile.provisionprofile"
 
-# Clean the build.
-sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcodebuild \
-    -project Symbolic.xcodeproj \
-    -scheme "Symbolic" \
-    clean
+# Install the private key.
+mkdir -p ~/.appstoreconnect/private_keys/
+echo -n "$APPLE_API_KEY_BASE64" | base64 --decode -o ~/".appstoreconnect/private_keys/AuthKey_$APPLE_API_KEY_ID.p8"
+
+## Test
 
 # Build, test and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
 xcodebuild \
     -project Symbolic.xcodeproj \
     -scheme "Symbolic" \
-    build build-for-testing test
+    clean build build-for-testing test
+
+## Developer ID Build
 
 # Build and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
@@ -151,20 +158,53 @@ xcodebuild \
     OTHER_CODE_SIGN_FLAGS="--keychain=\"${KEYCHAIN_PATH}\"" \
     CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
     MARKETING_VERSION=$VERSION_NUMBER \
-    archive
+    clean archive
+
+# Export the app for Developer ID distribution.
 xcodebuild \
     -archivePath "$ARCHIVE_PATH" \
     -exportArchive \
     -exportPath "$BUILD_DIRECTORY" \
-    -exportOptionsPlist "ExportOptions.plist"
+    -exportOptionsPlist "ExportOptions_Developer_ID.plist"
+
+# Apple recommends we use ditto to prepare zips for notarization.
+# https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
+APP_BASENAME="Symbolic.app"
+RELEASE_BASENAME="Symbolic-$VERSION_NUMBER-$BUILD_NUMBER"
+RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
+RELEASE_ZIP_PATH="$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME"
+pushd "$BUILD_DIRECTORY"
+/usr/bin/ditto -c -k --keepParent "$APP_BASENAME" "$RELEASE_ZIP_BASENAME"
+rm -r "$APP_BASENAME"
+popd
+
+build-tools notarize "$RELEASE_ZIP_PATH" \
+    --key "$API_KEY_PATH" \
+    --key-id "$APPLE_API_KEY_ID" \
+    --issuer "$APPLE_API_KEY_ISSUER_ID" \
+
+## App Store Build
+
+# Build and archive the macOS project.
+sudo xcode-select --switch "$MACOS_XCODE_PATH"
+xcodebuild \
+    -project Symbolic.xcodeproj \
+    -scheme "Symbolic" \
+    -config Release \
+    -archivePath "$ARCHIVE_PATH" \
+    OTHER_CODE_SIGN_FLAGS="--keychain=\"${KEYCHAIN_PATH}\"" \
+    CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
+    MARKETING_VERSION=$VERSION_NUMBER \
+    clean archive
+xcodebuild \
+    -archivePath "$ARCHIVE_PATH" \
+    -exportArchive \
+    -exportPath "$BUILD_DIRECTORY" \
+    -exportOptionsPlist "ExportOptions_App_Store.plist"
 
 APP_BASENAME="Symbolic.app"
 APP_PATH="$BUILD_DIRECTORY/$APP_BASENAME"
 PKG_PATH="$BUILD_DIRECTORY/Symbolic.pkg"
-
-# Install the private key.
-mkdir -p ~/.appstoreconnect/private_keys/
-echo -n "$APPLE_API_KEY_BASE64" | base64 --decode -o ~/".appstoreconnect/private_keys/AuthKey_$APPLE_API_KEY_ID.p8"
 
 # Archive the build directory.
 ZIP_BASENAME="build-$VERSION_NUMBER-$BUILD_NUMBER.zip"
