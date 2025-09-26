@@ -78,6 +78,7 @@
 		D8CD4A9C28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CD4A9B28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift */; };
 		D8D9731128ACF8D2006CBF15 /* ExportToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */; };
 		D8E4C3C12979809D00A25DF9 /* LibraryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C3C02979809D00A25DF9 /* LibraryInfoView.swift */; };
+		D8F531CF2E8720AC00054B59 /* PrefersGlassProminentButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F531CE2E8720AC00054B59 /* PrefersGlassProminentButtonStyle.swift */; };
 		D8F6317428AC7D7A00DFEED0 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */; };
 		D8F6317628AC85C600DFEED0 /* SymbolPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */; };
 		D8F99EC628B13998007C3868 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8F99EC528B13998007C3868 /* Diligence */; };
@@ -176,6 +177,7 @@
 		D8CD4A9B28AC35C600D57F34 /* SymbolicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D8D9731028ACF8D2006CBF15 /* ExportToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToolbar.swift; sourceTree = "<group>"; };
 		D8E4C3C02979809D00A25DF9 /* LibraryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryInfoView.swift; sourceTree = "<group>"; };
+		D8F531CE2E8720AC00054B59 /* PrefersGlassProminentButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefersGlassProminentButtonStyle.swift; sourceTree = "<group>"; };
 		D8F6317328AC7D7A00DFEED0 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		D8F6317528AC85C600DFEED0 /* SymbolPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -320,6 +322,7 @@
 		D8CB5A492971C536002007C4 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				D8F531CE2E8720AC00054B59 /* PrefersGlassProminentButtonStyle.swift */,
 				D89A7404297C9BDE00F632ED /* SavePanel.swift */,
 				D88661A4297AD82A001E41DD /* ConditionalLink.swift */,
 				D857297B296C176C0037E58F /* SymbolPickerCell.swift */,
@@ -596,6 +599,7 @@
 				D821B9E828ACDBE000504AA4 /* Icon.swift in Sources */,
 				D8B0B1F1296CD4AB00F907BE /* OffsetGuide.swift in Sources */,
 				D821B9EC28ACDC2600504AA4 /* IconCorners.swift in Sources */,
+				D8F531CF2E8720AC00054B59 /* PrefersGlassProminentButtonStyle.swift in Sources */,
 				D821B9EE28ACDC6F00504AA4 /* SymbolPicker.swift in Sources */,
 				D84B5D71296C52BE005E6C59 /* EditorView.swift in Sources */,
 				D8B7677B298A6E4F00E99C6A /* PositionOffsetSlider.swift in Sources */,
