@@ -34,12 +34,12 @@ KEYCHAIN_PATH="${TEMPORARY_DIRECTORY}/temporary.keychain"
 ARCHIVE_PATH="${BUILD_DIRECTORY}/Symbolic.xcarchive"
 ENV_PATH="${ROOT_DIRECTORY}/.env"
 
-RELEASE_SCRIPT_PATH="${SCRIPTS_DIRECTORY}/release.sh"
+RELEASE_SCRIPT_PATH="$SCRIPTS_DIRECTORY/release.sh"
 
 IOS_XCODE_PATH=${IOS_XCODE_PATH:-/Applications/Xcode.app}
 MACOS_XCODE_PATH=${MACOS_XCODE_PATH:-/Applications/Xcode.app}
 
-source "${SCRIPTS_DIRECTORY}/environment.sh"
+source "$SCRIPTS_DIRECTORY/environment.sh"
 
 # Check that the GitHub command is available on the path.
 which gh || (echo "GitHub cli (gh) not available on the path." && exit 1)
@@ -81,16 +81,13 @@ if [ -f "$ENV_PATH" ] ; then
     source "$ENV_PATH"
 fi
 
-function xcode_project {
-    xcodebuild \
-        -project Symbolic.xcodeproj "$@"
-}
-
 cd "$ROOT_DIRECTORY"
 
 # List the available schemes.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcode_project -list
+xcodebuild \
+    -project Symbolic.xcodeproj \
+    -list
 
 # Clean up the build directory.
 if [ -d "$BUILD_DIRECTORY" ] ; then
@@ -123,26 +120,31 @@ BUILD_NUMBER=`build-tools generate-build-number`
 # # Import the certificates into our dedicated keychain.
 echo "$APPLE_DEVELOPMENT_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$APPLE_DEVELOPMENT_CERTIFICATE_BASE64"
 echo "$APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$APPLE_DISTRIBUTION_CERTIFICATE_BASE64"
+echo "$DEVELOPER_ID_APPLICATION_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$DEVELOPER_ID_APPLICATION_CERTIFICATE_BASE64"
 echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_BASE64"
 
 # Install the provisioning profiles.
-build-tools install-provisioning-profile "Symbolic_Mac_App_Store_Profile.provisionprofile"
+build-tools install-provisioning-profile "profiles/Symbolic_Developer_ID_Profile.provisionprofile"
+build-tools install-provisioning-profile "profiles/Symbolic_Mac_App_Store_Profile.provisionprofile"
 
 # Clean the build.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcode_project \
+xcodebuild \
+    -project Symbolic.xcodeproj \
     -scheme "Symbolic" \
     clean
 
 # Build, test and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcode_project \
+xcodebuild \
+    -project Symbolic.xcodeproj \
     -scheme "Symbolic" \
     build build-for-testing test
 
 # Build and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcode_project \
+xcodebuild \
+    -project Symbolic.xcodeproj \
     -scheme "Symbolic" \
     -config Release \
     -archivePath "$ARCHIVE_PATH" \
