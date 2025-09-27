@@ -181,8 +181,8 @@ RELEASE_BASENAME="Symbolic-$VERSION_NUMBER-$BUILD_NUMBER"
 RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
 RELEASE_ZIP_PATH="$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME"
 pushd "$BUILD_DIRECTORY"
-zip --symlinks -r "$RELEASE_ZIP_BASENAME" "Reconnect.app"
-rm -r "Reconnect.app"
+zip --symlinks -r "$RELEASE_ZIP_BASENAME" "Symbolic.app"
+rm -r "Symbolic.app"
 popd
 
 ## App Store Build
