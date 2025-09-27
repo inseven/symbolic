@@ -171,14 +171,13 @@ xcodebuild \
 
 # Apple recommends we use ditto to prepare zips for notarization.
 # https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
-APP_BASENAME="Symbolic.app"
-RELEASE_BASENAME="Symbolic-$VERSION_NUMBER-$BUILD_NUMBER"
-RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
-RELEASE_ZIP_PATH="$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME"
-pushd "$BUILD_DIRECTORY"
-/usr/bin/ditto -c -k --keepParent "$APP_BASENAME" "$RELEASE_ZIP_BASENAME"
-rm -r "$APP_BASENAME"
-popd
+# APP_BASENAME="Symbolic.app"
+# RELEASE_BASENAME="Symbolic-$VERSION_NUMBER-$BUILD_NUMBER"
+# RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
+# RELEASE_ZIP_PATH="$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME"
+# pushd "$BUILD_DIRECTORY"
+# /usr/bin/ditto -c -k --keepParent "$APP_BASENAME" "$RELEASE_ZIP_BASENAME"
+# popd
 
 build-tools notarize "$BUILD_DIRECTORY/Symbolic.app" \
     --key "$API_KEY_PATH" \
