@@ -179,10 +179,13 @@ pushd "$BUILD_DIRECTORY"
 rm -r "$APP_BASENAME"
 popd
 
-build-tools notarize "$RELEASE_ZIP_PATH" \
+build-tools notarize "$BUILD_DIRECTORY/Symbolic.app" \
     --key "$API_KEY_PATH" \
     --key-id "$APPLE_API_KEY_ID" \
-    --issuer "$APPLE_API_KEY_ISSUER_ID" \
+    --issuer "$APPLE_API_KEY_ISSUER_ID"
+
+# Exit early.
+exit
 
 ## App Store Build
 
