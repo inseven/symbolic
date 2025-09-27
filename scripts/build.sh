@@ -179,6 +179,7 @@ xcodebuild \
 # /usr/bin/ditto -c -k --keepParent "$APP_BASENAME" "$RELEASE_ZIP_BASENAME"
 # popd
 
+# Notarize and staple the app.
 build-tools notarize "$BUILD_DIRECTORY/Symbolic.app" \
     --key "$API_KEY_PATH" \
     --key-id "$APPLE_API_KEY_ID" \
