@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D831DD1C297319FC00C20B11 /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = D831DD1B297319FC00C20B11 /* SwiftDraw */; };
 		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
+		D8C16A922E874087005A0AC3 /* SymbolicCore in Frameworks */ = {isa = PBXBuildFile; productRef = D8C16A912E874087005A0AC3 /* SymbolicCore */; };
 		D8F99EC628B13998007C3868 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8F99EC528B13998007C3868 /* Diligence */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8C16A902E874062005A0AC3 /* SymbolicCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SymbolicCore; sourceTree = "<group>"; };
 		D8CD4A7A28AC35C300D57F34 /* Symbolic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Symbolic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A8B28AC35C600D57F34 /* SymbolicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A9528AC35C600D57F34 /* SymbolicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 				D831DD1C297319FC00C20B11 /* SwiftDraw in Frameworks */,
 				D864A23A2965A2D1008A4261 /* Interact in Frameworks */,
 				D8F99EC628B13998007C3868 /* Diligence in Frameworks */,
+				D8C16A922E874087005A0AC3 /* SymbolicCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +85,7 @@
 		D8CD4A7128AC35C300D57F34 = {
 			isa = PBXGroup;
 			children = (
+				D8C16A902E874062005A0AC3 /* SymbolicCore */,
 				D8D00CE52E87263800901654 /* Symbolic */,
 				D8D00D342E87277300901654 /* SymbolicTests */,
 				D8D00D2B2E87267700901654 /* SymbolicUITests */,
@@ -130,6 +134,7 @@
 				D8F99EC528B13998007C3868 /* Diligence */,
 				D864A2392965A2D1008A4261 /* Interact */,
 				D831DD1B297319FC00C20B11 /* SwiftDraw */,
+				D8C16A912E874087005A0AC3 /* SymbolicCore */,
 			);
 			productName = Iconify;
 			productReference = D8CD4A7A28AC35C300D57F34 /* Symbolic.app */;
@@ -412,6 +417,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AUTOMATION_APPLE_EVENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = Symbolic/Symbolic.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -421,7 +427,14 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Symbolic/Preview Content\"";
 				DEVELOPMENT_TEAM = QS82QFHKWB;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Symbolic/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Symbolic;
@@ -434,6 +447,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -445,6 +464,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AUTOMATION_APPLE_EVENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = Symbolic/Symbolic.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
@@ -455,7 +475,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Symbolic/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = QS82QFHKWB;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Symbolic/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Symbolic;
@@ -470,6 +497,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Symbolic Mac App Store Profile";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -482,6 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = QS82QFHKWB;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.tests;
@@ -499,6 +533,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = QS82QFHKWB;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.tests;
@@ -515,6 +550,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = QS82QFHKWB;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.uitests;
@@ -531,6 +567,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = QS82QFHKWB;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.uitests;
@@ -613,6 +650,10 @@
 		D864A2392965A2D1008A4261 /* Interact */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Interact;
+		};
+		D8C16A912E874087005A0AC3 /* SymbolicCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SymbolicCore;
 		};
 		D8F99EC528B13998007C3868 /* Diligence */ = {
 			isa = XCSwiftPackageProductDependency;

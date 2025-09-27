@@ -27,19 +27,20 @@ set -u
 
 ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
 SCRIPTS_DIRECTORY="$ROOT_DIRECTORY/scripts"
-BUILD_DIRECTORY="${ROOT_DIRECTORY}/build"
-TEMPORARY_DIRECTORY="${ROOT_DIRECTORY}/temp"
+BUILD_DIRECTORY="$ROOT_DIRECTORY/build"
+ARCHIVES_DIRECTORY="$ROOT_DIRECTORY/archives"
+TEMPORARY_DIRECTORY="$ROOT_DIRECTORY/temp"
 
-KEYCHAIN_PATH="${TEMPORARY_DIRECTORY}/temporary.keychain"
-ARCHIVE_PATH="${BUILD_DIRECTORY}/Symbolic.xcarchive"
-ENV_PATH="${ROOT_DIRECTORY}/.env"
+KEYCHAIN_PATH="$TEMPORARY_DIRECTORY/temporary.keychain"
+ARCHIVE_PATH="$BUILD_DIRECTORY/Symbolic.xcarchive"
+ENV_PATH="$ROOT_DIRECTORY/.env"
 
-RELEASE_SCRIPT_PATH="${SCRIPTS_DIRECTORY}/release.sh"
+RELEASE_SCRIPT_PATH="$SCRIPTS_DIRECTORY/release.sh"
 
 IOS_XCODE_PATH=${IOS_XCODE_PATH:-/Applications/Xcode.app}
 MACOS_XCODE_PATH=${MACOS_XCODE_PATH:-/Applications/Xcode.app}
 
-source "${SCRIPTS_DIRECTORY}/environment.sh"
+source "$SCRIPTS_DIRECTORY/environment.sh"
 
 # Check that the GitHub command is available on the path.
 which gh || (echo "GitHub cli (gh) not available on the path." && exit 1)
@@ -81,22 +82,25 @@ if [ -f "$ENV_PATH" ] ; then
     source "$ENV_PATH"
 fi
 
-function xcode_project {
-    xcodebuild \
-        -project Symbolic.xcodeproj "$@"
-}
-
 cd "$ROOT_DIRECTORY"
 
 # List the available schemes.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcode_project -list
+xcodebuild \
+    -project Symbolic.xcodeproj \
+    -list
 
-# Clean up the build directory.
+# Clean up and recreate the output directories.
+
 if [ -d "$BUILD_DIRECTORY" ] ; then
     rm -r "$BUILD_DIRECTORY"
 fi
 mkdir -p "$BUILD_DIRECTORY"
+
+if [ -d "$ARCHIVES_DIRECTORY" ] ; then
+    rm -r "$ARCHIVES_DIRECTORY"
+fi
+mkdir -p "$ARCHIVES_DIRECTORY"
 
 # Create the a new keychain.
 if [ -d "$TEMPORARY_DIRECTORY" ] ; then
@@ -123,46 +127,89 @@ BUILD_NUMBER=`build-tools generate-build-number`
 # # Import the certificates into our dedicated keychain.
 echo "$APPLE_DEVELOPMENT_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$APPLE_DEVELOPMENT_CERTIFICATE_BASE64"
 echo "$APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$APPLE_DISTRIBUTION_CERTIFICATE_BASE64"
+echo "$DEVELOPER_ID_APPLICATION_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$DEVELOPER_ID_APPLICATION_CERTIFICATE_BASE64"
 echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base64-certificate --password "$KEYCHAIN_PATH" "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_BASE64"
 
 # Install the provisioning profiles.
-build-tools install-provisioning-profile "Symbolic_Mac_App_Store_Profile.provisionprofile"
+build-tools install-provisioning-profile "profiles/Symbolic_Developer_ID_Profile.provisionprofile"
+build-tools install-provisioning-profile "profiles/Symbolic_Mac_App_Store_Profile.provisionprofile"
 
-# Clean the build.
-sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcode_project \
-    -scheme "Symbolic" \
-    clean
+# Install the private key.
+mkdir -p ~/.appstoreconnect/private_keys/
+API_KEY_PATH=~/".appstoreconnect/private_keys/AuthKey_$APPLE_API_KEY_ID.p8"
+echo -n "$APPLE_API_KEY_BASE64" | base64 --decode -o "$API_KEY_PATH"
+
+## Test
 
 # Build, test and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcode_project \
+xcodebuild \
+    -project Symbolic.xcodeproj \
     -scheme "Symbolic" \
-    build build-for-testing test
+    clean build build-for-testing test
+
+## Developer ID Build
 
 # Build and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
-xcode_project \
+xcodebuild \
+    -project Symbolic.xcodeproj \
     -scheme "Symbolic" \
     -config Release \
     -archivePath "$ARCHIVE_PATH" \
     OTHER_CODE_SIGN_FLAGS="--keychain=\"${KEYCHAIN_PATH}\"" \
     CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
     MARKETING_VERSION=$VERSION_NUMBER \
-    archive
+    clean archive
+
+# Export the app for Developer ID distribution.
 xcodebuild \
     -archivePath "$ARCHIVE_PATH" \
     -exportArchive \
     -exportPath "$BUILD_DIRECTORY" \
-    -exportOptionsPlist "ExportOptions.plist"
+    -exportOptionsPlist "ExportOptions_Developer_ID.plist"
+
+# Notarize and staple the app.
+build-tools notarize "$BUILD_DIRECTORY/Symbolic.app" \
+    --key "$API_KEY_PATH" \
+    --key-id "$APPLE_API_KEY_ID" \
+    --issuer "$APPLE_API_KEY_ISSUER_ID"
+
+# Compress the app.
+APP_BASENAME="Symbolic.app"
+RELEASE_BASENAME="Symbolic-$VERSION_NUMBER-$BUILD_NUMBER"
+RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
+RELEASE_ZIP_PATH="$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME"
+pushd "$BUILD_DIRECTORY"
+zip --symlinks -r "$RELEASE_ZIP_BASENAME" "Symbolic.app"
+rm -r "Symbolic.app"
+popd
+
+## App Store Build
+
+# Copy the App Store Package.swift configuration.
+cp SymbolicCore/Package_App_Store.swift SymbolicCore/Package.swift
+
+# Build and archive the macOS project.
+sudo xcode-select --switch "$MACOS_XCODE_PATH"
+xcodebuild \
+    -project Symbolic.xcodeproj \
+    -scheme "Symbolic" \
+    -config Release \
+    -archivePath "$ARCHIVE_PATH" \
+    OTHER_CODE_SIGN_FLAGS="--keychain=\"${KEYCHAIN_PATH}\"" \
+    CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
+    MARKETING_VERSION=$VERSION_NUMBER \
+    clean archive
+xcodebuild \
+    -archivePath "$ARCHIVE_PATH" \
+    -exportArchive \
+    -exportPath "$BUILD_DIRECTORY" \
+    -exportOptionsPlist "ExportOptions_App_Store.plist"
 
 APP_BASENAME="Symbolic.app"
 APP_PATH="$BUILD_DIRECTORY/$APP_BASENAME"
 PKG_PATH="$BUILD_DIRECTORY/Symbolic.pkg"
-
-# Install the private key.
-mkdir -p ~/.appstoreconnect/private_keys/
-echo -n "$APPLE_API_KEY_BASE64" | base64 --decode -o ~/".appstoreconnect/private_keys/AuthKey_$APPLE_API_KEY_ID.p8"
 
 # Archive the build directory.
 ZIP_BASENAME="build-$VERSION_NUMBER-$BUILD_NUMBER.zip"
@@ -191,6 +238,6 @@ if $RELEASE ; then
         --pre-release \
         --push \
         --exec "$RELEASE_SCRIPT_PATH" \
-        "$PKG_PATH" "$ZIP_PATH"
+        "$RELEASE_ZIP_PATH" "$PKG_PATH" "$ZIP_PATH"
 
 fi
