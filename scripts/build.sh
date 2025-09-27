@@ -169,26 +169,26 @@ xcodebuild \
     -exportPath "$BUILD_DIRECTORY" \
     -exportOptionsPlist "ExportOptions_Developer_ID.plist"
 
-# Apple recommends we use ditto to prepare zips for notarization.
-# https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
-# APP_BASENAME="Symbolic.app"
-# RELEASE_BASENAME="Symbolic-$VERSION_NUMBER-$BUILD_NUMBER"
-# RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
-# RELEASE_ZIP_PATH="$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME"
-# pushd "$BUILD_DIRECTORY"
-# /usr/bin/ditto -c -k --keepParent "$APP_BASENAME" "$RELEASE_ZIP_BASENAME"
-# popd
-
 # Notarize and staple the app.
 build-tools notarize "$BUILD_DIRECTORY/Symbolic.app" \
     --key "$API_KEY_PATH" \
     --key-id "$APPLE_API_KEY_ID" \
     --issuer "$APPLE_API_KEY_ISSUER_ID"
 
-# Exit early.
-exit
+# Compress the app.
+APP_BASENAME="Symbolic.app"
+RELEASE_BASENAME="Symbolic-$VERSION_NUMBER-$BUILD_NUMBER"
+RELEASE_ZIP_BASENAME="$RELEASE_BASENAME.zip"
+RELEASE_ZIP_PATH="$BUILD_DIRECTORY/$RELEASE_ZIP_BASENAME"
+pushd "$BUILD_DIRECTORY"
+zip --symlinks -r "$RELEASE_ZIP_BASENAME" "Reconnect.app"
+rm -r "Reconnect.app"
+popd
 
 ## App Store Build
+
+# Copy the App Store Package.swift configuration.
+cp SymbolicCore/Package_App_Store.swift SymbolicCore/Package.swift
 
 # Build and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
@@ -238,6 +238,6 @@ if $RELEASE ; then
         --pre-release \
         --push \
         --exec "$RELEASE_SCRIPT_PATH" \
-        "$PKG_PATH" "$ZIP_PATH"
+        "$RELEASE_ZIP_PATH" "$PKG_PATH" "$ZIP_PATH"
 
 fi
