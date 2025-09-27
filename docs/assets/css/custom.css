@@ -7,7 +7,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --brand-color: #c987f8;
-        --showcase-color-high: #d783ff;
-        --showcase-color-low: #7b80ff;
+        --showcase-color-high: rgb(117, 70, 139);
+        --showcase-color-low: rgb(60, 62, 129);
     }
 }
