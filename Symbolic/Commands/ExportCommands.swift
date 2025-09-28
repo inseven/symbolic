@@ -34,7 +34,7 @@ struct ExportCommands: Commands {
             Button {
                 sceneModel?.export()
             } label: {
-                Label("Export...", systemImage: "arrow.down.document")
+                Label("Export...", systemImage: "arrow.up")
             }
             .disabled(sceneModel == nil)
             .keyboardShortcut("e")
