@@ -20,7 +20,7 @@
 
 import SwiftUI
 
-#if canImport(Swift)
+#if canImport(Glitter)
 
 public struct UpdateCommands: Commands {
 
