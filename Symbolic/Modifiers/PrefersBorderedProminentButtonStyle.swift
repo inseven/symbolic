@@ -20,12 +20,12 @@
 
 import SwiftUI
 
-struct PrefersGlassProminentButtonStyle: ViewModifier {
+struct PrefersBorderedProminentButtonStyle: ViewModifier {
 
     func body(content: Content) -> some View {
         if #available(macOS 26, *) {
             return content
-                .buttonStyle(.glassProminent)
+                .buttonStyle(.borderedProminent)
         } else {
             return content
                 .buttonStyle(.toolbarAction)
@@ -36,8 +36,8 @@ struct PrefersGlassProminentButtonStyle: ViewModifier {
 
 extension View {
 
-    func prefersGlassProminentButtonStyle() -> some View {
-        return modifier(PrefersGlassProminentButtonStyle())
+    func prefersBorderedProminentButtonStyle() -> some View {
+        return modifier(PrefersBorderedProminentButtonStyle())
     }
 
 }

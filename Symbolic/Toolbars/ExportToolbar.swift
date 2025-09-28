@@ -38,11 +38,10 @@ struct ExportToolbar: CustomizableToolbarContent {
                     sceneModel?.export()
                 }
             } label: {
-                Label("Export", systemImage: "arrow.down.document")
+                Label("Export", systemImage: "arrow.up")
             }
             .help("Export icons")
-            .prefersGlassProminentButtonStyle()
-            .labelStyle(.titleOnly)
+            .prefersBorderedProminentButtonStyle()
         }
 
     }
