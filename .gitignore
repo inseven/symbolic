@@ -5,6 +5,7 @@
 /.local
 /_site
 /docs/.jekyll-cache
+/docs/current.json
 /docs/_site
 /docs/releases
 build
