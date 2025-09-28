@@ -41,28 +41,26 @@ struct ContentView: View {
     }
 
     var body: some View {
-        HStack(spacing: 0) {
-            ScrollView {
-                VStack {
-                    ForEach(ApplicationModel.icons) { section in
-                        Header(section.name)
-                        CenteredFlowLayout {
-                            ForEach(section.sets) { iconSet in
-                                IconSetView(sceneModel: sceneModel, icon: document.icon, iconSet: iconSet)
-                                    .padding()
-                            }
+        ScrollView {
+            VStack {
+                ForEach(ApplicationModel.icons) { section in
+                    Header(section.name)
+                    CenteredFlowLayout {
+                        ForEach(section.sets) { iconSet in
+                            IconSetView(sceneModel: sceneModel, icon: document.icon, iconSet: iconSet)
+                                .padding()
                         }
-                        .padding()
                     }
+                    .padding()
                 }
-                .padding()
             }
-            .background(Color(nsColor: .textBackgroundColor))
-            .frame(maxWidth: .infinity, minHeight: 400)
-            .cacheVectorGraphics(true)
-            Divider()
+            .padding()
+        }
+        .background(Color(nsColor: .textBackgroundColor))
+        .frame(maxWidth: .infinity, minHeight: 400)
+        .cacheVectorGraphics(true)
+        .inspector(isPresented: Binding.constant(true)) {
             EditorView(sceneModel: sceneModel, document: document)
-                .frame(width: 300)
         }
         .focusedSceneObject(document)
         .focusedSceneObject(sceneModel)
