@@ -27,7 +27,7 @@ import Interact
 import Sparkle
 #endif
 
-class ApplicationModel: ObservableObject {
+class ApplicationModel: NSObject, ObservableObject {
 
     // https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/
 
@@ -162,15 +162,28 @@ class ApplicationModel: ObservableObject {
     let updaterController = SPUStandardUpdaterController(startingUpdater: false,
                                                          updaterDelegate: nil,
                                                          userDriverDelegate: nil)
+#else
+    private let storeUpdateChecker = StoreUpdateChecker(url: URL(string: "https://symbolic.jbmorley.co.uk/current.json")!)
 #endif
 
-    @MainActor init() {
+    @MainActor override init() {
+        super.init()
+#if !canImport(Glitter)
+        storeUpdateChecker.delegate = self
+#endif
         self.start()
     }
 
     @MainActor func start() {
+
 #if canImport(Glitter) && !DEBUG
         updaterController.startUpdater()
+#endif
+
+#if !canImport(Glitter)
+        if !settings.suppressUpdateCheck {
+            storeUpdateChecker.check()
+        }
 #endif
     }
 
@@ -193,6 +206,15 @@ class ApplicationModel: ObservableObject {
             aboutWindow.center()
         }
         aboutWindow.makeKeyAndOrderFront(nil)
+    }
+
+}
+
+extension ApplicationModel: StoreUpdateCheckerDelegate {
+
+    @MainActor func storeUpdateChecker(_ storeUpdateChecker: StoreUpdateChecker,
+                                       didDismissAlertWithSuppressionState suppressionState: Bool) {
+        settings.suppressUpdateCheck = suppressionState
     }
 
 }

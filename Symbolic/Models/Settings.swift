@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import Interact
+
 extension UserDefaults {
 
     func bool(forKey defaultName: String, defaultValue: Bool) -> Bool {
@@ -35,18 +37,26 @@ public class Settings: ObservableObject {
 
     enum Key: String {
         case showIconDetails = "showIconDetails"
+        case suppressUpdateCheck
     }
 
     @Published public var showIconDetails: Bool {
         didSet {
-            defaults.set(showIconDetails, forKey: Key.showIconDetails.rawValue)
+            keyedDefaults.set(showIconDetails, forKey: .showIconDetails)
         }
     }
 
-    private let defaults =  UserDefaults.standard
+    @Published public var suppressUpdateCheck: Bool {
+        didSet {
+            keyedDefaults.set(suppressUpdateCheck, forKey: .suppressUpdateCheck)
+        }
+    }
+
+    private let keyedDefaults = KeyedDefaults<Key>()
 
     public init() {
-        showIconDetails = defaults.bool(forKey: Key.showIconDetails.rawValue, defaultValue: false)
+        showIconDetails = keyedDefaults.bool(forKey: .showIconDetails, default: false)
+        suppressUpdateCheck = keyedDefaults.bool(forKey: .suppressUpdateCheck, default: false)
     }
 
 }
