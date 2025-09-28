@@ -112,7 +112,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   sparkle-update:
-    needs: macos-build
+    needs: app-build
     if: ${{ github.ref == 'refs/heads/main' }}
 
     runs-on: ubuntu-latest
