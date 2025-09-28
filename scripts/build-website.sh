@@ -27,15 +27,10 @@ set -u
 
 SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-ROOT_DIRECTORY="${SCRIPTS_DIRECTORY}/.."
-WEBSITE_DIRECTORY="${ROOT_DIRECTORY}/docs"
+ROOT_DIRECTORY="$SCRIPTS_DIRECTORY/.."
+WEBSITE_DIRECTORY="$ROOT_DIRECTORY/docs"
 
-RELEASE_NOTES_TEMPLATE_PATH="${SCRIPTS_DIRECTORY}/release-notes.markdown"
-HISTORY_PATH="${SCRIPTS_DIRECTORY}/history.yaml"
-RELEASE_NOTES_DIRECTORY="${ROOT_DIRECTORY}/docs/release-notes"
-RELEASE_NOTES_PATH="${RELEASE_NOTES_DIRECTORY}/index.markdown"
-
-source "${SCRIPTS_DIRECTORY}/environment.sh"
+source "$SCRIPTS_DIRECTORY/environment.sh"
 
 # Process the command line arguments.
 POSITIONAL=()
@@ -55,18 +50,42 @@ do
     esac
 done
 
+# Update the release notes.
 "$SCRIPTS_DIRECTORY/update-release-notes.sh"
 
 # Install the Jekyll dependencies.
-export GEM_HOME="${ROOT_DIRECTORY}/.local/ruby"
+export GEM_HOME="$ROOT_DIRECTORY/.local/ruby"
 mkdir -p "$GEM_HOME"
-export PATH="${GEM_HOME}/bin":$PATH
+export PATH="$GEM_HOME/bin":$PATH
 gem install bundler
-cd "${WEBSITE_DIRECTORY}"
+cd "$WEBSITE_DIRECTORY"
 bundle install
 
+# Get the latest release URL.
+if ! DOWNLOAD_URL=$(build-tools latest-github-release inseven symbolic "Symbolic-*.zip"); then
+    echo >&2 failed
+    exit 1
+fi
+# Belt-and-braces check that we managed to get the download URL.
+if [[ -z "$DOWNLOAD_URL" ]]; then
+    echo "Failed to get release download URL."
+    exit 1
+fi
+export DOWNLOAD_URL
+
+# Determine the version.
+VERSION_NUMBER=`changes version`
+export VERSION_NUMBER
+
+# Create a JSON file pointing to the latest download.
+echo """{
+    \"version\": \"$VERSION_NUMBER\",
+    \"url\": \"$DOWNLOAD_URL\"
+}
+""" > "$WEBSITE_DIRECTORY/current.json"
+
 # Build the website.
-cd "${WEBSITE_DIRECTORY}"
+cd "$WEBSITE_DIRECTORY"
 if $SERVE ; then
     bundle exec jekyll serve --watch
 else
