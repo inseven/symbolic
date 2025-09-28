@@ -22,6 +22,10 @@ import Foundation
 
 import Diligence
 
+#if canImport(Glitter)
+import Glitter
+#endif
+
 struct Legal {
         
     static let contents = Contents(repository: "inseven/symbolic",
@@ -50,7 +54,10 @@ struct Legal {
             }
         }
         LicenseGroup("Licenses", includeDiligenceLicense: true) {
-            .interact
+            (.interact)
+#if canImport(Glitter)
+            (.glitter)
+#endif
             License("SwiftDraw", author: "Simon Whitty", filename: "swiftdraw-license")
             License("Symbolic", author: "Jason Morley", filename: "symbolic-license")
         }
