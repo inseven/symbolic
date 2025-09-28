@@ -20,34 +20,19 @@
 
 import SwiftUI
 
-import Diligence
+#if canImport(Glitter)
 
-@main
-struct SymbolicApp: App {
+public struct UpdateCommands: Commands {
 
-    @StateObject var applicationModel = ApplicationModel()
+    let applicationModel: ApplicationModel
 
-    var body: some Scene {
-
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView(settings: applicationModel.settings, document: configuration.document)
-                .environmentObject(applicationModel)
-                .environmentObject(applicationModel.settings)
+    public var body: some Commands {
+        CommandGroup(before: .appSettings) {
+            CheckForUpdatesView(updater: applicationModel.updaterController.updater)
+            Divider()
         }
-        .defaultSize(width: 1250, height: 780)
-        .commands {
-            AboutCommands(applicationModel: applicationModel)
-            ExportCommands(applicationModel: applicationModel)
-            ViewCommands(settings: applicationModel.settings)
-            ToolbarCommands()
-            HelpCommands()
-#if canImport(Sparkle)
-            UpdateCommands(applicationModel: applicationModel)
-#endif
-        }
-
     }
 
 }
+
+#endif

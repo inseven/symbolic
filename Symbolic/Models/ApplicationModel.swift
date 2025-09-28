@@ -23,6 +23,10 @@ import SwiftUI
 import Diligence
 import Interact
 
+#if canImport(Sparkle)
+import Sparkle
+#endif
+
 class ApplicationModel: ObservableObject {
 
     // https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/
@@ -153,7 +157,23 @@ class ApplicationModel: ObservableObject {
     ]
 
     let settings = Settings()
-    
+
+#if canImport(Glitter)
+    let updaterController = SPUStandardUpdaterController(startingUpdater: false,
+                                                         updaterDelegate: nil,
+                                                         userDriverDelegate: nil)
+#endif
+
+    @MainActor init() {
+        self.start()
+    }
+
+    @MainActor func start() {
+#if canImport(Glitter) && !DEBUG
+        updaterController.startUpdater()
+#endif
+    }
+
     @MainActor private lazy var aboutWindow: NSWindow = {
         return NSWindow(Legal.contents)
     }()

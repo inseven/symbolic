@@ -20,34 +20,18 @@
 
 import SwiftUI
 
-import Diligence
-
-@main
-struct SymbolicApp: App {
-
-    @StateObject var applicationModel = ApplicationModel()
-
-    var body: some Scene {
-
-        DocumentGroup {
-            IconDocument()
-        } editor: { configuration in
-            ContentView(settings: applicationModel.settings, document: configuration.document)
-                .environmentObject(applicationModel)
-                .environmentObject(applicationModel.settings)
-        }
-        .defaultSize(width: 1250, height: 780)
-        .commands {
-            AboutCommands(applicationModel: applicationModel)
-            ExportCommands(applicationModel: applicationModel)
-            ViewCommands(settings: applicationModel.settings)
-            ToolbarCommands()
-            HelpCommands()
 #if canImport(Sparkle)
-            UpdateCommands(applicationModel: applicationModel)
-#endif
-        }
 
+import Sparkle
+
+// This view model class publishes when new updates can be checked by the user
+final class CheckForUpdatesViewModel: ObservableObject {
+    @Published var canCheckForUpdates = false
+
+    init(updater: SPUUpdater) {
+        updater.publisher(for: \.canCheckForUpdates)
+            .assign(to: &$canCheckForUpdates)
     }
-
 }
+
+#endif
