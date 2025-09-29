@@ -28,6 +28,14 @@ public struct HelpCommands: Commands {
 
         CommandGroup(replacing: .help) {
 
+#if canImport(Glitter)
+            Button {
+                openURL(.donate)
+            } label: {
+                Label("Donate", systemImage: "globe")
+            }
+#endif
+
             Button {
                 openURL(.software)
             } label: {
