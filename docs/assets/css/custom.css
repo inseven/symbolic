@@ -11,3 +11,8 @@
         --showcase-color-low: rgb(60, 62, 129);
     }
 }
+
+.content img.symbol {
+    width: 34px;
+    height: 34px;
+}
