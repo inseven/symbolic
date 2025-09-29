@@ -22,10 +22,11 @@ import Foundation
 
 extension URL {
 
-    public static let gitHub = URL(string: "https://github.com/inseven/symbolic")!
-    public static let privacyPolicy = URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!
-    public static let software = URL(string: "https://jbmorley.co.uk/software")!
-    public static let website = URL(string: "https://symbolic.jbmorley.co.uk")!
+    static let donate = URL(string: "https://jbmorley.co.uk/support")!
+    static let gitHub = URL(string: "https://github.com/inseven/symbolic")!
+    static let privacyPolicy = URL(string: "https://symbolic.jbmorley.co.uk/privacy-policy")!
+    static let software = URL(string: "https://jbmorley.co.uk/software")!
+    static let website = URL(string: "https://symbolic.jbmorley.co.uk")!
 
     public static var support: URL = {
         let subject = "Symbolic Support (\(Bundle.main.extendedVersion ?? "Unknown Version"))"
