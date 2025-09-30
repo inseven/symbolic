@@ -43,6 +43,7 @@ struct SymbolicApp: App {
             ViewCommands(settings: applicationModel.settings)
             ToolbarCommands()
             HelpCommands()
+            ActionsCommands(Legal.contents, placement: .before(.help))
 #if canImport(Sparkle)
             UpdateCommands(applicationModel: applicationModel)
 #endif
