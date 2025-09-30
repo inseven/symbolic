@@ -31,7 +31,7 @@ struct AboutCommands: Commands {
     var body: some Commands {
 
         CommandGroup(replacing: .appInfo) {
-            Button("About \(Bundle.main.preferredName ?? "")") {
+            Button("About \(Bundle.main.preferredName ?? "")", systemImage: "info.circle") {
                 DispatchQueue.main.async {
                     applicationModel.showAbout()
                 }
