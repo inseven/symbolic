@@ -22,6 +22,10 @@ import SwiftUI
 
 import Diligence
 
+#if canImport(Glitter)
+import Glitter
+#endif
+
 @main
 struct SymbolicApp: App {
 
@@ -44,8 +48,8 @@ struct SymbolicApp: App {
             ToolbarCommands()
             HelpCommands()
             ActionsCommands(Legal.contents, placement: .before(.help))
-#if canImport(Sparkle)
-            UpdateCommands(applicationModel: applicationModel)
+#if canImport(Glitter)
+            UpdateCommands(updater: applicationModel.updaterController.updater)
 #endif
         }
 
