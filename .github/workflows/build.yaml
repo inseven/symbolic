@@ -119,7 +119,7 @@ jobs:
     steps:
 
     - name: Update Sparkle archives
-      uses: peter-evans/repository-dispatch@v3
+      uses: peter-evans/repository-dispatch@v4
       with:
         token: ${{ secrets._GITHUB_ACCESS_TOKEN }}
         repository: inseven/sparkle-archives
