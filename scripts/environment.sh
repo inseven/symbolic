@@ -33,6 +33,6 @@ source "$LOCAL_TOOLS_PATH/python/bin/activate"
 export PIPENV_VENV_IN_PROJECT=1
 export PIPENV_IGNORE_VIRTUALENVS=1
 
-export PATH=$PATH:"$SCRIPTS_DIRECTORY/changes"
-export PATH=$PATH:"$SCRIPTS_DIRECTORY/build-tools"
-export PATH=$PATH:"$ROOT_DIRECTORY/dependencies/diligence/scripts"
+export PATH="$SCRIPTS_DIRECTORY/changes":$PATH
+export PATH="$SCRIPTS_DIRECTORY/build-tools":$PATH
+export PATH="$ROOT_DIRECTORY/dependencies/diligence/scripts":$PATH
