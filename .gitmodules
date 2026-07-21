@@ -1,15 +1,19 @@
 [submodule "dependencies/diligence"]
 	path = dependencies/diligence
 	url = https://github.com/inseven/diligence.git
+	branch = main
 [submodule "scripts/changes"]
 	path = scripts/changes
 	url = https://github.com/jbmorley/changes.git
+	branch = main
 [submodule "scripts/build-tools"]
 	path = scripts/build-tools
 	url = https://github.com/jbmorley/build-tools.git
+	branch = main
 [submodule "dependencies/interact"]
 	path = dependencies/interact
 	url = https://github.com/inseven/interact.git
+	branch = main
 [submodule "docs/_theme"]
 	path = docs/_theme
 	url = https://github.com/jbmorley/showcase-theme.git
