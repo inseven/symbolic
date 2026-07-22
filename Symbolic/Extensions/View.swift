@@ -22,6 +22,14 @@ import SwiftUI
 
 extension View {
 
+    @ViewBuilder func hardTopScrollEdgeEffect() -> some View {
+        if #available(macOS 26.0, *) {
+            scrollEdgeEffectStyle(.hard, for: .top)
+        } else {
+            self
+        }
+    }
+
     @MainActor func pngData() -> Data? {
         let renderer = ImageRenderer(content: self)
         renderer.scale = 2

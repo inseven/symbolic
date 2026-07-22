@@ -34,6 +34,7 @@ struct Header: View {
                 .fontWeight(.bold)
                 .foregroundColor(.secondary)
                 .horizontalSpace(.leading)
+                .padding(.horizontal)
             Divider()
         }
     }
