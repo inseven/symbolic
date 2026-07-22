@@ -24,6 +24,11 @@ import UniformTypeIdentifiers
 
 struct Icon: Identifiable, Codable {
 
+    enum Context {
+        case display
+        case export
+    }
+
     enum CodingKeys: String, CodingKey {
         case version = "version"
         case id = "id"
@@ -101,7 +106,7 @@ struct Icon: Identifiable, Codable {
         try container.encode(self.shadowHeight, forKey: .shadowHeight)
     }
 
-    @ViewBuilder func view(for definition: IconDefinition) -> some View {
+    @ViewBuilder func view(for definition: IconDefinition, context: Context = .display) -> some View {
 
         let width = definition.size.width * (CGFloat(definition.scale) / 2)
 
@@ -110,19 +115,19 @@ struct Icon: Identifiable, Codable {
             MacIconView(icon: self, size: width)
         case .iOS:
             IconView(icon: self, size: width, renderShadow: false)
-                .modifier(IconCorners(size: width, style: .iOS))
+                .modifier(IconCorners(size: width, style: context == .display ? .iOS : .square))
         case .watchOS:
             IconView(icon: self, size: width, renderShadow: false, isWatchOS: true)
-                .modifier(IconCorners(size: width, style: .watchOS))
+                .modifier(IconCorners(size: width, style: context == .display ? .watchOS : .square))
         case .web:
             IconView(icon: self, size: width, renderShadow: false)
-                .modifier(IconCorners(size: width, style: .web))
+                .modifier(IconCorners(size: width, style: .square))
         }
 
     }
 
     @MainActor func saveSnapshot(definition: IconDefinition, directoryURL: URL) throws -> URL {
-        let icon = view(for: definition)
+        let icon = view(for: definition, context: .export)
         guard let data = icon.pngData() else {
             throw SymbolicError.exportFailure
         }
@@ -142,7 +147,7 @@ struct Icon: Identifiable, Codable {
         }
         for size in resolutions {
             let definition = IconDefinition(.web, size: CGFloat(size), scale: 1)
-            guard let png = view(for: definition).pngData(),
+            guard let png = view(for: definition, context: .export).pngData(),
                   let source = CGImageSourceCreateWithData(png as CFData, nil),
                   let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
                 throw SymbolicError.exportFailure
