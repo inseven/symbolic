@@ -11,7 +11,7 @@ layout: showcase
     <li>
         <p><img class="symbol" src="/images/macbook.and.iphone.svg" /></p>
         <p><strong>Multi-Platform Export</strong></p>
-        <p>Generate all required icon sizes for iOS, macOS, iPadOS, and watchOS in one click.</p>
+        <p>Generate all required icon sizes for iOS, macOS, iPadOS, watchOS, and the Web in one click.</p>
     </li>
     <li>
         <p><img class="symbol" src="/images/eye.svg" /></p>
