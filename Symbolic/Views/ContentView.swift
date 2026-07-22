@@ -42,20 +42,25 @@ struct ContentView: View {
 
     var body: some View {
         ScrollView {
-            VStack {
+            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                 ForEach(ApplicationModel.icons) { section in
-                    Header(section.name)
-                    CenteredFlowLayout {
-                        ForEach(section.sets) { iconSet in
-                            IconSetView(sceneModel: sceneModel, icon: document.icon, iconSet: iconSet)
-                                .padding()
+                    Section {
+                        CenteredFlowLayout {
+                            ForEach(section.sets) { iconSet in
+                                IconSetView(sceneModel: sceneModel, icon: document.icon, iconSet: iconSet)
+                                    .padding()
+                            }
                         }
+                        .padding()
+                    } header: {
+                        Header(section.name)
+                            .padding(.top)
+                            .background(.bar)
                     }
-                    .padding()
                 }
             }
-            .padding()
         }
+        .hardTopScrollEdgeEffect()
         .background(Color(nsColor: .textBackgroundColor))
         .frame(maxWidth: .infinity, minHeight: 400)
         .cacheVectorGraphics(true)
