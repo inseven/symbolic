@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import UniformTypeIdentifiers
+
 struct Icon: Identifiable, Codable {
 
     enum CodingKeys: String, CodingKey {
@@ -112,6 +114,9 @@ struct Icon: Identifiable, Codable {
         case .watchOS:
             IconView(icon: self, size: width, renderShadow: false, isWatchOS: true)
                 .modifier(IconCorners(size: width, style: .watchOS))
+        case .web:
+            IconView(icon: self, size: width, renderShadow: false)
+                .modifier(IconCorners(size: width, style: .web))
         }
 
     }
@@ -121,16 +126,32 @@ struct Icon: Identifiable, Codable {
         guard let data = icon.pngData() else {
             throw SymbolicError.exportFailure
         }
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
-        guard let sizeString = formatter.string(from: NSNumber(value: definition.size.width)) else {
-            throw SymbolicError.exportFailure
-        }
-        let scaleString = definition.scale > 1 ? String(format: "@%dx", definition.scale) : ""
-        let url = directoryURL.appendingPathComponent("icon_\(sizeString)x\(sizeString)\(scaleString)", conformingTo: .png)
+        let url = directoryURL.appendingPathComponent(try definition.basename, conformingTo: .png)
         try data.write(to: url)
         return url
+    }
+
+    @MainActor func writeFavicon(to directoryURL: URL, resolutions: [Int]) throws {
+        let url = directoryURL.appendingPathComponent("favicon.ico")
+        guard let destination = CGImageDestinationCreateWithURL(url as CFURL,
+                                                                UTType.ico.identifier as CFString,
+                                                                resolutions.count,
+                                                                nil)
+        else {
+            throw SymbolicError.exportFailure
+        }
+        for size in resolutions {
+            let definition = IconDefinition(.web, size: CGFloat(size), scale: 1)
+            guard let png = view(for: definition).pngData(),
+                  let source = CGImageSourceCreateWithData(png as CFData, nil),
+                  let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
+                throw SymbolicError.exportFailure
+            }
+            CGImageDestinationAddImage(destination, image, nil)
+        }
+        guard CGImageDestinationFinalize(destination) else {
+            throw SymbolicError.exportFailure
+        }
     }
 
 }

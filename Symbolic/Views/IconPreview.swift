@@ -47,6 +47,8 @@ struct IconPreview: View {
                         .frame(width: width, height: height)
                 case .watchOS:
                     WatchGridView(size: width)
+                case .web:
+                    EmptyView()
                 }
             }
 

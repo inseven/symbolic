@@ -33,7 +33,7 @@ class ApplicationModel: NSObject, ObservableObject {
 
     static let icons: [IconSection] = [
 
-        IconSection("macOS", directory: "macOS.iconset") {
+        IconSection("macOS", directory: "macOS.iconset", additionalFiles: nil) {
 
             IconSet("16pt") {
                 IconDefinition(.macOS, size: 16, scale: 1)
@@ -67,7 +67,7 @@ class ApplicationModel: NSObject, ObservableObject {
 
         },
 
-        IconSection("iOS", directory: "iOS") {
+        IconSection("iOS", directory: "iOS", additionalFiles: nil) {
 
             // iPhone
             IconSet("iPhone Notifications") {
@@ -117,7 +117,7 @@ class ApplicationModel: NSObject, ObservableObject {
 
         },
 
-        IconSection("watchOS", directory: "watchOS") {
+        IconSection("watchOS", directory: "watchOS", additionalFiles: nil) {
 
             IconSet("Notification Center") {
                 IconDefinition(.watchOS, size: 24, scale: 2)
@@ -153,6 +153,27 @@ class ApplicationModel: NSObject, ObservableObject {
             }
 
         },
+
+        IconSection("Web", directory: "web", additionalFiles: { directoryURL, icon in
+            try icon.writeFavicon(to: directoryURL, resolutions: [16, 32, 48])
+        }) {
+
+            IconSet("Favicon") {
+                IconDefinition(.web, size: 16, scale: 1, description: "16", preferredBasename: "favicon-16x16")
+                IconDefinition(.web, size: 32, scale: 1, description: "32", preferredBasename: "favicon-32x32")
+                IconDefinition(.web, size: 48, scale: 1, description: "48", preferredBasename: "favicon-48x48")
+            }
+
+            IconSet("Apple Touch") {
+                IconDefinition(.web, size: 180, scale: 1, description: "180", preferredBasename: "apple-touch-icon")
+            }
+
+            IconSet("Progressive Web App") {
+                IconDefinition(.web, size: 192, scale: 1, description: "192", preferredBasename: "icon-192")
+                IconDefinition(.web, size: 512, scale: 1, description: "512", preferredBasename: "icon-512")
+            }
+
+        }
 
     ]
 

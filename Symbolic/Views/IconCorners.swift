@@ -26,6 +26,7 @@ struct IconCorners: ViewModifier {
         case macOS
         case iOS
         case watchOS
+        case web
     }
 
     struct LayoutMetrics {
@@ -49,6 +50,10 @@ struct IconCorners: ViewModifier {
             content.self
                 .frame(width: size, height: size)
                 .clipShape(Circle())
+        case .web:
+            content.self
+                .frame(width: size, height: size)
+                .clipShape(Rectangle())
         }
     }
 

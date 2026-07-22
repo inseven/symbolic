@@ -28,9 +28,15 @@ struct IconSection: Identifiable {
     let directory: String
     let sets: [IconSet]
 
-    init(_ name: String, directory: String, @IconSetsBuilder sets: () -> [IconSet] = { [] }) {
+    let additionalFiles: (@MainActor (_ directoryURL: URL, _ icon: Icon) throws -> Void)?
+
+    init(_ name: String,
+         directory: String,
+         additionalFiles: (@MainActor (_ directoryURL: URL, _ icon: Icon) throws -> Void)? = nil,
+         @IconSetsBuilder sets: () -> [IconSet] = { [] }) {
         self.name = name
         self.directory = directory
+        self.additionalFiles = additionalFiles
         self.sets = sets()
     }
 

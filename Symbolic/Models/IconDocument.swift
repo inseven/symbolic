@@ -65,13 +65,14 @@ final class IconDocument: ReferenceFileDocument {
 
         try FileManager.default.createDirectory(at: url, withIntermediateDirectories: false)
         for section in ApplicationModel.icons {
+            let directoryUrl = url.appendingPathComponent(section.directory, conformingTo: .directory)
+            try FileManager.default.createDirectory(at: directoryUrl, withIntermediateDirectories: true)
             for iconSet in section.sets {
-                let directoryUrl = url.appendingPathComponent(section.directory, conformingTo: .directory)
-                try FileManager.default.createDirectory(at: directoryUrl, withIntermediateDirectories: true)
                 for definition in iconSet.definitions {
                     _ = try icon.saveSnapshot(definition: definition, directoryURL: directoryUrl)
                 }
             }
+            try section.additionalFiles?(directoryUrl, icon)
         }
         if let licenseUrl = LibraryManager.shared.library(for: icon.symbol)?.license.fileURL {
             try FileManager.default.copyItem(at: licenseUrl, to: url.appendingPathComponent("LICENSE"))

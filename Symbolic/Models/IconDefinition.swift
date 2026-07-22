@@ -26,6 +26,7 @@ struct IconDefinition: Identifiable {
         case macOS
         case iOS
         case watchOS
+        case web
     }
 
     var id = UUID()
@@ -35,11 +36,30 @@ struct IconDefinition: Identifiable {
     let scale: Int
     let description: String?
 
-    init(_ style: Style, size: CGFloat, scale: Int, description: String? = nil) {
+    private let preferredBasename: String?
+
+    var basename: String {
+        get throws {
+            if let preferredBasename {
+                return preferredBasename
+            }
+            let formatter = NumberFormatter()
+            formatter.minimumFractionDigits = 0
+            formatter.maximumFractionDigits = 2
+            guard let sizeString = formatter.string(from: NSNumber(value: size.width)) else {
+                throw SymbolicError.exportFailure
+            }
+            let scaleString = scale > 1 ? String(format: "@%dx", scale) : ""
+            return "icon_\(sizeString)x\(sizeString)\(scaleString)"
+        }
+    }
+
+    init(_ style: Style, size: CGFloat, scale: Int, description: String? = nil, preferredBasename: String? = nil) {
         self.style = style
         self.size = CGSize(width: size, height: size)
         self.scale = scale
         self.description = description
+        self.preferredBasename = preferredBasename
     }
 
 }
