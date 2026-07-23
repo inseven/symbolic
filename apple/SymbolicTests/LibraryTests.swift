@@ -29,7 +29,7 @@ final class LibraryTests: XCTestCase {
         var count = 0
         for library in LibraryManager.shared.sets {
             for symbol in library.symbols {
-                if case .svg = symbol.format, let url = symbol.url {
+                if case .svg(let url) = symbol.format, let url {
                     autoreleasepool {
                         let svg = SVG(fileURL: url)
                         XCTAssertNotNil(svg)

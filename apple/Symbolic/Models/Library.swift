@@ -93,8 +93,7 @@ struct Library {
                     return Symbol(reference: reference,
                                   variant: displayVariant,
                                   name: symbol.name ?? symbol.id,
-                                  format: .svg,
-                                  url: url)
+                                  format: .svg(url: url))
                 case .symbol(let properties):
                     return Symbol(reference: reference,
                                   variant: displayVariant,

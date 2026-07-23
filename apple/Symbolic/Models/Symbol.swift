@@ -27,7 +27,7 @@ struct Symbol: Identifiable {
     }
 
     enum Format {
-        case svg
+        case svg(url: URL?)
         case symbol(minimumOperatingSystemVersion: OperatingSystemVersion?)
     }
 
@@ -35,7 +35,6 @@ struct Symbol: Identifiable {
     let variant: Variant?
     let name: String
     let format: Format
-    let url: URL?
 
     var localizedDescription: String {
         guard let variant = variant else {
@@ -47,13 +46,11 @@ struct Symbol: Identifiable {
     init(reference: SymbolReference,
          variant: Variant? = nil,
          name: String,
-         format: Format,
-         url: URL? = nil) {
+         format: Format) {
         self.reference = reference
         self.variant = variant
         self.name = name
         self.format = format
-        self.url = url
     }
 
 }

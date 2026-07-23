@@ -28,8 +28,8 @@ struct SymbolView: View {
         HStack {
             if let symbol = LibraryManager.shared.symbol(for: symbolReference) {
                 switch symbol.format {
-                case .svg:
-                    SVGImage(url: symbol.url!)
+                case .svg(let url):
+                    SVGImage(url: url!)
                 case .symbol:
                     Image(systemName: symbol.name)
                         .resizable()
