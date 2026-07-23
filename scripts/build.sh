@@ -154,6 +154,8 @@ xcodebuild \
 
 ## Developer ID Build
 
+cd "$SOURCE_DIRECTORY"
+
 # Build and archive the macOS project.
 sudo xcode-select --switch "$MACOS_XCODE_PATH"
 xcodebuild \
@@ -206,6 +208,8 @@ APPCAST_PATH="$ARCHIVES_DIRECTORY/appcast.xml"
 cp "$APPCAST_PATH" "$BUILD_DIRECTORY"
 
 ## App Store Build
+
+cd "$SOURCE_DIRECTORY"
 
 # Copy the App Store Package.swift configuration.
 cp SymbolicCore/Package_App_Store.swift SymbolicCore/Package.swift
