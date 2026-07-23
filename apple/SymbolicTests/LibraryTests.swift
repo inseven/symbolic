@@ -78,13 +78,13 @@ final class LibraryTests: XCTestCase {
 
     func testMinimumOperatingSystemVersion() throws {
         let original = try XCTUnwrap(sfSymbol(named: "square.and.arrow.up"))
-        guard case .symbol(let originalVersion) = original.format else {
+        guard case .symbol(let originalVersion, _) = original.format else {
             return XCTFail("Expected a symbol-format variant")
         }
         XCTAssertEqual(originalVersion, OperatingSystemVersion(majorVersion: 10, minorVersion: 15, patchVersion: 0))
 
         let recent = try XCTUnwrap(sfSymbol(named: "blood.pressure.cuff.fill"))
-        guard case .symbol(let recentVersion) = recent.format else {
+        guard case .symbol(let recentVersion, _) = recent.format else {
             return XCTFail("Expected a symbol-format variant")
         }
         XCTAssertEqual(try XCTUnwrap(recentVersion).majorVersion, 26)
@@ -92,10 +92,18 @@ final class LibraryTests: XCTestCase {
 
     func testRenamedSymbolReportsMinimumOperatingSystemVersion() throws {
         let symbol = try XCTUnwrap(sfSymbol(named: "applelogo"))
-        guard case .symbol(let version) = symbol.format else {
+        guard case .symbol(let version, _) = symbol.format else {
             return XCTFail("Expected a symbol-format variant")
         }
         XCTAssertEqual(version, OperatingSystemVersion(majorVersion: 13, minorVersion: 0, patchVersion: 0))
+    }
+
+    func testDefaultVariantIsMonochrome() throws {
+        let symbol = try XCTUnwrap(sfSymbol(named: "square.and.arrow.up"))
+        guard case .symbol(_, let renderingMode) = symbol.format else {
+            return XCTFail("Expected a symbol-format variant")
+        }
+        XCTAssertEqual(renderingMode, .monochrome)
     }
 
     func symbol(format: Symbol.Format) -> Symbol {
@@ -105,11 +113,11 @@ final class LibraryTests: XCTestCase {
 
     func testIsSupported() {
         XCTAssertTrue(symbol(format: .svg(url: nil)).isSupported)
-        XCTAssertTrue(symbol(format: .symbol(minimumOperatingSystemVersion: nil)).isSupported)
+        XCTAssertTrue(symbol(format: .symbol(minimumOperatingSystemVersion: nil, renderingMode: .monochrome)).isSupported)
         XCTAssertTrue(symbol(format: .symbol(minimumOperatingSystemVersion:
-            OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0))).isSupported)
+            OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0), renderingMode: .monochrome)).isSupported)
         XCTAssertFalse(symbol(format: .symbol(minimumOperatingSystemVersion:
-            OperatingSystemVersion(majorVersion: 999, minorVersion: 0, patchVersion: 0))).isSupported)
+            OperatingSystemVersion(majorVersion: 999, minorVersion: 0, patchVersion: 0), renderingMode: .monochrome)).isSupported)
     }
 
     func testResolveSymbolAvailable() throws {

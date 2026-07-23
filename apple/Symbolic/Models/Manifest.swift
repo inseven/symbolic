@@ -34,6 +34,7 @@ struct Manifest: Codable {
         struct SymbolProperties: Codable {
             let name: String
             let minimumOperatingSystemVersion: String?
+            let renderingMode: RenderingMode
         }
 
         private enum Format: String, Codable {

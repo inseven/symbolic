@@ -28,7 +28,7 @@ struct Symbol: Identifiable {
 
     enum Format {
         case svg(url: URL?)
-        case symbol(minimumOperatingSystemVersion: OperatingSystemVersion?)
+        case symbol(minimumOperatingSystemVersion: OperatingSystemVersion?, renderingMode: RenderingMode)
     }
 
     let reference: SymbolReference
@@ -47,7 +47,7 @@ struct Symbol: Identifiable {
         switch format {
         case .svg:
             return true
-        case .symbol(let minimumOperatingSystemVersion):
+        case .symbol(let minimumOperatingSystemVersion, _):
             guard let minimumOperatingSystemVersion else {
                 return true
             }

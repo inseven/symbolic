@@ -84,6 +84,7 @@ def main():
                     "properties": {
                         "name": name,
                         "minimumOperatingSystemVersion": minimum_macos_version(name),
+                        "renderingMode": "monochrome",
                     },
                 },
             },

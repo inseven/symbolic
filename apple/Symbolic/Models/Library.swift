@@ -98,7 +98,8 @@ struct Library {
                     return Symbol(reference: reference,
                                   variant: displayVariant,
                                   name: properties.name,
-                                  format: .symbol(minimumOperatingSystemVersion: properties.minimumOperatingSystemVersion.flatMap { OperatingSystemVersion(string: $0) }))
+                                  format: .symbol(minimumOperatingSystemVersion: properties.minimumOperatingSystemVersion.flatMap { OperatingSystemVersion(string: $0) },
+                                                  renderingMode: properties.renderingMode))
                 }
             }
         }
