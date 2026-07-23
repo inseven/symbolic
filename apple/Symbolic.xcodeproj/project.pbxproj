@@ -48,7 +48,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D8D00CE52E87263800901654 /* Symbolic */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8D00D262E87263800901654 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = ("Resources/material-icons", ); path = Symbolic; sourceTree = "<group>"; };
+		D8D00CE52E87263800901654 /* Symbolic */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8D00D262E87263800901654 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = ("Resources/material-icons", "Resources/sf-symbols", ); path = Symbolic; sourceTree = "<group>"; };
 		D8D00D2B2E87267700901654 /* SymbolicUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SymbolicUITests; sourceTree = "<group>"; };
 		D8D00D342E87277300901654 /* SymbolicTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SymbolicTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */

@@ -49,73 +49,70 @@ struct Library {
     let url: URL?
     let symbols: [Symbol]
     let symbolsById: [String:[Symbol]]
+    let aliases: [String: String]
     let variants: [String: Variant]
     let license: License
     let warning: String?
 
-    static var sfSymbols: Library = {
-        return Library(id: "sf-symbols",
-                       name: "SF Symbols",
-                       author: "Apple Inc",
-                       url: URL(string: "https://developer.apple.com/sf-symbols/")!,
-                       symbols: SFSymbols.allSymbols,
-                       variants: [],
-                       license: License(name: "Agreements and Guidelines",
-                                        fileURL: nil,
-                                        url: URL(string: "https://developer.apple.com/support/terms/")!),
-                       warning: "Apple sets out specific guidelines defining acceptable use of SF Symbols and explicitly prohibits their use in icons.\n\nEnsure you only use exported files containing SF Symbols in ways permitted under the relevant terms and conditions.")
-    }()
-
-    init(id: String,
-         name: String,
-         author: String,
-         url: URL? = nil,
-         symbols: [Symbol],
-         variants: [Variant],
-         license: License,
-         warning: String? = nil) {
-        self.id = id
-        self.name = name
-        self.author = author
-        self.url = url
-        self.symbols = symbols
-        self.symbolsById = symbols.lookup()
-        self.license = license
-        self.variants = variants.reduce(into: [String: Variant]()) { partialResult, variant in
-            partialResult[variant.id] = variant
+    func symbol(for reference: SymbolReference) -> Symbol? {
+        let name = symbolsById[reference.name] != nil ? reference.name : aliases[reference.name]
+        guard let name, let symbols = symbolsById[name] else {
+            return nil
         }
-        self.warning = warning
+        // Older documents may reference a symbol without naming a variant; fall
+        // back to its default (first) variant in that case.
+        guard let variant = reference.variant else {
+            return symbols.first
+        }
+        return symbols.first { $0.reference.variant == variant }
     }
 
-    init(directory: String) throws {
-        guard  let manifestURL = Bundle.main.url(forResource: "manifest",
-                                                 withExtension: "json",
-                                                 subdirectory: directory) else {
+    init(named name: String) throws {
+        guard let manifestURL = Bundle.main.url(forResource: "manifest",
+                                                withExtension: "json",
+                                                subdirectory: name) else {
             throw SymbolicError.missingManifest
         }
         let data = try Data(contentsOf: manifestURL)
         let manifest = try JSONDecoder().decode(Manifest.self, from: data)
 
-        let variants = manifest.variants.map { (id, variant) in
+        let variants = (manifest.variants ?? [:]).map { (id, variant) in
             return Variant(id: id, name: variant.name)
         }.reduce(into: [String: Variant]()) { partialResult, variant in
             partialResult[variant.id] = variant
         }
 
-        let symbols: [Symbol] = manifest.symbols.map { symbol in
-            let variants = symbol.variants.map { (identifier, variant) in
-                let url = Bundle.main.url(forResource: variant.path, withExtension: nil, subdirectory: directory)
+        let symbols: [Symbol] = manifest.symbols.flatMap { symbol -> [Symbol] in
+            return symbol.variants.map { (identifier, variant) in
                 let reference = SymbolReference(family: manifest.id, name: symbol.id, variant: identifier)
-                let variant: Variant?
-                if let variantId = reference.variant {
-                    variant = variants[variantId]
-                } else {
-                    variant = nil
+                let displayVariant = variants[identifier]
+
+                switch variant {
+                case .svg(let properties):
+                    let url = Bundle.main.url(forResource: properties.path, withExtension: nil, subdirectory: name)
+                    return Symbol(reference: reference,
+                                  variant: displayVariant,
+                                  name: symbol.name ?? symbol.id,
+                                  format: .svg(url: url))
+                case .symbol(let properties):
+                    return Symbol(reference: reference,
+                                  variant: displayVariant,
+                                  name: properties.name,
+                                  format: .symbol(minimumOperatingSystemVersion: properties.minimumOperatingSystemVersion.flatMap { OperatingSystemVersion(string: $0) },
+                                                  renderingMode: properties.renderingMode))
                 }
-                return Symbol(reference: reference, variant: variant, name: symbol.name, format: .svg, url: url)
             }
-            return variants
-        }.reduce([], +)
+        }
+
+        let licenseFileURL: URL?
+        if let path = manifest.license.path {
+            guard let fileURL = Bundle.main.url(forResource: path, withExtension: nil, subdirectory: name) else {
+                throw SymbolicError.missingLicense
+            }
+            licenseFileURL = fileURL
+        } else {
+            licenseFileURL = nil
+        }
 
         self.id = manifest.id
         self.name = manifest.name
@@ -123,15 +120,10 @@ struct Library {
         self.url = manifest.url
         self.symbols = symbols
         self.symbolsById = symbols.lookup()
-        guard let fileURL =  Bundle.main.url(forResource: manifest.license.path,
-                                             withExtension: nil,
-                                             subdirectory: directory) else {
-            throw SymbolicError.missingManifest
-        }
-        self.license = License(name: manifest.license.name, fileURL: fileURL, url: manifest.license.url)
+        self.aliases = manifest.aliases ?? [:]
         self.variants = variants
-        self.warning = nil
+        self.license = License(name: manifest.license.name, fileURL: licenseFileURL, url: manifest.license.url)
+        self.warning = manifest.warning
     }
 
 }
-

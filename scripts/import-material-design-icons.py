@@ -77,7 +77,10 @@ def main():
                 basename = "%s.%s.svg" % (icon, variant_key)
                 shutil.copyfile(icon_path, os.path.join(MATERIAL_ICONS_DIRECTORY, basename))
                 symbol["variants"][variant_key] = {
-                    "path": basename
+                    "format": "svg",
+                    "properties": {
+                        "path": basename
+                    }
                 }
             manifest["symbols"].append(symbol)
 

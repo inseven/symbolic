@@ -36,7 +36,7 @@ final class FileTests: XCTestCase {
         let data = try Data(contentsOf: url)
         let icon = try JSONDecoder().decode(Icon.self, from: data)
         XCTAssertNotNil(icon)
-        XCTAssertEqual(icon.symbol, SymbolReference(family: "sf-symbols", name: "suit.heart.fill", variant: nil))
+        XCTAssertEqual(icon.symbol, SymbolReference(family: "sf-symbols", name: "suit.heart.fill", variant: "default"))
     }
 
     func testLoadV1() throws {
@@ -49,6 +49,51 @@ final class FileTests: XCTestCase {
         let icon = try JSONDecoder().decode(Icon.self, from: data)
         XCTAssertNotNil(icon)
         XCTAssertEqual(icon.symbol, SymbolReference(family: "material-icons", name: "favorite", variant: "default"))
+    }
+
+    func testLoadV2() throws {
+        guard let url = bundle.url(forResource: "v2", withExtension: "symbolic") else {
+            XCTFail("Failed to load test resource")
+            return
+        }
+
+        let data = try Data(contentsOf: url)
+        let icon = try JSONDecoder().decode(Icon.self, from: data)
+        XCTAssertNotNil(icon)
+        XCTAssertEqual(icon.symbol, SymbolReference(family: "sf-symbols", name: "square.and.arrow.up", variant: "default"))
+    }
+
+    func testLoadUpgradesRenamedSymbol() throws {
+        let json = """
+        {
+          "version": 2,
+          "id": "24670896-9CE6-40DD-86CB-111B3E0DEB8D",
+          "symbol": { "family": "sf-symbols", "name": "applelogo" },
+          "topColor": { "red": 1, "green": 1, "blue": 1, "alpha": 1 },
+          "bottomColor": { "red": 1, "green": 1, "blue": 1, "alpha": 1 },
+          "symbolColor": { "red": 1, "green": 1, "blue": 1, "alpha": 1 },
+          "iconScale": 0.8,
+          "iconOffset": [0, 0],
+          "shadowOpacity": 0.4,
+          "shadowHeight": 0.3
+        }
+        """
+        let icon = try JSONDecoder().decode(Icon.self, from: Data(json.utf8))
+        XCTAssertEqual(icon.symbol, SymbolReference(family: "sf-symbols", name: "apple.logo", variant: "default"))
+    }
+
+    func testEncodeUsesCurrentVersion() throws {
+        let data = try JSONEncoder().encode(Icon())
+        let object = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        XCTAssertEqual(object?["version"] as? Int, 2)
+    }
+
+    func testEncodedIconRoundTrips() throws {
+        var icon = Icon()
+        icon.symbol = SymbolReference(family: "sf-symbols", name: "square.and.arrow.up", variant: "default")
+        let data = try JSONEncoder().encode(icon)
+        let decoded = try JSONDecoder().decode(Icon.self, from: data)
+        XCTAssertEqual(decoded.symbol, icon.symbol)
     }
 
     func testLoadUnknownVersionFails() throws {

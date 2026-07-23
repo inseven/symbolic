@@ -70,17 +70,23 @@ struct Icon: Identifiable, Codable {
             self.topColor = try container.decode(Color.self, forKey: .topColor)
             self.bottomColor = try container.decode(Color.self, forKey: .bottomColor)
             let systemImage = try container.decode(String.self, forKey: .systemImage)
-            self.symbol = SymbolReference(family: "sf-symbols", name: systemImage, variant: nil)
+            let reference = SymbolReference(family: "sf-symbols", name: systemImage, variant: nil)
+            self.symbol = try LibraryManager.shared.resolveSymbol(for: reference)
             self.symbolColor = try container.decode(Color.self, forKey: .symbolColor)
             self.iconScale = try container.decode(CGFloat.self, forKey: .iconScale)
             self.iconOffset = (try? container.decode(CGSize.self, forKey: .iconOffset)) ?? .zero
             self.shadowOpacity = try container.decode(CGFloat.self, forKey: .shadowOpacity)
             self.shadowHeight = try container.decode(CGFloat.self, forKey: .shadowHeight)
-        case 1:
+        case 1, 2:
+            // Version 2, while structurally identical, is used to mark files created with a later version of the app
+            // which can contain SF Symbols not present in the initial release and therefore won't display correctly.
+            // This version introduces a new symbol resolution behaviour which means that document versions shouldn't
+            // need to be updated in the future every time we add new symbols.
             self.id = try container.decode(UUID.self, forKey: .id)
             self.topColor = try container.decode(Color.self, forKey: .topColor)
             self.bottomColor = try container.decode(Color.self, forKey: .bottomColor)
-            self.symbol = try container.decode(SymbolReference.self, forKey: .symbol)
+            let reference = try container.decode(SymbolReference.self, forKey: .symbol)
+            self.symbol = try LibraryManager.shared.resolveSymbol(for: reference)
             self.symbolColor = try container.decode(Color.self, forKey: .symbolColor)
             self.iconScale = try container.decode(CGFloat.self, forKey: .iconScale)
             self.iconOffset = (try? container.decode(CGSize.self, forKey: .iconOffset)) ?? .zero
@@ -94,7 +100,7 @@ struct Icon: Identifiable, Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(1, forKey: .version)
+        try container.encode(2, forKey: .version)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.topColor, forKey: .topColor)
         try container.encode(self.bottomColor, forKey: .bottomColor)

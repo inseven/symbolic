@@ -27,6 +27,7 @@ enum SymbolicError: Error {
     case missingManifest
     case missingLicense
     case unsupportedVersion
+    case unsupportedOperatingSystemVersion
     case unknownSymbol
 
 }
@@ -49,6 +50,8 @@ extension SymbolicError: LocalizedError {
             return "Missing library license."
         case .unsupportedVersion:
             return "Unsupported version."
+        case .unsupportedOperatingSystemVersion:
+            return "Unsupported operating system version."
         case .unknownSymbol:
             return "Unknown symbol."
         }
@@ -66,6 +69,8 @@ extension SymbolicError: LocalizedError {
             return nil
         case .unsupportedVersion:
             return "Document was created with a later version of Symbolic. Update Symbolic to view and edit this document."
+        case .unsupportedOperatingSystemVersion:
+            return "Document uses a symbol that isn't available in this version of macOS. Update macOS to view and edit this document."
         case .unknownSymbol:
             return nil
         }

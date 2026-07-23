@@ -27,15 +27,14 @@ struct Symbol: Identifiable {
     }
 
     enum Format {
-        case svg
-        case symbol
+        case svg(url: URL?)
+        case symbol(minimumOperatingSystemVersion: OperatingSystemVersion?, renderingMode: RenderingMode)
     }
 
     let reference: SymbolReference
     let variant: Variant?
     let name: String
     let format: Format
-    let url: URL?
 
     var localizedDescription: String {
         guard let variant = variant else {
@@ -44,12 +43,26 @@ struct Symbol: Identifiable {
         return "\(name) (\(variant.name))"
     }
 
-    init(reference: SymbolReference, variant: Variant? = nil, name: String, format: Format, url: URL? = nil) {
+    var isSupported: Bool {
+        switch format {
+        case .svg:
+            return true
+        case .symbol(let minimumOperatingSystemVersion, _):
+            guard let minimumOperatingSystemVersion else {
+                return true
+            }
+            return ProcessInfo.processInfo.isOperatingSystemAtLeast(minimumOperatingSystemVersion)
+        }
+    }
+
+    init(reference: SymbolReference,
+         variant: Variant? = nil,
+         name: String,
+         format: Format) {
         self.reference = reference
         self.variant = variant
         self.name = name
         self.format = format
-        self.url = url
     }
 
 }

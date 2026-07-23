@@ -22,32 +22,79 @@ import Foundation
 
 struct Manifest: Codable {
 
+    enum Variant: Codable {
+
+        case svg(SVGProperties)
+        case symbol(SymbolProperties)
+
+        struct SVGProperties: Codable {
+            let path: String
+        }
+
+        struct SymbolProperties: Codable {
+            let name: String
+            let minimumOperatingSystemVersion: String?
+            let renderingMode: RenderingMode
+        }
+
+        private enum Format: String, Codable {
+            case svg
+            case symbol
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case format
+            case properties
+        }
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            switch try container.decode(Format.self, forKey: .format) {
+            case .svg:
+                self = .svg(try container.decode(SVGProperties.self, forKey: .properties))
+            case .symbol:
+                self = .symbol(try container.decode(SymbolProperties.self, forKey: .properties))
+            }
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            switch self {
+            case .svg(let properties):
+                try container.encode(Format.svg, forKey: .format)
+                try container.encode(properties, forKey: .properties)
+            case .symbol(let properties):
+                try container.encode(Format.symbol, forKey: .format)
+                try container.encode(properties, forKey: .properties)
+            }
+        }
+
+    }
+
     struct VariantDefinition: Codable {
         let name: String
     }
 
-    struct Variant: Codable {
-        let path: String
-    }
-
     struct Symbol: Codable {
         let id: String
-        let name: String
+        let name: String?
         let variants: [String: Variant]
     }
 
     struct License: Codable {
         let name: String
-        let path: String
+        let path: String?
         let url: URL?
     }
-    
+
     let id: String
     let name: String
     let author: String
     let url: URL?
     let license: License
-    let variants: [String: VariantDefinition]
+    let variants: [String: VariantDefinition]?
     let symbols: [Symbol]
+    let aliases: [String: String]?
+    let warning: String?
 
 }

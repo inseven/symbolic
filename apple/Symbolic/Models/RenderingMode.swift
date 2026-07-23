@@ -20,25 +20,23 @@
 
 import SwiftUI
 
-struct SymbolView: View {
+enum RenderingMode: String, Codable {
 
-    let symbolReference: SymbolReference
+    case monochrome
+    case hierarchical
+    case palette
+    case multicolor
 
-    var body: some View {
-        HStack {
-            if let symbol = LibraryManager.shared.symbol(for: symbolReference) {
-                switch symbol.format {
-                case .svg(let url):
-                    SVGImage(url: url!)
-                case .symbol(_, let renderingMode):
-                    Image(systemName: symbol.name)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .symbolRenderingMode(renderingMode.symbolRenderingMode)
-                }
-            } else {
-                EmptyView()
-            }
+    var symbolRenderingMode: SymbolRenderingMode {
+        switch self {
+        case .monochrome:
+            return .monochrome
+        case .hierarchical:
+            return .hierarchical
+        case .palette:
+            return .palette
+        case .multicolor:
+            return .multicolor
         }
     }
 
