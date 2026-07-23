@@ -1,5 +1,5 @@
 [submodule "dependencies/diligence"]
-	path = dependencies/diligence
+	path = apple/dependencies/diligence
 	url = https://github.com/inseven/diligence.git
 	branch = main
 [submodule "scripts/changes"]
@@ -11,7 +11,7 @@
 	url = https://github.com/jbmorley/build-tools.git
 	branch = main
 [submodule "dependencies/interact"]
-	path = dependencies/interact
+	path = apple/dependencies/interact
 	url = https://github.com/inseven/interact.git
 	branch = main
 [submodule "docs/_theme"]
