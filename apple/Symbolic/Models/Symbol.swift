@@ -36,6 +36,7 @@ struct Symbol: Identifiable {
     let name: String
     let format: Format
     let url: URL?
+    let minimumOperatingSystemVersion: OperatingSystemVersion?
 
     var localizedDescription: String {
         guard let variant = variant else {
@@ -44,12 +45,18 @@ struct Symbol: Identifiable {
         return "\(name) (\(variant.name))"
     }
 
-    init(reference: SymbolReference, variant: Variant? = nil, name: String, format: Format, url: URL? = nil) {
+    init(reference: SymbolReference,
+         variant: Variant? = nil,
+         name: String,
+         format: Format,
+         url: URL? = nil,
+         minimumOperatingSystemVersion: OperatingSystemVersion? = nil) {
         self.reference = reference
         self.variant = variant
         self.name = name
         self.format = format
         self.url = url
+        self.minimumOperatingSystemVersion = minimumOperatingSystemVersion
     }
 
 }

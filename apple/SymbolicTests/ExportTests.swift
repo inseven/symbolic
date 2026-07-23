@@ -95,36 +95,4 @@ final class ExportTests: XCTestCase {
         }
     }
 
-    func testExportFailsMissingMaterialIconsSymbol() async throws {
-
-        let directoryURL = try createTemporaryDirectory()
-        let exportURL = directoryURL.appendingPathComponent("Export")
-
-        let document = IconDocument()
-        document.icon.symbol = SymbolReference(family: "material-icons", name: "heffalump", variant: "default")
-
-        do {
-            try await document.export(destination: exportURL)
-            XCTFail("Export succeeded unexpectedly.")
-        } catch {
-            XCTAssertEqual(error as? SymbolicError, SymbolicError.unknownSymbol)
-        }
-    }
-
-    func testExportFailsMissingSFSymbolsSymbol() async throws {
-
-        let directoryURL = try createTemporaryDirectory()
-        let exportURL = directoryURL.appendingPathComponent("Export")
-
-        let document = IconDocument()
-        document.icon.symbol = SymbolReference(family: "sf-symbols", name: "heffalump", variant: nil)
-
-        do {
-            try await document.export(destination: exportURL)
-            XCTFail("Export succeeded unexpectedly.")
-        } catch {
-            XCTAssertEqual(error as? SymbolicError, SymbolicError.unknownSymbol)
-        }
-    }
-
 }

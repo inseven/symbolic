@@ -1,0 +1,33 @@
+{
+  "symbol" : {
+    "name" : "square.and.arrow.up",
+    "family" : "sf-symbols"
+  },
+  "iconScale" : 0.92603103683425958,
+  "topColor" : {
+    "red" : 0.84465640779999995,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 0.51457053419999998
+  },
+  "id" : "1B0F5A2E-7C9D-4E4A-9E2B-9A5C3D8F1A6E",
+  "symbolColor" : {
+    "red" : 0.99999994039535522,
+    "alpha" : 1,
+    "blue" : 0.99999994039535522,
+    "green" : 0.99999994039535522
+  },
+  "iconOffset" : [
+    0,
+    0
+  ],
+  "shadowOpacity" : 0.40000000000000002,
+  "shadowHeight" : 0.29999999999999999,
+  "bottomColor" : {
+    "red" : 0.47684186699999997,
+    "alpha" : 1,
+    "blue" : 1,
+    "green" : 0.50480759139999998
+  },
+  "version" : 2
+}

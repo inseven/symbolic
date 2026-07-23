@@ -44,4 +44,69 @@ final class LibraryTests: XCTestCase {
 
     }
 
+    func sfSymbol(named name: String) -> Symbol? {
+        let reference = SymbolReference(family: "sf-symbols", name: name, variant: nil)
+        return LibraryManager.shared.symbol(for: reference)
+    }
+
+    func testMaterializeCurrentName() throws {
+        let symbol = try XCTUnwrap(sfSymbol(named: "square.and.arrow.up"))
+        XCTAssertEqual(symbol.name, "square.and.arrow.up")
+        XCTAssertEqual(symbol.format, .symbol)
+    }
+
+    func testMaterializeRenamedSymbols() throws {
+        let renames = [
+            "applelogo": "apple.logo",
+            "doc": "document",
+            "doc.fill": "document.fill",
+            "snow": "snowflake",
+            "homekit": "apple.homekit",
+            "speaker.1.fill": "speaker.wave.1.fill",
+        ]
+        for (oldName, newName) in renames {
+            let symbol = try XCTUnwrap(sfSymbol(named: oldName), "Failed to materialize '\(oldName)'")
+            XCTAssertEqual(symbol.name, newName, "'\(oldName)' should resolve to '\(newName)'")
+        }
+    }
+
+    func testMaterializeUnknownSymbolReturnsNil() {
+        XCTAssertNil(sfSymbol(named: "heffalump"))
+    }
+
+    func testMinimumOperatingSystemVersion() throws {
+        let original = try XCTUnwrap(sfSymbol(named: "square.and.arrow.up"))
+        XCTAssertEqual(original.minimumOperatingSystemVersion,
+                       OperatingSystemVersion(majorVersion: 10, minorVersion: 15, patchVersion: 0))
+        let recent = try XCTUnwrap(sfSymbol(named: "blood.pressure.cuff.fill"))
+        let version = try XCTUnwrap(recent.minimumOperatingSystemVersion)
+        XCTAssertEqual(version.majorVersion, 26)
+    }
+
+    func testRenamedSymbolReportsMinimumOperatingSystemVersion() throws {
+        let symbol = try XCTUnwrap(sfSymbol(named: "applelogo"))
+        XCTAssertEqual(symbol.minimumOperatingSystemVersion,
+                       OperatingSystemVersion(majorVersion: 13, minorVersion: 0, patchVersion: 0))
+    }
+
+    func testResolveSymbolAvailable() throws {
+        // A variant-less reference resolves to the symbol's default variant.
+        let reference = SymbolReference(family: "sf-symbols", name: "square.and.arrow.up", variant: nil)
+        XCTAssertEqual(try LibraryManager.shared.resolveSymbol(for: reference),
+                       SymbolReference(family: "sf-symbols", name: "square.and.arrow.up", variant: "default"))
+    }
+
+    func testResolveSymbolUpgradesRenamedName() throws {
+        let reference = SymbolReference(family: "sf-symbols", name: "applelogo", variant: nil)
+        XCTAssertEqual(try LibraryManager.shared.resolveSymbol(for: reference),
+                       SymbolReference(family: "sf-symbols", name: "apple.logo", variant: "default"))
+    }
+
+    func testResolveSymbolUnknownSymbolThrows() {
+        let reference = SymbolReference(family: "sf-symbols", name: "heffalump", variant: nil)
+        XCTAssertThrowsError(try LibraryManager.shared.resolveSymbol(for: reference)) { error in
+            XCTAssertEqual(error as? SymbolicError, .unknownSymbol)
+        }
+    }
+
 }

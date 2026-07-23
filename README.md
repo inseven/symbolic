@@ -12,6 +12,16 @@ Symbolic follows the version numbering, build and signing conventions for InSeve
 
 ## Symbols
 
+### SF Symbols
+
+Symbolic includes the full set of [SF Symbols](https://developer.apple.com/sf-symbols/). Like the Material Icons, they are loaded at runtime from a generated `manifest.json` (in `apple/Symbolic/Resources/sf-symbols`). The manifest is generated from the `CoreGlyphs` bundle that ships with macOS—the same data source that backs `Image(systemName:)`—so running the import on the latest version of macOS picks up the complete, up-to-date symbol set.
+
+Update the symbols as follows:
+
+```bash
+scripts/import-sf-symbols.py
+```
+
 ### Material Icons
 
 Symbolic includes [Google Material Icons](https://fonts.google.com/icons) which are licensed under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0.html).

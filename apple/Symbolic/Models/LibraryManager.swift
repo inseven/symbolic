@@ -30,8 +30,8 @@ class LibraryManager {
 
     init() {
         self.sets = [
-            try! Library(directory: "material-icons"),
-            Library.sfSymbols
+            try! Library(named: "material-icons"),
+            try! Library(named: "sf-symbols"),
         ]
     }
 
@@ -40,10 +40,18 @@ class LibraryManager {
     }
 
     func symbol(for reference: SymbolReference) -> Symbol? {
-        return self
-            .library(for: reference)?
-            .symbolsById[reference.name]?
-            .first { $0.variant?.id == reference.variant }
+        return library(for: reference)?.symbol(for: reference)
+    }
+
+    func resolveSymbol(for reference: SymbolReference) throws -> SymbolReference {
+        guard let symbol = symbol(for: reference) else {
+            throw SymbolicError.unknownSymbol
+        }
+        if let minimumOperatingSystemVersion = symbol.minimumOperatingSystemVersion,
+           !ProcessInfo.processInfo.isOperatingSystemAtLeast(minimumOperatingSystemVersion) {
+            throw SymbolicError.unsupportedOperatingSystemVersion
+        }
+        return symbol.reference
     }
 
 }

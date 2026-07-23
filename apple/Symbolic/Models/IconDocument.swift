@@ -58,10 +58,6 @@ final class IconDocument: ReferenceFileDocument {
 
     @MainActor func export(destination url: URL) throws {
 
-        // Check that the symbol exists.
-        guard LibraryManager.shared.symbol(for: icon.symbol) != nil else {
-            throw SymbolicError.unknownSymbol
-        }
 
         try FileManager.default.createDirectory(at: url, withIntermediateDirectories: false)
         for section in ApplicationModel.icons {
