@@ -224,6 +224,11 @@ class ApplicationModel: NSObject, ObservableObject {
 
         NSApplication.shared.activate(ignoringOtherApps: true)
         if !aboutWindow.isVisible {
+            // Size the window to its SwiftUI content before centering; otherwise the hosting controller resizes it
+            // after `center()` has run and it ends up off-centre.
+            if let contentView = aboutWindow.contentViewController?.view {
+                aboutWindow.setContentSize(contentView.fittingSize)
+            }
             aboutWindow.center()
         }
         aboutWindow.makeKeyAndOrderFront(nil)
