@@ -29,7 +29,7 @@ final class LibraryTests: XCTestCase {
         var count = 0
         for library in LibraryManager.shared.sets {
             for symbol in library.symbols {
-                if symbol.format == .svg, let url = symbol.url {
+                if case .svg = symbol.format, let url = symbol.url {
                     autoreleasepool {
                         let svg = SVG(fileURL: url)
                         XCTAssertNotNil(svg)
@@ -52,7 +52,9 @@ final class LibraryTests: XCTestCase {
     func testMaterializeCurrentName() throws {
         let symbol = try XCTUnwrap(sfSymbol(named: "square.and.arrow.up"))
         XCTAssertEqual(symbol.name, "square.and.arrow.up")
-        XCTAssertEqual(symbol.format, .symbol)
+        guard case .symbol = symbol.format else {
+            return XCTFail("Expected a symbol-format variant")
+        }
     }
 
     func testMaterializeRenamedSymbols() throws {
@@ -76,17 +78,24 @@ final class LibraryTests: XCTestCase {
 
     func testMinimumOperatingSystemVersion() throws {
         let original = try XCTUnwrap(sfSymbol(named: "square.and.arrow.up"))
-        XCTAssertEqual(original.minimumOperatingSystemVersion,
-                       OperatingSystemVersion(majorVersion: 10, minorVersion: 15, patchVersion: 0))
+        guard case .symbol(let originalVersion) = original.format else {
+            return XCTFail("Expected a symbol-format variant")
+        }
+        XCTAssertEqual(originalVersion, OperatingSystemVersion(majorVersion: 10, minorVersion: 15, patchVersion: 0))
+
         let recent = try XCTUnwrap(sfSymbol(named: "blood.pressure.cuff.fill"))
-        let version = try XCTUnwrap(recent.minimumOperatingSystemVersion)
-        XCTAssertEqual(version.majorVersion, 26)
+        guard case .symbol(let recentVersion) = recent.format else {
+            return XCTFail("Expected a symbol-format variant")
+        }
+        XCTAssertEqual(try XCTUnwrap(recentVersion).majorVersion, 26)
     }
 
     func testRenamedSymbolReportsMinimumOperatingSystemVersion() throws {
         let symbol = try XCTUnwrap(sfSymbol(named: "applelogo"))
-        XCTAssertEqual(symbol.minimumOperatingSystemVersion,
-                       OperatingSystemVersion(majorVersion: 13, minorVersion: 0, patchVersion: 0))
+        guard case .symbol(let version) = symbol.format else {
+            return XCTFail("Expected a symbol-format variant")
+        }
+        XCTAssertEqual(version, OperatingSystemVersion(majorVersion: 13, minorVersion: 0, patchVersion: 0))
     }
 
     func testResolveSymbolAvailable() throws {

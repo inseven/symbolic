@@ -33,6 +33,7 @@ struct Manifest: Codable {
 
         struct SymbolProperties: Codable {
             let name: String
+            let minimumOperatingSystemVersion: String?
         }
 
         private enum Format: String, Codable {
@@ -77,7 +78,6 @@ struct Manifest: Codable {
         let id: String
         let name: String?
         let variants: [String: Variant]
-        let minimumOperatingSystemVersion: String?
     }
 
     struct License: Codable {

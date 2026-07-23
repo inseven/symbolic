@@ -86,7 +86,6 @@ struct Library {
             return symbol.variants.map { (identifier, variant) in
                 let reference = SymbolReference(family: manifest.id, name: symbol.id, variant: identifier)
                 let displayVariant = variants[identifier]
-                let minimumOperatingSystemVersion = symbol.minimumOperatingSystemVersion.flatMap { OperatingSystemVersion(string: $0) }
 
                 switch variant {
                 case .svg(let properties):
@@ -95,14 +94,12 @@ struct Library {
                                   variant: displayVariant,
                                   name: symbol.name ?? symbol.id,
                                   format: .svg,
-                                  url: url,
-                                  minimumOperatingSystemVersion: minimumOperatingSystemVersion)
+                                  url: url)
                 case .symbol(let properties):
                     return Symbol(reference: reference,
                                   variant: displayVariant,
                                   name: properties.name,
-                                  format: .symbol,
-                                  minimumOperatingSystemVersion: minimumOperatingSystemVersion)
+                                  format: .symbol(minimumOperatingSystemVersion: properties.minimumOperatingSystemVersion.flatMap { OperatingSystemVersion(string: $0) }))
                 }
             }
         }

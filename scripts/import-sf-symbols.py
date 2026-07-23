@@ -79,9 +79,14 @@ def main():
         {
             "id": name,
             "variants": {
-                "default": {"format": "symbol", "properties": {"name": name}},
+                "default": {
+                    "format": "symbol",
+                    "properties": {
+                        "name": name,
+                        "minimumOperatingSystemVersion": minimum_macos_version(name),
+                    },
+                },
             },
-            "minimumOperatingSystemVersion": minimum_macos_version(name),
         }
         for name in names
     ]
