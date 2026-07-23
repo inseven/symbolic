@@ -43,6 +43,18 @@ struct Symbol: Identifiable {
         return "\(name) (\(variant.name))"
     }
 
+    var isSupported: Bool {
+        switch format {
+        case .svg:
+            return true
+        case .symbol(let minimumOperatingSystemVersion):
+            guard let minimumOperatingSystemVersion else {
+                return true
+            }
+            return ProcessInfo.processInfo.isOperatingSystemAtLeast(minimumOperatingSystemVersion)
+        }
+    }
+
     init(reference: SymbolReference,
          variant: Variant? = nil,
          name: String,

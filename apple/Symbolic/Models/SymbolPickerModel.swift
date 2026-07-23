@@ -65,7 +65,8 @@ class SymbolPickerModel: ObservableObject {
             .map { filter in
 
                 let sections = LibraryManager.shared.sets.map { library in
-                    Section(id: library.id, name: library.name, symbols: library.symbols.filter(filter))
+                    let symbols = library.symbols.filter { $0.isSupported }.filter(filter)
+                    return Section(id: library.id, name: library.name, symbols: symbols)
                 }
 
                 return sections

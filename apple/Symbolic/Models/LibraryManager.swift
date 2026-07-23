@@ -47,8 +47,7 @@ class LibraryManager {
         guard let symbol = symbol(for: reference) else {
             throw SymbolicError.unknownSymbol
         }
-        if case .symbol(let minimumOperatingSystemVersion?) = symbol.format,
-           !ProcessInfo.processInfo.isOperatingSystemAtLeast(minimumOperatingSystemVersion) {
+        guard symbol.isSupported else {
             throw SymbolicError.unsupportedOperatingSystemVersion
         }
         return symbol.reference

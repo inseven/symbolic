@@ -98,6 +98,20 @@ final class LibraryTests: XCTestCase {
         XCTAssertEqual(version, OperatingSystemVersion(majorVersion: 13, minorVersion: 0, patchVersion: 0))
     }
 
+    func symbol(format: Symbol.Format) -> Symbol {
+        let reference = SymbolReference(family: "sf-symbols", name: "example", variant: nil)
+        return Symbol(reference: reference, name: "example", format: format)
+    }
+
+    func testIsSupported() {
+        XCTAssertTrue(symbol(format: .svg(url: nil)).isSupported)
+        XCTAssertTrue(symbol(format: .symbol(minimumOperatingSystemVersion: nil)).isSupported)
+        XCTAssertTrue(symbol(format: .symbol(minimumOperatingSystemVersion:
+            OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0))).isSupported)
+        XCTAssertFalse(symbol(format: .symbol(minimumOperatingSystemVersion:
+            OperatingSystemVersion(majorVersion: 999, minorVersion: 0, patchVersion: 0))).isSupported)
+    }
+
     func testResolveSymbolAvailable() throws {
         // A variant-less reference resolves to the symbol's default variant.
         let reference = SymbolReference(family: "sf-symbols", name: "square.and.arrow.up", variant: nil)
