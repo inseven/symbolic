@@ -18,51 +18,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Foundation
+import SwiftUI
 
-struct Symbol: Identifiable {
+public struct SymbolReference: Identifiable, Equatable, Codable {
 
-    var id: String {
-        return reference.id
-    }
-
-    enum Format {
-        case svg(url: URL?)
-        case symbol(minimumOperatingSystemVersion: OperatingSystemVersion?, renderingMode: RenderingMode)
-    }
-
-    let reference: SymbolReference
-    let variant: Variant?
-    let name: String
-    let format: Format
-
-    var localizedDescription: String {
-        guard let variant = variant else {
-            return name
+    public var id: String {
+        if let variant = variant {
+            return "\(family)-\(name)-\(variant)"
         }
-        return "\(name) (\(variant.name))"
+        return "\(family)-\(name)"
     }
 
-    var isSupported: Bool {
-        switch format {
-        case .svg:
-            return true
-        case .symbol(let minimumOperatingSystemVersion, _):
-            guard let minimumOperatingSystemVersion else {
-                return true
-            }
-            return ProcessInfo.processInfo.isOperatingSystemAtLeast(minimumOperatingSystemVersion)
-        }
-    }
+    public let family: String
+    public let name: String
+    public let variant: String?
 
-    init(reference: SymbolReference,
-         variant: Variant? = nil,
-         name: String,
-         format: Format) {
-        self.reference = reference
-        self.variant = variant
+    public init(family: String, name: String, variant: String?) {
+        self.family = family
         self.name = name
-        self.format = format
+        self.variant = variant
     }
 
 }

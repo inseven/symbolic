@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct ExportToolbar: CustomizableToolbarContent {
 
     struct LayoutMetrics {

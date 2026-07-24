@@ -20,6 +20,8 @@
 
 import Foundation
 
+import SymbolicCore
+
 import Diligence
 
 #if canImport(Glitter)

@@ -20,28 +20,22 @@
 
 import SwiftUI
 
-extension View {
+public struct IconPreviewList: View {
 
-    @ViewBuilder func hardTopScrollEdgeEffect() -> some View {
-        if #available(macOS 26.0, *) {
-            scrollEdgeEffectStyle(.hard, for: .top)
-        } else {
-            self
-        }
+    private let icon: Icon
+
+    public init(icon: Icon) {
+        self.icon = icon
     }
 
-    @MainActor func pngData() -> Data? {
-        let renderer = ImageRenderer(content: self)
-        renderer.scale = 2
-        guard let image = renderer.nsImage else {
-            return nil
+    public var body: some View {
+        ScrollView {
+            IconSections { definition in
+                icon.view(for: definition)
+            }
         }
-        guard let tiffRepresentation = image.tiffRepresentation else {
-            return nil
-        }
-        let imageRep = NSBitmapImageRep(data: tiffRepresentation)
-        let pngData = imageRep?.representation(using: .png, properties: [:])
-        return pngData
+        .background(Color(nsColor: .textBackgroundColor))
+        .frame(maxWidth: .infinity, minHeight: 400)
     }
 
 }

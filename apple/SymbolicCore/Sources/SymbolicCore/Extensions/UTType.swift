@@ -18,26 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import UniformTypeIdentifiers
 
-enum RenderingMode: String, Codable {
-
-    case monochrome
-    case hierarchical
-    case palette
-    case multicolor
-
-    var symbolRenderingMode: SymbolRenderingMode {
-        switch self {
-        case .monochrome:
-            return .monochrome
-        case .hierarchical:
-            return .hierarchical
-        case .palette:
-            return .palette
-        case .multicolor:
-            return .multicolor
-        }
-    }
-
+extension UTType {
+    public static let iconDocument = UTType(exportedAs: "app.symbolic.types.icon")
 }

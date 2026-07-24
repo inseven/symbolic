@@ -20,17 +20,24 @@
 
 import SwiftUI
 
-struct SymbolReference: Identifiable, Equatable, Codable {
+public enum RenderingMode: String, Codable {
 
-    var id: String {
-        if let variant = variant {
-            return "\(family)-\(name)-\(variant)"
+    case monochrome
+    case hierarchical
+    case palette
+    case multicolor
+
+    public var symbolRenderingMode: SymbolRenderingMode {
+        switch self {
+        case .monochrome:
+            return .monochrome
+        case .hierarchical:
+            return .hierarchical
+        case .palette:
+            return .palette
+        case .multicolor:
+            return .multicolor
         }
-        return "\(family)-\(name)"
     }
-
-    let family: String
-    let name: String
-    let variant: String?
 
 }

@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SymbolicCore",
     platforms: [
-        .macOS(.v13),
+        .macOS(.v14),
     ],
     products: [
         .library(
@@ -17,11 +17,21 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/sparkle-project/Sparkle", .upToNextMajor(from: "2.7.1")),
         .package(url: "https://github.com/inseven/glitter.git", .upToNextMajor(from: "0.1.1")),
+        .package(url: "https://github.com/swhitty/SwiftDraw.git", .upToNextMajor(from: "0.9.6")),
     ],
     targets: [
         .target(
             name: "SymbolicCore",
             dependencies: [
+                .product(name: "SwiftDraw", package: "SwiftDraw"),
+            ],
+            resources: [
+                .copy("Resources/material-icons"),
+                .copy("Resources/sf-symbols"),
+                .copy("Resources/Template.symbolic"),
+            ],
+            swiftSettings: [
+                .swiftLanguageMode(.v5),
             ]
         ),
 

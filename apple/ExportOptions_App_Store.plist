@@ -14,6 +14,10 @@
 	<dict>
 		<key>app.symbolic.apps.appstore</key>
 		<string>Symbolic Mac App Store Profile</string>
+		<key>app.symbolic.apps.appstore.SymbolicQuickLookPreviewExtension</key>
+		<string>Symbolic Quick Look Preview Mac App Store Profile</string>
+		<key>app.symbolic.apps.appstore.SymbolicThumbnailExtension</key>
+		<string>Symbolic Thumbnail Extension Mac App Store Profile</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>Apple Distribution</string>

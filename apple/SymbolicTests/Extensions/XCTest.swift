@@ -20,6 +20,8 @@
 
 import XCTest
 
+import SymbolicCore
+
 public func XCTAssertFileExists(_ url: URL,
                                 _ message: @autoclosure () -> String = "",
                                 file: StaticString = #filePath,

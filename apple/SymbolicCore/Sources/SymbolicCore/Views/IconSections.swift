@@ -19,30 +19,48 @@
 // SOFTWARE.
 
 import SwiftUI
-import UniformTypeIdentifiers
 
-struct IconSetView: View {
+public struct IconSections<Cell: View>: View {
 
-    @ObservedObject var sceneModel: SceneModel
+    private let cell: (IconDefinition) -> Cell
 
-    let icon: Icon
+    public init(@ViewBuilder cell: @escaping (IconDefinition) -> Cell) {
+        self.cell = cell
+    }
+
+    public var body: some View {
+        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+            ForEach(IconSection.all) { section in
+                Section {
+                    CenteredFlowLayout {
+                        ForEach(section.sets) { iconSet in
+                            IconSetRow(iconSet: iconSet, cell: cell)
+                                .padding()
+                        }
+                    }
+                    .padding()
+                } header: {
+                    Header(section.name)
+                        .padding(.top)
+                        .background(.bar)
+                }
+            }
+        }
+    }
+
+}
+
+private struct IconSetRow<Cell: View>: View {
+
     let iconSet: IconSet
+    let cell: (IconDefinition) -> Cell
 
     var body: some View {
         VStack {
             HStack(alignment: .bottom, spacing: 16) {
                 ForEach(iconSet.definitions) { definition in
                     VStack {
-                        IconPreview(sceneModel: sceneModel, icon: icon, definition: definition)
-                            .onDrag {
-                                do {
-                                    let url = try icon.saveSnapshot(definition: definition,
-                                                                    directoryURL: URL(fileURLWithPath: NSTemporaryDirectory()))
-                                    return NSItemProvider(item: url as NSURL, typeIdentifier: UTType.fileURL.identifier)
-                                } catch {
-                                    return NSItemProvider()
-                                }
-                            }
+                        cell(definition)
                         Text("\(Int(definition.scale))x")
                             .fixedSize()
                         if let description = definition.description {

@@ -20,6 +20,8 @@
 
 import XCTest
 
+import SymbolicCore
+
 final class SymbolicUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {

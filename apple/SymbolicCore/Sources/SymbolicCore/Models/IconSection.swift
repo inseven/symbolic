@@ -20,45 +20,24 @@
 
 import SwiftUI
 
-struct IconSet: Identifiable {
+public struct IconSection: Identifiable {
 
-    let id = UUID()
+    public let id = UUID()
 
-    let name: String
-    let definitions: [IconDefinition]
+    public let name: String
+    public let directory: String
+    public let sets: [IconSet]
 
-    init(_ name: String, @IconDefinitionsBuilder definitions: () -> [IconDefinition] = { [] }) {
+    public let additionalFiles: (@MainActor (_ directoryURL: URL, _ icon: Icon) throws -> Void)?
+
+    public init(_ name: String,
+                directory: String,
+                additionalFiles: (@MainActor (_ directoryURL: URL, _ icon: Icon) throws -> Void)? = nil,
+                @IconSetsBuilder sets: () -> [IconSet] = { [] }) {
         self.name = name
-        self.definitions = definitions()
-    }
-
-}
-
-protocol IconSetsConvertible {
-    func asIconSets() -> [IconSet]
-}
-
-@resultBuilder struct IconSetsBuilder {
-
-    public static func buildBlock() -> [IconSet] {
-        return []
-    }
-
-    public static func buildBlock(_ sets: IconSet...) -> [IconSet] {
-        return sets
-    }
-
-    public static func buildBlock(_ values: IconSetsConvertible...) -> [IconSet] {
-        return values
-            .flatMap { $0.asIconSets() }
-    }
-
-}
-
-extension Array: IconSetsConvertible where Element == IconSet {
-
-    func asIconSets() -> [IconSet] {
-        return self
+        self.directory = directory
+        self.additionalFiles = additionalFiles
+        self.sets = sets()
     }
 
 }

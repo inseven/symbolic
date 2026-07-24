@@ -20,7 +20,7 @@
 
 import Foundation
 
-enum SymbolicError: Error {
+public enum SymbolicError: Error {
 
     case invalidColorspace
     case exportFailure
@@ -34,11 +34,11 @@ enum SymbolicError: Error {
 
 extension SymbolicError: LocalizedError {
 
-    var errorDescription: String? {
+    public var errorDescription: String? {
         return nil
     }
 
-    var failureReason: String? {
+    public var failureReason: String? {
         switch self {
         case .invalidColorspace:
             return "Invalid colorspace."
@@ -57,7 +57,7 @@ extension SymbolicError: LocalizedError {
         }
     }
 
-    var recoverySuggestion: String? {
+    public var recoverySuggestion: String? {
         switch self {
         case .invalidColorspace:
             return nil

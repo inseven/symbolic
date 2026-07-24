@@ -22,6 +22,8 @@ import SwiftUI
 
 import Interact
 
+import SymbolicCore
+
 struct SymbolPicker: View {
 
     struct LayoutMetrics {

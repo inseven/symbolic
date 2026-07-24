@@ -22,6 +22,8 @@ import SwiftUI
 
 import Interact
 
+import SymbolicCore
+
 extension UserDefaults {
 
     func bool(forKey defaultName: String, defaultValue: Bool) -> Bool {

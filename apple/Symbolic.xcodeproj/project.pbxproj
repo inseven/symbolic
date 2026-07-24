@@ -9,7 +9,14 @@
 /* Begin PBXBuildFile section */
 		D831DD1C297319FC00C20B11 /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = D831DD1B297319FC00C20B11 /* SwiftDraw */; };
 		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
+		D8AAAA010000000000000002 /* SymbolicCore in Frameworks */ = {isa = PBXBuildFile; productRef = D8AAAA010000000000000001 /* SymbolicCore */; };
+		D8AAAA010000000000000004 /* SymbolicCore in Frameworks */ = {isa = PBXBuildFile; productRef = D8AAAA010000000000000003 /* SymbolicCore */; };
 		D8C16A922E874087005A0AC3 /* SymbolicCore in Frameworks */ = {isa = PBXBuildFile; productRef = D8C16A912E874087005A0AC3 /* SymbolicCore */; };
+		D8E87A193012FFBB006CA6C8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E87A183012FFBB006CA6C8 /* Quartz.framework */; };
+		D8E87A253012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D8E87A173012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D8E87A2F3012FFD8006CA6C8 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E87A063012FE05006CA6C8 /* QuickLookThumbnailing.framework */; };
+		D8E87A303012FFD8006CA6C8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E87A183012FFBB006CA6C8 /* Quartz.framework */; };
+		D8E87A373012FFD8006CA6C8 /* SymbolicThumbnailExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D8E87A2E3012FFD8006CA6C8 /* SymbolicThumbnailExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D8F99EC628B13998007C3868 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8F99EC528B13998007C3868 /* Diligence */; };
 /* End PBXBuildFile section */
 
@@ -28,13 +35,47 @@
 			remoteGlobalIDString = D8CD4A7928AC35C300D57F34;
 			remoteInfo = Iconify;
 		};
+		D8E87A233012FFBB006CA6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8CD4A7228AC35C300D57F34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8E87A163012FFBB006CA6C8;
+			remoteInfo = SymbolicQuickLookPreviewExtension;
+		};
+		D8E87A353012FFD8006CA6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8CD4A7228AC35C300D57F34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8E87A2D3012FFD8006CA6C8;
+			remoteInfo = SymbolicThumbnailExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D8E879FE3012FDC2006CA6C8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D8E87A373012FFD8006CA6C8 /* SymbolicThumbnailExtension.appex in Embed Foundation Extensions */,
+				D8E87A253012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D8C16A902E874062005A0AC3 /* SymbolicCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SymbolicCore; sourceTree = "<group>"; };
 		D8CD4A7A28AC35C300D57F34 /* Symbolic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Symbolic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A8B28AC35C600D57F34 /* SymbolicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CD4A9528AC35C600D57F34 /* SymbolicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E879EC3012FDA2006CA6C8 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		D8E87A063012FE05006CA6C8 /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = SDKROOT; };
+		D8E87A173012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SymbolicQuickLookPreviewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E87A183012FFBB006CA6C8 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		D8E87A2E3012FFD8006CA6C8 /* SymbolicThumbnailExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SymbolicThumbnailExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,12 +86,28 @@
 			);
 			target = D8CD4A7928AC35C300D57F34 /* Symbolic */;
 		};
+		D8E87A293012FFBB006CA6C8 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D8E87A163012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension */;
+		};
+		D8E87A3B3012FFD8006CA6C8 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D8E87A2D3012FFD8006CA6C8 /* SymbolicThumbnailExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D8D00CE52E87263800901654 /* Symbolic */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8D00D262E87263800901654 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = ("Resources/material-icons", "Resources/sf-symbols", ); path = Symbolic; sourceTree = "<group>"; };
+		D8D00CE52E87263800901654 /* Symbolic */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8D00D262E87263800901654 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Symbolic; sourceTree = "<group>"; };
 		D8D00D2B2E87267700901654 /* SymbolicUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SymbolicUITests; sourceTree = "<group>"; };
 		D8D00D342E87277300901654 /* SymbolicTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SymbolicTests; sourceTree = "<group>"; };
+		D8E87A1A3012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8E87A293012FFBB006CA6C8 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SymbolicQuickLookPreviewExtension; sourceTree = "<group>"; };
+		D8E87A313012FFD8006CA6C8 /* SymbolicThumbnailExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8E87A3B3012FFD8006CA6C8 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SymbolicThumbnailExtension; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +136,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D8E87A143012FFBB006CA6C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8AAAA010000000000000002 /* SymbolicCore in Frameworks */,
+				D8E87A193012FFBB006CA6C8 /* Quartz.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8E87A2B3012FFD8006CA6C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8AAAA010000000000000004 /* SymbolicCore in Frameworks */,
+				D8E87A2F3012FFD8006CA6C8 /* QuickLookThumbnailing.framework in Frameworks */,
+				D8E87A303012FFD8006CA6C8 /* Quartz.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -89,6 +165,8 @@
 				D8D00CE52E87263800901654 /* Symbolic */,
 				D8D00D342E87277300901654 /* SymbolicTests */,
 				D8D00D2B2E87267700901654 /* SymbolicUITests */,
+				D8E87A1A3012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension */,
+				D8E87A313012FFD8006CA6C8 /* SymbolicThumbnailExtension */,
 				D8CD4A7B28AC35C300D57F34 /* Products */,
 				D8F99EC428B13998007C3868 /* Frameworks */,
 			);
@@ -100,6 +178,8 @@
 				D8CD4A7A28AC35C300D57F34 /* Symbolic.app */,
 				D8CD4A8B28AC35C600D57F34 /* SymbolicTests.xctest */,
 				D8CD4A9528AC35C600D57F34 /* SymbolicUITests.xctest */,
+				D8E87A173012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension.appex */,
+				D8E87A2E3012FFD8006CA6C8 /* SymbolicThumbnailExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,6 +187,9 @@
 		D8F99EC428B13998007C3868 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8E879EC3012FDA2006CA6C8 /* QuickLook.framework */,
+				D8E87A063012FE05006CA6C8 /* QuickLookThumbnailing.framework */,
+				D8E87A183012FFBB006CA6C8 /* Quartz.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,10 +204,13 @@
 				D8CD4A7628AC35C300D57F34 /* Sources */,
 				D8CD4A7728AC35C300D57F34 /* Frameworks */,
 				D8CD4A7828AC35C300D57F34 /* Resources */,
+				D8E879FE3012FDC2006CA6C8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D8E87A243012FFBB006CA6C8 /* PBXTargetDependency */,
+				D8E87A363012FFD8006CA6C8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D8D00CE52E87263800901654 /* Symbolic */,
@@ -182,6 +268,52 @@
 			productReference = D8CD4A9528AC35C600D57F34 /* SymbolicUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D8E87A163012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8E87A263012FFBB006CA6C8 /* Build configuration list for PBXNativeTarget "SymbolicQuickLookPreviewExtension" */;
+			buildPhases = (
+				D8E87A133012FFBB006CA6C8 /* Sources */,
+				D8E87A143012FFBB006CA6C8 /* Frameworks */,
+				D8E87A153012FFBB006CA6C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D8E87A1A3012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension */,
+			);
+			name = SymbolicQuickLookPreviewExtension;
+			packageProductDependencies = (
+				D8AAAA010000000000000001 /* SymbolicCore */,
+			);
+			productName = SymbolicQuickLookPreviewExtension;
+			productReference = D8E87A173012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		D8E87A2D3012FFD8006CA6C8 /* SymbolicThumbnailExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8E87A383012FFD8006CA6C8 /* Build configuration list for PBXNativeTarget "SymbolicThumbnailExtension" */;
+			buildPhases = (
+				D8E87A2A3012FFD8006CA6C8 /* Sources */,
+				D8E87A2B3012FFD8006CA6C8 /* Frameworks */,
+				D8E87A2C3012FFD8006CA6C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D8E87A313012FFD8006CA6C8 /* SymbolicThumbnailExtension */,
+			);
+			name = SymbolicThumbnailExtension;
+			packageProductDependencies = (
+				D8AAAA010000000000000003 /* SymbolicCore */,
+			);
+			productName = SymbolicThumbnailExtension;
+			productReference = D8E87A2E3012FFD8006CA6C8 /* SymbolicThumbnailExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -189,7 +321,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					D8CD4A7928AC35C300D57F34 = {
@@ -202,6 +334,12 @@
 					D8CD4A9428AC35C600D57F34 = {
 						CreatedOnToolsVersion = 14.0;
 						TestTargetID = D8CD4A7928AC35C300D57F34;
+					};
+					D8E87A163012FFBB006CA6C8 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					D8E87A2D3012FFD8006CA6C8 = {
+						CreatedOnToolsVersion = 26.6;
 					};
 				};
 			};
@@ -226,6 +364,8 @@
 				D8CD4A7928AC35C300D57F34 /* Symbolic */,
 				D8CD4A8A28AC35C600D57F34 /* SymbolicTests */,
 				D8CD4A9428AC35C600D57F34 /* SymbolicUITests */,
+				D8E87A163012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension */,
+				D8E87A2D3012FFD8006CA6C8 /* SymbolicThumbnailExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +386,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D8CD4A9328AC35C600D57F34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8E87A153012FFBB006CA6C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8E87A2C3012FFD8006CA6C8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -276,6 +430,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D8E87A133012FFBB006CA6C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8E87A2A3012FFD8006CA6C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -288,6 +456,16 @@
 			isa = PBXTargetDependency;
 			target = D8CD4A7928AC35C300D57F34 /* Symbolic */;
 			targetProxy = D8CD4A9628AC35C600D57F34 /* PBXContainerItemProxy */;
+		};
+		D8E87A243012FFBB006CA6C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8E87A163012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension */;
+			targetProxy = D8E87A233012FFBB006CA6C8 /* PBXContainerItemProxy */;
+		};
+		D8E87A363012FFD8006CA6C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8E87A2D3012FFD8006CA6C8 /* SymbolicThumbnailExtension */;
+			targetProxy = D8E87A353012FFD8006CA6C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -590,6 +768,154 @@
 			};
 			name = Release;
 		};
+		D8E87A273012FFBB006CA6C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QS82QFHKWB;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolicQuickLookPreviewExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SymbolicQuickLookPreviewExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.SymbolicQuickLookPreviewExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D8E87A283012FFBB006CA6C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = QS82QFHKWB;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolicQuickLookPreviewExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SymbolicQuickLookPreviewExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.SymbolicQuickLookPreviewExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Symbolic Quick Look Preview Mac App Store Profile";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		D8E87A393012FFD8006CA6C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QS82QFHKWB;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolicThumbnailExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SymbolicThumbnailExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.SymbolicThumbnailExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D8E87A3A3012FFD8006CA6C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = QS82QFHKWB;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolicThumbnailExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SymbolicThumbnailExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.symbolic.apps.appstore.SymbolicThumbnailExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Symbolic Thumbnail Extension Mac App Store Profile";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -629,6 +955,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		D8E87A263012FFBB006CA6C8 /* Build configuration list for PBXNativeTarget "SymbolicQuickLookPreviewExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8E87A273012FFBB006CA6C8 /* Debug */,
+				D8E87A283012FFBB006CA6C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8E87A383012FFD8006CA6C8 /* Build configuration list for PBXNativeTarget "SymbolicThumbnailExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8E87A393012FFD8006CA6C8 /* Debug */,
+				D8E87A3A3012FFD8006CA6C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
@@ -662,6 +1006,14 @@
 		D864A2392965A2D1008A4261 /* Interact */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Interact;
+		};
+		D8AAAA010000000000000001 /* SymbolicCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SymbolicCore;
+		};
+		D8AAAA010000000000000003 /* SymbolicCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SymbolicCore;
 		};
 		D8C16A912E874087005A0AC3 /* SymbolicCore */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -18,11 +18,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Foundation
+import SwiftUI
 
-struct Variant {
+extension View {
 
-    let id: String
-    let name: String
+    @ViewBuilder public func hardTopScrollEdgeEffect() -> some View {
+        if #available(macOS 26.0, *) {
+            scrollEdgeEffectStyle(.hard, for: .top)
+        } else {
+            self
+        }
+    }
+
+    @MainActor public func pngData() -> Data? {
+        let renderer = ImageRenderer(content: self)
+        renderer.scale = 2
+        guard let image = renderer.nsImage else {
+            return nil
+        }
+        guard let tiffRepresentation = image.tiffRepresentation else {
+            return nil
+        }
+        let imageRep = NSBitmapImageRep(data: tiffRepresentation)
+        let pngData = imageRep?.representation(using: .png, properties: [:])
+        return pngData
+    }
 
 }

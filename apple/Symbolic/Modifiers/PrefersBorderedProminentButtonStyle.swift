@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct PrefersBorderedProminentButtonStyle: ViewModifier {
 
     func body(content: Content) -> some View {

@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct ToolbarActionButtonStyle: ButtonStyle {
     
     @State var isHovering: Bool = false

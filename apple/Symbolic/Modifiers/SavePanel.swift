@@ -23,6 +23,8 @@ import UniformTypeIdentifiers
 
 import Interact
 
+import SymbolicCore
+
 struct SavePanel: ViewModifier {
 
     struct Options: OptionSet {

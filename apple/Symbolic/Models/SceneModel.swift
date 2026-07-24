@@ -23,6 +23,8 @@ import SwiftUI
 
 import Interact
 
+import SymbolicCore
+
 class SceneModel: ObservableObject, Runnable {
 
     var settings: Settings

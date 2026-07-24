@@ -22,9 +22,9 @@ import SwiftUI
 
 import UniformTypeIdentifiers
 
-struct Icon: Identifiable, Codable {
+public struct Icon: Identifiable, Codable {
 
-    enum Context {
+    public enum Context {
         case display
         case export
     }
@@ -43,24 +43,24 @@ struct Icon: Identifiable, Codable {
         case shadowHeight = "shadowHeight"
     }
 
-    var id = UUID()
+    public var id = UUID()
 
-    var topColor: Color = .pink
-    var bottomColor: Color = .purple
+    public var topColor: Color = .pink
+    public var bottomColor: Color = .purple
 
-    var symbol: SymbolReference = SymbolReference(family: "sf-symbols", name: "face.smiling", variant: nil)
-    var symbolColor: Color = .white
-    var iconScale: CGFloat = 0.8
-    var iconOffset: CGSize = .zero
+    public var symbol: SymbolReference = SymbolReference(family: "sf-symbols", name: "face.smiling", variant: nil)
+    public var symbolColor: Color = .white
+    public var iconScale: CGFloat = 0.8
+    public var iconOffset: CGSize = .zero
 
-    var shadowOpacity: CGFloat = 0.4
-    var shadowHeight: CGFloat = 0.3
+    public var shadowOpacity: CGFloat = 0.4
+    public var shadowHeight: CGFloat = 0.3
 
-    init() {
-        
+    public init() {
+
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         let version = (try? container.decode(Int.self, forKey: .version)) ?? 0
@@ -98,7 +98,7 @@ struct Icon: Identifiable, Codable {
 
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(2, forKey: .version)
         try container.encode(self.id, forKey: .id)
@@ -112,7 +112,7 @@ struct Icon: Identifiable, Codable {
         try container.encode(self.shadowHeight, forKey: .shadowHeight)
     }
 
-    @ViewBuilder func view(for definition: IconDefinition, context: Context = .display) -> some View {
+    @ViewBuilder public func view(for definition: IconDefinition, context: Context = .display) -> some View {
 
         let width = definition.size.width * (CGFloat(definition.scale) / 2)
 
@@ -132,7 +132,7 @@ struct Icon: Identifiable, Codable {
 
     }
 
-    @MainActor func saveSnapshot(definition: IconDefinition, directoryURL: URL) throws -> URL {
+    @MainActor public func saveSnapshot(definition: IconDefinition, directoryURL: URL) throws -> URL {
         let icon = view(for: definition, context: .export)
         guard let data = icon.pngData() else {
             throw SymbolicError.exportFailure
@@ -142,7 +142,7 @@ struct Icon: Identifiable, Codable {
         return url
     }
 
-    @MainActor func writeFavicon(to directoryURL: URL, resolutions: [Int]) throws {
+    @MainActor public func writeFavicon(to directoryURL: URL, resolutions: [Int]) throws {
         let url = directoryURL.appendingPathComponent("favicon.ico")
         guard let destination = CGImageDestinationCreateWithURL(url as CFURL,
                                                                 UTType.ico.identifier as CFString,

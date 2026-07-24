@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct OffsetGuide: View {
 
     var size: CGFloat

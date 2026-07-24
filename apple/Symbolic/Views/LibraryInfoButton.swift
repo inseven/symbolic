@@ -22,6 +22,8 @@ import SwiftUI
 
 import Diligence
 
+import SymbolicCore
+
 struct LibraryInfoButton: View {
 
     let library: Library

@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 import Diligence
 
 #if canImport(Glitter)

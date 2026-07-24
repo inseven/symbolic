@@ -19,6 +19,9 @@
 // SOFTWARE.
 
 import SwiftUI
+
+import SymbolicCore
+
 struct ViewCommands: Commands {
 
     @FocusedObject private var sceneModel: SceneModel?

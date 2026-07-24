@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct ConditionalLink: ViewModifier {
 
     @Environment(\.openURL) var openURL

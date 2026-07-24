@@ -20,30 +20,30 @@
 
 import Foundation
 
-class LibraryManager {
+public class LibraryManager {
 
-    static let shared: LibraryManager = {
+    public static let shared: LibraryManager = {
         return LibraryManager()
     }()
 
-    let sets: [Library]
+    public let sets: [Library]
 
-    init() {
+    public init() {
         self.sets = [
             try! Library(named: "material-icons"),
             try! Library(named: "sf-symbols"),
         ]
     }
 
-    func library(for reference: SymbolReference) -> Library? {
+    public func library(for reference: SymbolReference) -> Library? {
         return sets.first { $0.id == reference.family }
     }
 
-    func symbol(for reference: SymbolReference) -> Symbol? {
+    public func symbol(for reference: SymbolReference) -> Symbol? {
         return library(for: reference)?.symbol(for: reference)
     }
 
-    func resolveSymbol(for reference: SymbolReference) throws -> SymbolReference {
+    public func resolveSymbol(for reference: SymbolReference) throws -> SymbolReference {
         guard let symbol = symbol(for: reference) else {
             throw SymbolicError.unknownSymbol
         }

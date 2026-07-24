@@ -20,45 +20,10 @@
 
 import SwiftUI
 
-import SymbolicCore
+extension SwiftUI.Path {
 
-struct SidebarSectionHeader: View {
-
-    let title: String
-
-    init(_ title: String) {
-        self.title = title
-    }
-
-    var body: some View {
-        Text(title)
-            .fontWeight(.bold)
-            .foregroundColor(.secondary)
-            .horizontalSpace(.trailing)
-            .padding()
-    }
-
-}
-
-struct SidebarSectionFooter: View {
-
-    var body: some View {
-        Divider()
-            .padding(.top)
-    }
-
-}
-
-extension Section where Parent == SidebarSectionHeader, Footer == SidebarSectionFooter, Content: View {
-
-    init(forSidebarWithTitle title: String, @ViewBuilder content: () -> Content) {
-        self.init {
-            content()
-        } header: {
-            SidebarSectionHeader(title)
-        } footer: {
-            SidebarSectionFooter()
-        }
+    mutating public func addCircle(center: CGPoint, radius: CGFloat) {
+        addArc(center: center, radius: radius, startAngle: Angle(), endAngle: Angle(degrees: 360), clockwise: true)
     }
 
 }

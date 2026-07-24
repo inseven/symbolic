@@ -53,9 +53,12 @@ extension LayoutSubviews {
 
 }
 
-struct CenteredFlowLayout: Layout {
+public struct CenteredFlowLayout: Layout {
 
-    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+    public init() {}
+
+
+    public func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
         let rows = subviews.rows(proposal: proposal)
 
         let width = rows
@@ -79,7 +82,7 @@ struct CenteredFlowLayout: Layout {
         return CGSize(width: width, height: height)
     }
 
-    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+    public func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
         var posY = bounds.minY
         for row in subviews.rows(proposal: proposal) {
             let rowWidth = row.map({ $1.width }).reduce(0.0, +)

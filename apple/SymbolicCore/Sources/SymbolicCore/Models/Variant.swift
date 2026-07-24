@@ -18,29 +18,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-struct SymbolView: View {
+public struct Variant {
 
-    let symbolReference: SymbolReference
+    public let id: String
+    public let name: String
 
-    var body: some View {
-        HStack {
-            if let symbol = LibraryManager.shared.symbol(for: symbolReference) {
-                switch symbol.format {
-                case .svg(let url):
-                    SVGImage(url: url!)
-                case .symbol(_, let renderingMode):
-                    Image(systemName: symbol.name)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .symbolRenderingMode(renderingMode.symbolRenderingMode)
-                        .environment(\.colorScheme, .light)  // Ensure symbols display consistently in light and dark modes.
-                }
-            } else {
-                EmptyView()
-            }
-        }
+    public init(id: String, name: String) {
+        self.id = id
+        self.name = name
     }
 
 }

@@ -18,12 +18,31 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Cocoa
+import Quartz
 import SwiftUI
 
-extension SwiftUI.Path {
+import SymbolicCore
 
-    mutating func addCircle(center: CGPoint, radius: CGFloat) {
-        addArc(center: center, radius: radius, startAngle: Angle(), endAngle: Angle(degrees: 360), clockwise: true)
+class PreviewViewController: NSViewController, QLPreviewingController {
+
+    override var nibName: NSNib.Name? {
+        return NSNib.Name("PreviewViewController")
+    }
+
+    func preparePreviewOfFile(at url: URL) async throws {
+        let data = try Data(contentsOf: url)
+        let icon = try JSONDecoder().decode(Icon.self, from: data)
+
+        let previewView = NSHostingView(rootView: IconPreviewList(icon: icon))
+        previewView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(previewView)
+        NSLayoutConstraint.activate([
+            previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            previewView.topAnchor.constraint(equalTo: view.topAnchor),
+            previewView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
 
 }

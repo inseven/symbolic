@@ -20,25 +20,25 @@
 
 import SwiftUI
 
-struct IconDefinition: Identifiable {
+public struct IconDefinition: Identifiable {
 
-    enum Style {
+    public enum Style {
         case macOS
         case iOS
         case watchOS
         case web
     }
 
-    var id = UUID()
+    public var id = UUID()
 
-    let style: Style
-    let size: CGSize
-    let scale: Int
-    let description: String?
+    public let style: Style
+    public let size: CGSize
+    public let scale: Int
+    public let description: String?
 
     private let preferredBasename: String?
 
-    var basename: String {
+    public var basename: String {
         get throws {
             if let preferredBasename {
                 return preferredBasename
@@ -54,7 +54,7 @@ struct IconDefinition: Identifiable {
         }
     }
 
-    init(_ style: Style, size: CGFloat, scale: Int, description: String? = nil, preferredBasename: String? = nil) {
+    public init(_ style: Style, size: CGFloat, scale: Int, description: String? = nil, preferredBasename: String? = nil) {
         self.style = style
         self.size = CGSize(width: size, height: size)
         self.scale = scale
@@ -64,11 +64,11 @@ struct IconDefinition: Identifiable {
 
 }
 
-protocol IconDefinitionsConvertible {
+public protocol IconDefinitionsConvertible {
     func asIconDefinitions() -> [IconDefinition]
 }
 
-@resultBuilder struct IconDefinitionsBuilder {
+@resultBuilder public struct IconDefinitionsBuilder {
 
     public static func buildBlock() -> [IconDefinition] {
         return []
@@ -87,7 +87,7 @@ protocol IconDefinitionsConvertible {
 
 extension Array: IconDefinitionsConvertible where Element == IconDefinition {
 
-    func asIconDefinitions() -> [IconDefinition] {
+    public func asIconDefinitions() -> [IconDefinition] {
         return self
     }
 

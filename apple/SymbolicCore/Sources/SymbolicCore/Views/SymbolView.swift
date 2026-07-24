@@ -18,15 +18,33 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Combine
 import SwiftUI
 
-enum DeviceType: Equatable, Identifiable, CaseIterable {
+public struct SymbolView: View {
 
-    var id: Self { self }
+    public let symbolReference: SymbolReference
 
-    case macOS
-    case iOS
-    case watchOS
+    public init(symbolReference: SymbolReference) {
+        self.symbolReference = symbolReference
+    }
+
+    public var body: some View {
+        HStack {
+            if let symbol = LibraryManager.shared.symbol(for: symbolReference) {
+                switch symbol.format {
+                case .svg(let url):
+                    SVGImage(url: url!)
+                case .symbol(_, let renderingMode):
+                    Image(systemName: symbol.name)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .symbolRenderingMode(renderingMode.symbolRenderingMode)
+                        .environment(\.colorScheme, .light)  // Ensure symbols display consistently in light and dark modes.
+                }
+            } else {
+                EmptyView()
+            }
+        }
+    }
 
 }

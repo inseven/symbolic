@@ -20,6 +20,8 @@
 
 import Foundation
 
+import SymbolicCore
+
 extension URL {
 
     static let donate = URL(string: "https://jbmorley.co.uk/support")!
