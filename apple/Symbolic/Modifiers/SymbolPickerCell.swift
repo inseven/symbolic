@@ -26,6 +26,7 @@ struct SymbolPickerCell: ViewModifier {
 
     struct LayoutMetrics {
         static let cornerRadius = 6.0
+        static let tahoeCornerRadius = 12.0
         static let padding = 6.0
     }
 
@@ -34,9 +35,17 @@ struct SymbolPickerCell: ViewModifier {
     @State var isHovering: Bool = false
     @Environment(\.colorScheme) private var colorScheme
 
+    private var cornerRadius: Double {
+        if #available(macOS 26.0, *) {
+            return LayoutMetrics.tahoeCornerRadius
+        } else {
+            return LayoutMetrics.cornerRadius
+        }
+    }
+
     func body(content: Content) -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: LayoutMetrics.cornerRadius)
+            RoundedRectangle(cornerRadius: cornerRadius)
                 .fill(isHighlighted || isHovering ? Color(nsColor: NSColor.unemphasizedSelectedContentBackgroundColor) : .clear)
             content
                 .controlSize(.regular)
