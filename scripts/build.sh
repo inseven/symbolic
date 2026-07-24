@@ -137,6 +137,11 @@ echo "$MACOS_DEVELOPER_INSTALLER_CERTIFICATE_PASSWORD" | build-tools import-base
 # Install the provisioning profiles.
 build-tools install-provisioning-profile "profiles/Symbolic_Developer_ID_Profile.provisionprofile"
 build-tools install-provisioning-profile "profiles/Symbolic_Mac_App_Store_Profile.provisionprofile"
+build-tools install-provisioning-profile "profiles/Symbolic_Quick_Look_Preview_Developer_ID_Profile.provisionprofile"
+build-tools install-provisioning-profile "profiles/Symbolic_Quick_Look_Preview_Mac_App_Store_Profile.provisionprofile"
+build-tools install-provisioning-profile "profiles/Symbolic_Thumbnail_Extension_Developer_ID_Profile.provisionprofile"
+build-tools install-provisioning-profile "profiles/Symbolic_Thumbnail_Extension_Mac_App_Store_Profile.provisionprofile"
+
 
 # Install the private key.
 mkdir -p ~/.appstoreconnect/private_keys/
