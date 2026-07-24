@@ -30,52 +30,12 @@ public struct IconPreviewList: View {
 
     public var body: some View {
         ScrollView {
-            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                ForEach(IconSection.all) { section in
-                    Section {
-                        CenteredFlowLayout {
-                            ForEach(section.sets) { iconSet in
-                                IconSetPreview(icon: icon, iconSet: iconSet)
-                                    .padding()
-                            }
-                        }
-                        .padding()
-                    } header: {
-                        Header(section.name)
-                            .padding(.top)
-                            .background(.bar)
-                    }
-                }
+            IconSections { definition in
+                icon.view(for: definition)
             }
         }
         .background(Color(nsColor: .textBackgroundColor))
         .frame(maxWidth: .infinity, minHeight: 400)
-    }
-
-}
-
-private struct IconSetPreview: View {
-
-    let icon: Icon
-    let iconSet: IconSet
-
-    var body: some View {
-        VStack {
-            HStack(alignment: .bottom, spacing: 16) {
-                ForEach(iconSet.definitions) { definition in
-                    VStack {
-                        icon.view(for: definition)
-                        Text("\(Int(definition.scale))x")
-                            .fixedSize()
-                        if let description = definition.description {
-                            Text(description)
-                        }
-                    }
-                }
-            }
-            Divider()
-            Text(iconSet.name)
-        }
     }
 
 }

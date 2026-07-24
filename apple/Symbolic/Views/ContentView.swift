@@ -20,6 +20,7 @@
 
 import Combine
 import SwiftUI
+import UniformTypeIdentifiers
 
 import Interact
 
@@ -44,22 +45,17 @@ struct ContentView: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                ForEach(IconSection.all) { section in
-                    Section {
-                        CenteredFlowLayout {
-                            ForEach(section.sets) { iconSet in
-                                IconSetView(sceneModel: sceneModel, icon: document.icon, iconSet: iconSet)
-                                    .padding()
-                            }
+            IconSections { definition in
+                IconPreview(sceneModel: sceneModel, icon: document.icon, definition: definition)
+                    .onDrag {
+                        do {
+                            let url = try document.icon.saveSnapshot(definition: definition,
+                                                                     directoryURL: URL(fileURLWithPath: NSTemporaryDirectory()))
+                            return NSItemProvider(item: url as NSURL, typeIdentifier: UTType.fileURL.identifier)
+                        } catch {
+                            return NSItemProvider()
                         }
-                        .padding()
-                    } header: {
-                        Header(section.name)
-                            .padding(.top)
-                            .background(.bar)
                     }
-                }
             }
         }
         .hardTopScrollEdgeEffect()
