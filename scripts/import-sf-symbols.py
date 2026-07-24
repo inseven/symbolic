@@ -27,7 +27,7 @@ import plistlib
 
 SCRIPTS_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIRECTORY = os.path.dirname(SCRIPTS_DIRECTORY)
-RESOURCES_DIRECTORY = os.path.join(ROOT_DIRECTORY, "apple", "Symbolic", "Resources")
+RESOURCES_DIRECTORY = os.path.join(ROOT_DIRECTORY, "apple", "SymbolicCore", "Sources", "SymbolicCore", "Resources")
 SF_SYMBOLS_DIRECTORY = os.path.join(RESOURCES_DIRECTORY, "sf-symbols")
 
 DEFAULT_CORE_GLYPHS = "/System/Library/CoreServices/CoreGlyphs.bundle/Contents/Resources"

@@ -7,7 +7,7 @@ import shutil
 
 SCRIPTS_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIRECOTRY = os.path.dirname(SCRIPTS_DIRECTORY)
-RESOURCES_DIRECTORY = os.path.join(ROOT_DIRECOTRY, "apple", "Symbolic", "Resources")
+RESOURCES_DIRECTORY = os.path.join(ROOT_DIRECOTRY, "apple", "SymbolicCore", "Sources", "SymbolicCore", "Resources")
 
 MATERIAL_ICONS_DIRECTORY = os.path.join(RESOURCES_DIRECTORY, "material-icons")
 
