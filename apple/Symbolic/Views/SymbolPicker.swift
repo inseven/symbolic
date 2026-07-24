@@ -30,7 +30,7 @@ struct SymbolPicker: View {
         static let height = 400.0
         static let buttonSize = CGSize(width: 24.0, height: 24.0)
         static let sectionHeaderVerticalPadding = 8.0
-        static let horizontalPadding = 16.0
+        static let standardPadding = 16.0
     }
 
     var title: String
@@ -88,8 +88,8 @@ struct SymbolPicker: View {
                             }
                         }
                     }
-                    .padding(.bottom, LayoutMetrics.horizontalPadding)
-                    .safeAreaPadding(.horizontal, LayoutMetrics.horizontalPadding)
+                    .padding(.bottom, LayoutMetrics.standardPadding)
+                    .safeAreaPadding(.horizontal, LayoutMetrics.standardPadding)
                 }
                 .safeAreaInset(edge: .top, spacing: 0) {
                     TextField(text: $model.filter, prompt: Text("Search")) {
