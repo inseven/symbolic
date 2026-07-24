@@ -36,6 +36,7 @@ struct SymbolPicker: View {
     var selection: Binding<SymbolReference>
     @State var isPresented: Bool = false
     @StateObject var model = SymbolPickerModel()
+    @Environment(\.colorScheme) private var colorScheme
 
     init(_ title: String, selection: Binding<SymbolReference>) {
         self.title = title
@@ -55,6 +56,7 @@ struct SymbolPicker: View {
             } label: {
                 HStack {
                     SymbolView(symbolReference: selection.wrappedValue)
+                        .foregroundStyle(colorScheme == .dark ? .white : .black)
                 }
                 .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
             }

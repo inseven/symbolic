@@ -35,6 +35,7 @@ struct SymbolView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .symbolRenderingMode(renderingMode.symbolRenderingMode)
+                        .environment(\.colorScheme, .light)  // Ensure symbols display consistently in light and dark modes.
                 }
             } else {
                 EmptyView()

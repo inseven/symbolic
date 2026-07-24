@@ -30,6 +30,7 @@ struct SymbolPickerCell: ViewModifier {
     let isHighlighted: Bool
 
     @State var isHovering: Bool = false
+    @Environment(\.colorScheme) private var colorScheme
 
     func body(content: Content) -> some View {
         ZStack {
@@ -37,7 +38,7 @@ struct SymbolPickerCell: ViewModifier {
                 .fill(isHighlighted || isHovering ? Color(nsColor: NSColor.unemphasizedSelectedContentBackgroundColor) : .clear)
             content
                 .controlSize(.regular)
-                .foregroundColor(.primary)
+                .foregroundStyle(colorScheme == .dark ? Color.white : Color.black)
                 .padding(LayoutMetrics.padding)
         }
         .aspectRatio(1.0, contentMode: .fit)
