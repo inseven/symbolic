@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct AboutCommands: Commands {
 
     let applicationModel: ApplicationModel

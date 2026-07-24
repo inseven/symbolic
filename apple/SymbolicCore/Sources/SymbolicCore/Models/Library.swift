@@ -33,28 +33,28 @@ extension Array where Element == Symbol {
 
 }
 
-struct Library {
+public struct Library {
 
-    struct License {
+    public struct License {
 
-        let name: String
-        let fileURL: URL?
-        let url: URL?
+        public let name: String
+        public let fileURL: URL?
+        public let url: URL?
 
     }
 
-    let id: String
-    let name: String
-    let author: String
-    let url: URL?
-    let symbols: [Symbol]
-    let symbolsById: [String:[Symbol]]
-    let aliases: [String: String]
-    let variants: [String: Variant]
-    let license: License
-    let warning: String?
+    public let id: String
+    public let name: String
+    public let author: String
+    public let url: URL?
+    public let symbols: [Symbol]
+    public let symbolsById: [String:[Symbol]]
+    public let aliases: [String: String]
+    public let variants: [String: Variant]
+    public let license: License
+    public let warning: String?
 
-    func symbol(for reference: SymbolReference) -> Symbol? {
+    public func symbol(for reference: SymbolReference) -> Symbol? {
         let name = symbolsById[reference.name] != nil ? reference.name : aliases[reference.name]
         guard let name, let symbols = symbolsById[name] else {
             return nil
@@ -67,8 +67,8 @@ struct Library {
         return symbols.first { $0.reference.variant == variant }
     }
 
-    init(named name: String) throws {
-        guard let manifestURL = Bundle.main.url(forResource: "manifest",
+    public init(named name: String) throws {
+        guard let manifestURL = Bundle.module.url(forResource: "manifest",
                                                 withExtension: "json",
                                                 subdirectory: name) else {
             throw SymbolicError.missingManifest
@@ -89,7 +89,7 @@ struct Library {
 
                 switch variant {
                 case .svg(let properties):
-                    let url = Bundle.main.url(forResource: properties.path, withExtension: nil, subdirectory: name)
+                    let url = Bundle.module.url(forResource: properties.path, withExtension: nil, subdirectory: name)
                     return Symbol(reference: reference,
                                   variant: displayVariant,
                                   name: symbol.name ?? symbol.id,
@@ -106,7 +106,7 @@ struct Library {
 
         let licenseFileURL: URL?
         if let path = manifest.license.path {
-            guard let fileURL = Bundle.main.url(forResource: path, withExtension: nil, subdirectory: name) else {
+            guard let fileURL = Bundle.module.url(forResource: path, withExtension: nil, subdirectory: name) else {
                 throw SymbolicError.missingLicense
             }
             licenseFileURL = fileURL

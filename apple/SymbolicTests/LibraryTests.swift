@@ -19,6 +19,8 @@
 // SOFTWARE.
 
 import XCTest
+
+import SymbolicCore
 @testable import Symbolic
 @testable import SwiftDraw
 

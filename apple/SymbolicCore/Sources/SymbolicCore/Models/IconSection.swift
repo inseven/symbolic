@@ -20,27 +20,24 @@
 
 import SwiftUI
 
-struct SymbolView: View {
+public struct IconSection: Identifiable {
 
-    let symbolReference: SymbolReference
+    public let id = UUID()
 
-    var body: some View {
-        HStack {
-            if let symbol = LibraryManager.shared.symbol(for: symbolReference) {
-                switch symbol.format {
-                case .svg(let url):
-                    SVGImage(url: url!)
-                case .symbol(_, let renderingMode):
-                    Image(systemName: symbol.name)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .symbolRenderingMode(renderingMode.symbolRenderingMode)
-                        .environment(\.colorScheme, .light)  // Ensure symbols display consistently in light and dark modes.
-                }
-            } else {
-                EmptyView()
-            }
-        }
+    public let name: String
+    public let directory: String
+    public let sets: [IconSet]
+
+    public let additionalFiles: (@MainActor (_ directoryURL: URL, _ icon: Icon) throws -> Void)?
+
+    public init(_ name: String,
+                directory: String,
+                additionalFiles: (@MainActor (_ directoryURL: URL, _ icon: Icon) throws -> Void)? = nil,
+                @IconSetsBuilder sets: () -> [IconSet] = { [] }) {
+        self.name = name
+        self.directory = directory
+        self.additionalFiles = additionalFiles
+        self.sets = sets()
     }
 
 }

@@ -20,28 +20,23 @@
 
 import SwiftUI
 
-extension View {
+public struct Header: View {
 
-    @ViewBuilder func hardTopScrollEdgeEffect() -> some View {
-        if #available(macOS 26.0, *) {
-            scrollEdgeEffectStyle(.hard, for: .top)
-        } else {
-            self
-        }
+    let text: String
+
+    public init(_ text: String) {
+        self.text = text
     }
 
-    @MainActor func pngData() -> Data? {
-        let renderer = ImageRenderer(content: self)
-        renderer.scale = 2
-        guard let image = renderer.nsImage else {
-            return nil
+    public var body: some View {
+        VStack {
+            Text(text)
+                .fontWeight(.bold)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+            Divider()
         }
-        guard let tiffRepresentation = image.tiffRepresentation else {
-            return nil
-        }
-        let imageRep = NSBitmapImageRep(data: tiffRepresentation)
-        let pngData = imageRep?.representation(using: .png, properties: [:])
-        return pngData
     }
 
 }

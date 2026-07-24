@@ -20,6 +20,8 @@
 
 import XCTest
 
+import SymbolicCore
+
 final class SymbolicUITests: XCTestCase {
 
     override func setUpWithError() throws {

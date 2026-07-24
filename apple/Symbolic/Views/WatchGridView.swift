@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct WatchGridView: View {
 
     var size: CGFloat

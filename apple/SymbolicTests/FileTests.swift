@@ -19,6 +19,9 @@
 // SOFTWARE.
 
 import XCTest
+
+import SymbolicCore
+
 @testable import Symbolic
 
 final class FileTests: XCTestCase {

@@ -20,9 +20,37 @@
 
 import Foundation
 
-struct Variant {
+public class LibraryManager {
 
-    let id: String
-    let name: String
+    public static let shared: LibraryManager = {
+        return LibraryManager()
+    }()
+
+    public let sets: [Library]
+
+    public init() {
+        self.sets = [
+            try! Library(named: "material-icons"),
+            try! Library(named: "sf-symbols"),
+        ]
+    }
+
+    public func library(for reference: SymbolReference) -> Library? {
+        return sets.first { $0.id == reference.family }
+    }
+
+    public func symbol(for reference: SymbolReference) -> Symbol? {
+        return library(for: reference)?.symbol(for: reference)
+    }
+
+    public func resolveSymbol(for reference: SymbolReference) throws -> SymbolReference {
+        guard let symbol = symbol(for: reference) else {
+            throw SymbolicError.unknownSymbol
+        }
+        guard symbol.isSupported else {
+            throw SymbolicError.unsupportedOperatingSystemVersion
+        }
+        return symbol.reference
+    }
 
 }

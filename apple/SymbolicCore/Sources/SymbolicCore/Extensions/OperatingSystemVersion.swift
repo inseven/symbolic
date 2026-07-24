@@ -22,7 +22,7 @@ import Foundation
 
 extension OperatingSystemVersion: @retroactive Equatable, @retroactive Comparable {
 
-    init?(string: String) {
+    public init?(string: String) {
         let components = string.split(separator: ".").map { Int($0) }
         guard let major = components.first, let majorVersion = major else {
             return nil
@@ -32,7 +32,7 @@ extension OperatingSystemVersion: @retroactive Equatable, @retroactive Comparabl
         self.init(majorVersion: majorVersion, minorVersion: minorVersion, patchVersion: patchVersion)
     }
 
-    var shortDescription: String {
+    public var shortDescription: String {
         if patchVersion == 0 {
             return "\(majorVersion).\(minorVersion)"
         }

@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct SidebarSectionHeader: View {
 
     let title: String

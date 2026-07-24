@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 class UnityScaleWindow: NSWindow {
 
     override var backingScaleFactor: CGFloat {

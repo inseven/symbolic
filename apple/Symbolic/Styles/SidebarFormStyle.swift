@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct SidebarFormStyle: FormStyle {
 
     func makeBody(configuration: Configuration) -> some View {

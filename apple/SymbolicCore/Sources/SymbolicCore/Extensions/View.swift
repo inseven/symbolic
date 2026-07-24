@@ -20,45 +20,28 @@
 
 import SwiftUI
 
-struct IconSet: Identifiable {
+extension View {
 
-    let id = UUID()
-
-    let name: String
-    let definitions: [IconDefinition]
-
-    init(_ name: String, @IconDefinitionsBuilder definitions: () -> [IconDefinition] = { [] }) {
-        self.name = name
-        self.definitions = definitions()
+    @ViewBuilder public func hardTopScrollEdgeEffect() -> some View {
+        if #available(macOS 26.0, *) {
+            scrollEdgeEffectStyle(.hard, for: .top)
+        } else {
+            self
+        }
     }
 
-}
-
-protocol IconSetsConvertible {
-    func asIconSets() -> [IconSet]
-}
-
-@resultBuilder struct IconSetsBuilder {
-
-    public static func buildBlock() -> [IconSet] {
-        return []
-    }
-
-    public static func buildBlock(_ sets: IconSet...) -> [IconSet] {
-        return sets
-    }
-
-    public static func buildBlock(_ values: IconSetsConvertible...) -> [IconSet] {
-        return values
-            .flatMap { $0.asIconSets() }
-    }
-
-}
-
-extension Array: IconSetsConvertible where Element == IconSet {
-
-    func asIconSets() -> [IconSet] {
-        return self
+    @MainActor public func pngData() -> Data? {
+        let renderer = ImageRenderer(content: self)
+        renderer.scale = 2
+        guard let image = renderer.nsImage else {
+            return nil
+        }
+        guard let tiffRepresentation = image.tiffRepresentation else {
+            return nil
+        }
+        let imageRep = NSBitmapImageRep(data: tiffRepresentation)
+        let pngData = imageRep?.representation(using: .png, properties: [:])
+        return pngData
     }
 
 }

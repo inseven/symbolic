@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 public struct HelpCommands: Commands {
 
     @Environment(\.openURL) private var openURL

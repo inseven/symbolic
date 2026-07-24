@@ -20,24 +20,23 @@
 
 import SwiftUI
 
-struct IconSection: Identifiable {
+public struct SymbolReference: Identifiable, Equatable, Codable {
 
-    let id = UUID()
+    public var id: String {
+        if let variant = variant {
+            return "\(family)-\(name)-\(variant)"
+        }
+        return "\(family)-\(name)"
+    }
 
-    let name: String
-    let directory: String
-    let sets: [IconSet]
+    public let family: String
+    public let name: String
+    public let variant: String?
 
-    let additionalFiles: (@MainActor (_ directoryURL: URL, _ icon: Icon) throws -> Void)?
-
-    init(_ name: String,
-         directory: String,
-         additionalFiles: (@MainActor (_ directoryURL: URL, _ icon: Icon) throws -> Void)? = nil,
-         @IconSetsBuilder sets: () -> [IconSet] = { [] }) {
+    public init(family: String, name: String, variant: String?) {
+        self.family = family
         self.name = name
-        self.directory = directory
-        self.additionalFiles = additionalFiles
-        self.sets = sets()
+        self.variant = variant
     }
 
 }

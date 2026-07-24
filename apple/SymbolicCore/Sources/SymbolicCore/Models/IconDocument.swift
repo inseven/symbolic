@@ -21,26 +21,26 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-final class IconDocument: ReferenceFileDocument {
+public final class IconDocument: ReferenceFileDocument {
 
-    typealias Snapshot = Icon
+    public typealias Snapshot = Icon
 
-    @Published var icon: Icon
+    @Published public var icon: Icon
 
-    static var readableContentTypes: [UTType] { [.iconDocument] }
+    public static var readableContentTypes: [UTType] { [.iconDocument] }
 
-    func snapshot(contentType: UTType) throws -> Snapshot {
+    public func snapshot(contentType: UTType) throws -> Snapshot {
         return icon
     }
 
-    init() {
+    public init() {
         // Load the initial icon from the built-in template.
-        let url = Bundle.main.url(forResource: "Template", withExtension: "symbolic")!
+        let url = Bundle.module.url(forResource: "Template", withExtension: "symbolic")!
         let data = try! Data(contentsOf: url)
         icon = try! JSONDecoder().decode(Icon.self, from: data)
     }
 
-    init(configuration: ReadConfiguration) throws {
+    public init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents
         else {
             throw CocoaError(.fileReadCorruptFile)
@@ -48,7 +48,7 @@ final class IconDocument: ReferenceFileDocument {
         self.icon = try JSONDecoder().decode(Icon.self, from: data)
     }
 
-    func fileWrapper(snapshot: Icon, configuration: WriteConfiguration) throws -> FileWrapper {
+    public func fileWrapper(snapshot: Icon, configuration: WriteConfiguration) throws -> FileWrapper {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let data = try encoder.encode(snapshot)
@@ -56,11 +56,11 @@ final class IconDocument: ReferenceFileDocument {
         return fileWrapper
     }
 
-    @MainActor func export(destination url: URL) throws {
+    @MainActor public func export(destination url: URL) throws {
 
 
         try FileManager.default.createDirectory(at: url, withIntermediateDirectories: false)
-        for section in ApplicationModel.icons {
+        for section in IconSection.all {
             let directoryUrl = url.appendingPathComponent(section.directory, conformingTo: .directory)
             try FileManager.default.createDirectory(at: directoryUrl, withIntermediateDirectories: true)
             for iconSet in section.sets {

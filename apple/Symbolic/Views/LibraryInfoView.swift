@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct LibraryInfoView: View {
 
     private struct LayoutMetrics {

@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct PositionOffsetSlider: View {
 
     var title: String

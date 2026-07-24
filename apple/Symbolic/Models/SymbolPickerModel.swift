@@ -21,6 +21,8 @@
 import Combine
 import SwiftUI
 
+import SymbolicCore
+
 protocol Filterable {
 
     func matches(_ filter: String) -> Bool

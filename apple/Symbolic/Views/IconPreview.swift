@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct IconPreview: View {
 
     @ObservedObject var sceneModel: SceneModel

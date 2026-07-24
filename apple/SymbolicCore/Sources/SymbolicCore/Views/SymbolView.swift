@@ -18,51 +18,33 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Foundation
+import SwiftUI
 
-struct Symbol: Identifiable {
+public struct SymbolView: View {
 
-    var id: String {
-        return reference.id
+    public let symbolReference: SymbolReference
+
+    public init(symbolReference: SymbolReference) {
+        self.symbolReference = symbolReference
     }
 
-    enum Format {
-        case svg(url: URL?)
-        case symbol(minimumOperatingSystemVersion: OperatingSystemVersion?, renderingMode: RenderingMode)
-    }
-
-    let reference: SymbolReference
-    let variant: Variant?
-    let name: String
-    let format: Format
-
-    var localizedDescription: String {
-        guard let variant = variant else {
-            return name
-        }
-        return "\(name) (\(variant.name))"
-    }
-
-    var isSupported: Bool {
-        switch format {
-        case .svg:
-            return true
-        case .symbol(let minimumOperatingSystemVersion, _):
-            guard let minimumOperatingSystemVersion else {
-                return true
+    public var body: some View {
+        HStack {
+            if let symbol = LibraryManager.shared.symbol(for: symbolReference) {
+                switch symbol.format {
+                case .svg(let url):
+                    SVGImage(url: url!)
+                case .symbol(_, let renderingMode):
+                    Image(systemName: symbol.name)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .symbolRenderingMode(renderingMode.symbolRenderingMode)
+                        .environment(\.colorScheme, .light)  // Ensure symbols display consistently in light and dark modes.
+                }
+            } else {
+                EmptyView()
             }
-            return ProcessInfo.processInfo.isOperatingSystemAtLeast(minimumOperatingSystemVersion)
         }
-    }
-
-    init(reference: SymbolReference,
-         variant: Variant? = nil,
-         name: String,
-         format: Format) {
-        self.reference = reference
-        self.variant = variant
-        self.name = name
-        self.format = format
     }
 
 }

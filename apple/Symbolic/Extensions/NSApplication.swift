@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 extension NSApplication {
 
     @MainActor func closeColorPanels() {

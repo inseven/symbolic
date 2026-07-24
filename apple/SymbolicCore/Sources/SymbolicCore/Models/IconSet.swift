@@ -18,39 +18,47 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Foundation
+import SwiftUI
 
-class LibraryManager {
+public struct IconSet: Identifiable {
 
-    static let shared: LibraryManager = {
-        return LibraryManager()
-    }()
+    public let id = UUID()
 
-    let sets: [Library]
+    public let name: String
+    public let definitions: [IconDefinition]
 
-    init() {
-        self.sets = [
-            try! Library(named: "material-icons"),
-            try! Library(named: "sf-symbols"),
-        ]
+    public init(_ name: String, @IconDefinitionsBuilder definitions: () -> [IconDefinition] = { [] }) {
+        self.name = name
+        self.definitions = definitions()
     }
 
-    func library(for reference: SymbolReference) -> Library? {
-        return sets.first { $0.id == reference.family }
+}
+
+public protocol IconSetsConvertible {
+    func asIconSets() -> [IconSet]
+}
+
+@resultBuilder public struct IconSetsBuilder {
+
+    public static func buildBlock() -> [IconSet] {
+        return []
     }
 
-    func symbol(for reference: SymbolReference) -> Symbol? {
-        return library(for: reference)?.symbol(for: reference)
+    public static func buildBlock(_ sets: IconSet...) -> [IconSet] {
+        return sets
     }
 
-    func resolveSymbol(for reference: SymbolReference) throws -> SymbolReference {
-        guard let symbol = symbol(for: reference) else {
-            throw SymbolicError.unknownSymbol
-        }
-        guard symbol.isSupported else {
-            throw SymbolicError.unsupportedOperatingSystemVersion
-        }
-        return symbol.reference
+    public static func buildBlock(_ values: IconSetsConvertible...) -> [IconSet] {
+        return values
+            .flatMap { $0.asIconSets() }
+    }
+
+}
+
+extension Array: IconSetsConvertible where Element == IconSet {
+
+    public func asIconSets() -> [IconSet] {
+        return self
     }
 
 }

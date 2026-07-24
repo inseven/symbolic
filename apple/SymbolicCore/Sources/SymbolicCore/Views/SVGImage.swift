@@ -39,7 +39,7 @@ extension EnvironmentValues {
 
 extension View {
 
-    func cacheVectorGraphics(_ cacheVectorGraphics: Bool) -> some View {
+    public func cacheVectorGraphics(_ cacheVectorGraphics: Bool) -> some View {
         return environment(\.cacheVectorGraphics, cacheVectorGraphics)
     }
 

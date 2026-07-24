@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct InfoLabeledContentStyle: LabeledContentStyle {
 
     func makeBody(configuration: Configuration) -> some View {

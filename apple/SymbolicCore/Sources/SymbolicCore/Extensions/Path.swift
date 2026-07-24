@@ -18,15 +18,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Combine
 import SwiftUI
 
-enum DeviceType: Equatable, Identifiable, CaseIterable {
+extension SwiftUI.Path {
 
-    var id: Self { self }
-
-    case macOS
-    case iOS
-    case watchOS
+    mutating public func addCircle(center: CGPoint, radius: CGFloat) {
+        addArc(center: center, radius: radius, startAngle: Angle(), endAngle: Angle(degrees: 360), clockwise: true)
+    }
 
 }

@@ -19,13 +19,42 @@
 // SOFTWARE.
 
 import SwiftUI
-import UniformTypeIdentifiers
 
-import SymbolicCore
+public struct IconPreviewList: View {
 
-struct IconSetView: View {
+    private let icon: Icon
 
-    @ObservedObject var sceneModel: SceneModel
+    public init(icon: Icon) {
+        self.icon = icon
+    }
+
+    public var body: some View {
+        ScrollView {
+            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                ForEach(IconSection.all) { section in
+                    Section {
+                        CenteredFlowLayout {
+                            ForEach(section.sets) { iconSet in
+                                IconSetPreview(icon: icon, iconSet: iconSet)
+                                    .padding()
+                            }
+                        }
+                        .padding()
+                    } header: {
+                        Header(section.name)
+                            .padding(.top)
+                            .background(.bar)
+                    }
+                }
+            }
+        }
+        .background(Color(nsColor: .textBackgroundColor))
+        .frame(maxWidth: .infinity, minHeight: 400)
+    }
+
+}
+
+private struct IconSetPreview: View {
 
     let icon: Icon
     let iconSet: IconSet
@@ -35,16 +64,7 @@ struct IconSetView: View {
             HStack(alignment: .bottom, spacing: 16) {
                 ForEach(iconSet.definitions) { definition in
                     VStack {
-                        IconPreview(sceneModel: sceneModel, icon: icon, definition: definition)
-                            .onDrag {
-                                do {
-                                    let url = try icon.saveSnapshot(definition: definition,
-                                                                    directoryURL: URL(fileURLWithPath: NSTemporaryDirectory()))
-                                    return NSItemProvider(item: url as NSURL, typeIdentifier: UTType.fileURL.identifier)
-                                } catch {
-                                    return NSItemProvider()
-                                }
-                            }
+                        icon.view(for: definition)
                         Text("\(Int(definition.scale))x")
                             .fixedSize()
                         if let description = definition.description {
@@ -56,7 +76,6 @@ struct IconSetView: View {
             Divider()
             Text(iconSet.name)
         }
-        .foregroundColor(.secondary)
     }
 
 }

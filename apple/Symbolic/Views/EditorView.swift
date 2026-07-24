@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 import Interact
 
 struct EditorView: View {

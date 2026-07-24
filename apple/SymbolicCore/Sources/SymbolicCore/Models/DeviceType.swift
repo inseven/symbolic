@@ -18,25 +18,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Combine
 import SwiftUI
 
-struct Header: View {
+public enum DeviceType: Equatable, Identifiable, CaseIterable {
 
-    let text: String
+    public var id: Self { self }
 
-    init(_ text: String) {
-        self.text = text
-    }
-
-    var body: some View {
-        VStack {
-            Text(text)
-                .fontWeight(.bold)
-                .foregroundColor(.secondary)
-                .horizontalSpace(.leading)
-                .padding(.horizontal)
-            Divider()
-        }
-    }
+    case macOS
+    case iOS
+    case watchOS
 
 }

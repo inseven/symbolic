@@ -20,6 +20,8 @@
 
 import SwiftUI
 
+import SymbolicCore
+
 struct SymbolPickerCell: ViewModifier {
 
     struct LayoutMetrics {

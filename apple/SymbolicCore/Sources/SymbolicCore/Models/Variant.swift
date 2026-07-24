@@ -18,19 +18,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-struct SymbolReference: Identifiable, Equatable, Codable {
+public struct Variant {
 
-    var id: String {
-        if let variant = variant {
-            return "\(family)-\(name)-\(variant)"
-        }
-        return "\(family)-\(name)"
+    public let id: String
+    public let name: String
+
+    public init(id: String, name: String) {
+        self.id = id
+        self.name = name
     }
-
-    let family: String
-    let name: String
-    let variant: String?
 
 }

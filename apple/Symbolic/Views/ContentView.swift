@@ -23,6 +23,8 @@ import SwiftUI
 
 import Interact
 
+import SymbolicCore
+
 struct ContentView: View {
 
     @EnvironmentObject var applicationModel: ApplicationModel
@@ -43,7 +45,7 @@ struct ContentView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                ForEach(ApplicationModel.icons) { section in
+                ForEach(IconSection.all) { section in
                     Section {
                         CenteredFlowLayout {
                             ForEach(section.sets) { iconSet in
