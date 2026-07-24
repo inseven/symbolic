@@ -28,6 +28,11 @@ import SymbolicCore
 
 struct ContentView: View {
 
+    struct LayoutMetrics {
+        static let minimumWidth: CGFloat = 800
+        static let minimumHeight: CGFloat = 500
+    }
+
     @EnvironmentObject var applicationModel: ApplicationModel
     @EnvironmentObject var settings: Settings
 
@@ -60,7 +65,7 @@ struct ContentView: View {
         }
         .hardTopScrollEdgeEffect()
         .background(Color(nsColor: .textBackgroundColor))
-        .frame(maxWidth: .infinity, minHeight: 400)
+        .frame(minWidth: LayoutMetrics.minimumWidth, maxWidth: .infinity, minHeight: LayoutMetrics.minimumHeight)
         .cacheVectorGraphics(true)
         .inspector(isPresented: Binding.constant(true)) {
             EditorView(sceneModel: sceneModel, document: document)
