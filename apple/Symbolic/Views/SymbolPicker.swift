@@ -30,6 +30,7 @@ struct SymbolPicker: View {
         static let height = 400.0
         static let buttonSize = CGSize(width: 24.0, height: 24.0)
         static let sectionHeaderVerticalPadding = 8.0
+        static let horizontalPadding = 16.0
     }
 
     var title: String
@@ -63,43 +64,43 @@ struct SymbolPicker: View {
             .controlSize(.large)
             .popover(isPresented: $isPresented) {
 
-                VStack(spacing: 0) {
+                ScrollView {
+                    LazyVGrid(columns: columns,
+                              spacing: LayoutMetrics.interItemSpacing,
+                              pinnedViews: [.sectionHeaders]) {
+                        ForEach(model.filteredSymbols) { section in
+                            Section {
+                                ForEach(section.symbols) { symbol in
+                                    SymbolView(symbolReference: symbol.reference)
+                                        .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
+                                        .onTapGesture {
+                                            isPresented = false
+                                            selection.wrappedValue = symbol.reference
+                                        }
+                                        .help(symbol.localizedDescription)
+                                }
+                            } header: {
+                                Text(section.name)
+                                    .textCase(.uppercase)
+                                    .horizontalSpace(.trailing)
+                                    .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
+                                    .background(.regularMaterial, ignoresSafeAreaEdges: .horizontal)
+                            }
+                        }
+                    }
+                    .padding(.bottom, LayoutMetrics.horizontalPadding)
+                    .safeAreaPadding(.horizontal, LayoutMetrics.horizontalPadding)
+                }
+                .safeAreaInset(edge: .top, spacing: 0) {
                     TextField(text: $model.filter, prompt: Text("Search")) {
                         EmptyView()
                     }
                     .multilineTextAlignment(.leading)
                     .textFieldStyle(.roundedBorder)
                     .padding()
-                    .background(Color(nsColor: NSColor.controlBackgroundColor))
-
-                    ScrollView {
-                        LazyVGrid(columns: columns,
-                                  spacing: LayoutMetrics.interItemSpacing,
-                                  pinnedViews: [.sectionHeaders]) {
-                            ForEach(model.filteredSymbols) { section in
-                                Section {
-                                    ForEach(section.symbols) { symbol in
-                                        SymbolView(symbolReference: symbol.reference)
-                                            .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
-                                            .onTapGesture {
-                                                isPresented = false
-                                                selection.wrappedValue = symbol.reference
-                                            }
-                                            .help(symbol.localizedDescription)
-                                    }
-                                } header: {
-                                    Text(section.name)
-                                        .textCase(.uppercase)
-                                        .horizontalSpace(.trailing)
-                                        .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
-                                        .background(Color(nsColor: NSColor.controlBackgroundColor))
-                                }
-                            }
-                        }
-                        .padding([.leading, .trailing, .bottom])
-                    }
+                    .background(.regularMaterial)
                 }
-                .background(Color(nsColor: NSColor.controlBackgroundColor))
+                .background(.regularMaterial)
                 .frame(height: LayoutMetrics.height)
             }
         }
