@@ -46,12 +46,6 @@ struct SymbolPicker: View {
         self.selection = selection
     }
 
-    let columns = [GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
-                   GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
-                   GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
-                   GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
-                   GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing)]
-
     var body: some View {
         LabeledContent("Symbol") {
             Button {
@@ -65,45 +59,18 @@ struct SymbolPicker: View {
             }
             .controlSize(.large)
             .popover(isPresented: $isPresented) {
-
-                ScrollView {
-                    LazyVGrid(columns: columns,
-                              spacing: LayoutMetrics.interItemSpacing,
-                              pinnedViews: [.sectionHeaders]) {
-                        ForEach(model.filteredSymbols) { section in
-                            Section {
-                                ForEach(section.symbols) { symbol in
-                                    SymbolView(symbolReference: symbol.reference)
-                                        .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
-                                        .onTapGesture {
-                                            isPresented = false
-                                            selection.wrappedValue = symbol.reference
-                                        }
-                                        .help(symbol.localizedDescription)
-                                }
-                            } header: {
-                                Text(section.name)
-                                    .textCase(.uppercase)
-                                    .horizontalSpace(.trailing)
-                                    .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
-                                    .background(.regularMaterial, ignoresSafeAreaEdges: .horizontal)
-                            }
+                SymbolGrid(model: model, selection: selection, isPresented: $isPresented)
+                    .safeAreaInset(edge: .top, spacing: 0) {
+                        TextField(text: $model.filter, prompt: Text("Search")) {
+                            EmptyView()
                         }
+                        .multilineTextAlignment(.leading)
+                        .textFieldStyle(.roundedBorder)
+                        .padding()
+                        .background(.regularMaterial)
                     }
-                    .padding(.bottom, LayoutMetrics.standardPadding)
-                    .safeAreaPadding(.horizontal, LayoutMetrics.standardPadding)
-                }
-                .safeAreaInset(edge: .top, spacing: 0) {
-                    TextField(text: $model.filter, prompt: Text("Search")) {
-                        EmptyView()
-                    }
-                    .multilineTextAlignment(.leading)
-                    .textFieldStyle(.roundedBorder)
-                    .padding()
                     .background(.regularMaterial)
-                }
-                .background(.regularMaterial)
-                .frame(height: LayoutMetrics.height)
+                    .frame(height: LayoutMetrics.height)
             }
         }
         .onAppear {
