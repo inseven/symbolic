@@ -27,6 +27,7 @@ struct InfoLabeledContentStyle: LabeledContentStyle {
     func makeBody(configuration: Configuration) -> some View {
         HStack {
             configuration.label
+                .foregroundStyle(.secondary)
             Spacer()
             configuration.content
                 .foregroundColor(.secondary)

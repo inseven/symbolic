@@ -31,6 +31,7 @@ struct ContentView: View {
     struct LayoutMetrics {
         static let minimumWidth: CGFloat = 800
         static let minimumHeight: CGFloat = 500
+        static let inspectorWidth: CGFloat = 320
     }
 
     @EnvironmentObject var applicationModel: ApplicationModel
@@ -69,6 +70,7 @@ struct ContentView: View {
         .cacheVectorGraphics(true)
         .inspector(isPresented: Binding.constant(true)) {
             EditorView(sceneModel: sceneModel, document: document)
+                .inspectorColumnWidth(LayoutMetrics.inspectorWidth)
         }
         .focusedSceneObject(document)
         .focusedSceneObject(sceneModel)

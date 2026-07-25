@@ -38,31 +38,29 @@ struct EditorView: View {
     var body: some View {
         Form {
             
-            Section(forSidebarWithTitle: "Icon") {
-                SymbolPicker("Image", selection: $document.icon.symbol.undoable(undoManager, context: undoContext))
-                if let library = sceneModel.library {
-                    LabeledContent("") {
-                        LibraryInfoButton(library: library)
-                    }
-                }
+            Section("Icon") {
+                SymbolPicker("Image",
+                             selection: $document.icon.symbol.undoable(undoManager, context: undoContext),
+                             sceneModel: sceneModel)
                 Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext), in: 0...1.2) {
-                    Text("Size")
+                    Label("Size", systemImage: "textformat.size")
                 }
-                ColorPicker("Color",
-                            selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext),
-                            supportsOpacity: false)
                 LabeledContent {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            PositionOffsetSlider(title: "X",
-                                                 isHovering: $sceneModel.showOffsetX,
-                                                 value: $document.icon.iconOffset.width.undoable(undoManager,
-                                                                                                 context: undoContext))
-                            PositionOffsetSlider(title: "Y",
-                                                 isHovering: $sceneModel.showOffsetY,
-                                                 value: $document.icon.iconOffset.height.undoable(undoManager,
-                                                                                                  context: undoContext))
-                        }
+                    ColorPicker(selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext),
+                                supportsOpacity: false)
+                } label: {
+                    Label("Color", systemImage: "paintpalette")
+                }
+                LabeledContent {
+                    VStack(alignment: .trailing) {
+                        PositionOffsetSlider(title: "X",
+                                             isHovering: $sceneModel.showOffsetX,
+                                             value: $document.icon.iconOffset.width.undoable(undoManager,
+                                                                                             context: undoContext))
+                        PositionOffsetSlider(title: "Y",
+                                             isHovering: $sceneModel.showOffsetY,
+                                             value: $document.icon.iconOffset.height.undoable(undoManager,
+                                                                                              context: undoContext))
                         Button("Reset") {
                             let offset = document.icon.iconOffset
                             undoManager?.registerUndo(undoContext) {
@@ -73,21 +71,21 @@ struct EditorView: View {
                         .disabled(document.icon.iconOffset == .zero)
                     }
                 } label: {
-                    Text("Position")
+                    Label("Position", systemImage: "arrow.up.and.down.and.arrow.left.and.right")
                 }
             }
 
-            Section(forSidebarWithTitle: "Shadow") {
+            Section("Shadow") {
                 Slider(value: $document.icon.shadowOpacity.undoable(undoManager, context: undoContext)) {
-                    Text("Opacity")
+                    Label("Opacity", systemImage: "circle.bottomrighthalf.pattern.checkered")
                 }
                 Slider(value: $document.icon.shadowHeight.undoable(undoManager, context: undoContext)) {
-                    Text("Height")
+                    Label("Height", systemImage: "arrow.up.and.down")
                 }
             }
 
-            Section(forSidebarWithTitle: "Background") {
-                LabeledContent("Gradient") {
+            Section("Background") {
+                LabeledContent {
                     HStack {
                         ColorPicker(selection: $document.icon.topColor.undoable(undoManager, context: undoContext),
                                     supportsOpacity: false)
@@ -106,11 +104,13 @@ struct EditorView: View {
                         ColorPicker(selection: $document.icon.bottomColor.undoable(undoManager, context: undoContext),
                                     supportsOpacity: false)
                     }
+                } label: {
+                    Label("Gradient", systemImage: "paint.bucket.classic")
                 }
             }
 #if DEBUG
             if settings.showIconDetails {
-                Section(forSidebarWithTitle: "Details") {
+                Section("Details") {
                     LabeledContent("Family", value: document.icon.symbol.family)
                     LabeledContent("Name", value: document.icon.symbol.name)
                     LabeledContent("Variant", value: document.icon.symbol.variant ?? "")
@@ -118,7 +118,6 @@ struct EditorView: View {
             }
 #endif
         }
-        .formStyle(.sidebar)
     }
 
 }

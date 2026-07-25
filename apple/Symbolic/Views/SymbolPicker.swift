@@ -35,15 +35,18 @@ struct SymbolPicker: View {
         static let standardPadding = 16.0
     }
 
+    @ObservedObject var sceneModel: SceneModel
+
     var title: String
     var selection: Binding<SymbolReference>
     @State var isPresented: Bool = false
     @StateObject var model = SymbolPickerModel()
     @Environment(\.colorScheme) private var colorScheme
 
-    init(_ title: String, selection: Binding<SymbolReference>) {
+    init(_ title: String, selection: Binding<SymbolReference>, sceneModel: SceneModel) {
         self.title = title
         self.selection = selection
+        self.sceneModel = sceneModel
     }
 
     let columns = [GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing),
@@ -53,58 +56,67 @@ struct SymbolPicker: View {
                    GridItem(.flexible(minimum: LayoutMetrics.itemSize), spacing: LayoutMetrics.interItemSpacing)]
 
     var body: some View {
-        LabeledContent("Symbol") {
-            Button {
-                isPresented = true
-            } label: {
-                HStack {
-                    SymbolView(symbolReference: selection.wrappedValue)
-                        .foregroundStyle(colorScheme == .dark ? .white : .black)
+        LabeledContent {
+            VStack(alignment: .trailing) {
+                Button {
+                    isPresented = true
+                } label: {
+                    HStack {
+                        SymbolView(symbolReference: selection.wrappedValue)
+                            .foregroundStyle(colorScheme == .dark ? .white : .black)
+                    }
+                    .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
                 }
-                .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
-            }
-            .controlSize(.large)
-            .popover(isPresented: $isPresented) {
+                .controlSize(.large)
+                .popover(isPresented: $isPresented) {
 
-                ScrollView {
-                    LazyVGrid(columns: columns,
-                              spacing: LayoutMetrics.interItemSpacing,
-                              pinnedViews: [.sectionHeaders]) {
-                        ForEach(model.filteredSymbols) { section in
-                            Section {
-                                ForEach(section.symbols) { symbol in
-                                    SymbolView(symbolReference: symbol.reference)
-                                        .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
-                                        .onTapGesture {
-                                            isPresented = false
-                                            selection.wrappedValue = symbol.reference
-                                        }
-                                        .help(symbol.localizedDescription)
+                    ScrollView {
+                        LazyVGrid(columns: columns,
+                                  spacing: LayoutMetrics.interItemSpacing,
+                                  pinnedViews: [.sectionHeaders]) {
+                            ForEach(model.filteredSymbols) { section in
+                                Section {
+                                    ForEach(section.symbols) { symbol in
+                                        SymbolView(symbolReference: symbol.reference)
+                                            .symbolPickerCell(isHighlighted: selection.wrappedValue == symbol.reference)
+                                            .onTapGesture {
+                                                isPresented = false
+                                                selection.wrappedValue = symbol.reference
+                                            }
+                                            .help(symbol.localizedDescription)
+                                    }
+                                } header: {
+                                    Text(section.name)
+                                        .textCase(.uppercase)
+                                        .horizontalSpace(.trailing)
+                                        .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
+                                        .background(.regularMaterial, ignoresSafeAreaEdges: .horizontal)
                                 }
-                            } header: {
-                                Text(section.name)
-                                    .textCase(.uppercase)
-                                    .horizontalSpace(.trailing)
-                                    .padding([.top, .bottom], LayoutMetrics.sectionHeaderVerticalPadding)
-                                    .background(.regularMaterial, ignoresSafeAreaEdges: .horizontal)
                             }
                         }
+                                  .padding(.bottom, LayoutMetrics.standardPadding)
+                                  .safeAreaPadding(.horizontal, LayoutMetrics.standardPadding)
                     }
-                    .padding(.bottom, LayoutMetrics.standardPadding)
-                    .safeAreaPadding(.horizontal, LayoutMetrics.standardPadding)
-                }
-                .safeAreaInset(edge: .top, spacing: 0) {
-                    TextField(text: $model.filter, prompt: Text("Search")) {
-                        EmptyView()
+                    .safeAreaInset(edge: .top, spacing: 0) {
+                        TextField(text: $model.filter, prompt: Text("Search")) {
+                            EmptyView()
+                        }
+                        .multilineTextAlignment(.leading)
+                        .textFieldStyle(.roundedBorder)
+                        .padding()
+                        .background(.regularMaterial)
                     }
-                    .multilineTextAlignment(.leading)
-                    .textFieldStyle(.roundedBorder)
-                    .padding()
                     .background(.regularMaterial)
+                    .frame(height: LayoutMetrics.height)
                 }
-                .background(.regularMaterial)
-                .frame(height: LayoutMetrics.height)
+                if let library = sceneModel.library {
+                    LabeledContent("") {
+                        LibraryInfoButton(library: library)
+                    }
+                }
             }
+        } label: {
+            Label("Symbol", systemImage: "heart")
         }
         .onAppear {
             model.start()

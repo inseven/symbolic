@@ -37,7 +37,7 @@ struct LibraryInfoView: View {
 
     public var body: some View {
         ScrollView {
-            VStack {
+            Form {
                 LabeledContent("Library") {
                     Text(library.name)
                         .conditionalLink(library.url)
@@ -66,7 +66,7 @@ struct LibraryInfoView: View {
             .labeledContentStyle(.info)
         }
         .multilineTextAlignment(.leading)
-        .background(Color.textBackgroundColor)
+        .background(.regularMaterial)
         .navigationTitle(library.name)
         .frame(idealWidth: LayoutMetrics.width, maxWidth: LayoutMetrics.width, maxHeight: LayoutMetrics.height)
         .foregroundColor(.primary)
