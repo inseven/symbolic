@@ -35,43 +35,55 @@ struct SymbolPicker: View {
         static let standardPadding = 16.0
     }
 
+    @ObservedObject var sceneModel: SceneModel
+
     var title: String
     var selection: Binding<SymbolReference>
     @State var isPresented: Bool = false
     @StateObject var model = SymbolPickerModel()
     @Environment(\.colorScheme) private var colorScheme
 
-    init(_ title: String, selection: Binding<SymbolReference>) {
+    init(_ title: String, selection: Binding<SymbolReference>, sceneModel: SceneModel) {
         self.title = title
         self.selection = selection
+        self.sceneModel = sceneModel
     }
 
     var body: some View {
-        LabeledContent("Symbol") {
-            Button {
-                isPresented = true
-            } label: {
-                HStack {
-                    SymbolView(symbolReference: selection.wrappedValue)
-                        .foregroundStyle(colorScheme == .dark ? .white : .black)
-                }
-                .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
-            }
-            .controlSize(.large)
-            .popover(isPresented: $isPresented) {
-                SymbolGrid(model: model, selection: selection, isPresented: $isPresented)
-                    .safeAreaInset(edge: .top, spacing: 0) {
-                        TextField(text: $model.filter, prompt: Text("Search")) {
-                            EmptyView()
-                        }
-                        .multilineTextAlignment(.leading)
-                        .textFieldStyle(.roundedBorder)
-                        .padding()
-                        .background(.regularMaterial)
+        LabeledContent {
+            VStack(alignment: .trailing) {
+                Button {
+                    isPresented = true
+                } label: {
+                    HStack {
+                        SymbolView(symbolReference: selection.wrappedValue)
+                            .foregroundStyle(colorScheme == .dark ? .white : .black)
                     }
-                    .background(.regularMaterial)
-                    .frame(height: LayoutMetrics.height)
+                    .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
+                }
+                .controlSize(.large)
+                .popover(isPresented: $isPresented) {
+                    SymbolGrid(model: model, selection: selection, isPresented: $isPresented)
+                        .safeAreaInset(edge: .top, spacing: 0) {
+                            TextField(text: $model.filter, prompt: Text("Search")) {
+                                EmptyView()
+                            }
+                            .multilineTextAlignment(.leading)
+                            .textFieldStyle(.roundedBorder)
+                            .padding()
+                            .background(.regularMaterial)
+                        }
+                        .background(.regularMaterial)
+                        .frame(height: LayoutMetrics.height)
+                }
+                if let library = sceneModel.library {
+                    LabeledContent("") {
+                        LibraryInfoButton(library: library)
+                    }
+                }
             }
+        } label: {
+            Label("Symbol", systemImage: "heart")
         }
         .onAppear {
             model.start()
