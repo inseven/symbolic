@@ -27,6 +27,7 @@ public struct IconDefinition: Identifiable {
         case iOS
         case watchOS
         case web
+        case webTouchIcon
     }
 
     public var id = UUID()

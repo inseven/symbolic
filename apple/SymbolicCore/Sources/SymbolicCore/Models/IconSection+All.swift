@@ -157,7 +157,7 @@ public extension IconSection {
             }
 
             IconSet("Apple Touch") {
-                IconDefinition(.web, size: 180, scale: 1, description: "180", preferredBasename: "apple-touch-icon")
+                IconDefinition(.webTouchIcon, size: 180, scale: 1, description: "180", preferredBasename: "apple-touch-icon")
             }
 
             IconSet("Progressive Web App") {

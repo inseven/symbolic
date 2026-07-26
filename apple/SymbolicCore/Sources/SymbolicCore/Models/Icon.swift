@@ -127,7 +127,10 @@ public struct Icon: Identifiable, Codable {
                 .modifier(IconCorners(size: width, style: context == .display ? .watchOS : .square))
         case .web:
             IconView(icon: self, size: width, renderShadow: false)
-                .modifier(IconCorners(size: width, style: .square))
+                .modifier(IconCorners(size: width, style: .web))
+        case .webTouchIcon:
+            IconView(icon: self, size: width, renderShadow: false)
+                .modifier(IconCorners(size: width, style: context == .display ? .iOS : .square))
         }
 
     }
