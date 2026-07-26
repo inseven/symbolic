@@ -23,9 +23,11 @@ import SwiftUI
 public struct SymbolView: View {
 
     public let symbolReference: SymbolReference
+    public let weight: Font.Weight
 
-    public init(symbolReference: SymbolReference) {
+    public init(symbolReference: SymbolReference, weight: Font.Weight = .regular) {
         self.symbolReference = symbolReference
+        self.weight = weight
     }
 
     public var body: some View {
@@ -38,6 +40,7 @@ public struct SymbolView: View {
                     Image(systemName: symbol.name)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .fontWeight(weight)
                         .symbolRenderingMode(renderingMode.symbolRenderingMode)
                         .environment(\.colorScheme, .light)  // Ensure symbols display consistently in light and dark modes.
                 }

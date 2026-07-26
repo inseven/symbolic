@@ -39,6 +39,19 @@ struct IconView: View {
         }
     }
 
+    var symbolWeight: Font.Weight {
+        switch iconSize * 2 {
+        case ..<24:
+            return .black
+        case ..<48:
+            return .bold
+        case ..<96:
+            return .semibold
+        default:
+            return .regular
+        }
+    }
+
     var iconOffset: CGSize {
         return CGSize(width: icon.iconOffset.width * size,
                       height: icon.iconOffset.height * size * -1.0)
@@ -55,7 +68,7 @@ struct IconView: View {
                            startPoint: .top,
                            endPoint: .bottom)
 
-            let image = SymbolView(symbolReference: icon.symbol)
+            let image = SymbolView(symbolReference: icon.symbol, weight: symbolWeight)
                 .foregroundColor(icon.symbolColor)
 
             VStack {
