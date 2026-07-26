@@ -43,7 +43,7 @@ struct IconPreview: View {
                     Image("Grid_macOS")
                         .resizable()
                         .frame(width: width, height: height)
-                case .iOS:
+                case .iOS, .webTouchIcon:
                     Image("Grid_iOS")
                         .resizable()
                         .frame(width: width, height: height)
