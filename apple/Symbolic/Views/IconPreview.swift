@@ -40,13 +40,9 @@ struct IconPreview: View {
             if sceneModel.showGrid {
                 switch definition.style {
                 case .macOS:
-                    Image("Grid_macOS")
-                        .resizable()
-                        .frame(width: width, height: height)
+                    MacGridView(size: width)
                 case .iOS, .webTouchIcon:
-                    Image("Grid_iOS")
-                        .resizable()
-                        .frame(width: width, height: height)
+                    AppGridView(size: width, cornerStyle: .circular)
                 case .watchOS:
                     WatchGridView(size: width)
                 case .web:
