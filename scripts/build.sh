@@ -184,7 +184,8 @@ xcodebuild \
 build-tools notarize "$BUILD_DIRECTORY/Symbolic.app" \
     --key "$API_KEY_PATH" \
     --key-id "$APPLE_API_KEY_ID" \
-    --issuer "$APPLE_API_KEY_ISSUER_ID"
+    --issuer "$APPLE_API_KEY_ISSUER_ID" \
+    --log-directory "$BUILD_DIRECTORY"
 
 # Compress the app.
 APP_BASENAME="Symbolic.app"
