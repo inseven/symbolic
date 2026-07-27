@@ -23,6 +23,7 @@ import SwiftUI
 extension SwiftUI.Path {
 
     mutating public func addCircle(center: CGPoint, radius: CGFloat) {
+        move(to: CGPoint(x: center.x + radius, y: center.y))
         addArc(center: center, radius: radius, startAngle: Angle(), endAngle: Angle(degrees: 360), clockwise: true)
     }
 
