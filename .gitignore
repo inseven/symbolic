@@ -8,6 +8,7 @@
 /docs/current.json
 /docs/_site
 /docs/releases
+/scripts/Pipfile.lock
 build
 temp
 xcuserdata/
