@@ -30,6 +30,18 @@ footer:
 
 destination: ../_site
 
+toc:
+  ordered_list: true
+
+gfm_admonitions:
+  inject_css: false
+
 defaults:
   - values:
       layout: "page"
+  - scope:
+      path: "docs"
+    values:
+      layout: "documentation"
+      toc: true
+      shows_title: true
