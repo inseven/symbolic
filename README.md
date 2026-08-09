@@ -6,10 +6,6 @@ Icon designer
 
 ![](images/screenshot.png)
 
-## Development
-
-Symbolic follows the version numbering, build and signing conventions for InSeven Limited apps. Further details can be found [here](https://github.com/inseven/build-documentation).
-
 ## Symbols
 
 ### SF Symbols

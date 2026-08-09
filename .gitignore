@@ -2,13 +2,12 @@
 .DS_Store
 .env
 .nova
-/.local
 /_site
 /docs/.jekyll-cache
 /docs/current.json
 /docs/_site
 /docs/releases
-/scripts/Pipfile.lock
+/docs/vendor
 build
 temp
 xcuserdata/
