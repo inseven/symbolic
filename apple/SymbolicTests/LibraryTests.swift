@@ -145,7 +145,7 @@ final class LibraryTests: XCTestCase {
                        ["default", "outlined", "round", "sharp", "twotone"])
     }
 
-    func testResolveSymbolWithoutVariantUsesefaultVariant() throws {
+    func testResolveSymbolWithoutVariantUsesDefaultVariant() throws {
         let reference = SymbolReference(family: "material-icons", name: "favorite", variant: nil)
         XCTAssertEqual(try LibraryManager.shared.resolveSymbol(for: reference),
                        SymbolReference(family: "material-icons", name: "favorite", variant: "default"))
