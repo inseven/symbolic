@@ -30,6 +30,16 @@ Update the icons as follows:
 scripts/import-material-design-icons.py ~/Projects/material-design-icons
 ```
 
+### Emoji
+
+Symbolic includes the full set of [Unicode emoji](https://unicode.org/emoji/), drawn with the system emoji font. The manifest is itself generated from Unicode's `emoji-test.txt`, a copy of which is checked in at `resources/emoji-test.txt`. Running the script without an argument fetches the latest published data instead. Skin tone variations are excluded.
+
+Update the emoji as follows:
+
+```bash
+scripts/import-emoji.py resources/emoji-test.txt
+```
+
 ## License
 
 Symbolic is licensed under the MIT License (see [LICENSE](LICENSE)). It depends on the following separately licensed third-party libraries and components:

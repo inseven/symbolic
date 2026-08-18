@@ -105,6 +105,12 @@ public struct Library {
                                   name: properties.name,
                                   format: .symbol(minimumOperatingSystemVersion: properties.minimumOperatingSystemVersion.flatMap { OperatingSystemVersion(string: $0) },
                                                   renderingMode: properties.renderingMode))
+                case .emoji(let properties):
+                    return Symbol(reference: reference,
+                                  variant: displayVariant,
+                                  name: symbol.name ?? symbol.id,
+                                  format: .emoji(character: properties.character,
+                                                 minimumOperatingSystemVersion: properties.minimumOperatingSystemVersion.flatMap { OperatingSystemVersion(string: $0) }))
                 }
             }
         }
