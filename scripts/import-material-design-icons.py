@@ -27,25 +27,32 @@ def main():
             "path": "LICENSE",
             "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "variants": {
-            "default": {
-                "name": "Default",
+        "variants": [
+            {
+                "id": "default",
+                "name": "Filled",
             },
-            "outlined": {
-                "name": "Outlined"
+            {
+                "id": "outlined",
+                "name": "Outlined",
             },
-            "twotone": {
-                "name": "Two Tone",
+            {
+                "id": "round",
+                "name": "Rounded",
             },
-            "round": {
-                "name": "Round",
-            },
-            "sharp": {
+            {
+                "id": "sharp",
                 "name": "Sharp",
             },
-        },
+            {
+                "id": "twotone",
+                "name": "Two Tone",
+            },
+        ],
         "symbols": [],
     }
+
+    variant_keys = [variant["id"] for variant in manifest["variants"]]
 
     repository_directory = os.path.abspath(options.repository)
     license_path = os.path.join(repository_directory, "LICENSE")
@@ -61,27 +68,35 @@ def main():
             symbol = {
                 "id": icon,
                 "name": icon.replace("_", " ").title(),
-                "variants": {}
+                "variants": []
             }
 
             icon_base_path = os.path.join(category_path, icon)
-            variants = os.listdir(icon_base_path)
 
-            for variant in variants:
+            # The directory listing is in filesystem order, so index the variants by identifier and emit them in the
+            # order the manifest declares them; the manifest is the source of truth for variant ordering.
+            directories = {}
+            for variant in os.listdir(icon_base_path):
                 assert variant.startswith("materialicons")
                 variant_name = variant[len("materialicons"):]
                 variant_key = variant_name if variant_name else "default"
-                if variant_key not in manifest["variants"]:
+                if variant_key not in variant_keys:
                     exit("Variant '%s' not defined in manfiest." % variant_key)
-                icon_path = os.path.join(category_path, icon, variant, "24px.svg")
+                directories[variant_key] = variant
+
+            for variant_key in variant_keys:
+                if variant_key not in directories:
+                    continue
+                icon_path = os.path.join(icon_base_path, directories[variant_key], "24px.svg")
                 basename = "%s.%s.svg" % (icon, variant_key)
                 shutil.copyfile(icon_path, os.path.join(MATERIAL_ICONS_DIRECTORY, basename))
-                symbol["variants"][variant_key] = {
+                symbol["variants"].append({
+                    "id": variant_key,
                     "format": "svg",
                     "properties": {
                         "path": basename
                     }
-                }
+                })
             manifest["symbols"].append(symbol)
 
     with open(os.path.join(MATERIAL_ICONS_DIRECTORY, "manifest.json"), "w") as fh:

@@ -22,10 +22,12 @@ import Foundation
 
 struct Manifest: Codable {
 
-    enum Variant: Codable {
+    struct Variant: Codable {
 
-        case svg(SVGProperties)
-        case symbol(SymbolProperties)
+        enum Properties {
+            case svg(SVGProperties)
+            case symbol(SymbolProperties)
+        }
 
         struct SVGProperties: Codable {
             let path: String
@@ -43,23 +45,29 @@ struct Manifest: Codable {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case id
             case format
             case properties
         }
 
+        let id: String
+        let properties: Properties
+
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.id = try container.decode(String.self, forKey: .id)
             switch try container.decode(Format.self, forKey: .format) {
             case .svg:
-                self = .svg(try container.decode(SVGProperties.self, forKey: .properties))
+                self.properties = .svg(try container.decode(SVGProperties.self, forKey: .properties))
             case .symbol:
-                self = .symbol(try container.decode(SymbolProperties.self, forKey: .properties))
+                self.properties = .symbol(try container.decode(SymbolProperties.self, forKey: .properties))
             }
         }
 
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            switch self {
+            try container.encode(id, forKey: .id)
+            switch properties {
             case .svg(let properties):
                 try container.encode(Format.svg, forKey: .format)
                 try container.encode(properties, forKey: .properties)
@@ -72,13 +80,14 @@ struct Manifest: Codable {
     }
 
     struct VariantDefinition: Codable {
+        let id: String
         let name: String
     }
 
     struct Symbol: Codable {
         let id: String
         let name: String?
-        let variants: [String: Variant]
+        let variants: [Variant]
     }
 
     struct License: Codable {
@@ -92,7 +101,7 @@ struct Manifest: Codable {
     let author: String
     let url: URL?
     let license: License
-    let variants: [String: VariantDefinition]?
+    let variants: [VariantDefinition]?
     let symbols: [Symbol]
     let aliases: [String: String]?
     let warning: String?
