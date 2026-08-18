@@ -30,23 +30,23 @@ def main():
         "variants": [
             {
                 "id": "default",
-                "name": "Default",
+                "name": "Filled",
             },
             {
                 "id": "outlined",
                 "name": "Outlined",
             },
             {
-                "id": "twotone",
-                "name": "Two Tone",
-            },
-            {
                 "id": "round",
-                "name": "Round",
+                "name": "Rounded",
             },
             {
                 "id": "sharp",
                 "name": "Sharp",
+            },
+            {
+                "id": "twotone",
+                "name": "Two Tone",
             },
         ],
         "symbols": [],

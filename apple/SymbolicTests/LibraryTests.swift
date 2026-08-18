@@ -142,7 +142,7 @@ final class LibraryTests: XCTestCase {
     func testVariantOrder() throws {
         let library = try library(withIdentifier: "material-icons")
         XCTAssertEqual(try XCTUnwrap(library.symbolsById["favorite"]).map { $0.reference.variant },
-                       ["default", "outlined", "twotone", "round", "sharp"])
+                       ["default", "outlined", "round", "sharp", "twotone"])
     }
 
     func testResolveSymbolWithoutVariantUsesDefaultVariant() throws {
