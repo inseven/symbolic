@@ -34,8 +34,7 @@ public final class IconDocument: ReferenceFileDocument {
     }
 
     public init() {
-        // Load the initial icon from the built-in template.
-        let url = Bundle.module.url(forResource: "Template", withExtension: "symbolic")!
+        let url = Bundle.sharedResourceURL!.appendingPathComponent("Template.symbolic")
         let data = try! Data(contentsOf: url)
         icon = try! JSONDecoder().decode(Icon.self, from: data)
     }

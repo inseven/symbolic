@@ -25,11 +25,6 @@ let package = Package(
             dependencies: [
                 .product(name: "SwiftDraw", package: "SwiftDraw"),
             ],
-            resources: [
-                .copy("Resources/material-icons"),
-                .copy("Resources/sf-symbols"),
-                .copy("Resources/Template.symbolic"),
-            ],
             swiftSettings: [
                 .swiftLanguageMode(.v5),
             ]

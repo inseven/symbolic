@@ -83,6 +83,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				"Preview Content/Preview Assets.xcassets",
 			);
 			target = D8CD4A7928AC35C300D57F34 /* Symbolic */;
 		};
@@ -103,7 +104,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D8D00CE52E87263800901654 /* Symbolic */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8D00D262E87263800901654 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Symbolic; sourceTree = "<group>"; };
+		D8D00CE52E87263800901654 /* Symbolic */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8D00D262E87263800901654 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = ("Resources/material-icons", "Resources/sf-symbols", ); path = Symbolic; sourceTree = "<group>"; };
 		D8D00D2B2E87267700901654 /* SymbolicUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SymbolicUITests; sourceTree = "<group>"; };
 		D8D00D342E87277300901654 /* SymbolicTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SymbolicTests; sourceTree = "<group>"; };
 		D8E87A1A3012FFBB006CA6C8 /* SymbolicQuickLookPreviewExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8E87A293012FFBB006CA6C8 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SymbolicQuickLookPreviewExtension; sourceTree = "<group>"; };
