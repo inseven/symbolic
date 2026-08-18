@@ -35,6 +35,16 @@ extension Array where Element == Symbol {
 
 public struct Library {
 
+    static let defaultVariantIdentifier = "default"
+
+    // Ensure the 'default' variant is first then order the remaining variants alphabetically.
+    static func variant(_ lhs: String, precedes rhs: String) -> Bool {
+        guard (lhs == defaultVariantIdentifier) == (rhs == defaultVariantIdentifier) else {
+            return lhs == defaultVariantIdentifier
+        }
+        return lhs < rhs
+    }
+
     public struct License {
 
         public let name: String
@@ -62,7 +72,7 @@ public struct Library {
         // Older documents may reference a symbol without naming a variant; fall
         // back to its default (first) variant in that case.
         guard let variant = reference.variant else {
-            return symbols.first
+            return symbols.first { $0.reference.variant == Self.defaultVariantIdentifier } ?? symbols.first
         }
         return symbols.first { $0.reference.variant == variant }
     }
@@ -86,7 +96,7 @@ public struct Library {
         }
 
         let symbols: [Symbol] = manifest.symbols.flatMap { symbol -> [Symbol] in
-            return symbol.variants.map { (identifier, variant) in
+            return symbol.variants.sorted { Self.variant($0.key, precedes: $1.key) }.map { (identifier, variant) in
                 let reference = SymbolReference(family: manifest.id, name: symbol.id, variant: identifier)
                 let displayVariant = variants[identifier]
 

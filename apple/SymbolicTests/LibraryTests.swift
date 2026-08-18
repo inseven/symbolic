@@ -135,6 +135,28 @@ final class LibraryTests: XCTestCase {
                        SymbolReference(family: "sf-symbols", name: "apple.logo", variant: "default"))
     }
 
+    func library(withIdentifier identifier: String) throws -> Library {
+        return try XCTUnwrap(LibraryManager.shared.sets.first { $0.id == identifier })
+    }
+
+    func testVariantOrder() throws {
+        let library = try library(withIdentifier: "material-icons")
+        XCTAssertEqual(try XCTUnwrap(library.symbolsById["favorite"]).map { $0.reference.variant },
+                       ["default", "outlined", "round", "sharp", "twotone"])
+    }
+
+    func testResolveSymbolWithoutVariantUsesDefaultVariant() throws {
+        let reference = SymbolReference(family: "material-icons", name: "favorite", variant: nil)
+        XCTAssertEqual(try LibraryManager.shared.resolveSymbol(for: reference),
+                       SymbolReference(family: "material-icons", name: "favorite", variant: "default"))
+    }
+
+    func testResolveSymbolWithoutVariantIsStableWithoutDefaultVariant() throws {
+        let reference = SymbolReference(family: "material-icons", name: "face_unlock", variant: nil)
+        XCTAssertEqual(try LibraryManager.shared.resolveSymbol(for: reference),
+                       SymbolReference(family: "material-icons", name: "face_unlock", variant: "outlined"))
+    }
+
     func testResolveSymbolUnknownSymbolThrows() {
         let reference = SymbolReference(family: "sf-symbols", name: "heffalump", variant: nil)
         XCTAssertThrowsError(try LibraryManager.shared.resolveSymbol(for: reference)) { error in
