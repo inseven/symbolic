@@ -68,9 +68,12 @@ public struct Library {
     }
 
     public init(named name: String) throws {
-        guard let manifestURL = Bundle.module.url(forResource: "manifest",
-                                                withExtension: "json",
-                                                subdirectory: name) else {
+
+        guard
+            let manifestURL = Bundle.sharedResourceURL?
+                .appending(component: name)
+                .appendingPathComponent("manifest.json")
+        else {
             throw SymbolicError.missingManifest
         }
         let data = try Data(contentsOf: manifestURL)
@@ -89,7 +92,9 @@ public struct Library {
 
                 switch variant {
                 case .svg(let properties):
-                    let url = Bundle.module.url(forResource: properties.path, withExtension: nil, subdirectory: name)
+                    let url = Bundle.sharedResourceURL?
+                        .appendingPathComponent(name)
+                        .appendingPathComponent(properties.path)
                     return Symbol(reference: reference,
                                   variant: displayVariant,
                                   name: symbol.name ?? symbol.id,
@@ -106,7 +111,11 @@ public struct Library {
 
         let licenseFileURL: URL?
         if let path = manifest.license.path {
-            guard let fileURL = Bundle.module.url(forResource: path, withExtension: nil, subdirectory: name) else {
+            guard
+                let fileURL = Bundle.sharedResourceURL?
+                    .appendingPathComponent(name)
+                    .appendingPathComponent(path)
+            else {
                 throw SymbolicError.missingLicense
             }
             licenseFileURL = fileURL
