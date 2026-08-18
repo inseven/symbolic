@@ -37,14 +37,6 @@ public struct Library {
 
     static let defaultVariantIdentifier = "default"
 
-    // Ensure the 'default' variant is first then order the remaining variants alphabetically.
-    static func variant(_ lhs: String, precedes rhs: String) -> Bool {
-        guard (lhs == defaultVariantIdentifier) == (rhs == defaultVariantIdentifier) else {
-            return lhs == defaultVariantIdentifier
-        }
-        return lhs < rhs
-    }
-
     public struct License {
 
         public let name: String
@@ -89,18 +81,16 @@ public struct Library {
         let data = try Data(contentsOf: manifestURL)
         let manifest = try JSONDecoder().decode(Manifest.self, from: data)
 
-        let variants = (manifest.variants ?? [:]).map { (id, variant) in
-            return Variant(id: id, name: variant.name)
-        }.reduce(into: [String: Variant]()) { partialResult, variant in
-            partialResult[variant.id] = variant
+        let variants = (manifest.variants ?? []).reduce(into: [String: Variant]()) { partialResult, variant in
+            partialResult[variant.id] = Variant(id: variant.id, name: variant.name)
         }
 
         let symbols: [Symbol] = manifest.symbols.flatMap { symbol -> [Symbol] in
-            return symbol.variants.sorted { Self.variant($0.key, precedes: $1.key) }.map { (identifier, variant) in
-                let reference = SymbolReference(family: manifest.id, name: symbol.id, variant: identifier)
-                let displayVariant = variants[identifier]
+            return symbol.variants.map { variant in
+                let reference = SymbolReference(family: manifest.id, name: symbol.id, variant: variant.id)
+                let displayVariant = variants[variant.id]
 
-                switch variant {
+                switch variant.properties {
                 case .svg(let properties):
                     let url = Bundle.sharedResourceURL?
                         .appendingPathComponent(name)

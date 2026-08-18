@@ -78,8 +78,9 @@ def main():
     symbols = [
         {
             "id": name,
-            "variants": {
-                "default": {
+            "variants": [
+                {
+                    "id": "default",
                     "format": "symbol",
                     "properties": {
                         "name": name,
@@ -87,7 +88,7 @@ def main():
                         "renderingMode": "monochrome",
                     },
                 },
-            },
+            ],
         }
         for name in names
     ]
