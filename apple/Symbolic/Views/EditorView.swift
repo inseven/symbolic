@@ -35,6 +35,10 @@ struct EditorView: View {
 
     @State var undoContext = UndoContext()
 
+    var supportsColorization: Bool {
+        return LibraryManager.shared.symbol(for: document.icon.symbol)?.supportsColorization ?? false
+    }
+
     var body: some View {
         Form {
             
@@ -42,14 +46,25 @@ struct EditorView: View {
                 SymbolPicker("Image",
                              selection: $document.icon.symbol.undoable(undoManager, context: undoContext),
                              sceneModel: sceneModel)
+                if supportsColorization {
+                    LabeledContent {
+                        ColorPicker(selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext),
+                                    supportsOpacity: false)
+                    } label: {
+                        Label("Color", systemImage: "paintpalette")
+                    }
+                }
+                if let library = sceneModel.library {
+                    LabeledContent {
+                        LibraryInfoButton(library: library)
+                    } label: {
+                        Label("Library", systemImage: "books.vertical")
+                    }
+                }
+            }
+            Section("Layout") {
                 Slider(value: $document.icon.iconScale.undoable(undoManager, context: undoContext), in: 0...1.2) {
                     Label("Size", systemImage: "textformat.size")
-                }
-                LabeledContent {
-                    ColorPicker(selection: $document.icon.symbolColor.undoable(undoManager, context: undoContext),
-                                supportsOpacity: false)
-                } label: {
-                    Label("Color", systemImage: "paintpalette")
                 }
                 LabeledContent {
                     VStack(alignment: .trailing) {

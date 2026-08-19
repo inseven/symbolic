@@ -57,6 +57,15 @@ public struct Symbol: Identifiable {
         }
     }
 
+    public var supportsColorization: Bool {
+        switch format {
+        case .svg, .symbol:
+            return true
+        case .emoji:
+            return false
+        }
+    }
+
     public init(reference: SymbolReference,
                 variant: Variant? = nil,
                 name: String,
