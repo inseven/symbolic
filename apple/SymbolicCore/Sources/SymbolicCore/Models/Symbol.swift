@@ -29,6 +29,7 @@ public struct Symbol: Identifiable {
     public enum Format {
         case svg(url: URL?)
         case symbol(minimumOperatingSystemVersion: OperatingSystemVersion?, renderingMode: RenderingMode)
+        case emoji(character: String, minimumOperatingSystemVersion: OperatingSystemVersion?)
     }
 
     public let reference: SymbolReference
@@ -47,11 +48,21 @@ public struct Symbol: Identifiable {
         switch format {
         case .svg:
             return true
-        case .symbol(let minimumOperatingSystemVersion, _):
+        case .symbol(let minimumOperatingSystemVersion, _),
+             .emoji(_, let minimumOperatingSystemVersion):
             guard let minimumOperatingSystemVersion else {
                 return true
             }
             return ProcessInfo.processInfo.isOperatingSystemAtLeast(minimumOperatingSystemVersion)
+        }
+    }
+
+    public var supportsColorization: Bool {
+        switch format {
+        case .svg, .symbol:
+            return true
+        case .emoji:
+            return false
         }
     }
 

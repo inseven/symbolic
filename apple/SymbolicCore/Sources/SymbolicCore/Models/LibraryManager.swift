@@ -32,6 +32,7 @@ public class LibraryManager {
         self.sets = [
             try! Library(named: "material-icons"),
             try! Library(named: "sf-symbols"),
+            try! Library(named: "emoji"),
         ]
     }
 

@@ -51,36 +51,29 @@ struct SymbolPicker: View {
 
     var body: some View {
         LabeledContent {
-            VStack(alignment: .trailing) {
-                Button {
-                    isPresented = true
-                } label: {
-                    HStack {
-                        SymbolView(symbolReference: selection.wrappedValue)
-                            .foregroundStyle(colorScheme == .dark ? .white : .black)
-                    }
-                    .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
+            Button {
+                isPresented = true
+            } label: {
+                HStack {
+                    SymbolView(symbolReference: selection.wrappedValue)
+                        .foregroundStyle(colorScheme == .dark ? .white : .black)
                 }
-                .controlSize(.large)
-                .popover(isPresented: $isPresented) {
-                    SymbolGrid(model: model, selection: selection, isPresented: $isPresented)
-                        .safeAreaInset(edge: .top, spacing: 0) {
-                            TextField(text: $model.filter, prompt: Text("Search")) {
-                                EmptyView()
-                            }
-                            .multilineTextAlignment(.leading)
-                            .textFieldStyle(.roundedBorder)
-                            .padding()
-                            .background(.regularMaterial)
+                .frame(width: LayoutMetrics.buttonSize.width, height: LayoutMetrics.buttonSize.height)
+            }
+            .controlSize(.large)
+            .popover(isPresented: $isPresented) {
+                SymbolGrid(model: model, selection: selection, isPresented: $isPresented)
+                    .safeAreaInset(edge: .top, spacing: 0) {
+                        TextField(text: $model.filter, prompt: Text("Search")) {
+                            EmptyView()
                         }
+                        .multilineTextAlignment(.leading)
+                        .textFieldStyle(.roundedBorder)
+                        .padding()
                         .background(.regularMaterial)
-                        .frame(height: LayoutMetrics.height)
-                }
-                if let library = sceneModel.library {
-                    LabeledContent("") {
-                        LibraryInfoButton(library: library)
                     }
-                }
+                    .background(.regularMaterial)
+                    .frame(height: LayoutMetrics.height)
             }
         } label: {
             Label("Symbol", systemImage: "heart")

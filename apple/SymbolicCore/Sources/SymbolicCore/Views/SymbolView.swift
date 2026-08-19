@@ -43,6 +43,16 @@ public struct SymbolView: View {
                         .fontWeight(weight)
                         .symbolRenderingMode(renderingMode.symbolRenderingMode)
                         .environment(\.colorScheme, .light)  // Ensure symbols display consistently in light and dark modes.
+                case .emoji(let character, _):
+                    GeometryReader { geometry in
+                        let side = min(geometry.size.width, geometry.size.height)
+                        Text(verbatim: character)
+                            .font(.system(size: side))
+                            .lineLimit(1)
+                            .fixedSize()
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                    }
+                    .aspectRatio(1.0, contentMode: .fit)
                 }
             } else {
                 EmptyView()

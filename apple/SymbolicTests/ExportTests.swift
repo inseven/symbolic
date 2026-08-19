@@ -82,6 +82,23 @@ final class ExportTests: XCTestCase {
         XCTAssertNotFileExists(exportURL.appendingPathComponent("LICENSE"))
     }
 
+    func testEmojiExpectedFiles() async throws {
+
+        let directoryURL = try createTemporaryDirectory()
+        let exportURL = directoryURL.appendingPathComponent("Export")
+
+        let document = IconDocument()
+        XCTAssertEqual(document.icon.symbol.family, "material-icons")
+        document.icon.symbol = SymbolReference(family: "emoji", name: "1f600", variant: nil)
+        try await document.export(destination: exportURL)
+
+        XCTAssertDirectoryExists(exportURL)
+        XCTAssertDirectoryExists(exportURL.appendingPathComponent("macOS.iconset"))
+        XCTAssertDirectoryExists(exportURL.appendingPathComponent("iOS"))
+        XCTAssertDirectoryExists(exportURL.appendingPathComponent("watchOS"))
+        XCTAssertNotFileExists(exportURL.appendingPathComponent("LICENSE"))
+    }
+
     func testExportFailsMissingDirectory() async {
 
         let directoryURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString)

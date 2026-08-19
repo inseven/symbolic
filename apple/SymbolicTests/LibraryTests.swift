@@ -51,6 +51,11 @@ final class LibraryTests: XCTestCase {
         return LibraryManager.shared.symbol(for: reference)
     }
 
+    func emoji(named name: String) -> Symbol? {
+        let reference = SymbolReference(family: "emoji", name: name, variant: nil)
+        return LibraryManager.shared.symbol(for: reference)
+    }
+
     func testMaterializeCurrentName() throws {
         let symbol = try XCTUnwrap(sfSymbol(named: "square.and.arrow.up"))
         XCTAssertEqual(symbol.name, "square.and.arrow.up")
@@ -120,6 +125,11 @@ final class LibraryTests: XCTestCase {
             OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0), renderingMode: .monochrome)).isSupported)
         XCTAssertFalse(symbol(format: .symbol(minimumOperatingSystemVersion:
             OperatingSystemVersion(majorVersion: 999, minorVersion: 0, patchVersion: 0), renderingMode: .monochrome)).isSupported)
+        XCTAssertTrue(symbol(format: .emoji(character: "😀", minimumOperatingSystemVersion: nil)).isSupported)
+        XCTAssertTrue(symbol(format: .emoji(character: "😀", minimumOperatingSystemVersion:
+            OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0))).isSupported)
+        XCTAssertFalse(symbol(format: .emoji(character: "😀", minimumOperatingSystemVersion:
+            OperatingSystemVersion(majorVersion: 999, minorVersion: 0, patchVersion: 0))).isSupported)
     }
 
     func testResolveSymbolAvailable() throws {
@@ -133,6 +143,33 @@ final class LibraryTests: XCTestCase {
         let reference = SymbolReference(family: "sf-symbols", name: "applelogo", variant: nil)
         XCTAssertEqual(try LibraryManager.shared.resolveSymbol(for: reference),
                        SymbolReference(family: "sf-symbols", name: "apple.logo", variant: "default"))
+    }
+
+    func testMaterializeEmoji() throws {
+        let symbol = try XCTUnwrap(emoji(named: "1f600"))
+        XCTAssertEqual(symbol.name, "Grinning face")
+        guard case .emoji(let character, let minimumOperatingSystemVersion) = symbol.format else {
+            return XCTFail("Expected an emoji-format variant")
+        }
+        XCTAssertEqual(character, "😀")
+    }
+
+    func testEmojiMinimumOperatingSystemVersion() throws {
+        let symbol = try XCTUnwrap(emoji(named: "1fae9"))
+        guard case .emoji(_, let minimumOperatingSystemVersion) = symbol.format else {
+            return XCTFail("Expected an emoji-format variant")
+        }
+        XCTAssertEqual(minimumOperatingSystemVersion,
+                       OperatingSystemVersion(majorVersion: 15, minorVersion: 4, patchVersion: 0))
+    }
+
+    func testEmojiSequenceIdentifiers() throws {
+        let symbol = try XCTUnwrap(emoji(named: "1f1ec-1f1e7"))
+        XCTAssertEqual(symbol.name, "Flag: United Kingdom")
+        guard case .emoji(let character, _) = symbol.format else {
+            return XCTFail("Expected an emoji-format variant")
+        }
+        XCTAssertEqual(character, "🇬🇧")
     }
 
     func library(withIdentifier identifier: String) throws -> Library {

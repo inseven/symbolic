@@ -27,10 +27,16 @@ struct Manifest: Codable {
         enum Properties {
             case svg(SVGProperties)
             case symbol(SymbolProperties)
+            case emoji(EmojiProperties)
         }
 
         struct SVGProperties: Codable {
             let path: String
+        }
+
+        struct EmojiProperties: Codable {
+            let character: String
+            let minimumOperatingSystemVersion: String?
         }
 
         struct SymbolProperties: Codable {
@@ -42,6 +48,7 @@ struct Manifest: Codable {
         private enum Format: String, Codable {
             case svg
             case symbol
+            case emoji
         }
 
         private enum CodingKeys: String, CodingKey {
@@ -61,6 +68,8 @@ struct Manifest: Codable {
                 self.properties = .svg(try container.decode(SVGProperties.self, forKey: .properties))
             case .symbol:
                 self.properties = .symbol(try container.decode(SymbolProperties.self, forKey: .properties))
+            case .emoji:
+                self.properties = .emoji(try container.decode(EmojiProperties.self, forKey: .properties))
             }
         }
 
@@ -73,6 +82,9 @@ struct Manifest: Codable {
                 try container.encode(properties, forKey: .properties)
             case .symbol(let properties):
                 try container.encode(Format.symbol, forKey: .format)
+                try container.encode(properties, forKey: .properties)
+            case .emoji(let properties):
+                try container.encode(Format.emoji, forKey: .format)
                 try container.encode(properties, forKey: .properties)
             }
         }
