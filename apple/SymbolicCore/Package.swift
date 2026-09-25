@@ -17,7 +17,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/sparkle-project/Sparkle", .upToNextMajor(from: "2.7.1")),
         .package(url: "https://github.com/inseven/glitter.git", .upToNextMajor(from: "0.1.2")),
-        .package(url: "https://github.com/swhitty/SwiftDraw.git", .upToNextMajor(from: "0.9.6")),
+        .package(url: "https://github.com/swhitty/SwiftDraw.git", .upToNextMajor(from: "0.29.0")),
     ],
     targets: [
         .target(
