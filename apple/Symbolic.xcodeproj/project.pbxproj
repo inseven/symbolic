@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D831DD1C297319FC00C20B11 /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = D831DD1B297319FC00C20B11 /* SwiftDraw */; };
-		D864A23A2965A2D1008A4261 /* Interact in Frameworks */ = {isa = PBXBuildFile; productRef = D864A2392965A2D1008A4261 /* Interact */; };
 		D8AAAA010000000000000002 /* SymbolicCore in Frameworks */ = {isa = PBXBuildFile; productRef = D8AAAA010000000000000001 /* SymbolicCore */; };
 		D8AAAA010000000000000004 /* SymbolicCore in Frameworks */ = {isa = PBXBuildFile; productRef = D8AAAA010000000000000003 /* SymbolicCore */; };
 		D8C16A922E874087005A0AC3 /* SymbolicCore in Frameworks */ = {isa = PBXBuildFile; productRef = D8C16A912E874087005A0AC3 /* SymbolicCore */; };
@@ -17,7 +16,6 @@
 		D8E87A2F3012FFD8006CA6C8 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E87A063012FE05006CA6C8 /* QuickLookThumbnailing.framework */; };
 		D8E87A303012FFD8006CA6C8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E87A183012FFBB006CA6C8 /* Quartz.framework */; };
 		D8E87A373012FFD8006CA6C8 /* SymbolicThumbnailExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D8E87A2E3012FFD8006CA6C8 /* SymbolicThumbnailExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D8F99EC628B13998007C3868 /* Diligence in Frameworks */ = {isa = PBXBuildFile; productRef = D8F99EC528B13998007C3868 /* Diligence */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,8 +115,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D831DD1C297319FC00C20B11 /* SwiftDraw in Frameworks */,
-				D864A23A2965A2D1008A4261 /* Interact in Frameworks */,
-				D8F99EC628B13998007C3868 /* Diligence in Frameworks */,
 				D8C16A922E874087005A0AC3 /* SymbolicCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,8 +214,6 @@
 			);
 			name = Symbolic;
 			packageProductDependencies = (
-				D8F99EC528B13998007C3868 /* Diligence */,
-				D864A2392965A2D1008A4261 /* Interact */,
 				D831DD1B297319FC00C20B11 /* SwiftDraw */,
 				D8C16A912E874087005A0AC3 /* SymbolicCore */,
 			);
@@ -355,8 +349,6 @@
 			mainGroup = D8CD4A7128AC35C300D57F34;
 			packageReferences = (
 				D831DD1A297319FC00C20B11 /* XCRemoteSwiftPackageReference "SwiftDraw" */,
-				D8F6ADD02CA74B0E0078416B /* XCLocalSwiftPackageReference "dependencies/diligence" */,
-				D8F6ADD12CA74B230078416B /* XCLocalSwiftPackageReference "dependencies/interact" */,
 			);
 			productRefGroup = D8CD4A7B28AC35C300D57F34 /* Products */;
 			projectDirPath = "";
@@ -976,17 +968,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		D8F6ADD02CA74B0E0078416B /* XCLocalSwiftPackageReference "dependencies/diligence" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = dependencies/diligence;
-		};
-		D8F6ADD12CA74B230078416B /* XCLocalSwiftPackageReference "dependencies/interact" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = dependencies/interact;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		D831DD1A297319FC00C20B11 /* XCRemoteSwiftPackageReference "SwiftDraw" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1004,10 +985,6 @@
 			package = D831DD1A297319FC00C20B11 /* XCRemoteSwiftPackageReference "SwiftDraw" */;
 			productName = SwiftDraw;
 		};
-		D864A2392965A2D1008A4261 /* Interact */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Interact;
-		};
 		D8AAAA010000000000000001 /* SymbolicCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SymbolicCore;
@@ -1019,10 +996,6 @@
 		D8C16A912E874087005A0AC3 /* SymbolicCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SymbolicCore;
-		};
-		D8F99EC528B13998007C3868 /* Diligence */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Diligence;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
